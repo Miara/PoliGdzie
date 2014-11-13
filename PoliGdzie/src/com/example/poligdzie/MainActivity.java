@@ -1,10 +1,19 @@
 package com.example.poligdzie;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
+
+
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONObject;
+import org.codehaus.jackson.*;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -20,6 +29,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.json.poligdzie.Directions;
 
 
 
@@ -64,6 +74,32 @@ public class MainActivity extends Activity {
 		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(LOCATION_PIOTROWO, 16);
 		map.animateCamera(update);
 		
+	}
+
+    
+    /* test purposes now */
+    public void onClick_JSON_Test(View v) {
+    	ObjectMapper mapper = new ObjectMapper(); 
+    	try {
+			Directions directions = mapper.readValue(new URL(getMapsApiDirectionsUrl()), Directions.class);
+			
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			System.out.println("parse");			
+			//e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			System.out.println("maping");	
+			//e.printStackTrace();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("url");	
+			//e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("io");	
+			//e.printStackTrace();
+		}
 	}
     
     private String getMapsApiDirectionsUrl() {
