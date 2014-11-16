@@ -10,10 +10,14 @@ import java.util.List;
 
 
 
+
+
+
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONObject;
 import org.codehaus.jackson.*;
+import org.codehaus.jackson.map.*;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -30,6 +34,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.json.poligdzie.Directions;
+import com.json.poligdzie.Legs;
+import com.json.poligdzie.Routes;
+import com.json.poligdzie.Steps;
 
 
 
@@ -40,7 +47,7 @@ public class MainActivity extends Activity {
 	static final LatLng LOCATION_PIOTROWO = new LatLng(52.4022703,16.9495847);
 	private static final LatLng MY_POINT = new LatLng(52.4014141,16.9511311);
 	private static final LatLng CENTRUM_WYKLADOWE = new LatLng(52.4037379,16.9498138);
-	
+	private PolylineOptions options;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,29 +86,66 @@ public class MainActivity extends Activity {
     
     /* test purposes now */
     public void onClick_JSON_Test(View v) {
-    	ObjectMapper mapper = new ObjectMapper(); 
-    	try {
-			Directions directions = mapper.readValue(new URL(getMapsApiDirectionsUrl()), Directions.class);
-			
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			System.out.println("parse");			
-			//e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			System.out.println("maping");	
-			//e.printStackTrace();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("url");	
-			//e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("io");	
-			//e.printStackTrace();
-		}
+    	TestTask test = new TestTask();
+    	test.execute(getMapsApiDirectionsUrl());
+    	
 	}
     
+	private class TestTask extends AsyncTask<String, Void, String> {
+		@Override
+		protected String doInBackground(String... url) {
+			
+			ObjectMapper mapper = new ObjectMapper(); 
+	    	mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+	    	
+	    	try {
+	    		
+	    		Directions directions = mapper.readValue(new URL(url[0]), Directions.class);
+	    		
+	    		options = new PolylineOptions();
+	    		for(Routes route : directions.getRoutes()) {
+	    			for(Legs leg : route.getLegs()) {
+	    				for(Steps step : leg.getSteps()) {
+	    					options.add(step.getPolyline().decodePolyline());
+	    				}
+	    			}
+	    		}
+	    		
+				
+				
+			} catch (JsonParseException e) {
+				// TODO Auto-generated catch block
+							
+				e.printStackTrace();
+			} catch (JsonMappingException e) {
+				// TODO Auto-generated catch block
+					
+				e.printStackTrace();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+					
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+					
+				e.printStackTrace();
+			}
+	    	return "blabla";
+		}
+	
+
+		@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+			//new ParserTask().execute(result);
+			
+			options.color(Color.RED);
+			options.width(10);
+			map.addPolyline(options);	
+		}
+	}
+	
+
     private String getMapsApiDirectionsUrl() {
 		/*String waypoints = "waypoints=optimize:true|"
 				+ LOWER_MANHATTAN.latitude + "," + LOWER_MANHATTAN.longitude
@@ -198,7 +242,7 @@ public class MainActivity extends Activity {
 				polyLineOptions.color(Color.BLUE);
 			}
 		
-			map.addPolyline(polyLineOptions);
+			//map.addPolyline(polyLineOptions);
 		}
 	}
 
