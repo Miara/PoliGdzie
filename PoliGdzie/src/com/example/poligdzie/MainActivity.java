@@ -103,13 +103,7 @@ public class MainActivity extends Activity {
 	    		Directions directions = mapper.readValue(new URL(url[0]), Directions.class);
 	    		
 	    		options = new PolylineOptions();
-	    		for(Routes route : directions.getRoutes()) {
-	    			for(Legs leg : route.getLegs()) {
-	    				for(Steps step : leg.getSteps()) {
-	    					options.add(step.getPolyline().decodePolyline());
-	    				}
-	    			}
-	    		}
+	    		options = directions.generatePolylineFromDirections(options);
 	    		
 				
 				

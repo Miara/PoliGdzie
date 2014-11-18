@@ -1,5 +1,8 @@
 package com.json.poligdzie;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.codehaus.jackson.annotate.JsonProperty;
 
 import android.util.Log;
@@ -18,75 +21,52 @@ public class Polyline {
 		this.points = points;
 	}
 	
-	public LatLng decodePolyline() {
-		char array_points[] = new char[points.length()];
-		int lat_array[] = new int[6];
-		int lng_array[] = new int[6];
-		int int_temp_array[] = new int[points.length()];
-		int sum = 0;
-		int lat =0 , lng =0;
-		array_points = points.toCharArray();
-		int counter = 0;
-		int shift = 0;
-		int flag = 0;
-		
-		for(int i=0; i<points.length(); i++) {
-			if(flag == 1)
-				break;
-			int ascii = (int) array_points[i];
-			ascii -= 63;
-			
-			if(ascii < 0x20) {
-				counter = i;
-				flag = 1;
+	public List<LatLng> decodePolyline() {
+			List<LatLng> poly = new ArrayList<LatLng>();
+			int index = 0, len = points.length();
+			int lat = 0, lng = 0;
+
+			int result_tab[] = new int[2];
+			while (index < len) {
+				
+				
+				result_tab = getValueAfterBitOperations(index);
+				lat += result_tab[0]; 
+				index = result_tab[1];
+				
+				result_tab = getValueAfterBitOperations(index);
+				
+				lng += result_tab[0]; 
+				index = result_tab[1];
+
+				LatLng p = new LatLng((((double) lat / 1E5)),
+						(((double) lng / 1E5)));
+				poly.add(p);
 			}
-			
-			ascii = ascii & 31;
-			ascii = ascii << shift;
-			
-			lat += ascii;
-			
-			
+			return poly;
 		}
-		int index = 0;
-		shift = 0;
-		flag= 0;
-		
-		for(int i=counter; i<points.length(); i++) {
-			if(flag == 1) 
-				break;
-			int ascii = (int) array_points[i];
-			ascii -= 63;
-			
-			if(ascii < 0x20) {
-				counter = i;
-				flag = 1;
-			}
-			ascii = ascii & 31;
-			ascii = ascii << shift;
-			
-			lng += ascii;
-		}
-		
-		if((lat & 1) == 1) {
-			lat = ~ lat;
-		}
-		
-		if((lng & 1) == 1) {
-			lng = ~ lng;
-		}
-		
 	
-		double double_lng = 0.0, double_lat = 0.0;
-		double_lng = (double) lng / 1e5;
-		double_lat = (double) lat / 1e5;
+	private int[] getValueAfterBitOperations(int index) {
+		int shift = 0, value = 0, result = 0;
+		int initialAscii = 0, asciiAfterMask = 0;
+		do {
+			initialAscii = points.charAt(index++) - 63;
+			asciiAfterMask = initialAscii & 31;
+			asciiAfterMask = asciiAfterMask << shift;
+			value |= asciiAfterMask;
+			shift += 5;
+		} while (initialAscii >= 0x20);
 		
 		
+		if((value & 1) != 0) {
+			result = ~(value >> 1);
+		} else { 
+			result = value >> 1;
+		}
+		int result_tab[] = new int[2]; 
+		result_tab[0] = result;
+		result_tab[1] = index;
 		
-		return new LatLng(double_lat, double_lng);
-		
-	
-		
-		
+		return result_tab;
 	}
 }
