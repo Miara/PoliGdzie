@@ -1473,12 +1473,11 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f0b0002;
         public static final int action_menu_presenter=0x7f0b0003;
         public static final int action_mode_close_button=0x7f0b0036;
-        public static final int action_settings=0x7f0b0052;
+        public static final int action_settings=0x7f0b0051;
         public static final int activity_chooser_view_content=0x7f0b0037;
         public static final int always=0x7f0b0022;
         public static final int beginning=0x7f0b0029;
         public static final int book_now=0x7f0b0014;
-        public static final int btnJSON_Test=0x7f0b0050;
         public static final int btnPiotrowo=0x7f0b004f;
         public static final int buyButton=0x7f0b0010;
         public static final int buy_now=0x7f0b0015;
@@ -1506,7 +1505,7 @@ containing a value of this type.
         public static final int image=0x7f0b0039;
         public static final int listMode=0x7f0b001a;
         public static final int list_item=0x7f0b003b;
-        public static final int map=0x7f0b0051;
+        public static final int map=0x7f0b0050;
         public static final int match_parent=0x7f0b0012;
         public static final int middle=0x7f0b002b;
         public static final int monochrome=0x7f0b0019;

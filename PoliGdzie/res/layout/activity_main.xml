@@ -13,14 +13,7 @@
 		    android:layout_alignParentTop="true"
 		    android:onClick="onClick_Piotrowo"
 		    android:text="Piotrowo" />
-    	<Button
-		    android:id="@+id/btnJSON_Test"
-		    android:layout_toRightOf="@+id/btnPiotrowo"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:onClick="onClick_JSON_Test"
-		    android:text="JSON_Test" />
-		<fragment android:id="@+id/map"
+    	<fragment android:id="@+id/map"
 		    android:layout_below="@+id/btnPiotrowo"
          	android:layout_width="match_parent"
           	android:layout_height="match_parent"
