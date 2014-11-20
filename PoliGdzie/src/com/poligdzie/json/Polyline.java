@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
-import android.util.Log;
-
 import com.google.android.gms.maps.model.LatLng;
 
 public class Polyline {

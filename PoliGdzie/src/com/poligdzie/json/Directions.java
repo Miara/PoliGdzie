@@ -20,7 +20,7 @@ public class Directions {
 	}
 	
 	public PolylineOptions generatePolylineFromDirections(PolylineOptions options) {
-		for(Routes route : this.getRoutes()) {
+		for(Routes route : getRoutes()) {
 			for(Legs leg : route.getLegs()) {
 				for(Steps step : leg.getSteps()) {
 					options.addAll(step.getPolyline().decodePolyline());
