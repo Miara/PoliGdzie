@@ -24,6 +24,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.json.Directions;
+import com.poligdzie.persistence.DatabaseCreator;
 
 
 
@@ -41,14 +42,14 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+         
+        
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
         map.setMyLocationEnabled(true);
         map.addMarker(new MarkerOptions().position(LOCATION_PIOTROWO).title("Tutaj jest kampus Piotrowo!"));
         
         MarkerOptions options = new MarkerOptions();
-		/*options.position(LOWER_MANHATTAN);
-		options.position(BROOKLYN_BRIDGE);
-		options.position(WALL_STREET);*/
+		
         options.position(MY_POINT);
         options.position(CENTRUM_WYKLADOWE);
         
@@ -61,7 +62,9 @@ public class MainActivity extends Activity {
     	map.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_PIOTROWO,
 				16));
 		addMarkers();
-
+		
+		
+		DatabaseCreator creator = new DatabaseCreator(this, "database.db", null, 1);
     }
     
     public void onClick_Piotrowo(View v) {
