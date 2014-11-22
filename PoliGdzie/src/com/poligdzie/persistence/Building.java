@@ -3,7 +3,9 @@ package com.poligdzie.persistence;
 import java.util.ArrayList;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "building")
@@ -12,7 +14,10 @@ public class Building {
 	private int id;
 	
 	@DatabaseField
-	private LatLng coordinates;
+	private double coordX;
+	
+	@DatabaseField
+	private double coordY;
 	
 	@DatabaseField
 	private String address;
@@ -23,11 +28,11 @@ public class Building {
 	@DatabaseField
 	private int height;
 	
-	@DatabaseField (foreign = true)
-	private ArrayList <Room> rooms;
+	@ForeignCollectionField 
+	private ForeignCollection <Room> rooms;
 	
-	@DatabaseField (foreign = true)
-	private ArrayList <Unit> units;
+	@ForeignCollectionField
+	private ForeignCollection <Unit> units;
 	
 	public int getId() {
 		return id;
@@ -35,11 +40,17 @@ public class Building {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public LatLng getCoordinates() {
-		return coordinates;
+	public double getCoordX() {
+		return coordX;
 	}
-	public void setCoordinates(LatLng coordinates) {
-		this.coordinates = coordinates;
+	public void setCoordX(double coordX) {
+		this.coordX = coordX;
+	}
+	public double getCoordY() {
+		return coordY;
+	}
+	public void setCoordY(double coordY) {
+		this.coordY = coordY;
 	}
 	public String getAddress() {
 		return address;
@@ -59,16 +70,16 @@ public class Building {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	public ArrayList<Room> getRooms() {
+	public ForeignCollection<Room> getRooms() {
 		return rooms;
 	}
-	public void setRooms(ArrayList<Room> rooms) {
+	public void setRooms(ForeignCollection<Room> rooms) {
 		this.rooms = rooms;
 	}
-	public ArrayList<Unit> getUnits() {
+	public ForeignCollection<Unit> getUnits() {
 		return units;
 	}
-	public void setUnits(ArrayList<Unit> units) {
+	public void setUnits(ForeignCollection<Unit> units) {
 		this.units = units;
 	}
 	public Building() {

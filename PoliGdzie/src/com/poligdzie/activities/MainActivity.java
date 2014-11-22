@@ -3,6 +3,7 @@ package com.poligdzie.activities;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.DeserializationConfig;
@@ -13,6 +14,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.poligdzie.R;
@@ -24,7 +26,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.json.Directions;
-import com.poligdzie.persistence.DatabaseCreator;
+import com.poligdzie.persistence.Building;
+import com.poligdzie.persistence.DatabaseHelper;
 
 
 
@@ -64,8 +67,24 @@ public class MainActivity extends Activity {
 		addMarkers();
 		
 		
-		DatabaseCreator creator = new DatabaseCreator(this, "database.db", null, 1);
-    }
+		DatabaseHelper dbHelper = new DatabaseHelper(this, "database.db", null, 1);
+		try {
+			Building building = new Building();
+			building.setAddress("sassa");
+			building.setCoordX(123.22);
+			building.setCoordY(233.22);
+			building.setHeight(100);
+			building.setWidth(200);
+			building.setId(1);
+			dbHelper.getWritableDatabase();
+			//dbHelper.getDaoContainer().getBuildingDao().create(building);
+			Log.d("moje", Long.toString(dbHelper.getDaoContainer().getBuildingDao().countOf()));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			Log.w("moje", "nieeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+			e.printStackTrace();
+		} 
+		}
     
     public void onClick_Piotrowo(View v) {
     	map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
