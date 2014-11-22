@@ -11,11 +11,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 
-import android.app.Activity;
-
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.poligdzie.activities.MainActivity;
 
 public class DirectionsTest {
 
@@ -56,8 +53,11 @@ public class DirectionsTest {
 		points = new ArrayList <LatLng>();
 	}
 
+	
+	/* TODO: DO UZUPELNIENIA - teraz nie mam pojêcia z jakiej paki tam jest null pointer */
 	@Test
 	public void testGeneratePolylineFromDirections() {
+		fail("Na razie nie wiem jak to przetestowaæ i dlaczego tam jest null pointer");
 		/*options = directions.generatePolylineFromDirections(options);
 		points = options.getPoints();
 		
