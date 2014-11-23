@@ -5,7 +5,7 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "room") 
 public class Room {
-	@DatabaseField (id = true)
+	@DatabaseField (generatedId = true)
 	private int id;
 	
 	@DatabaseField
@@ -25,6 +25,9 @@ public class Room {
 	
 	@DatabaseField
 	private int floorNr;
+	
+	@DatabaseField (foreign = true)
+	private Building building;
 
 	public int getId() {
 		return id;
@@ -83,6 +86,6 @@ public class Room {
 	}
 
 	public Room() {
-		super();
+		
 	}
 }

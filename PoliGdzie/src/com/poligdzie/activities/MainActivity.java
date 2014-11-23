@@ -25,9 +25,12 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.poligdzie.json.Directions;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.DatabaseHelper;
+import com.poligdzie.persistence.Unit;
 
 
 
@@ -39,6 +42,7 @@ public class MainActivity extends Activity {
 	private static final LatLng MY_POINT = new LatLng(52.4014141,16.9511311);
 	private static final LatLng CENTRUM_WYKLADOWE = new LatLng(52.4037379,16.9498138);
 	private PolylineOptions options;
+	private DatabaseHelper dbHelper;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,27 +70,53 @@ public class MainActivity extends Activity {
 				16));
 		addMarkers();
 		
-		
-		DatabaseHelper dbHelper = new DatabaseHelper(this, "database.db", null, 1);
-		try {
+		Log.d("moje", "dzia³a ten filtr, czy nie?");
+		dbHelper = new DatabaseHelper(this, "database.db", null, 1);
+		Log.d("moje", "budynek");
 			Building building = new Building();
 			building.setAddress("sassa");
 			building.setCoordX(123.22);
 			building.setCoordY(233.22);
 			building.setHeight(100);
 			building.setWidth(200);
-			building.setId(1);
+			
+			
+			Unit unit = new Unit();
+			
+			unit.setName("pomieszczenie");
+			unit.setBuilding(building);
+			
+			
 			dbHelper.getWritableDatabase();
-			//dbHelper.getDaoContainer().getBuildingDao().create(building);
-			Log.d("moje", Long.toString(dbHelper.getDaoContainer().getBuildingDao().countOf()));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			Log.w("moje", "nieeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-			e.printStackTrace();
-		} 
+			Log.d("moje", "teraz query!");
+			try {
+				dbHelper.getUnitDao().create(unit);
+				dbHelper.getBuildingDao().create(building);
+				Log.d("moje", Long.toString(dbHelper.getBuildingDao().countOf()));
+				Log.d("moje", Long.toString(dbHelper.getUnitDao().countOf()));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				Log.e("moje", "cos sie ewidentnie zjebalo");
+				e.printStackTrace();
+			}
+			
+			
+		
+		
 		}
     
-    public void onClick_Piotrowo(View v) {
+    @Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		if(dbHelper != null) {
+			OpenHelperManager.releaseHelper();
+	        dbHelper = null;
+		}
+	}
+    
+
+	public void onClick_Piotrowo(View v) {
     	map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(LOCATION_PIOTROWO, 16);
 		map.animateCamera(update);

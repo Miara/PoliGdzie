@@ -5,7 +5,7 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable (tableName = "unit")
 public class Unit {
-	@DatabaseField (id = true)
+	@DatabaseField (generatedId = true)
 	private int id;
 	
 	@DatabaseField
@@ -16,6 +16,9 @@ public class Unit {
 	
 	@DatabaseField
 	private UnitTypes type;
+	
+	@DatabaseField (foreign = true)
+	private Building building;
 
 	public int getId() {
 		return id;
@@ -50,6 +53,14 @@ public class Unit {
 	}
 
 	public Unit() {
-		super();
+		
+	}
+
+	public Building getBuilding() {
+		return building;
+	}
+
+	public void setBuilding(Building building) {
+		this.building = building;
 	}
 }
