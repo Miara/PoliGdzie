@@ -80,6 +80,31 @@ public class Building {
 		this.units = units;
 	}
 	public Building() {
-		super();
+		
 	}
+	public Building(int id, double coordX, double coordY, String address,
+			int width, int height) {
+		this.id = id;
+		this.coordX = coordX;
+		this.coordY = coordY;
+		this.address = address;
+		this.width = width;
+		this.height = height;
+	}
+	
+	
+	public Building(int id, double coordX, double coordY, String address,
+			int width, int height, ForeignCollection<Room> rooms,
+			ForeignCollection<Unit> units) {
+		this.id = id;
+		this.coordX = coordX;
+		this.coordY = coordY;
+		this.address = address;
+		this.width = width;
+		this.height = height;
+		this.rooms = rooms;
+		this.units = units;
+	}
+	
+	
 }

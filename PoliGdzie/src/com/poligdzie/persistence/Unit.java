@@ -63,4 +63,13 @@ public class Unit {
 	public void setBuilding(Building building) {
 		this.building = building;
 	}
+
+	public Unit(int id, String name, String www, UnitTypes type,
+			Building building) {
+		this.id = id;
+		this.name = name;
+		this.www = www;
+		this.type = type;
+		this.building = building;
+	}
 }

@@ -88,4 +88,16 @@ public class Room {
 	public Room() {
 		
 	}
+
+	public Room(int id, int number, String name, RoomFunctions function,
+			int coordX, int coordY, int floorNr, Building building) {
+		this.id = id;
+		this.number = number;
+		this.name = name;
+		this.function = function;
+		this.coordX = coordX;
+		this.coordY = coordY;
+		this.floorNr = floorNr;
+		this.building = building;
+	}
 }

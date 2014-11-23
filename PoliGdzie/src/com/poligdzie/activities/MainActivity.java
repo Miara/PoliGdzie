@@ -27,6 +27,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
+import com.poligdzie.content_creation.ContentCreator;
 import com.poligdzie.json.Directions;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.DatabaseHelper;
@@ -70,9 +71,14 @@ public class MainActivity extends Activity {
 				16));
 		addMarkers();
 		
+		ContentCreator creator = new ContentCreator();
+		
+		
 		Log.d("moje", "dzia³a ten filtr, czy nie?");
 		dbHelper = new DatabaseHelper(this, "database.db", null, 1);
 		Log.d("moje", "budynek");
+		
+		
 			Building building = new Building();
 			building.setAddress("sassa");
 			building.setCoordX(123.22);
@@ -80,12 +86,14 @@ public class MainActivity extends Activity {
 			building.setHeight(100);
 			building.setWidth(200);
 			
-			
+			creator.add(building);
+			creator.populateDatabase(dbHelper);
 			Unit unit = new Unit();
 			
 			unit.setName("pomieszczenie");
 			unit.setBuilding(building);
 			
+		
 			
 			dbHelper.getWritableDatabase();
 			Log.d("moje", "teraz query!");
