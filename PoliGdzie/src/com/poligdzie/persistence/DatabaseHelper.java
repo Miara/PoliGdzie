@@ -1,4 +1,3 @@
-   
 package com.poligdzie.persistence;
 
 import java.sql.SQLException;
@@ -11,7 +10,7 @@ import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-
+import com.poligdzie.content_creation.Fixture;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
@@ -20,35 +19,35 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		super(context, databaseName, factory, databaseVersion);
 		// TODO Auto-generated constructor stub
 	}
-	
 
 	private Dao<Building, Integer> buildingDao = null;
 	private Dao<Unit, Integer> unitDao = null;
 	private Dao<Room, Integer> roomDao = null;
 
-
 	@Override
 	public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
 		try {
-			
+
 			TableUtils.createTable(connectionSource, Room.class);
 			TableUtils.createTable(connectionSource, Unit.class);
 			TableUtils.createTable(connectionSource, Building.class);
-		} catch (SQLException e) {
 			
+			
+			Fixture fixture = new Fixture(this);
+			fixture.getCreator().populateDatabase(this);
+		} catch (SQLException e) {
+
 			throw new RuntimeException(e);
 		}
-		
-		
+
 	}
 
-	
 	@Override
-	public void onUpgrade(SQLiteDatabase db, ConnectionSource connectionSource, int oldVersion, int newVersion) {
+	public void onUpgrade(SQLiteDatabase db, ConnectionSource connectionSource,
+			int oldVersion, int newVersion) {
 
 	}
 
-	
 	public Dao<Building, Integer> getBuildingDao() throws SQLException {
 		if (buildingDao == null) {
 			buildingDao = getDao(Building.class);
@@ -62,14 +61,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		}
 		return unitDao;
 	}
-	
+
 	public Dao<Room, Integer> getRoomDao() throws SQLException {
 		if (roomDao == null) {
 			roomDao = getDao(Room.class);
 		}
 		return roomDao;
 	}
-	
+
 	@Override
 	public void close() {
 		super.close();
@@ -78,4 +77,3 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		roomDao = null;
 	}
 }
-

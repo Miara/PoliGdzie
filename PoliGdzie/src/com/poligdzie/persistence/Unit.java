@@ -3,21 +3,21 @@ package com.poligdzie.persistence;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable (tableName = "unit")
+@DatabaseTable(tableName = "unit")
 public class Unit {
-	@DatabaseField (generatedId = true)
+	@DatabaseField(generatedId = true)
 	private int id;
-	
+
 	@DatabaseField
 	private String name;
-	
+
 	@DatabaseField
 	private String www;
-	
+
 	@DatabaseField
 	private UnitTypes type;
-	
-	@DatabaseField (foreign = true)
+
+	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "building_id")
 	private Building building;
 
 	public int getId() {
@@ -53,7 +53,7 @@ public class Unit {
 	}
 
 	public Unit() {
-		
+
 	}
 
 	public Building getBuilding() {
@@ -64,9 +64,9 @@ public class Unit {
 		this.building = building;
 	}
 
-	public Unit(int id, String name, String www, UnitTypes type,
+	public Unit(String name, String www, UnitTypes type,
 			Building building) {
-		this.id = id;
+		
 		this.name = name;
 		this.www = www;
 		this.type = type;

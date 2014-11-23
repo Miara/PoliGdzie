@@ -3,30 +3,30 @@ package com.poligdzie.persistence;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "room") 
+@DatabaseTable(tableName = "room")
 public class Room {
-	@DatabaseField (generatedId = true)
+	@DatabaseField(generatedId = true)
 	private int id;
-	
+
 	@DatabaseField
 	private int number;
-	
+
 	@DatabaseField
 	private String name;
-	
+
 	@DatabaseField
 	private RoomFunctions function;
-	
+
 	@DatabaseField
 	private int coordX;
-	
+
 	@DatabaseField
 	private int coordY;
-	
+
 	@DatabaseField
 	private int floorNr;
-	
-	@DatabaseField (foreign = true)
+
+	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "building_id")
 	private Building building;
 
 	public int getId() {
@@ -86,12 +86,11 @@ public class Room {
 	}
 
 	public Room() {
-		
+
 	}
 
-	public Room(int id, int number, String name, RoomFunctions function,
+	public Room(int number, String name, RoomFunctions function,
 			int coordX, int coordY, int floorNr, Building building) {
-		this.id = id;
 		this.number = number;
 		this.name = name;
 		this.function = function;
