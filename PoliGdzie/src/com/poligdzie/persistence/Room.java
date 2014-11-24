@@ -25,6 +25,9 @@ public class Room {
 
 	@DatabaseField
 	private int floorNr;
+	
+	@DatabaseField
+	private String aliases;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "building_id")
 	private Building building;
@@ -97,6 +100,22 @@ public class Room {
 		this.coordX = coordX;
 		this.coordY = coordY;
 		this.floorNr = floorNr;
+		this.building = building;
+	}
+
+	public String getAliases() {
+		return aliases;
+	}
+
+	public void setAliases(String aliases) {
+		this.aliases = aliases;
+	}
+
+	public Building getBuilding() {
+		return building;
+	}
+
+	public void setBuilding(Building building) {
 		this.building = building;
 	}
 }

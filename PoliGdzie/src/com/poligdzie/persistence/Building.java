@@ -27,6 +27,9 @@ public class Building {
 	@DatabaseField
 	private int height;
 
+	@DatabaseField
+	private String aliases;
+	
 	@ForeignCollectionField (eager = true, columnName = "rooms")
 	private ForeignCollection<Room> rooms;
 
@@ -131,6 +134,14 @@ public class Building {
 		this.height = height;
 		this.rooms = rooms;
 		this.units = units;
+	}
+
+	public String getAliases() {
+		return aliases;
+	}
+
+	public void setAliases(String aliases) {
+		this.aliases = aliases;
 	}
 
 	

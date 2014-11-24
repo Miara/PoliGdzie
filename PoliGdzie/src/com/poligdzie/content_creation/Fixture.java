@@ -30,18 +30,14 @@ public class Fixture {
 		this.creator.populateDatabase(dbHelper);
 		
 		Unit ii = new Unit("Instytut Informatyki", "http://cs.put.poznan.pl", UnitTypes.INSTITUTE, cw);
-		//cw.add(ii);
 		Unit wi = new Unit("Wydzia³ Informatyki", "http://fc.put.poznan.pl", UnitTypes.FACULTY, bm);
-		//bm.add(wi);
 		Unit eit = new Unit("Wydzia³ Elektroniki i Telekomunikacji", "http://et.put.poznan.pl", UnitTypes.FACULTY, elektryk);
-		//elektryk.add(eit);
+		
 		
 		Room cw8 = new Room(8, "Sala wyk³adowa 8", RoomFunctions.LECTURE, 30, 30, 1, cw);
-		//cw.add(cw8);
 		Room wc = new Room(0, "WC", RoomFunctions.RESTROOM, 10, 10, 0, cw);
-		//cw.add(wc);
 		Room dziekanat = new Room(503, "Dziekanat", RoomFunctions.STAFF, 15, 30, 5, bm);
-		//bm.add(dziekanat);
+		
 		
 		
 		
