@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 PoliGdzie/AndroidManifest.xml
 PoliGdzie/bin
 google-play-services_lib/bin
+=======
+PoliGdzie/AndroidManifest.xml
+PoliGdzie/bin
+google-play-services_lib/bin
+>>>>>>> ORMLite
 appcompat_v7/bin

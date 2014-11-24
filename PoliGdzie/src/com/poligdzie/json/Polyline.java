@@ -18,32 +18,31 @@ public class Polyline {
 	public void setPoints(String points) {
 		this.points = points;
 	}
-	
+
 	public List<LatLng> decodePolyline() {
-			List<LatLng> poly = new ArrayList<LatLng>();
-			int index = 0, len = points.length();
-			int lat = 0, lng = 0;
+		List<LatLng> poly = new ArrayList<LatLng>();
+		int index = 0, len = points.length();
+		int lat = 0, lng = 0;
 
-			int result_tab[] = new int[2];
-			while (index < len) {
-				
-				
-				result_tab = getValueAfterBitOperations(index);
-				lat += result_tab[0]; 
-				index = result_tab[1];
-				
-				result_tab = getValueAfterBitOperations(index);
-				
-				lng += result_tab[0]; 
-				index = result_tab[1];
+		int result_tab[] = new int[2];
+		while (index < len) {
 
-				LatLng p = new LatLng((((double) lat / 1E5)),
-						(((double) lng / 1E5)));
-				poly.add(p);
-			}
-			return poly;
+			result_tab = getValueAfterBitOperations(index);
+			lat += result_tab[0];
+			index = result_tab[1];
+
+			result_tab = getValueAfterBitOperations(index);
+
+			lng += result_tab[0];
+			index = result_tab[1];
+
+			LatLng p = new LatLng((((double) lat / 1E5)),
+					(((double) lng / 1E5)));
+			poly.add(p);
 		}
-	
+		return poly;
+	}
+
 	private int[] getValueAfterBitOperations(int index) {
 		int shift = 0, value = 0, result = 0;
 		int initialAscii = 0, asciiAfterMask = 0;
@@ -54,17 +53,16 @@ public class Polyline {
 			value |= asciiAfterMask;
 			shift += 5;
 		} while (initialAscii >= 0x20);
-		
-		
-		if((value & 1) != 0) {
+
+		if ((value & 1) != 0) {
 			result = ~(value >> 1);
-		} else { 
+		} else {
 			result = value >> 1;
 		}
-		int result_tab[] = new int[2]; 
+		int result_tab[] = new int[2];
 		result_tab[0] = result;
 		result_tab[1] = index;
-		
+
 		return result_tab;
 	}
 }
