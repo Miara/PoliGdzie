@@ -15,7 +15,7 @@ import android.app.Activity;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.poligdzie.activities.MainActivity;
+import com.poligdzie.activities.MapActivity;
 
 public class DirectionsTest {
 
