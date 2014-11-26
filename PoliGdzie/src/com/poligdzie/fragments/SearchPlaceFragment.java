@@ -13,8 +13,7 @@ import com.example.poligdzie.R;
 
 public class SearchPlaceFragment extends Fragment implements OnClickListener{
 	
-	private Button myButton;
-	private String buttonText;
+	private Button searchButton;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,13 +25,18 @@ public class SearchPlaceFragment extends Fragment implements OnClickListener{
 	SearchFieldFragment searchField = new SearchFieldFragment("Budynek/sala"); 
     transaction.add(R.id.fragment_search_place_container, searchField); 
     transaction.commit();
+    
+    searchButton = (Button)rootView.findViewById(R.id.button_search_trace);
 	//setCurrentDate();
 	return rootView;
 	}
 	
 	@Override
 	public void onClick(View v) {
-	// TODO Auto-generated method stub
+		if( v == searchButton)
+		{
+			
+		}
 	
 	}
 }

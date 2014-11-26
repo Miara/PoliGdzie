@@ -47,18 +47,11 @@ public class SearchActivity extends Activity implements OnClickListener,Constant
         buttonPlace.setOnClickListener(this);
         buttonBuilding = (Button) findViewById(R.id.button_building);
         buttonBuilding.setOnClickListener(this);
-        goToMapButton = (Button) findViewById(R.id.goToMapButton);
-        goToMapButton.setOnClickListener(this);
         
     }
     
     @Override
 	public void onClick(View v) {
-		if( v == goToMapButton)
-		{
-			Intent intent = new Intent(this, MapActivity.class);
-	        startActivity(intent);
-		}
 		if( v == buttonTrace)
 		{
 			switchFragment(R.id.fragment_search_container, fragment_trace, "trace");
@@ -99,7 +92,7 @@ public class SearchActivity extends Activity implements OnClickListener,Constant
         else 
         {
             transaction.add( resource, fragment, tag );
-            addToBackStack=true;
+            //addToBackStack=true;
         }
 
         if ( addToBackStack ) 
@@ -118,5 +111,7 @@ public class SearchActivity extends Activity implements OnClickListener,Constant
 	public void setLastTag(String lastTag) {
 		this.lastTag = lastTag;
 	}
+	
+	
 		
 }
