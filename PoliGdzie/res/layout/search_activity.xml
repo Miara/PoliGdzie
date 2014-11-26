@@ -19,14 +19,14 @@
 		    android:text="Trasa" />
 		<Button
 		    android:layout_weight="1"
-		    android:id="@+id/button_search"
+		    android:id="@+id/button_place"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:text="Szukaj"/>
 
 		<Button
 		    android:layout_weight="1"
-		    android:id="@+id/button_buildings"
+		    android:id="@+id/button_building"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:text="Budynki" />
@@ -39,29 +39,19 @@
 	    android:orientation="vertical" >
 
 		
-
-	    <fragment
-	        android:name="com.poligdzie.fragments.SearchFieldFragment"
-	        android:id="@+id/fragment_from"
-	   		android:layout_width="match_parent"
-	   		android:layout_height="wrap_content" />
-	
-	    <fragment
-	        android:id="@+id/fragment_to"
-	        android:name="com.poligdzie.fragments.SearchFieldFragment"
+		<LinearLayout
+	        android:id="@+id/fragment_search_container"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginBottom="50dip" />
+	        android:orientation="vertical"
+	    >
+	    </LinearLayout>
 	    
 	    <Button
 	        android:id="@+id/goToMapButton"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="Wyszukaj" />
-	    <TextView
-		    android:id="@+id/test_label"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:text="Test Bazy danych : negatywny" />
+
 	</LinearLayout>
 </LinearLayout>
