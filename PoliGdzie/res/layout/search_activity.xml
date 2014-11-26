@@ -1,26 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical" >
-
-    <fragment
-        android:name="com.poligdzie.fragments.SearchFieldFragment"
-        android:id="@+id/fragment_from"
-   		android:layout_width="match_parent"
-   		android:layout_height="wrap_content" />
     
-    <fragment
-        android:name="com.poligdzie.fragments.SearchFieldFragment"
-        android:id="@+id/fragment_to"
-   		android:layout_width="match_parent"
-   		android:layout_height="wrap_content"
-   		android:layout_marginBottom="50dip" />
-    
-    <Button
-        android:id="@+id/goToMapButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Wyszukaj" />
+	<LinearLayout 
+	    android:id="@+id/overlapLinear"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:background="#000000" >
 
+		<Button
+		    android:layout_weight="1"
+		    android:id="@+id/button_trace"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:text="Trasa" />
+		<Button
+		    android:layout_weight="1"
+		    android:id="@+id/button_search"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:text="Szukaj"/>
+
+		<Button
+		    android:layout_weight="1"
+		    android:id="@+id/button_buildings"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:text="Budynki" />
+	    
+	</LinearLayout>
+	<LinearLayout 
+	    android:id="@+id/searchLinear"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+
+		
+
+	    <fragment
+	        android:name="com.poligdzie.fragments.SearchFieldFragment"
+	        android:id="@+id/fragment_from"
+	   		android:layout_width="match_parent"
+	   		android:layout_height="wrap_content" />
+	
+	    <fragment
+	        android:id="@+id/fragment_to"
+	        android:name="com.poligdzie.fragments.SearchFieldFragment"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginBottom="50dip" />
+	    
+	    <Button
+	        android:id="@+id/goToMapButton"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Wyszukaj" />
+	    <TextView
+		    android:id="@+id/test_label"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:text="Test Bazy danych : negatywny" />
+	</LinearLayout>
 </LinearLayout>

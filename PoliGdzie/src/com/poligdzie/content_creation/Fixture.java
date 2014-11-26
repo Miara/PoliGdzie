@@ -13,21 +13,20 @@ public class Fixture {
 
 	private ContentCreator creator;
 	
+	//zmiena versionChanged w celach testowych ¿eby nie dodawaæ ci¹gle tych samych pól
 	public Fixture(DatabaseHelper dbHelper) {
 		// TODO Auto-generated constructor stub
 		creator = new ContentCreator();
 		
 		
-		Building cw = new Building(52.4041748, 16.9496774, "Piotrowo 2", 150, 2);
-		Building elektryk = new Building(52.401804, 16.951146, "Piotrowo 3a", 70, 10);
-		Building bm = new Building(52.402357, 16.950573, "Piotrowo 3", 70, 10);
+		Building cw = new Building("Centrum wyk³adowee",52.4041748, 16.9496774, "Piotrowo 2", 150, 2,"","cw");
+		Building elektryk = new Building("Elektryk",52.401804, 16.951146, "Piotrowo 3a", 70, 10,"","el");
+		Building bm = new Building("Budowa maszyn",52.402357, 16.950573, "Piotrowo 3", 70, 10,"","bm");
 		
 		
 		creator.add(cw);
 		creator.add(elektryk);
 		creator.add(bm);
-		
-		this.creator.populateDatabase(dbHelper);
 		
 		Unit ii = new Unit("Instytut Informatyki", "http://cs.put.poznan.pl", UnitTypes.INSTITUTE, cw);
 		Unit wi = new Unit("Wydzia³ Informatyki", "http://fc.put.poznan.pl", UnitTypes.FACULTY, bm);
@@ -38,16 +37,14 @@ public class Fixture {
 		Room wc = new Room(0, "WC", RoomFunctions.RESTROOM, 10, 10, 0, cw);
 		Room dziekanat = new Room(503, "Dziekanat", RoomFunctions.STAFF, 15, 30, 5, bm);
 		
-		
-		
-		
-		
 		creator.add(cw8);
 		creator.add(wc);
 		creator.add(dziekanat);
 		creator.add(ii);
 		creator.add(wi);
 		creator.add(eit);
+		
+		this.creator.populateDatabase(dbHelper);
 		
 	}
 
