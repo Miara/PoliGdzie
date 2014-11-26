@@ -4,8 +4,13 @@ import com.example.poligdzie.R;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
+import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.json.DownloadDirectionsTask;
@@ -14,7 +19,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
-public class MapActivity extends Activity {
+public class MapActivity extends Activity implements OnMarkerClickListener {
 
 	public GoogleMap map;
 	public PolylineOptions options;
@@ -31,16 +36,38 @@ public class MapActivity extends Activity {
         setContentView(R.layout.map_activity);
         
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+        
+        map.setInfoWindowAdapter(new InfoWindowAdapter() {
+
+	        // Use default InfoWindow frame
+	        @Override
+	        public View getInfoWindow(Marker arg0) 
+	        {
+	            return null;
+	        }
+	        @Override
+	        public View getInfoContents(Marker arg0) 
+	        {
+	            View v = getLayoutInflater().inflate(R.layout.window_marker_click, null);
+	            return v;
+
+	        }
+	    });
+        
         map.setMyLocationEnabled(true);
         map.addMarker(new MarkerOptions().position(LOCATION_PIOTROWO).title("Tutaj jest kampus Piotrowo!"));
         
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(MY_POINT);
-        markerOptions.position(CENTRUM_WYKLADOWE);
+        markerOptions.position(CENTRUM_WYKLADOWE)
+	        .title("Centrum Wyk³adowe")
+	        .snippet("ul. Piotrowo 3")
+	        .icon(BitmapDescriptorFactory.fromResource(R.drawable.cw_icon));
         
 		map.addMarker(markerOptions);
 		
 		
+
 		DownloadDirectionsTask downloadTask = new DownloadDirectionsTask(map,options);
     	downloadTask.execute(getMapsApiDirectionsUrl());
     	
@@ -82,6 +109,12 @@ public class MapActivity extends Activity {
 			map.addMarker(new MarkerOptions().position(CENTRUM_WYKLADOWE)
 					.title("Second Point"));
 		}
+	}
+
+	@Override
+	public boolean onMarkerClick(Marker arg0) {
+		arg0.showInfoWindow();
+		return false;
 	}
 
 }

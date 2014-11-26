@@ -33,8 +33,7 @@ public class SearchActivity extends Activity implements OnClickListener,Constant
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_activity);
-        
-        
+         
         fragment_trace = new SearchTraceFragment();
         switchFragment(R.id.fragment_search_container, fragment_trace, "trace");
         fragment_place = new SearchPlaceFragment();		

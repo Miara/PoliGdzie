@@ -16,9 +16,5 @@ public interface Constants{
 	public String PROMPT_MODE_START = "Start button mode";
 	public String PROMPT_MODE_STOP = "Stop button mode";
 	
-	//inne
-	public String START_FIELD_TAG = "start_point";
-	public String STOP_FIELD_TAG = "stop_point";
-	public String SEARCH_FIELD_TAG = "search_point";
 	
 }
