@@ -4,6 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <TextView
+        android:id="@+id/textView_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+    
     <EditText
         android:id="@+id/editText1"
         android:layout_width="match_parent"
@@ -12,6 +18,7 @@
 
         <requestFocus />
     </EditText>
+
     <LinearLayout
 	        android:id="@+id/prompt_fragments_container"
 	        android:layout_width="match_parent"

@@ -4,12 +4,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 	<LinearLayout
-	        android:id="@+id/fragment_search_trace_container"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:orientation="vertical"
 	        android:layout_marginBottom="40px"
 	    >
+	    <Button
+             android:id="@+id/button_start_point"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="Punkt startowy" />
+	    <Button
+             android:id="@+id/button_stop_point"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="Punkt docelowy" />
 	    </LinearLayout>
 	    
 	    <Button

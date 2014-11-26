@@ -19,7 +19,6 @@ import com.poligdzie.interfaces.Constants;
 
 public class SearchActivity extends Activity implements OnClickListener,Constants{
 
-	private Button goToMapButton;
 	private Button buttonTrace;
 	private Button buttonPlace;
 	private Button buttonBuilding;
