@@ -1,5 +1,9 @@
 package com.poligdzie.activities;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.poligdzie.R;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -13,16 +17,22 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.poligdzie.interfaces.Constants;
 import com.poligdzie.json.DownloadDirectionsTask;
+import com.poligdzie.persistence.Building;
+import com.poligdzie.persistence.DatabaseHelper;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
-public class MapActivity extends Activity implements OnMarkerClickListener {
+public class MapActivity extends Activity implements OnMarkerClickListener, Constants {
 
 	public GoogleMap map;
 	public PolylineOptions options;
+	private DatabaseHelper dbHelper;
+	
 	
 	//Przyk³adowe punkty
 	static final LatLng LOCATION_PIOTROWO = new LatLng(52.4022703,16.9495847);
@@ -34,6 +44,8 @@ public class MapActivity extends Activity implements OnMarkerClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_activity);
+        
+        dbHelper = new DatabaseHelper(this, DATABASE_NAME, null, DATABASE_VERSION);
         
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
         
@@ -57,22 +69,22 @@ public class MapActivity extends Activity implements OnMarkerClickListener {
         map.setMyLocationEnabled(true);
         map.addMarker(new MarkerOptions().position(LOCATION_PIOTROWO).title("Tutaj jest kampus Piotrowo!"));
         
-        MarkerOptions markerOptions = new MarkerOptions();
+      /*  MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(MY_POINT);
         markerOptions.position(CENTRUM_WYKLADOWE)
 	        .title("Centrum Wyk³adowe")
 	        .snippet("ul. Piotrowo 3")
 	        .icon(BitmapDescriptorFactory.fromResource(R.drawable.cw_icon));
         
-		map.addMarker(markerOptions);
+		map.addMarker(markerOptions);*/
 		
-		
+		map = addAllMarkersToMap(map);
 
 		DownloadDirectionsTask downloadTask = new DownloadDirectionsTask(map,options);
     	downloadTask.execute(getMapsApiDirectionsUrl());
     	
     	map.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_PIOTROWO,16));
-		addMarkers();
+//		addMarkers();
 
     }
     
@@ -82,6 +94,34 @@ public class MapActivity extends Activity implements OnMarkerClickListener {
 		map.animateCamera(update);
 		
 	}
+    
+    private GoogleMap addAllMarkersToMap(GoogleMap map) {
+    	List <Building> buildings = new ArrayList <Building>();
+    	try {
+			buildings = dbHelper.getBuildingDao().queryForAll();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	if(buildings == null)
+    		return map;
+    	MarkerOptions option = new MarkerOptions();
+    	
+    	for(Building b : buildings) {
+    		option.position(new LatLng(b.getCoordX(), b.getCoordY()))
+    			  .title(b.getName())
+    			  .snippet(b.getAddress())
+    			  .icon(BitmapDescriptorFactory.fromResource(R.drawable.cw_icon));
+    		
+    		map.addMarker(option);
+    	}
+    	
+    	return map;
+    	
+    	
+    	
+    }
 
         
 	
@@ -115,6 +155,17 @@ public class MapActivity extends Activity implements OnMarkerClickListener {
 	public boolean onMarkerClick(Marker arg0) {
 		arg0.showInfoWindow();
 		return false;
+	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		if (dbHelper != null) {
+			OpenHelperManager.releaseHelper();
+			dbHelper = null;
+		}
+
 	}
 
 }
