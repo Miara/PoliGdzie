@@ -1,7 +1,5 @@
 package com.poligdzie.persistence;
 
-import android.util.Log;
-
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
@@ -14,7 +12,7 @@ public class Building {
 
 	@DatabaseField
 	private String name;
-	
+
 	@DatabaseField
 	private double coordX;
 
@@ -32,14 +30,14 @@ public class Building {
 
 	@DatabaseField
 	private String aliases;
-	
+
 	@DatabaseField
 	private String image;
-	
-	@ForeignCollectionField (eager = true, columnName = "rooms")
+
+	@ForeignCollectionField(eager = true, columnName = "rooms")
 	private ForeignCollection<Room> rooms;
 
-	@ForeignCollectionField (eager = true, columnName = "units")
+	@ForeignCollectionField(eager = true, columnName = "units")
 	private ForeignCollection<Unit> units;
 
 	public int getId() {
@@ -107,21 +105,20 @@ public class Building {
 	}
 
 	public void add(Object value) {
-		if(value.getClass() == Unit.class) {
+		if (value.getClass() == Unit.class) {
 			this.units.add((Unit) value);
 		}
-		
-		if(value.getClass() == Room.class) {
+
+		if (value.getClass() == Room.class) {
 			this.rooms.add((Room) value);
 		}
 	}
-	
+
 	public Building() {
 
 	}
 
-	
-	public Building(String name,double coordX, double coordY, String address,
+	public Building(String name, double coordX, double coordY, String address,
 			int width, int height, String image, String aliases) {
 		this.name = name;
 		this.coordX = coordX;
@@ -133,9 +130,9 @@ public class Building {
 		this.aliases = aliases;
 	}
 
-	public Building(String name,double coordX, double coordY, String address,
-			int width, int height, String image, String aliases, ForeignCollection<Room> rooms,
-			ForeignCollection<Unit> units) {
+	public Building(String name, double coordX, double coordY, String address,
+			int width, int height, String image, String aliases,
+			ForeignCollection<Room> rooms, ForeignCollection<Unit> units) {
 		this.name = name;
 		this.coordX = coordX;
 		this.coordY = coordY;
@@ -155,6 +152,7 @@ public class Building {
 	public void setAliases(String aliases) {
 		this.aliases = aliases;
 	}
+
 	public String getImage() {
 		return image;
 	}
@@ -171,7 +169,4 @@ public class Building {
 		this.name = name;
 	}
 
-	
-
-	
 }

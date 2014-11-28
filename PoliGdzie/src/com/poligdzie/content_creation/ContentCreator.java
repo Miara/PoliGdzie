@@ -1,11 +1,8 @@
 package com.poligdzie.content_creation;
 
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import android.util.Log;
 
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.DatabaseHelper;
@@ -75,8 +72,7 @@ public class ContentCreator {
 	}
 
 	public void populateDatabase(DatabaseHelper dbHelper) {
-	
-		
+
 		for (Unit unit : units) {
 			try {
 				dbHelper.getUnitDao().createOrUpdate(unit);
@@ -94,7 +90,7 @@ public class ContentCreator {
 				e.printStackTrace();
 			}
 		}
-		
+
 		for (Building building : buildings) {
 			try {
 				dbHelper.getBuildingDao().createOrUpdate(building);

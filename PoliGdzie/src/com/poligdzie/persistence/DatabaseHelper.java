@@ -11,7 +11,6 @@ import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import com.poligdzie.content_creation.ContentCreator;
 import com.poligdzie.content_creation.Fixture;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
@@ -24,18 +23,17 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	private Dao<Building, Integer> buildingDao = null;
 	private Dao<Unit, Integer> unitDao = null;
 	private Dao<Room, Integer> roomDao = null;
-	
 
 	@Override
 	public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
 		try {
-			Log.i("DATABASE","TABLES");
+			Log.i("DATABASE", "TABLES");
 			TableUtils.createTable(connectionSource, Room.class);
 			TableUtils.createTable(connectionSource, Unit.class);
 			TableUtils.createTable(connectionSource, Building.class);
 
 			Fixture fixture = new Fixture(this);
-			fixture.getCreator().populateDatabase(this);	
+			fixture.getCreator().populateDatabase(this);
 		} catch (SQLException e) {
 
 			throw new RuntimeException(e);
@@ -46,19 +44,18 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, ConnectionSource connectionSource,
 			int oldVersion, int newVersion) {
-			Log.i("DATABASE","upgrade in");
-			try {
-				Log.i("DATABASE","upgrade1");
-				TableUtils.dropTable(connectionSource, Room.class, false);
-				TableUtils.dropTable(connectionSource, Unit.class, false);
-				TableUtils.dropTable(connectionSource, Building.class, false);
-				Log.i("DATABASE","upgrade2");
-				this.onCreate(db,connectionSource);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+		Log.i("DATABASE", "upgrade in");
+		try {
+			Log.i("DATABASE", "upgrade1");
+			TableUtils.dropTable(connectionSource, Room.class, false);
+			TableUtils.dropTable(connectionSource, Unit.class, false);
+			TableUtils.dropTable(connectionSource, Building.class, false);
+			Log.i("DATABASE", "upgrade2");
+			this.onCreate(db, connectionSource);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -90,6 +87,5 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		unitDao = null;
 		roomDao = null;
 	}
-
 
 }

@@ -25,7 +25,7 @@ public class Room {
 
 	@DatabaseField
 	private int floorNr;
-	
+
 	@DatabaseField
 	private String aliases;
 
@@ -92,8 +92,8 @@ public class Room {
 
 	}
 
-	public Room(int number, String name, RoomFunctions function,
-			int coordX, int coordY, int floorNr, Building building) {
+	public Room(int number, String name, RoomFunctions function, int coordX,
+			int coordY, int floorNr, Building building) {
 		this.number = number;
 		this.name = name;
 		this.function = function;

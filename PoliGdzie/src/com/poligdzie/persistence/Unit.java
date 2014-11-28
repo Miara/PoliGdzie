@@ -19,7 +19,7 @@ public class Unit {
 
 	@DatabaseField
 	private String aliases;
-	
+
 	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "building_id")
 	private Building building;
 
@@ -67,9 +67,8 @@ public class Unit {
 		this.building = building;
 	}
 
-	public Unit(String name, String www, UnitTypes type,
-			Building building) {
-		
+	public Unit(String name, String www, UnitTypes type, Building building) {
+
 		this.name = name;
 		this.www = www;
 		this.type = type;
