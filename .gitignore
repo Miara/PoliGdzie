@@ -1,8 +1,9 @@
 PoliGdzie/bin
-google-play-services_lib/bin
+PoliGdzie/gen
 PoliGdzie/AndroidManifest.xml
 
 PoliGdzie/bin
 google-play-services_lib/bin
-ORMLite
+google-play-services_lib/bin
+
 appcompat_v7/bin

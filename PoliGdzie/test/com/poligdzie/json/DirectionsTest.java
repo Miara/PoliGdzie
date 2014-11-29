@@ -13,10 +13,8 @@ import org.junit.Test;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolylineOptions;
-<<<<<<< HEAD
 import com.poligdzie.activities.MapActivity;
-=======
->>>>>>> ORMLite
+
 
 public class DirectionsTest {
 

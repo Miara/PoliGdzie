@@ -1,6 +1,7 @@
 package com.poligdzie.listeners;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.poligdzie.interfaces.Constants;
@@ -9,20 +10,26 @@ import com.poligdzie.persistence.DatabaseHelper;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 
+import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class ContextSearchTextWatcher implements TextWatcher, Constants{
 
-	private EditText input;
-	private TextView output;
+	private AutoCompleteTextView input;
 	private DatabaseHelper dbHelper;
 	private List <Building> buildings;
 	private List <Unit> units;
 	private List <Room> rooms;
+	private List <String> result;
+	private ArrayAdapter <String> adapter;
+	private Context context;
+	
 	
 	@Override
 	public void beforeTextChanged(CharSequence s, int start, int count,
@@ -35,6 +42,8 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
 		// TODO Auto-generated method stub
 
+		result.clear();
+		
 		try {
 			buildings = dbHelper.getBuildingDao().queryBuilder().where().like("name", "%" + s.toString() + "%").query();
 			rooms = dbHelper.getRoomDao().queryBuilder().where().like("name", "%" + s.toString() + "%").query();
@@ -44,15 +53,20 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 			e.printStackTrace();
 		}
 		
+		
 		for(Building b : buildings)
-			output.setText(b.getName());
+			result.add(b.getName());
 		
 		for(Unit b : units)
-			output.setText(b.getName());
+			result.add(b.getName());
 		
 		for(Room b : rooms)
-			output.setText(b.getName());
+			result.add(b.getName());
 		
+		adapter = new ArrayAdapter<String>(this.context, android.R.layout.simple_list_item_1,result);
+		
+		
+		input.setAdapter(adapter); 
 		
 	}
 
@@ -62,10 +76,12 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 		
 	}
 
-	public ContextSearchTextWatcher(EditText input, TextView output) {
+	public ContextSearchTextWatcher(AutoCompleteTextView input, Context context) {
 		dbHelper = new DatabaseHelper(input.getContext(), DATABASE_NAME, null, DATABASE_VERSION);
 		this.input = input;
-		this.output = output;
+		this.context = context;
+		
+		result = new ArrayList<String>();
 	}
 
 }
