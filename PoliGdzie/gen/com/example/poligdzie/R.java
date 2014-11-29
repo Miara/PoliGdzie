@@ -1489,8 +1489,10 @@ containing a value of this type.
         public static final int button3=0x7f0b0065;
         public static final int button_building=0x7f0b0057;
         public static final int button_place=0x7f0b0056;
+        public static final int button_search_goal_point_on_map=0x7f0b0061;
         public static final int button_search_place=0x7f0b005d;
         public static final int button_search_point=0x7f0b005c;
+        public static final int button_search_starting_point_on_map=0x7f0b005f;
         public static final int button_search_trace=0x7f0b0062;
         public static final int button_trace=0x7f0b0055;
         public static final int buyButton=0x7f0b0010;
@@ -1511,7 +1513,6 @@ containing a value of this type.
         public static final int expanded_menu=0x7f0b003e;
         public static final int fragment_search_building_container=0x7f0b005a;
         public static final int fragment_search_container=0x7f0b0059;
-        public static final int goal_point_autocomplete=0x7f0b0061;
         public static final int goal_point_text_edit=0x7f0b0060;
         public static final int grayscale=0x7f0b0018;
         public static final int holo_dark=0x7f0b000b;
@@ -1556,7 +1557,6 @@ containing a value of this type.
         public static final int showHome=0x7f0b001f;
         public static final int showTitle=0x7f0b0020;
         public static final int split_action_bar=0x7f0b0030;
-        public static final int starting_point_autocomplete=0x7f0b005f;
         public static final int starting_point_text_edit=0x7f0b005e;
         public static final int strict_sandbox=0x7f0b000f;
         public static final int submit_area=0x7f0b004b;
