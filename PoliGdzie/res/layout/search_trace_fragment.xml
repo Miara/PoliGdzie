@@ -4,56 +4,55 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 	<LinearLayout
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:orientation="vertical"
-	        android:layout_marginBottom="40px"
-	    >
-	    <EditText
-        android:id="@+id/starting_point_text_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:text="Twoja bieżąca lokalizacja" >
-        
-	    	<requestFocus />
-    	</EditText>
-    	
-	    <TextView
-	    android:id="@+id/starting_point_autocomplete"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:text="" />
-    	
-	    
-	    
-	    <EditText
-        android:id="@+id/goal_point_text_edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" />
-            
-	    <TextView
-	    android:id="@+id/goal_point_autocomplete"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:text="" />
-<!-- 	    <Button
-             android:id="@+id/button_start_point"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:text="Punkt startowy" />
-	    <Button
-             android:id="@+id/button_stop_point"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:text="Punkt docelowy" />
- -->	    </LinearLayout>
+        android:orientation="vertical"
+        android:layout_marginBottom="40px" >
+<!-- TEST -->        
+	    	<LinearLayout 
+	    	    style="@style/SearchEdit.Linear">
+			    <ImageView 
+			        style="@style/SearchEdit.Image"
+			        android:src="@drawable/z_nogps"/>
+			    <EditText
+			        style="@style/SearchEdit.Edit"
+			        android:id="@+id/starting_point_text_edit"
+			        android:hint="Twoja bieżąca lokalizacja" >
+			    <requestFocus />    
+			    </EditText>
+			    
+			    
+		    </LinearLayout>
+		    
+	    	<TextView
+	    	    style="@style/SearchEdit.Text"
+			    android:id="@+id/starting_point_autocomplete"/>
+	    	
+	    	<LinearLayout 
+	    	    style="@style/SearchEdit.Linear">
+			    <ImageView 
+			        style="@style/SearchEdit.Image"
+			        android:src="@drawable/do_nogps"
+			        />
+			    <EditText
+			        style="@style/SearchEdit.Edit"
+			        android:id="@+id/goal_point_text_edit" >  
+			    </EditText>
+			    
+		    </LinearLayout>
+		    
+	    	<TextView
+	    	    style="@style/SearchEdit.Text"
+		    	android:id="@+id/goal_point_autocomplete" />	    
+
+
+	    </LinearLayout>
 	    
 	    <Button
 	        android:id="@+id/button_search_trace"
 	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
+	        android:layout_height="0dp"
+        	android:layout_weight="0.1"
 	        android:text="Wyszukaj" />
 	    
 	    

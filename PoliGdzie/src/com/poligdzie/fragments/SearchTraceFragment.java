@@ -9,6 +9,7 @@ import android.content.DialogInterface.OnKeyListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
@@ -67,9 +68,8 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 			startPoint.setOnClickListener(this);
 		stopPoint = (Button) rootView.findViewById(R.id.button_stop_point);
 		if (stopPoint != null)
-			stopPoint.setOnClickListener(this);
-		searchButton = (Button) rootView.findViewById(R.id.button_search_trace);*/
-		
+			stopPoint.setOnClickListener(this);*/
+		searchButton = (Button) rootView.findViewById(R.id.button_search_trace);
 		if (searchButton != null)
 			searchButton.setOnClickListener(this);
 
@@ -84,9 +84,13 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 		goalPosition.addTextChangedListener(goalWatcher);
 		
 		
-		
-				
-		
+		/*int width = startingPosition.getWidth();
+		Log.i("POLIGDZIE","width:"+ width);
+		int height = startingPosition.getHeight();
+		Log.i("POLIGDZIE","height:"+ height);
+		Drawable icon = getActivity().getResources().getDrawable(R.drawable.z_gps);
+		icon.setBounds(0, 0, width, height);
+		startingPosition.setCompoundDrawables(icon,null,null,null);*/
 		
 		// startPoint = (Button)rootView.findViewById(R.id.button_search_trace);
 		// setCurrentDate();

@@ -1,20 +1,38 @@
-<resources>
-
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <style name="SearchEdit" >
+       	<item name="android:layout_height">@dimen/search_edit_height</item> 
     </style>
-
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    
+ 	<style name="SearchEdit.Edit" >
+       	<item name="android:background">#FFFFFF</item> 
+       	<item name="android:layout_width">match_parent</item> 
+    </style>
+    
+ 	<style name="SearchEdit.Text" >
+       	<item name="android:layout_height">@dimen/search_text_height</item>
+       	<item name="android:layout_width">match_parent</item>
+       	<item name="android:text"></item>
+    </style>
+    
+ 	<style name="SearchEdit.Image" >
+       	<item name="android:background">#FFFFFF</item>
+       	<item name="android:layout_width">@dimen/search_edit_height</item> 
+       	<item name="android:adjustViewBounds">true</item>
+       	<item name="android:scaleType">fitXY</item> 
+    </style>
+    
+    <style name="SearchEdit.Linear" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    
+    
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme"> 
+         <item name="android:background">#85A3E0</item>
     </style>
 
 </resources>
