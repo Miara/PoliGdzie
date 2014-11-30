@@ -8,12 +8,12 @@
 	    <ImageView 
 	        style="@style/SearchEdit.Image"
 	        android:src="@drawable/lupa"/>
-	     <AutoCompleteTextView
+	     <com.poligdzie.widgets.SearchAutoCompleteTextView
 	        style="@style/SearchEdit.Edit"
             android:id="@+id/search_point_text_edit"
             android:hint="Twoja bieżąca lokalizacja">
         	<requestFocus />
-        </AutoCompleteTextView> 
+        </com.poligdzie.widgets.SearchAutoCompleteTextView> 
         <!-- <Button
             android:id="@+id/button_search_starting_point_on_map"
             android:layout_width="0dp"

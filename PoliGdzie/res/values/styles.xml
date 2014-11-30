@@ -1,38 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     
+    <!--                     AutocompleteEdit do wyszukiwania            -->
     <style name="SearchEdit" >
        	<item name="android:layout_height">@dimen/search_edit_height</item> 
        	<item name="android:layout_marginBottom">20dp</item> 
     </style>
-    
  	<style name="SearchEdit.Edit" >
        	<item name="android:background">#FFFFFF</item> 
        	<item name="android:layout_width">match_parent</item> 
-    </style>
-    
+       	<item name="android:completionThreshold">1</item> 
+    </style> 
  	<style name="SearchEdit.Text" >
        	<item name="android:layout_height">@dimen/search_text_height</item>
        	<item name="android:layout_width">match_parent</item>
        	<item name="android:text"></item>
     </style>
-    
  	<style name="SearchEdit.Image" >
        	<item name="android:background">#FFFFFF</item>
        	<item name="android:layout_width">@dimen/search_edit_height</item> 
        	<item name="android:adjustViewBounds">true</item>
        	<item name="android:scaleType">fitXY</item> 
     </style>
-    
  	<style name="SearchEdit.Map" >
     </style>
-    
     <style name="SearchEdit.Linear" >
         <item name="android:layout_width">match_parent</item>
         <item name="android:orientation">horizontal</item>
     </style>
     
+    <!--                      Podpowiedź do autocomplete'a                      -->
     
+    
+    
+    
+    
+    <!--                       Motyw aplikacji                       -->
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
     </style>
     <style name="AppTheme" parent="AppBaseTheme"> 

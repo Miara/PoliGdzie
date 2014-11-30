@@ -21,17 +21,15 @@ import com.example.poligdzie.R;
 import com.poligdzie.activities.MapActivity;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
+import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
 public class SearchTraceFragment extends Fragment implements OnClickListener,
 		Constants {
 
 	private Button searchButton;
 
-	private AutoCompleteTextView startingPosition;
-	private AutoCompleteTextView goalPosition;
-	
-	private TextView startingPointAutocomplete;
-	private TextView goalPointAutocomplete;
+	private SearchAutoCompleteTextView startingPosition;
+	private SearchAutoCompleteTextView goalPosition;
 	
 	private ContextSearchTextWatcher startWatcher;
 	private ContextSearchTextWatcher goalWatcher;
@@ -47,11 +45,11 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 		if (searchButton != null)
 			searchButton.setOnClickListener(this);
 
-		startingPosition = (AutoCompleteTextView) rootView.findViewById(R.id.starting_point_text_edit);
+		startingPosition = (SearchAutoCompleteTextView) rootView.findViewById(R.id.starting_point_text_edit);
 		startWatcher = new ContextSearchTextWatcher(startingPosition, this.getActivity());
 		startingPosition.addTextChangedListener(startWatcher);
 		
-		goalPosition = (AutoCompleteTextView) rootView.findViewById(R.id.goal_point_text_edit);
+		goalPosition = (SearchAutoCompleteTextView) rootView.findViewById(R.id.goal_point_text_edit);
 		goalWatcher = new ContextSearchTextWatcher(goalPosition, this.getActivity());
 		goalPosition.addTextChangedListener(goalWatcher);
 		

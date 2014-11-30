@@ -20,13 +20,14 @@ import com.poligdzie.activities.MapActivity;
 import com.poligdzie.activities.PromptActivity;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
+import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
 public class SearchPlaceFragment extends Fragment implements OnClickListener,
 		Constants {
 
 	private Button searchButton;
 	private ContextSearchTextWatcher searchWatcher;
-	private AutoCompleteTextView searchPosition;
+	private SearchAutoCompleteTextView searchPosition;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,7 +37,7 @@ public class SearchPlaceFragment extends Fragment implements OnClickListener,
 
 
 		
-		searchPosition = (AutoCompleteTextView) rootView.findViewById(R.id.search_point_text_edit);
+		searchPosition = (SearchAutoCompleteTextView) rootView.findViewById(R.id.search_point_text_edit);
 		searchWatcher = new ContextSearchTextWatcher(searchPosition, this.getActivity());
 		searchPosition.addTextChangedListener(searchWatcher);
 		

@@ -65,6 +65,7 @@ public class SearchActivity extends Activity implements OnClickListener,
 		}
 
 	}
+	
 
 	protected void switchFragment(int resource, Fragment fragment, String tag) {
 
