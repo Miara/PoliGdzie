@@ -3,53 +3,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40px"
-        android:orientation="horizontal"
-        android:weightSum="1.0">
-
-        <AutoCompleteTextView
+	<LinearLayout 
+   	    style="@style/SearchEdit.Linear">
+	    <ImageView 
+	        style="@style/SearchEdit.Image"
+	        android:src="@drawable/z_nogps"/>
+	     <AutoCompleteTextView
+	        style="@style/SearchEdit.Edit"
             android:id="@+id/starting_point_text_edit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.85"
-            android:ems="10">
-
-        <requestFocus />
+            android:hint="Twoja bieżąca lokalizacja">
+        	<requestFocus />
         </AutoCompleteTextView> 
-        <Button
+        <!-- <Button
             android:id="@+id/button_search_starting_point_on_map"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="0.15"
-            android:text="M" />
+            android:text="M" />   -->  
     </LinearLayout>
+        	
+   	<LinearLayout 
+   	    style="@style/SearchEdit.Linear">
+	    <ImageView 
+	        style="@style/SearchEdit.Image"
+	        android:src="@drawable/do_nogps"
+	        />
+	    
+	    <AutoCompleteTextView
+	        style="@style/SearchEdit.Edit"
+            android:id="@+id/goal_point_text_edit"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40px"
-        android:orientation="horizontal" 
-        android:weightSum="1.0">
-
-        <AutoCompleteTextView
-            android:id="@+id/goal_point_text_edit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.85"
-            android:ems="10"/>
-
-        <Button
+        <!-- <Button
             android:id="@+id/button_search_goal_point_on_map"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.15"
-            android:text="M" />
+            android:text="M" /> -->
+	    
     </LinearLayout>
-
+	    
     <Button
         android:id="@+id/button_search_trace"
         android:layout_width="match_parent"
@@ -57,4 +48,3 @@
         android:text="Wyszukaj" />
 
 </LinearLayout>
->>>>>>> 888f3043f8358cdf95e23e7fd430d3cc931e363b

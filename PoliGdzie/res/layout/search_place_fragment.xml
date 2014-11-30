@@ -3,22 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
     <LinearLayout 
-        style="@style/SearchEdit.Linear">
-		    <ImageView 
-		        style="@style/SearchEdit.Image"
-		        android:src="@drawable/lupa"/>
-		    <EditText
-		        style="@style/SearchEdit.Edit"
-		        android:id="@+id/search_point_text_edit" >  
-		    </EditText>
-			    
-	</LinearLayout>
-		    
-	<TextView
-   	    style="@style/SearchEdit.Text"
-    	android:id="@+id/search_point_autocomplete" />	    
+   	    style="@style/SearchEdit.Linear">
+	    <ImageView 
+	        style="@style/SearchEdit.Image"
+	        android:src="@drawable/lupa"/>
+	     <AutoCompleteTextView
+	        style="@style/SearchEdit.Edit"
+            android:id="@+id/search_point_text_edit"
+            android:hint="Twoja bieżąca lokalizacja">
+        	<requestFocus />
+        </AutoCompleteTextView> 
+        <!-- <Button
+            android:id="@+id/button_search_starting_point_on_map"
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:text="M" />   -->  
+    </LinearLayout>
 
     <Button
         android:id="@+id/button_search_place"

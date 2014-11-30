@@ -3,6 +3,7 @@
     
     <style name="SearchEdit" >
        	<item name="android:layout_height">@dimen/search_edit_height</item> 
+       	<item name="android:layout_marginBottom">20dp</item> 
     </style>
     
  	<style name="SearchEdit.Edit" >
@@ -21,6 +22,9 @@
        	<item name="android:layout_width">@dimen/search_edit_height</item> 
        	<item name="android:adjustViewBounds">true</item>
        	<item name="android:scaleType">fitXY</item> 
+    </style>
+    
+ 	<style name="SearchEdit.Map" >
     </style>
     
     <style name="SearchEdit.Linear" >
