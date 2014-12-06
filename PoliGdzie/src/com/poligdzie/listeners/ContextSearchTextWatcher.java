@@ -32,11 +32,11 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 	private List <Building> buildings;
 	private List <Unit> units;
 	private List <Room> rooms;
-	private List <String> result;
 	private ArrayAdapter <String> adapter;
 	private Context context;
 	
 	private List <String> names;
+	private List <String> descriptions;
 	private List <Integer> icons;
 	
 	
@@ -53,13 +53,31 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 
 		names.clear();
 		icons.clear();
-		result.clear();
+		descriptions.clear();
+		
 		
 		try {
 			Log.i("POLIGDZIE",s.toString());
-			buildings = dbHelper.getBuildingDao().queryBuilder().where().like("name", "%" + s.toString() + "%").query();
-			rooms = dbHelper.getRoomDao().queryBuilder().where().like("name", "%" + s.toString() + "%").query();
-			units = dbHelper.getUnitDao().queryBuilder().where().like("name", "%" + s.toString() + "%").query();
+			buildings = dbHelper.getBuildingDao().queryBuilder()
+												 .where()
+												 .like("name", "%" + s.toString() + "%")
+												 .or()
+												 .like("aliases", "%" + s.toString() + "%")
+												 .query();
+			
+			rooms = dbHelper.getRoomDao().queryBuilder()
+										 .where()
+										 .like("name", "%" + s.toString() + "%")
+										 .or()
+										 .like("aliases", "%" + s.toString() + "%")
+										 .query();
+						
+			units = dbHelper.getUnitDao().queryBuilder()
+										 .where()
+										 .like("name", "%" + s.toString() + "%")
+										 .or()
+										 .like("aliases", "%" + s.toString() + "%")
+										 .query();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,18 +88,21 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 		{
 			names.add(b.getName());
 			icons.add(R.drawable.cw_icon);
+			descriptions.add("Budynek");
 		}
 		
 		for(Unit b : units)
 		{
 			names.add(b.getName());
 			icons.add(R.drawable.cw_icon);
+			descriptions.add("Jednostka organizacyjna");
 		}
 		
 		for(Room b : rooms)
 		{
 			names.add(b.getName());
 			icons.add(R.drawable.cw_icon);
+			descriptions.add("Pomieszczenie");
 		}
 		
 		String[] from = { "icon","name","description"};
@@ -95,7 +116,7 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
             Log.i("POLIGDZIE",i+":"+names.get(i));
 	        hm.put("name", names.get(i));
 	        hm.put("icon", Integer.toString(icons.get(i)));
-	        hm.put("description","description test");
+	        hm.put("description", descriptions.get(i));
 	        aList.add(hm);
         }
         Log.i("POLIGDZIE","------");
@@ -124,8 +145,8 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 		
 		names = new ArrayList<String>();
 		icons = new ArrayList<Integer>();
+		descriptions = new ArrayList<String>();
 		
-		result = new ArrayList<String>();
 	}
 
 }

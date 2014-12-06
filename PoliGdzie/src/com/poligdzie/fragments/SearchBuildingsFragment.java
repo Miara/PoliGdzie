@@ -47,6 +47,8 @@ public class SearchBuildingsFragment extends Fragment implements
 			for (Building b : buildings) {
 				testBazy.append(b.getName());
 				testBazy.append("\n");
+				testBazy.append(b.getAliases());
+				testBazy.append("\n");
 			}
 		}
 		// setCurrentDate();

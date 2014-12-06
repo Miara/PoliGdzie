@@ -82,4 +82,13 @@ public class Unit {
 	public void setAliases(String aliases) {
 		this.aliases = aliases;
 	}
+
+	public Unit(String name, String www, UnitTypes type,
+			String aliases, Building building) {
+		this.name = name;
+		this.www = www;
+		this.type = type;
+		this.aliases = aliases;
+		this.building = building;
+	}
 }

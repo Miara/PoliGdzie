@@ -17,29 +17,29 @@ public class Fixture {
 		// TODO Auto-generated constructor stub
 		creator = new ContentCreator();
 
-		Building cw = new Building("Centrum wyk³adowee", 52.4041748,
+		Building cw = new Building("Centrum wyk³adowe", 52.4041748,
 				16.9496774, "Piotrowo 2", 150, 2, "", "cw");
 		Building elektryk = new Building("Elektryk", 52.401804, 16.951146,
-				"Piotrowo 3a", 70, 10, "", "el");
+				"Piotrowo 3a", 70, 10, "", "el;elektryk");
 		Building bm = new Building("Budowa maszyn", 52.402357, 16.950573,
-				"Piotrowo 3", 70, 10, "", "bm");
+				"Piotrowo 3", 70, 10, "", "bm;budynek z zegarem");
 
 		creator.add(cw);
 		creator.add(elektryk);
 		creator.add(bm);
 
 		Unit ii = new Unit("Instytut Informatyki", "http://cs.put.poznan.pl",
-				UnitTypes.INSTITUTE, cw);
+				UnitTypes.INSTITUTE, "",cw);
 		Unit wi = new Unit("Wydzia³ Informatyki", "http://fc.put.poznan.pl",
-				UnitTypes.FACULTY, bm);
+				UnitTypes.FACULTY, "Nasz Wydzia³!",bm);
 		Unit eit = new Unit("Wydzia³ Elektroniki i Telekomunikacji",
-				"http://et.put.poznan.pl", UnitTypes.FACULTY, elektryk);
+				"http://et.put.poznan.pl", UnitTypes.FACULTY, "Wydzia³ Eit",elektryk);
 
 		Room cw8 = new Room(8, "Sala wyk³adowa 8", RoomFunctions.LECTURE, 30,
-				30, 1, cw);
-		Room wc = new Room(0, "WC", RoomFunctions.RESTROOM, 10, 10, 0, cw);
+				30, 1, "ósemka;cw8;8cw;8 cw; cw 8",cw);
+		Room wc = new Room(0, "WC", RoomFunctions.RESTROOM, 10, 10, 0, "kibel",cw);
 		Room dziekanat = new Room(503, "Dziekanat", RoomFunctions.STAFF, 15,
-				30, 5, bm);
+				30, 5, "pani kasia",bm);
 
 		creator.add(cw8);
 		creator.add(wc);

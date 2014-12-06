@@ -118,4 +118,17 @@ public class Room {
 	public void setBuilding(Building building) {
 		this.building = building;
 	}
+
+	public Room(int number, String name, RoomFunctions function,
+			int coordX, int coordY, int floorNr, String aliases,
+			Building building) {
+		this.number = number;
+		this.name = name;
+		this.function = function;
+		this.coordX = coordX;
+		this.coordY = coordY;
+		this.floorNr = floorNr;
+		this.aliases = aliases;
+		this.building = building;
+	}
 }
