@@ -26,12 +26,12 @@ import com.poligdzie.json.DownloadDirectionsTask;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.DatabaseHelper;
 
-public class MapActivity extends Activity implements OnMarkerClickListener,
+public class MapActivity extends PoliGdzieBaseActivity implements OnMarkerClickListener,
 		Constants {
 
 	public GoogleMap map;
 	public PolylineOptions options;
-	private DatabaseHelper dbHelper;
+	//protected DatabaseHelper dbHelper;
 
 	// Przyk³adowe punkty
 	static final LatLng LOCATION_PIOTROWO = new LatLng(52.4022703, 16.9495847);
@@ -156,15 +156,6 @@ public class MapActivity extends Activity implements OnMarkerClickListener,
 		return false;
 	}
 
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-		if (dbHelper != null) {
-			OpenHelperManager.releaseHelper();
-			dbHelper = null;
-		}
 
-	}
 
 }

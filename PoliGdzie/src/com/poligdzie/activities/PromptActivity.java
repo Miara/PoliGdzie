@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.example.poligdzie.R;
 import com.poligdzie.interfaces.Constants;
 
-public class PromptActivity extends Activity implements OnClickListener,
+public class PromptActivity extends PoliGdzieBaseActivity implements OnClickListener,
 		Constants {
 
 	private String mode;

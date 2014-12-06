@@ -15,7 +15,7 @@ import com.poligdzie.fragments.SearchPlaceFragment;
 import com.poligdzie.fragments.SearchTraceFragment;
 import com.poligdzie.interfaces.Constants;
 
-public class SearchActivity extends Activity implements OnClickListener,
+public class SearchActivity extends PoliGdzieBaseActivity implements OnClickListener,
 		Constants {
 
 	private Button buttonTrace;

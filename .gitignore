@@ -1,6 +1,7 @@
 PoliGdzie/bin
-PoliGdzie/gen/* 
+PoliGdzie/gen 
 PoliGdzie/AndroidManifest.xml
+
 
 google-play-services_lib/bin
 google-play-services_lib/gen
