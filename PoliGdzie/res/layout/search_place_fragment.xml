@@ -8,17 +8,20 @@
 	    <ImageView 
 	        style="@style/SearchEdit.Image"
 	        android:src="@drawable/lupa"/>
-	     <com.poligdzie.widgets.SearchAutoCompleteTextView
-	        style="@style/SearchEdit.Edit"
-            android:id="@+id/search_point_text_edit"
-            android:hint="Twoja bieżąca lokalizacja">
-        	<requestFocus />
-        </com.poligdzie.widgets.SearchAutoCompleteTextView> 
-        <!-- <Button
-            android:id="@+id/button_search_starting_point_on_map"
-            android:layout_width="0dp"
-            android:layout_weight="0.15"
-            android:text="M" />   -->  
+	    <LinearLayout 
+   	    	style="@style/SearchEdit.Linear"
+   	   		android:weightSum="1.0">
+		     <com.poligdzie.widgets.SearchAutoCompleteTextView
+		        style="@style/SearchEdit.Edit"
+	            android:id="@+id/search_point_text_edit"
+	            android:hint="Twoja bieżąca lokalizacja">
+	        	<requestFocus />
+	        </com.poligdzie.widgets.SearchAutoCompleteTextView> 
+	        <Button
+	            style="@style/SearchEdit.Map"
+	            android:id="@+id/button_search_starting_point_on_map"
+	            android:text="M" />   
+    	</LinearLayout> 
     </LinearLayout>
 
     <Button

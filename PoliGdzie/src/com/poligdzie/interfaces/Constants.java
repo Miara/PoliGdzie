@@ -15,5 +15,7 @@ public interface Constants {
 	public String PROMPT_MODE_SEARCH = "Search button mode";
 	public String PROMPT_MODE_START = "Start button mode";
 	public String PROMPT_MODE_STOP = "Stop button mode";
+	
+	public String GOOGLE_MAP_MODE = "walking";
 
 }

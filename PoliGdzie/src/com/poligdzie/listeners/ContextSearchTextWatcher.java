@@ -84,8 +84,8 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 			icons.add(R.drawable.cw_icon);
 		}
 		
-		String[] from = { "icon","name"};
-        int[] to = { R.id.icon,R.id.name};
+		String[] from = { "icon","name","description"};
+        int[] to = { R.id.icon,R.id.name,R.id.description};
 		
         List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
         
@@ -95,6 +95,7 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
             Log.i("POLIGDZIE",i+":"+names.get(i));
 	        hm.put("name", names.get(i));
 	        hm.put("icon", Integer.toString(icons.get(i)));
+	        hm.put("description","description test");
 	        aList.add(hm);
         }
         Log.i("POLIGDZIE","------");

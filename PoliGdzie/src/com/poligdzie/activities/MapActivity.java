@@ -133,7 +133,8 @@ public class MapActivity extends Activity implements OnMarkerClickListener,
 				+ "," + CENTRUM_WYKLADOWE.longitude;
 
 		String sensor = "sensor=false";
-		String params = waypoints + "&" + sensor;
+		String mode  = "mode=" + GOOGLE_MAP_MODE; 
+		String params = waypoints + "&" + sensor + "&" + mode;
 		String output = "json";
 		String url = "https://maps.googleapis.com/maps/api/directions/"
 				+ output + "?" + params;
