@@ -11,11 +11,13 @@ import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.DatabaseHelper;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
+import com.poligdzie.widgets.CustomSimpleAdapter;
 
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater.Filter;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -86,6 +88,7 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 		
 		for(Building b : buildings)
 		{
+			Log.i("POLIGDZIE","Found:"+b.getName());
 			names.add(b.getName());
 			icons.add(R.drawable.cw_icon);
 			descriptions.add("Budynek");
@@ -93,6 +96,7 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 		
 		for(Unit b : units)
 		{
+			Log.i("POLIGDZIE","Found:"+b.getName());
 			names.add(b.getName());
 			icons.add(R.drawable.cw_icon);
 			descriptions.add("Jednostka organizacyjna");
@@ -100,6 +104,7 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 		
 		for(Room b : rooms)
 		{
+			Log.i("POLIGDZIE","Found:"+b.getName());
 			names.add(b.getName());
 			icons.add(R.drawable.cw_icon);
 			descriptions.add("Pomieszczenie");
@@ -118,9 +123,12 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 	        hm.put("icon", Integer.toString(icons.get(i)));
 	        hm.put("description", descriptions.get(i));
 	        aList.add(hm);
+	        break;
         }
         Log.i("POLIGDZIE","------");
-		SimpleAdapter adapter = new SimpleAdapter(this.context, aList, R.layout.position_prompt, from, to);
+		CustomSimpleAdapter adapter = new CustomSimpleAdapter(this.context, aList, R.layout.position_prompt, from, to);
+		Filter filter = (Filter) adapter.getFilter();
+		
 
         /*OnItemClickListener itemClickListener = new OnItemClickListener() {
         	@Override
