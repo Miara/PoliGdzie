@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
@@ -20,7 +19,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.json.DownloadDirectionsTask;
 import com.poligdzie.persistence.Building;
@@ -55,7 +53,9 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnMarkerClickL
 			// Use default InfoWindow frame
 			@Override
 			public View getInfoWindow(Marker arg0) {
-				return null;
+				View v = getLayoutInflater().inflate(
+						R.layout.window_marker_click, null);
+				return v;
 			}
 
 			@Override
@@ -118,7 +118,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnMarkerClickL
 					.title(b.getName())
 					.snippet(b.getAddress())
 					.icon(BitmapDescriptorFactory
-							.fromResource(R.drawable.cw_icon));
+							.fromResource(b.getImageResource()));
 
 			map.addMarker(option);
 		}
@@ -154,6 +154,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnMarkerClickL
 	public boolean onMarkerClick(Marker arg0) {
 		arg0.showInfoWindow();
 		return false;
+		
 	}
 
 

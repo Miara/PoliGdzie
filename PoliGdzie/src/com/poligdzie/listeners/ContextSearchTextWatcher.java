@@ -87,21 +87,21 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 		for(Building b : buildings)
 		{
 			names.add(b.getName());
-			icons.add(R.drawable.cw_icon);
+			icons.add(b.getImageResource());
 			descriptions.add("Budynek");
 		}
 		
 		for(Unit b : units)
 		{
 			names.add(b.getName());
-			icons.add(R.drawable.cw_icon);
+			icons.add(b.getBuilding().getImageResource());
 			descriptions.add("Jednostka organizacyjna");
 		}
 		
 		for(Room b : rooms)
 		{
 			names.add(b.getName());
-			icons.add(R.drawable.cw_icon);
+			icons.add(b.getBuilding().getImageResource());
 			descriptions.add("Pomieszczenie");
 		}
 		

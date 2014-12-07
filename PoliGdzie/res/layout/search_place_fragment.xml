@@ -19,8 +19,7 @@
 	        </com.poligdzie.widgets.SearchAutoCompleteTextView> 
 	        <Button
 	            style="@style/SearchEdit.Map"
-	            android:id="@+id/button_search_starting_point_on_map"
-	            android:text="M" />   
+	            android:id="@+id/button_search_point_on_map" />   
     	</LinearLayout> 
     </LinearLayout>
 

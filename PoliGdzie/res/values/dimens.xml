@@ -7,4 +7,7 @@
     <!-- Indywidualne zmiany -->
 	<dimen name="search_edit_height">40dp</dimen>
 	<dimen name="search_text_height">40dp</dimen>
+	
+	<dimen name="info_window_height">30dp</dimen>
+	<dimen name="info_window_text_size">10sp</dimen>
 </resources>

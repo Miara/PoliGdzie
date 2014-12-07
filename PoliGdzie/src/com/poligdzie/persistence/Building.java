@@ -35,7 +35,7 @@ public class Building {
 	private String aliases;
 
 	@DatabaseField
-	private String image;
+	private int imageResource;
 
 	@ForeignCollectionField(eager = true, columnName = "rooms")
 	private ForeignCollection<Room> rooms;
@@ -122,19 +122,19 @@ public class Building {
 	}
 
 	public Building(String name, double coordX, double coordY, String address,
-			int width, int height, String image, String aliases) {
+			int width, int height, int image, String aliases) {
 		this.name = name;
 		this.coordX = coordX;
 		this.coordY = coordY;
 		this.address = address;
 		this.width = width;
 		this.height = height;
-		this.image = image;
+		this.imageResource = image;
 		this.aliases = aliases;
 	}
 
 	public Building(String name, double coordX, double coordY, String address,
-			int width, int height, String image, String aliases,
+			int width, int height, int image, String aliases,
 			ForeignCollection<Room> rooms, ForeignCollection<Unit> units) {
 		this.name = name;
 		this.coordX = coordX;
@@ -142,7 +142,7 @@ public class Building {
 		this.address = address;
 		this.width = width;
 		this.height = height;
-		this.image = image;
+		this.imageResource = image;
 		this.aliases = aliases;
 		this.rooms = rooms;
 		this.units = units;
@@ -156,12 +156,12 @@ public class Building {
 		this.aliases = aliases;
 	}
 
-	public String getImage() {
-		return image;
+	public int getImageResource() {
+		return imageResource;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setImageResource(int image) {
+		this.imageResource = image;
 	}
 
 	public String getName() {

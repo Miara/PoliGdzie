@@ -26,6 +26,7 @@ public class SearchPlaceFragment extends Fragment implements OnClickListener,
 		Constants {
 
 	private Button searchButton;
+	private Button buttonMap;
 	private ContextSearchTextWatcher searchWatcher;
 	private SearchAutoCompleteTextView searchPosition;
 	
@@ -42,8 +43,9 @@ public class SearchPlaceFragment extends Fragment implements OnClickListener,
 		searchPosition.addTextChangedListener(searchWatcher);
 		
 		searchButton = (Button) rootView.findViewById(R.id.button_search_place);
-		if (searchButton != null)
-			searchButton.setOnClickListener(this);
+		if (searchButton != null) searchButton.setOnClickListener(this);
+		buttonMap = (Button) rootView.findViewById(R.id.button_search_point_on_map);
+		if (buttonMap != null) buttonMap.setOnClickListener(this);
 
 		// setCurrentDate();
 		return rootView;
@@ -56,6 +58,10 @@ public class SearchPlaceFragment extends Fragment implements OnClickListener,
 						.getApplicationContext());
 		Editor editor = prefs.edit();
 		if (v == searchButton) {
+			Intent intent = new Intent(getActivity(), MapActivity.class);
+			startActivity(intent);
+		}
+		if (v == buttonMap) {
 			Intent intent = new Intent(getActivity(), MapActivity.class);
 			startActivity(intent);
 		}
