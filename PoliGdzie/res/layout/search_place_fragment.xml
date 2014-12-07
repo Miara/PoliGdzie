@@ -21,13 +21,12 @@
 	            style="@style/SearchEdit.Map"
 	            android:id="@+id/button_search_point_on_map" />   
     	</LinearLayout> 
-    </LinearLayout>
 
+    </LinearLayout>
     <Button
         android:id="@+id/button_search_place"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Znajdź" />
-
 
 </LinearLayout>

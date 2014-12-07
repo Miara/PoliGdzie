@@ -64,7 +64,6 @@
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
     </style>
     <style name="AppTheme" parent="AppBaseTheme"> 
-         <!-- <item name="android:background">#85A3E0</item> -->
     </style>
 
 </resources>

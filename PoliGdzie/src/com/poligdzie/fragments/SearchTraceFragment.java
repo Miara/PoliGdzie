@@ -27,6 +27,8 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 		Constants {
 
 	private Button searchButton;
+	private Button buttonMapStart;
+	private Button buttonMapStop;
 
 	private SearchAutoCompleteTextView startingPosition;
 	private SearchAutoCompleteTextView goalPosition;
@@ -41,9 +43,12 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 				container, false);
 
 		searchButton = (Button) rootView.findViewById(R.id.button_search_trace);
-
-		if (searchButton != null)
-			searchButton.setOnClickListener(this);
+		if (searchButton != null) searchButton.setOnClickListener(this);
+		buttonMapStart = (Button) rootView.findViewById(R.id.button_search_starting_point_on_map);
+		if (buttonMapStart != null) buttonMapStart.setOnClickListener(this);
+		buttonMapStop = (Button) rootView.findViewById(R.id.button_search_goal_point_on_map);
+		if (buttonMapStop != null) buttonMapStop.setOnClickListener(this);
+		
 
 		startingPosition = (SearchAutoCompleteTextView) rootView.findViewById(R.id.starting_point_text_edit);
 		startWatcher = new ContextSearchTextWatcher(startingPosition, this.getActivity());
@@ -66,6 +71,10 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 		Editor editor = prefs.edit();
 		
 		if (v == searchButton) {
+			Intent intent = new Intent(getActivity(), MapActivity.class);
+			startActivity(intent);
+		}
+		if (v == buttonMapStart  || v==buttonMapStop) {
 			Intent intent = new Intent(getActivity(), MapActivity.class);
 			startActivity(intent);
 		}

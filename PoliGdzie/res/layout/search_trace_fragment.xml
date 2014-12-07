@@ -41,7 +41,6 @@
 	            android:id="@+id/button_search_goal_point_on_map" />
 	   </LinearLayout>    
     </LinearLayout>
-	    
     <Button
         android:id="@+id/button_search_trace"
         android:layout_width="match_parent"
