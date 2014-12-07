@@ -8,6 +8,7 @@ import android.content.SharedPreferences.Editor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.poligdzie.R;
@@ -41,23 +43,20 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.search_trace_fragment,
 				container, false);
-
+		
 		searchButton = (Button) rootView.findViewById(R.id.button_search_trace);
 		if (searchButton != null) searchButton.setOnClickListener(this);
-		buttonMapStart = (Button) rootView.findViewById(R.id.button_search_starting_point_on_map);
+		buttonMapStart = (Button) rootView.findViewById(R.id.button_search_starting_point_map);
 		if (buttonMapStart != null) buttonMapStart.setOnClickListener(this);
-		buttonMapStop = (Button) rootView.findViewById(R.id.button_search_goal_point_on_map);
+		buttonMapStop = (Button) rootView.findViewById(R.id.button_search_goal_point_map);
 		if (buttonMapStop != null) buttonMapStop.setOnClickListener(this);
 		
-
 		startingPosition = (SearchAutoCompleteTextView) rootView.findViewById(R.id.starting_point_text_edit);
 		startWatcher = new ContextSearchTextWatcher(startingPosition, this.getActivity());
 		startingPosition.addTextChangedListener(startWatcher);
-		
 		goalPosition = (SearchAutoCompleteTextView) rootView.findViewById(R.id.goal_point_text_edit);
 		goalWatcher = new ContextSearchTextWatcher(goalPosition, this.getActivity());
 		goalPosition.addTextChangedListener(goalWatcher);
-		
 	
 		return rootView;
 	}

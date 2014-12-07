@@ -1510,10 +1510,10 @@ containing a value of this type.
         public static final int button3=0x7f080069;
         public static final int button_building=0x7f08005a;
         public static final int button_place=0x7f080059;
-        public static final int button_search_goal_point_on_map=0x7f080065;
+        public static final int button_search_goal_point_map=0x7f080065;
         public static final int button_search_place=0x7f080061;
         public static final int button_search_point_on_map=0x7f080060;
-        public static final int button_search_starting_point_on_map=0x7f080063;
+        public static final int button_search_starting_point_map=0x7f080063;
         public static final int button_search_trace=0x7f080066;
         public static final int button_trace=0x7f080058;
         public static final int buyButton=0x7f08000a;

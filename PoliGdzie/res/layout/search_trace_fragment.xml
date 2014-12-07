@@ -18,9 +18,9 @@
 	            android:hint="Twoja bieżąca lokalizacja">
 	        	<requestFocus />
 	        </com.poligdzie.widgets.SearchAutoCompleteTextView> 
-	        <ImageButton
+	        <Button
 	            style="@style/SearchEdit.Map"
-	            android:id="@+id/button_search_starting_point_on_map"/> 
+	            android:id="@+id/button_search_starting_point_map"/> 
         </LinearLayout>   
     </LinearLayout>
         	
@@ -36,11 +36,11 @@
 		    <com.poligdzie.widgets.SearchAutoCompleteTextView
 		        style="@style/SearchEdit.Edit"
 	            android:id="@+id/goal_point_text_edit"/>
-	        <ImageButton
+	        <Button
 	            style="@style/SearchEdit.Map"
-	            android:id="@+id/button_search_goal_point_on_map" />
-	   </LinearLayout>    
-    </LinearLayout>
+	            android:id="@+id/button_search_goal_point_map" />
+	   </LinearLayout>        
+	</LinearLayout>
     <Button
         android:id="@+id/button_search_trace"
         android:layout_width="match_parent"
