@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.example.poligdzie.R;
+import com.poligdzie.adapters.AutocompleteCustomAdapter;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.DatabaseHelper;
@@ -106,7 +107,7 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 		}
 		
 		String[] from = { "icon","name","description"};
-        int[] to = { R.id.icon,R.id.name,R.id.description};
+        int[] to = { R.id.autocomplete_icon,R.id.autocomplete_name,R.id.autocomplete_description};
 		
         List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
         
@@ -120,15 +121,19 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 	        aList.add(hm);
         }
         Log.i("POLIGDZIE","------");
-		SimpleAdapter adapter = new SimpleAdapter(this.context, aList, R.layout.position_prompt, from, to);
-
+		//SimpleAdapter adapter = new SimpleAdapter(this.context, aList, R.layout.position_prompt, from, to);
         /*OnItemClickListener itemClickListener = new OnItemClickListener() {
         	@Override
         	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long id) {
         	}
 		};
 		input.setOnItemClickListener(itemClickListener);*/
+		AutocompleteCustomAdapter adapter = new AutocompleteCustomAdapter(this.context, R.layout.position_prompt, aList);
+		for(int i=0; i<adapter.getCount(); i++)
+	        Log.i("POLIGDZIE", adapter.getItem(i).toString());
+		
         input.setAdapter(adapter);
+
 		
 	}
 

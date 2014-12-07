@@ -3,25 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <LinearLayout 
-   	    style="@style/SearchEdit.Linear">
-	    <ImageView 
-	        style="@style/SearchEdit.Image"
-	        android:src="@drawable/lupa"/>
-	    <LinearLayout 
-   	    	style="@style/SearchEdit.Linear"
-   	   		android:weightSum="1.0">
-		     <com.poligdzie.widgets.SearchAutoCompleteTextView
-		        style="@style/SearchEdit.Edit"
-	            android:id="@+id/search_point_text_edit"
-	            android:hint="Twoja bieżąca lokalizacja">
-	        	<requestFocus />
-	        </com.poligdzie.widgets.SearchAutoCompleteTextView> 
-	        <Button
-	            style="@style/SearchEdit.Map"
-	            android:id="@+id/button_search_starting_point_on_map"
-	            android:text="M" />   
-    	</LinearLayout> 
+
+    <LinearLayout style="@style/SearchEdit.Linear" >
+
+        <ImageView
+            style="@style/SearchEdit.Image"
+            android:src="@drawable/lupa" />
+
+        <LinearLayout
+            style="@style/SearchEdit.Linear"
+            android:weightSum="1.0" >
+
+            <com.poligdzie.widgets.SearchAutoCompleteTextView
+                android:id="@+id/search_point_text_edit"
+                style="@style/SearchEdit.Edit"
+                android:hint="Twoja bieżąca lokalizacja" >
+
+                <requestFocus />
+            </com.poligdzie.widgets.SearchAutoCompleteTextView>
+
+            <Button
+                android:id="@+id/button_search_starting_point_on_map"
+                style="@style/SearchEdit.Map"
+                android:text="M" />
+        </LinearLayout>
     </LinearLayout>
 
     <Button
@@ -29,6 +34,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Znajdź" />
-
 
 </LinearLayout>
