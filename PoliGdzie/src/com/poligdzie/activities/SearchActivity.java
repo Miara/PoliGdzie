@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,6 +34,8 @@ public class SearchActivity extends PoliGdzieBaseActivity implements OnClickList
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.search_activity);
 
+		Intent intent = new Intent(this, BuildingInfoActivity.class);
+		startActivity(intent);
 		fragment_trace = new SearchTraceFragment();
 		switchFragment(R.id.fragment_search_container, fragment_trace, "trace");
 		fragment_place = new SearchPlaceFragment();
