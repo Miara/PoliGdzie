@@ -58,24 +58,7 @@ public class RouteProvider implements Constants{
 	public GoogleMap onCreate(GoogleMap map, DatabaseHelper dbHelper) {
 
 		this.dbHelper = dbHelper;
-		map.setInfoWindowAdapter(new InfoWindowAdapter() {
-
-			// Use default InfoWindow frame
-			@Override
-			public View getInfoWindow(Marker arg0) {
-				View v = layoutInflater.inflate(
-						R.layout.window_marker_click, null);
-				return v;
-			}
-
-			@Override
-			public View getInfoContents(Marker arg0) {
-				View v = layoutInflater.inflate(
-						R.layout.window_marker_click, null);
-				return v;
-
-			}
-		});
+		
 
 		map.setMyLocationEnabled(true);
 

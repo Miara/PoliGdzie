@@ -11,6 +11,7 @@ import com.example.poligdzie.R;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -45,6 +46,23 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnMarkerClickL
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
 				.getMap();
 
+		map.setInfoWindowAdapter(new InfoWindowAdapter() {
+
+			// Use default InfoWindow frame
+			@Override
+			public View getInfoWindow(Marker arg0) {
+				View v = getLayoutInflater().inflate(R.layout.window_marker_click, null);
+				return v;
+			}
+
+			@Override
+			public View getInfoContents(Marker arg0) {
+				View v = getLayoutInflater().inflate(R.layout.window_marker_click, null);
+				return v;
+
+			}
+		});
+		
 		provider = RouteProvider.getInstance();
 
 		map = provider.onCreate(map, dbHelper);
