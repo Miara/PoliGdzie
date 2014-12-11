@@ -2,9 +2,9 @@ package com.poligdzie.singletons;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +22,8 @@ import com.poligdzie.interfaces.Constants;
 import com.poligdzie.json.DownloadDirectionsTask;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.DatabaseHelper;
+import com.poligdzie.persistence.Room;
+import com.poligdzie.persistence.Unit;
 
 public class RouteProvider implements Constants{
 
@@ -56,24 +58,7 @@ public class RouteProvider implements Constants{
 	public GoogleMap onCreate(GoogleMap map, DatabaseHelper dbHelper) {
 
 		this.dbHelper = dbHelper;
-		map.setInfoWindowAdapter(new InfoWindowAdapter() {
-
-			// Use default InfoWindow frame
-			@Override
-			public View getInfoWindow(Marker arg0) {
-				View v = layoutInflater.inflate(
-						R.layout.window_marker_click, null);
-				return v;
-			}
-
-			@Override
-			public View getInfoContents(Marker arg0) {
-				View v = layoutInflater.inflate(
-						R.layout.window_marker_click, null);
-				return v;
-
-			}
-		});
+		
 
 		map.setMyLocationEnabled(true);
 
@@ -92,33 +77,43 @@ public class RouteProvider implements Constants{
 		return map;
 	}
 	
-	private String getMapsApiDirectionsUrl() {
-		List <Building> buildingFrom = new ArrayList <Building>();
-		List <Building> buildingTo = new ArrayList <Building>();
-		try {
-			buildingFrom.addAll(dbHelper.getBuildingDao().queryForEq("name", from));
-			buildingTo.addAll(dbHelper.getBuildingDao().queryForEq("name", to));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	private HashMap <String, Double> getCoordsFromObject(Object object) {
+		HashMap <String, Double> result = new HashMap <String, Double>();
+		
+		if(object instanceof Building) {
+			result.put("X", ((Building) object).getCoordX());
+			result.put("Y", ((Building) object).getCoordY());
 		}
 		
+		if(object instanceof Unit) {
+			result.put("X", ((Unit) object).getBuilding().getCoordX());
+			result.put("Y", ((Unit) object).getBuilding().getCoordY());
+		}
 		
+		if(object instanceof Room) {
+			result.put("X", ((Room) object).getBuilding().getCoordX());
+			result.put("Y", ((Room) object).getBuilding().getCoordY());
+		}
 		
-		if(buildingFrom == null || 
-		   buildingTo == null || 
-		   buildingFrom.size() == 0 || 
-		   buildingTo.size() == 0) {
+		return result;
+	}
+	
+	private String getMapsApiDirectionsUrl() {
+			
+		HashMap <String, Double> toCoords = new HashMap <String, Double>(); 
+		HashMap <String, Double> fromCoords = new HashMap <String, Double>();
+		
+		if(from == null || to == null) {
 			return null;
 		}
 		
-		Log.i("POLIGDZIE", Integer.toString(buildingFrom.size()));
-		Log.i("POLIGDZIE", Integer.toString(buildingTo.size()));
+		toCoords = getCoordsFromObject(to);
+		fromCoords = getCoordsFromObject(from);
 		
-		
-		String waypoints = "waypoints=optimize:true|" + buildingFrom.get(0).getCoordX() + ","
-				+ buildingFrom.get(0).getCoordY() + "|" + "|" + buildingTo.get(0).getCoordX()
-				+ "," + buildingTo.get(0).getCoordY();
+			
+		String waypoints = "waypoints=optimize:true|" + toCoords.get("X") + ","
+				+ toCoords.get("Y") + "|" + "|" + fromCoords.get("X")
+				+ "," + fromCoords.get("Y");
 
 		String sensor = "sensor=false";
 		String mode  = "mode=" + GOOGLE_MAP_MODE; 

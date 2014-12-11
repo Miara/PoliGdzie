@@ -2,6 +2,8 @@ package com.poligdzie.widgets;
 
 import java.util.HashMap;
 
+import com.poligdzie.interfaces.Nameable;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.AutoCompleteTextView;
@@ -18,7 +20,6 @@ public class SearchAutoCompleteTextView extends AutoCompleteTextView {
 	/** Returns the country name corresponding to the selected item */
 	@Override
 	protected CharSequence convertSelectionToString(Object selectedItem) {
-		HashMap<String, String> item = (HashMap<String, String>) selectedItem;
-		return item.get("name");
+		return ((Nameable) selectedItem).getName();
 	}
 }

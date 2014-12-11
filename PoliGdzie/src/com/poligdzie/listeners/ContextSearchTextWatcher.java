@@ -33,12 +33,11 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 	private List <Building> buildings;
 	private List <Unit> units;
 	private List <Room> rooms;
-	private ArrayAdapter <String> adapter;
+
 	private Context context;
 	
-	private List <String> names;
-	private List <String> descriptions;
-	private List <Integer> icons;
+	private List<Object> aList;
+
 	
 	
 	@Override
@@ -52,10 +51,7 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
 		// TODO Auto-generated method stub
 
-		names.clear();
-		icons.clear();
-		descriptions.clear();
-		
+		aList.clear();
 		
 		try {
 			Log.i("POLIGDZIE",s.toString());
@@ -85,39 +81,24 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 		}
 		
 		
+		
+		
 		for(Building b : buildings)
 		{
-			names.add(b.getName());
-			icons.add(b.getImageResource());
-			descriptions.add("Budynek");
+			aList.add(b);
 		}
 		
 		for(Unit b : units)
 		{
-			names.add(b.getName());
-			icons.add(b.getBuilding().getImageResource());
-			descriptions.add("Jednostka organizacyjna");
+			aList.add(b);
 		}
 		
 		for(Room b : rooms)
 		{
-			names.add(b.getName());
-			icons.add(b.getBuilding().getImageResource());
-			descriptions.add("Pomieszczenie");
+			aList.add(b);
 		}
 		
-		List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
-        
-        int size = names.size();
-        for(int i=0;i<size;i++){
-            HashMap<String, String> hm = new HashMap<String,String>();
-            Log.i("POLIGDZIE",i+":"+names.get(i));
-	        hm.put("name", names.get(i));
-	        hm.put("icon", Integer.toString(icons.get(i)));
-	        hm.put("description", descriptions.get(i));
-	        aList.add(hm);
-        }
-        Log.i("POLIGDZIE","------");
+		 
 		//SimpleAdapter adapter = new SimpleAdapter(this.context, aList, R.layout.position_prompt, from, to);
         /*OnItemClickListener itemClickListener = new OnItemClickListener() {
         	@Override
@@ -143,11 +124,8 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 		dbHelper = new DatabaseHelper(input.getContext(), DATABASE_NAME, null, DATABASE_VERSION);
 		this.input = input;
 		this.context = context;
-		
-		names = new ArrayList<String>();
-		icons = new ArrayList<Integer>();
-		descriptions = new ArrayList<String>();
-		
+
+		aList = new ArrayList<Object>();
 	}
 
 

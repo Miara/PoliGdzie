@@ -1,15 +1,14 @@
 package com.poligdzie.persistence;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
+import com.poligdzie.interfaces.Imageable;
+import com.poligdzie.interfaces.Nameable;
 
 @DatabaseTable(tableName = "building")
-public class Building {
+public class Building implements Nameable, Imageable {
 	@DatabaseField(generatedId = true)
 	private int id;
 
