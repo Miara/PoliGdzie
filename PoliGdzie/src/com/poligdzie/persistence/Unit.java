@@ -2,9 +2,10 @@ package com.poligdzie.persistence;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import com.poligdzie.interfaces.Nameable;
 
 @DatabaseTable(tableName = "unit")
-public class Unit {
+public class Unit implements Nameable{
 	@DatabaseField(generatedId = true)
 	private int id;
 

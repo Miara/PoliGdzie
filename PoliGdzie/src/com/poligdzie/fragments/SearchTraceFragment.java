@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,7 +18,6 @@ import com.example.poligdzie.R;
 import com.poligdzie.activities.MapActivity;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
-import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.DatabaseHelper;
 import com.poligdzie.singletons.RouteProvider;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
@@ -75,8 +75,8 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 		
 		
 		if (v == searchButton) {
-			provider.setTo(startingPosition.getText());
-			provider.setFrom(goalPosition.getText());
+			provider.setTo(startingPosition.getAdapter().getItem(0));
+			provider.setFrom(goalPosition.getAdapter().getItem(0));
 			Intent intent = new Intent(getActivity(), MapActivity.class);
 			startActivity(intent);
 		}
