@@ -16,8 +16,7 @@ import com.poligdzie.fragments.SearchPlaceFragment;
 import com.poligdzie.fragments.SearchTraceFragment;
 import com.poligdzie.interfaces.Constants;
 
-public class SearchActivity extends PoliGdzieBaseActivity implements OnClickListener,
-		Constants {
+public class SearchActivity extends PoliGdzieBaseActivity implements OnClickListener {
 
 	private Button buttonTrace;
 	private Button buttonPlace;
@@ -34,8 +33,6 @@ public class SearchActivity extends PoliGdzieBaseActivity implements OnClickList
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.search_activity);
 
-		Intent intent = new Intent(this, BuildingInfoActivity.class);
-		startActivity(intent);
 		fragment_trace = new SearchTraceFragment();
 		switchFragment(R.id.fragment_search_container, fragment_trace, "trace");
 		fragment_place = new SearchPlaceFragment();

@@ -106,10 +106,7 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 			descriptions.add("Pomieszczenie");
 		}
 		
-		String[] from = { "icon","name","description"};
-        int[] to = { R.id.autocomplete_icon,R.id.autocomplete_name,R.id.autocomplete_description};
-		
-        List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
+		List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
         
         int size = names.size();
         for(int i=0;i<size;i++){
@@ -129,8 +126,7 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 		};
 		input.setOnItemClickListener(itemClickListener);*/
 		AutocompleteCustomAdapter adapter = new AutocompleteCustomAdapter(this.context, R.layout.position_prompt, aList);
-		for(int i=0; i<adapter.getCount(); i++)
-	        Log.i("POLIGDZIE", adapter.getItem(i).toString());
+		
 		
         input.setAdapter(adapter);
 
@@ -153,5 +149,6 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 		descriptions = new ArrayList<String>();
 		
 	}
+
 
 }

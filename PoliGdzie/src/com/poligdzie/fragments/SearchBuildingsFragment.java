@@ -56,28 +56,6 @@ public class SearchBuildingsFragment extends Fragment implements
                     Toast.makeText(getActivity(), "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
                 }
             });
-		/*TextView testBazy = (TextView) rootView.findViewById(R.id.test_label);
-		DatabaseHelper database = new DatabaseHelper(this.getActivity(),
-				DATABASE_NAME, null, DATABASE_VERSION);
-		try {
-			buildings = database.getBuildingDao().queryForAll();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}// contentCreator.getBuildings();
-
-		if (buildings.isEmpty() || buildings == null) {
-			testBazy.setText("Brak budynków w bazie");
-		} else {
-			testBazy.setText("Budynki w bazie :\n");
-			for (Building b : buildings) {
-				testBazy.append(b.getName());
-				testBazy.append("\n");
-				testBazy.append(b.getAliases());
-				testBazy.append("\n");
-			}
-		}*/
-		// setCurrentDate();
 		return rootView;
 	}
 
