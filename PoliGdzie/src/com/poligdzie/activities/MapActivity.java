@@ -30,9 +30,6 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnMarkerClickL
 	//protected DatabaseHelper dbHelper;
 
 	private RouteProvider provider;
-	
-
-	static final LatLng LOCATION_PIOTROWO = new LatLng(52.4022703, 16.9495847);
 
 
 	@Override
@@ -68,13 +65,6 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnMarkerClickL
 		map = provider.onCreate(map, dbHelper);
 	}
 
-	public void onClick_Piotrowo(View v) {
-		map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(
-				LOCATION_PIOTROWO, 16);
-		map.animateCamera(update);
-
-	}
 
 	@Override
 	public boolean onMarkerClick(Marker arg0) {
