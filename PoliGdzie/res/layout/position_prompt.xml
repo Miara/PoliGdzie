@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/SearchEdit.Linear">
+    style="@style/Prompt.Linear">
      
     <ImageView 
 	        android:id="@+id/autocomplete_icon"
@@ -14,10 +14,13 @@
     	android:layout_gravity="center_vertical">
 		<TextView 
 		        android:id="@+id/autocomplete_name"
+		        android:lines="1"
+		        android:textStyle="bold"
 		        android:layout_width="match_parent" 
     			android:layout_height="wrap_content"/>
 		<TextView 
 		        android:id="@+id/autocomplete_description"
+		        android:textStyle="italic"
     			android:layout_width="match_parent" 
     			android:layout_height="wrap_content"
 		        android:textColor="#4a4a4a"/> 

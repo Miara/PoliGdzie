@@ -1,18 +1,27 @@
 package com.poligdzie.fragments;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.poligdzie.R;
+import com.poligdzie.activities.BuildingInfoActivity;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.DatabaseHelper;
@@ -20,38 +29,44 @@ import com.poligdzie.persistence.DatabaseHelper;
 public class SearchBuildingsFragment extends Fragment implements
 		OnClickListener, Constants {
 
-	private Button myButton;
-	private String buttonText;
 	private List<Building> buildings;
-
+	ListView list;
+	List<String> names = new ArrayList<String>();
+	List<Integer> images = new ArrayList<Integer>();
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.search_buildings_fragment,
-				container, false);
-
-		TextView testBazy = (TextView) rootView.findViewById(R.id.test_label);
-		DatabaseHelper database = new DatabaseHelper(this.getActivity(),
-				DATABASE_NAME, null, DATABASE_VERSION);
+				container, false); 
+		DatabaseHelper db = new DatabaseHelper(this.getActivity(), DATABASE_NAME, null,DATABASE_VERSION);
 		try {
-			buildings = database.getBuildingDao().queryForAll();
+			buildings = db.getBuildingDao().queryForAll();
+			for(Building b : buildings)
+			{
+				names.add(b.getName()); 
+				images.add(b.getImageResource()); 
+			}
+			CustomListAdapter adapter = new CustomListAdapter(getActivity(), names, images);
+		    list=(ListView)rootView.findViewById(R.id.building_list_view);
+		    Log.i("POLI", "T3");
+		    list.setAdapter(adapter);
+		    list.setOnItemClickListener(new AdapterView.OnItemClickListener() 
+		    {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) 
+                {
+                	Toast.makeText(getActivity(),"You clicked:"+names.get(position), 
+                            Toast.LENGTH_SHORT).show();
+                	Intent intent = new Intent(getActivity(), BuildingInfoActivity.class);
+        			startActivity(intent);
+                }
+            });
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}// contentCreator.getBuildings();
-
-		if (buildings.isEmpty() || buildings == null) {
-			testBazy.setText("Brak budynków w bazie");
-		} else {
-			testBazy.setText("Budynki w bazie :\n");
-			for (Building b : buildings) {
-				testBazy.append(b.getName());
-				testBazy.append("\n");
-				testBazy.append(b.getAliases());
-				testBazy.append("\n");
-			}
 		}
-		// setCurrentDate();
 		return rootView;
 	}
 
@@ -59,5 +74,32 @@ public class SearchBuildingsFragment extends Fragment implements
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	private class CustomListAdapter extends ArrayAdapter<String>{
+		private final Activity context;
+		private final List<String> buildingNames;
+		private final List<Integer> images;
+		
+		public CustomListAdapter(Activity context,List<String> mNames, List<Integer> mImages) 
+		{
+			super(context, R.layout.building_list_item, mNames);
+			this.context = context;
+			this.buildingNames = mNames;
+			this.images = mImages;
+		}
+		
+		@Override
+		public View getView(int position, View view, ViewGroup parent) 
+		{
+			LayoutInflater inflater = context.getLayoutInflater();
+			View rowView= inflater.inflate(R.layout.building_list_item, null, true);
+			
+			TextView txtTitle = (TextView) rowView.findViewById(R.id.building_item_name);
+			ImageView imageView = (ImageView) rowView.findViewById(R.id.building_item_image);
+			txtTitle.setText(buildingNames.get(position));
+			imageView.setImageResource(images.get(position));
+			return rowView;
+		}
 	}
 }

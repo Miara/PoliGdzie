@@ -30,6 +30,13 @@
     </style>
  	
     <!--                      Podpowiedź do autocomplete'a                      -->
+	<style name="Prompt" >
+	</style>
+	<style name="Prompt.Linear" >
+       	<item name="android:layout_height">wrap_content</item> 
+    	<item name="android:layout_width">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
 	<style name="SearchEdit.Text" >
        	<item name="android:layout_height">@dimen/search_text_height</item>
        	<item name="android:text"></item>
