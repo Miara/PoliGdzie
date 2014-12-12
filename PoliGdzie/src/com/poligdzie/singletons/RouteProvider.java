@@ -55,7 +55,7 @@ public class RouteProvider implements Constants{
 	}
 	
 	
-	public GoogleMap onCreate(GoogleMap map, DatabaseHelper dbHelper) {
+	public GoogleMap getMapWithRoute(GoogleMap map, DatabaseHelper dbHelper) {
 
 		this.dbHelper = dbHelper;
 		

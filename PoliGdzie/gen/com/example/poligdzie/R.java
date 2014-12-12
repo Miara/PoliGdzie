@@ -1504,9 +1504,6 @@ containing a value of this type.
         public static final int autocomplete_name=0x7f0b0051;
         public static final int beginning=0x7f0b0029;
         public static final int book_now=0x7f0b0014;
-        public static final int button1=0x7f0b0066;
-        public static final int button2=0x7f0b0067;
-        public static final int button3=0x7f0b0068;
         public static final int button_building=0x7f0b0059;
         public static final int button_place=0x7f0b0058;
         public static final int button_search_goal_point_map=0x7f0b0064;
@@ -1543,6 +1540,9 @@ containing a value of this type.
         public static final int icon=0x7f0b003c;
         public static final int ifRoom=0x7f0b0024;
         public static final int image=0x7f0b0039;
+        public static final int infoWindowGoalButton=0x7f0b0067;
+        public static final int infoWindowInfoButton=0x7f0b0068;
+        public static final int infoWindowStartButton=0x7f0b0066;
         public static final int listMode=0x7f0b001a;
         public static final int list_item=0x7f0b003b;
         public static final int map=0x7f0b004f;

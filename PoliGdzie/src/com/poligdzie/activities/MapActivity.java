@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.poligdzie.adapters.InfoWindowCustomAdapter;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.DatabaseHelper;
 import com.poligdzie.singletons.RouteProvider;
@@ -43,26 +44,12 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnMarkerClickL
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
 				.getMap();
 
-		map.setInfoWindowAdapter(new InfoWindowAdapter() {
-
-			// Use default InfoWindow frame
-			@Override
-			public View getInfoWindow(Marker arg0) {
-				View v = getLayoutInflater().inflate(R.layout.window_marker_click, null);
-				return v;
-			}
-
-			@Override
-			public View getInfoContents(Marker arg0) {
-				View v = getLayoutInflater().inflate(R.layout.window_marker_click, null);
-				return v;
-
-			}
-		});
-		
+		InfoWindowCustomAdapter adapter = new InfoWindowCustomAdapter(this, dbHelper);
+		map.setInfoWindowAdapter(adapter);
+		map.setOnInfoWindowClickListener(adapter);
 		provider = RouteProvider.getInstance();
 
-		map = provider.onCreate(map, dbHelper);
+		map = provider.getMapWithRoute(map, dbHelper);
 	}
 
 

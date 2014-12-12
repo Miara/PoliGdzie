@@ -11,9 +11,9 @@
 	        style="@style/InfoWindow.Image"
 	        android:src="@drawable/z_nogps"/>
 	    <Button
-	        android:id="@+id/button1"
+	        android:id="@+id/infoWindowStartButton"
 	        style="@style/InfoWindow.Button"
-	        android:text="punkt startowy" />
+	        android:text="Punkt startowy" />
     </LinearLayout>
     <LinearLayout
         style="@style/InfoWindow.Linear">
@@ -21,7 +21,7 @@
 	        style="@style/InfoWindow.Image"
 	        android:src="@drawable/do_nogps"/>
 	    <Button
-	        android:id="@+id/button2"
+	        android:id="@+id/infoWindowGoalButton"
 	        style="@style/InfoWindow.Button"
 	        android:text="Punkt docelowy" />
     </LinearLayout>
@@ -31,7 +31,7 @@
 	        style="@style/InfoWindow.Image"
 	        android:src="@drawable/uniwersalna_bw"/>
 	    <Button
-	        android:id="@+id/button3"
+	        android:id="@+id/infoWindowInfoButton"
 	        style="@style/InfoWindow.Button"
 	        android:text="Informacje/Plan" />
 	</LinearLayout>
