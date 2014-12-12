@@ -1506,8 +1506,8 @@ containing a value of this type.
         public static final int beginning=0x7f080023;
         public static final int book_now=0x7f080010;
         public static final int btnPiotrowo=0x7f080051;
-        public static final int building_item_button=0x7f08004f;
-        public static final int building_item_img=0x7f08004e;
+        public static final int building_item_image=0x7f08004e;
+        public static final int building_item_name=0x7f08004f;
         public static final int building_list_view=0x7f08005f;
         public static final int button1=0x7f080068;
         public static final int button2=0x7f080069;
@@ -1829,14 +1829,18 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f05009a;
-        public static final int AppTheme=0x7f05009b;
+        public static final int AppBaseTheme=0x7f05009c;
+        public static final int AppTheme=0x7f05009d;
         /**                       Info Window na google maps                 
          */
-        public static final int InfoWindow=0x7f050096;
-        public static final int InfoWindow_Button=0x7f050099;
-        public static final int InfoWindow_Image=0x7f050098;
-        public static final int InfoWindow_Linear=0x7f050097;
+        public static final int InfoWindow=0x7f050098;
+        public static final int InfoWindow_Button=0x7f05009b;
+        public static final int InfoWindow_Image=0x7f05009a;
+        public static final int InfoWindow_Linear=0x7f050099;
+        /**                       Podpowiedź do autocomplete'a                      
+         */
+        public static final int Prompt=0x7f050095;
+        public static final int Prompt_Linear=0x7f050096;
         /**                      AutocompleteEdit do wyszukiwania            
          */
         public static final int SearchEdit=0x7f050090;
@@ -1844,9 +1848,7 @@ containing a value of this type.
         public static final int SearchEdit_Image=0x7f050092;
         public static final int SearchEdit_Linear=0x7f050091;
         public static final int SearchEdit_Map=0x7f050094;
-        /**                       Podpowiedź do autocomplete'a                      
-         */
-        public static final int SearchEdit_Text=0x7f050095;
+        public static final int SearchEdit_Text=0x7f050097;
         /**  Mimic text appearance in select_dialog_item.xml 
          */
         public static final int TextAppearance_AppCompat_Base_CompactMenu_Dialog=0x7f050068;
