@@ -1,10 +1,7 @@
-PoliGdzie/bin
-PoliGdzie/gen 
+PoliGdzie/bin/
+PoliGdzie/gen/
 PoliGdzie/AndroidManifest.xml
-
-
-google-play-services_lib/bin
-google-play-services_lib/gen
-
-appcompat_v7/bin
-appcompat_v7/gen
+google-play-services_lib/bin/
+google-play-services_lib/gen/
+appcompat_v7/bin/
+appcompat_v7/gen/
