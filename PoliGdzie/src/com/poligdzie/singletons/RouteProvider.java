@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,19 +21,21 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.interfaces.Constants;
+import com.poligdzie.interfaces.NewFunctions;
 import com.poligdzie.json.DownloadDirectionsTask;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.DatabaseHelper;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 
-public class RouteProvider implements Constants{
+public class RouteProvider implements Constants,NewFunctions{
 
 	private static RouteProvider instance = null;
 	private GoogleMap map;
 	private DatabaseHelper dbHelper;
 	private LayoutInflater layoutInflater;
 	private PolylineOptions options;
+	private static Context context;
 	
 	private Object from;
 	private Object to;
@@ -47,10 +51,11 @@ public class RouteProvider implements Constants{
 	}
 	
 	//implementacja singletona
-	public static RouteProvider getInstance() {
+	public static RouteProvider getInstance(Context cnt) {
 		if(instance == null) {
 			instance =  new RouteProvider();
 		}
+		context = cnt;
 		return instance;
 	}
 	
@@ -144,7 +149,7 @@ public class RouteProvider implements Constants{
 					.title(b.getName())
 					.snippet(b.getAddress())
 					.icon(BitmapDescriptorFactory
-							.fromResource(b.getImageResource()));
+							.fromResource(getDrawableId(b.getImageResource(), context)));
 
 			map.addMarker(option);
 		}
@@ -168,4 +173,21 @@ public class RouteProvider implements Constants{
 	public void setTo(Object to) {
 		this.to = to;
 	}
+	
+	private Context getContext() {
+		return context;
+	}
+
+	public void setContext(Context context) {
+		this.context = context;
+	}
+	
+
+	@Override
+	public int getDrawableId(String name, Context context) {
+		int resId =context.getResources().getIdentifier(name, "drawable", context.getPackageName());
+		return resId;
+	}
+
+	
 }

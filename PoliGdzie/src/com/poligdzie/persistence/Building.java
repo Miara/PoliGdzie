@@ -34,7 +34,7 @@ public class Building implements Nameable, Imageable {
 	private String aliases;
 
 	@DatabaseField
-	private int imageResource;
+	private String imageResource;
 
 	@ForeignCollectionField(eager = true, columnName = "rooms")
 	private ForeignCollection<Room> rooms;
@@ -121,7 +121,7 @@ public class Building implements Nameable, Imageable {
 	}
 
 	public Building(String name, double coordX, double coordY, String address,
-			int width, int height, int image, String aliases) {
+			int width, int height, String image, String aliases) {
 		this.name = name;
 		this.coordX = coordX;
 		this.coordY = coordY;
@@ -133,7 +133,7 @@ public class Building implements Nameable, Imageable {
 	}
 
 	public Building(String name, double coordX, double coordY, String address,
-			int width, int height, int image, String aliases,
+			int width, int height, String image, String aliases,
 			ForeignCollection<Room> rooms, ForeignCollection<Unit> units) {
 		this.name = name;
 		this.coordX = coordX;
@@ -155,11 +155,11 @@ public class Building implements Nameable, Imageable {
 		this.aliases = aliases;
 	}
 
-	public int getImageResource() {
+	public String getImageResource() {
 		return imageResource;
 	}
 
-	public void setImageResource(int image) {
+	public void setImageResource(String image) {
 		this.imageResource = image;
 	}
 

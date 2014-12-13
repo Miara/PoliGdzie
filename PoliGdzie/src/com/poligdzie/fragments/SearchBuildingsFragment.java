@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,11 +24,12 @@ import android.widget.Toast;
 import com.example.poligdzie.R;
 import com.poligdzie.activities.BuildingInfoActivity;
 import com.poligdzie.interfaces.Constants;
+import com.poligdzie.interfaces.NewFunctions;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.DatabaseHelper;
 
 public class SearchBuildingsFragment extends Fragment implements
-		OnClickListener, Constants {
+		OnClickListener, Constants, NewFunctions {
 
 	private List<Building> buildings;
 	ListView list;
@@ -45,7 +47,8 @@ public class SearchBuildingsFragment extends Fragment implements
 			for(Building b : buildings)
 			{
 				names.add(b.getName()); 
-				images.add(b.getImageResource()); 
+				int resId = getDrawableId(b.getImageResource(), getActivity());
+				images.add(resId); 
 			}
 			CustomListAdapter adapter = new CustomListAdapter(getActivity(), names, images);
 		    list=(ListView)rootView.findViewById(R.id.building_list_view);
@@ -101,5 +104,11 @@ public class SearchBuildingsFragment extends Fragment implements
 			imageView.setImageResource(images.get(position));
 			return rowView;
 		}
+	}
+
+	@Override
+	public int getDrawableId(String name, Context context) 
+	{
+		return context.getResources().getIdentifier(name, "drawable", context.getPackageName());
 	}
 }

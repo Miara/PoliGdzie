@@ -1,10 +1,12 @@
 package com.poligdzie.interfaces;
 
+import android.content.Context;
+
 public interface Constants {
 
 	// baza danych
 	public String DATABASE_NAME = "Poligdzie.db";
-	public int DATABASE_VERSION = 12;
+	public int DATABASE_VERSION = 13;
 
 	// Ustawienia aplikacji w PreferenceManager
 	public String START_FIELD_VALUE = "";
@@ -17,5 +19,6 @@ public interface Constants {
 	public String PROMPT_MODE_STOP = "Stop button mode";
 	
 	public String GOOGLE_MAP_MODE = "walking";
+
 
 }

@@ -47,7 +47,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnMarkerClickL
 		InfoWindowCustomAdapter adapter = new InfoWindowCustomAdapter(this, dbHelper);
 		map.setInfoWindowAdapter(adapter);
 		map.setOnInfoWindowClickListener(adapter);
-		provider = RouteProvider.getInstance();
+		provider = RouteProvider.getInstance(this);
 
 		map = provider.getMapWithRoute(map, dbHelper);
 	}

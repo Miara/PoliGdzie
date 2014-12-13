@@ -12,15 +12,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.poligdzie.R;
+import com.poligdzie.interfaces.Constants;
 import com.poligdzie.interfaces.Imageable;
 import com.poligdzie.interfaces.Nameable;
+import com.poligdzie.interfaces.NewFunctions;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 
 
 
-public class AutocompleteCustomAdapter extends ArrayAdapter {
+public class AutocompleteCustomAdapter extends ArrayAdapter implements NewFunctions{
 
 	private Context context;
 	private List <Object> objects;
@@ -52,21 +54,24 @@ public class AutocompleteCustomAdapter extends ArrayAdapter {
 		    object = objects.get(position);
 		    
 		    name.setText(((Nameable) object).getName());
-		    
+		    int imgRes;
 		    	
 		    if(object instanceof Building) {
 			    desc.setText("Budynek");
-			    icon.setImageResource(((Imageable) object).getImageResource());
+			    imgRes = getDrawableId(((Imageable) object).getImageResource(),context);
+			    icon.setImageResource(imgRes);
 			}
 		    
 		    if(object instanceof Unit) {
 		        desc.setText("Jednostka organizacyjna");
-		        icon.setImageResource(((Unit) object).getBuilding().getImageResource());
+		        imgRes = getDrawableId(((Unit) object).getBuilding().getImageResource(),context);
+		        icon.setImageResource(imgRes);
 			}
 		    
 		    if(object instanceof Room) {
 		    	desc.setText("Pomieszczenie");
-		    	icon.setImageResource(((Room) object).getBuilding().getImageResource());
+		    	imgRes = getDrawableId(((Room) object).getBuilding().getImageResource(),context);
+		    	icon.setImageResource(imgRes);
 			}
 		    
 		    
@@ -96,5 +101,15 @@ public class AutocompleteCustomAdapter extends ArrayAdapter {
 		};
 	}
 
+	@Override
+	public int getDrawableId(String name, Context context) {
+		int resId =context.getResources().getIdentifier(name, "drawable", context.getPackageName());
+		return resId;
+	}
+	
+
+
+
+	
 
 }
