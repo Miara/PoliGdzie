@@ -1,19 +1,8 @@
 package com.poligdzie.singletons;
 
-import android.view.LayoutInflater;
-
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.PolylineOptions;
-import com.poligdzie.persistence.DatabaseHelper;
-
 public class TextEditDataProvider {
 	private static TextEditDataProvider instance = null;
-	private GoogleMap map;
-	private DatabaseHelper dbHelper;
-	private LayoutInflater layoutInflater;
-	private PolylineOptions options;
-	
+
 	private Object from;
 	private Object to;
 	private String mode;

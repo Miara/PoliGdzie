@@ -5,19 +5,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 
-import com.example.poligdzie.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.interfaces.Constants;
@@ -31,23 +26,26 @@ import com.poligdzie.persistence.Unit;
 public class RouteProvider implements Constants,NewFunctions{
 
 	private static RouteProvider instance = null;
-	private GoogleMap map;
 	private DatabaseHelper dbHelper;
-	private LayoutInflater layoutInflater;
 	private PolylineOptions options;
 	private static Context context;
+	
+	private List<Fragment> fragments;
+	private List<String> fragmentTags;
+	private List<String> fragmentHeaders;
+	private int fragmentPosition = 0;
 	
 	private Object from;
 	private Object to;
 	
 	static final LatLng LOCATION_PIOTROWO = new LatLng(52.4022703, 16.9495847);
-	private static final LatLng MY_POINT = new LatLng(52.4014141, 16.9511311);
-	private static final LatLng CENTRUM_WYKLADOWE = new LatLng(52.4037379,
-			16.9498138);
 
 	
-	protected RouteProvider() {
+	public RouteProvider() {
 		// konstruktor zas³aniaj¹cy domyœlny publiczny konstruktor
+		fragments = new ArrayList<Fragment>();
+		fragmentTags = new ArrayList<String>();
+		fragmentHeaders = new ArrayList<String>();
 	}
 	
 	//implementacja singletona
@@ -174,13 +172,68 @@ public class RouteProvider implements Constants,NewFunctions{
 		this.to = to;
 	}
 	
-	private Context getContext() {
-		return context;
+	public int getFragmentPosition() {
+		return fragmentPosition;
 	}
 
-	public void setContext(Context context) {
-		this.context = context;
+	public void setFragmentPosition(int fragmentPosition) {
+		this.fragmentPosition = fragmentPosition;
 	}
+	
+	public void addFragment(String tag, String header,  int floor, Fragment fragment)
+	{
+		String mFloor = "";
+		String mTag = tag;
+		if( tag != MAP_MODE_OUTDOOR) 
+		{
+			mFloor = " piêtro" + Integer.toString(floor);
+			mTag+=Integer.toString(floor);	
+		}
+		fragmentTags.add(mTag);
+		fragmentHeaders.add(header + mFloor);
+		fragments.add(fragment);
+		
+	}
+	
+	public Fragment getPreviousFragment()
+	{
+		if(fragments.get(fragmentPosition-1) != null)
+		{
+			setFragmentPosition(fragmentPosition - 1);
+		}
+		return fragments.get(fragmentPosition);
+	}
+	
+	public Fragment getNextFragment()
+	{
+		if(fragments.get(fragmentPosition+1) != null)
+		{
+			setFragmentPosition(fragmentPosition + 1);
+		}
+		return fragments.get(fragmentPosition);
+	}
+	
+	public String getCurrentFragmentHeader()
+	{
+		return fragmentHeaders.get(fragmentPosition);
+	}
+	public String getCurrentFragmentTag()
+	{
+		return fragmentTags.get(fragmentPosition);
+	}
+	
+	public int getFragmentsSize()
+	{
+		return fragments.size();
+	}
+	
+	public void clearFragments()
+	{
+		fragments.clear();
+		fragmentTags.clear();
+		fragmentHeaders.clear();
+	}
+	
 	
 
 	@Override
@@ -188,6 +241,10 @@ public class RouteProvider implements Constants,NewFunctions{
 		int resId =context.getResources().getIdentifier(name, "drawable", context.getPackageName());
 		return resId;
 	}
+
+
+
+	
 
 	
 }

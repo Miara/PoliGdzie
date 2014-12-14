@@ -43,7 +43,7 @@ public class AutocompleteCustomAdapter extends ArrayAdapter implements NewFuncti
 		// TODO Auto-generated method stub
 
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		    View view = inflater.inflate(R.layout.position_prompt, parent, false);
+		    View view = inflater.inflate(R.layout.prompt_item, parent, false);
 		    
 		    TextView name = (TextView) view.findViewById(R.id.autocomplete_name);
 		    TextView desc = (TextView) view.findViewById(R.id.autocomplete_description);

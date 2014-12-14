@@ -1,57 +1,65 @@
 package com.poligdzie.activities;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
+import java.security.acl.LastOwnerException;
+
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.poligdzie.R;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.poligdzie.adapters.InfoWindowCustomAdapter;
-import com.poligdzie.persistence.Building;
-import com.poligdzie.persistence.DatabaseHelper;
+import com.poligdzie.fragments.MapIndoorFragment;
+import com.poligdzie.fragments.MapOutdoorFragment;
 import com.poligdzie.singletons.RouteProvider;
 
-public class MapActivity extends PoliGdzieBaseActivity implements OnMarkerClickListener {
+public class MapActivity extends PoliGdzieBaseActivity implements OnClickListener,OnMarkerClickListener {
 
-	public GoogleMap map;
 	public PolylineOptions options;
 	//protected DatabaseHelper dbHelper;
+	RouteProvider provider;
 
-	private RouteProvider provider;
+	private TextView currentText;
+	private Button previous;
+	private Button next;
 
+	MapOutdoorFragment outdoorMap;
+	MapIndoorFragment indoorMap;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.map_activity);
 
-		dbHelper = new DatabaseHelper(this, DATABASE_NAME, null,
-				DATABASE_VERSION);
+		provider = new RouteProvider();
+		provider.clearFragments();
 
-		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
-				.getMap();
+		outdoorMap = new MapOutdoorFragment();
+		provider.addFragment(MAP_MODE_OUTDOOR, "Droga na zewn¹trz", 0, outdoorMap);
+		switchFragment(R.id.fragment_map_container, outdoorMap, MAP_MODE_OUTDOOR);
+		
+		indoorMap = new MapIndoorFragment();
+		provider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 0, indoorMap);
 
-		InfoWindowCustomAdapter adapter = new InfoWindowCustomAdapter(this, dbHelper);
-		map.setInfoWindowAdapter(adapter);
-		map.setOnInfoWindowClickListener(adapter);
-		provider = RouteProvider.getInstance(this);
-
-		map = provider.getMapWithRoute(map, dbHelper);
+		indoorMap = new MapIndoorFragment();
+		provider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 1, indoorMap);
+		
+		previous = (Button) findViewById(R.id.previous_map);
+		previous.setOnClickListener(this);
+		previous.setVisibility(View.GONE);
+		
+		next = (Button) findViewById(R.id.next_map);
+		next.setOnClickListener(this);
+		
+		currentText = (TextView) findViewById(R.id.current_map);
+		currentText.setText(provider.getCurrentFragmentHeader());
+			
 	}
-
 
 	@Override
 	public boolean onMarkerClick(Marker arg0) {
@@ -59,6 +67,40 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnMarkerClickL
 		return false;
 		
 	}
+
+
+	@Override
+	public void onClick(View v) {
+		Fragment frag;
+		String tag;
+		if( v == next)
+		{
+			frag = provider.getNextFragment();
+			tag = provider.getCurrentFragmentTag();
+			currentText.setText(provider.getCurrentFragmentHeader());
+			switchFragment(R.id.fragment_map_container, frag, tag);
+		}
+		if( v == previous)
+		{
+			frag = provider.getPreviousFragment();
+			tag = provider.getCurrentFragmentTag();
+			currentText.setText(provider.getCurrentFragmentHeader());
+			switchFragment(R.id.fragment_map_container, frag, tag);
+		}
+		
+		if(provider.getFragmentPosition() <  ( provider.getFragmentsSize() - 1) )
+			next.setVisibility(View.VISIBLE);
+		else
+			next.setVisibility(View.GONE);
+		
+		if(provider.getFragmentPosition() == 0)
+			previous.setVisibility(View.GONE);
+		else
+			previous.setVisibility(View.VISIBLE);
+
+	}
+	
+	
 
 
 }

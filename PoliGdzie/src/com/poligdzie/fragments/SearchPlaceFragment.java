@@ -10,15 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.example.poligdzie.R;
 import com.poligdzie.activities.MapActivity;
-import com.poligdzie.activities.PromptActivity;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;

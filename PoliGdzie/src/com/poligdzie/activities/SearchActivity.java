@@ -1,10 +1,8 @@
 package com.poligdzie.activities;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,7 +12,6 @@ import com.example.poligdzie.R;
 import com.poligdzie.fragments.SearchBuildingsFragment;
 import com.poligdzie.fragments.SearchPlaceFragment;
 import com.poligdzie.fragments.SearchTraceFragment;
-import com.poligdzie.interfaces.Constants;
 
 public class SearchActivity extends PoliGdzieBaseActivity implements OnClickListener {
 
@@ -22,7 +19,7 @@ public class SearchActivity extends PoliGdzieBaseActivity implements OnClickList
 	private Button buttonPlace;
 	private Button buttonBuilding;
 
-	private String lastTag;
+	
 
 	SearchTraceFragment fragment_trace;
 	SearchPlaceFragment fragment_place;
@@ -66,42 +63,4 @@ public class SearchActivity extends PoliGdzieBaseActivity implements OnClickList
 
 	}
 	
-
-	protected void switchFragment(int resource, Fragment fragment, String tag) {
-
-		String oldTag = getLastTag();
-		boolean addToBackStack = false;
-		FragmentManager fragmentManager = getFragmentManager();
-		FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-		if (oldTag != null) {
-			Fragment lastFragment = fragmentManager.findFragmentByTag(oldTag);
-			if (lastFragment != null) {
-				transaction.hide(lastFragment);
-			}
-		}
-
-		if (fragment.isAdded()) {
-			transaction.show(fragment);
-		} else {
-			transaction.add(resource, fragment, tag);
-			// addToBackStack=true;
-		}
-
-		if (addToBackStack) {
-			transaction.addToBackStack(tag);
-		}
-
-		transaction.commit();
-		setLastTag(tag);
-	}
-
-	public String getLastTag() {
-		return lastTag;
-	}
-
-	public void setLastTag(String lastTag) {
-		this.lastTag = lastTag;
-	}
-
 }

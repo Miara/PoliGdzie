@@ -106,7 +106,7 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
         	}
 		};
 		input.setOnItemClickListener(itemClickListener);*/
-		AutocompleteCustomAdapter adapter = new AutocompleteCustomAdapter(this.context, R.layout.position_prompt, aList);
+		AutocompleteCustomAdapter adapter = new AutocompleteCustomAdapter(this.context, R.layout.prompt_item, aList);
 		
 		
         input.setAdapter(adapter);
