@@ -2,13 +2,10 @@ package com.poligdzie.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.TextView;
+import android.view.ViewGroup;
 
 import com.example.poligdzie.R;
 import com.google.android.gms.maps.GoogleMap;
@@ -17,6 +14,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.adapters.InfoWindowCustomAdapter;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.DatabaseHelper;
+import com.poligdzie.singletons.MapFragmentProvider;
 import com.poligdzie.singletons.RouteProvider;
 
 public class MapOutdoorFragment extends Fragment implements OnClickListener,
@@ -26,7 +24,8 @@ Constants {
 	public PolylineOptions options;
 	//protected DatabaseHelper dbHelper;
 	DatabaseHelper dbHelper;
-	private RouteProvider provider;
+	private RouteProvider routeProvider;
+	private MapFragmentProvider mapProvider;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,12 +37,15 @@ Constants {
 			DATABASE_VERSION);
 	map = ((MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.map_outdoor_googleMap))
 			.getMap();
+	
 	InfoWindowCustomAdapter adapter = new InfoWindowCustomAdapter(getActivity(), dbHelper);
 	map.setInfoWindowAdapter(adapter);
 	map.setOnInfoWindowClickListener(adapter);
-	provider = RouteProvider.getInstance(getActivity());
-
-	map = provider.getMapWithRoute(map, dbHelper);
+	
+	routeProvider = RouteProvider.getInstance();
+	routeProvider.setContext(this.getActivity());
+	
+	map = routeProvider.getMapWithRoute(map, dbHelper);
 	
 	return rootView;
 	}

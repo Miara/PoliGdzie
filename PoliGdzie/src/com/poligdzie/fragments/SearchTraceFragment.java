@@ -92,7 +92,7 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 						.getApplicationContext());
 
 		Editor editor = prefs.edit();
-		RouteProvider provider = RouteProvider.getInstance(getActivity());
+		RouteProvider provider = RouteProvider.getInstance();
 		TextEditDataProvider dataProvider = TextEditDataProvider.getInstance();
 		
 		if (v == searchButton) {

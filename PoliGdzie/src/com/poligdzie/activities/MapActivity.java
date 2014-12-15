@@ -1,8 +1,6 @@
 package com.poligdzie.activities;
 
 
-import java.security.acl.LastOwnerException;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.View;
@@ -16,13 +14,14 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
+import com.poligdzie.singletons.MapFragmentProvider;
 import com.poligdzie.singletons.RouteProvider;
 
 public class MapActivity extends PoliGdzieBaseActivity implements OnClickListener,OnMarkerClickListener {
 
 	public PolylineOptions options;
 	//protected DatabaseHelper dbHelper;
-	RouteProvider provider;
+	MapFragmentProvider mapProvider;
 
 	private TextView currentText;
 	private Button previous;
@@ -36,18 +35,18 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.map_activity);
 
-		provider = new RouteProvider();
-		provider.clearFragments();
+		mapProvider = MapFragmentProvider.getInstance();
+		mapProvider.clearFragments();
 
 		outdoorMap = new MapOutdoorFragment();
-		provider.addFragment(MAP_MODE_OUTDOOR, "Droga na zewn¹trz", 0, outdoorMap);
+		mapProvider.addFragment(MAP_MODE_OUTDOOR, "Droga na zewn¹trz", 0, outdoorMap);
 		switchFragment(R.id.fragment_map_container, outdoorMap, MAP_MODE_OUTDOOR);
 		
 		indoorMap = new MapIndoorFragment();
-		provider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 0, indoorMap);
+		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 0, indoorMap);
 
 		indoorMap = new MapIndoorFragment();
-		provider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 1, indoorMap);
+		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 1, indoorMap);
 		
 		previous = (Button) findViewById(R.id.previous_map);
 		previous.setOnClickListener(this);
@@ -57,7 +56,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 		next.setOnClickListener(this);
 		
 		currentText = (TextView) findViewById(R.id.current_map);
-		currentText.setText(provider.getCurrentFragmentHeader());
+		currentText.setText(mapProvider.getCurrentFragmentHeader());
 			
 	}
 
@@ -75,25 +74,25 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 		String tag;
 		if( v == next)
 		{
-			frag = provider.getNextFragment();
-			tag = provider.getCurrentFragmentTag();
-			currentText.setText(provider.getCurrentFragmentHeader());
+			frag = mapProvider.getNextFragment();
+			tag = mapProvider.getCurrentFragmentTag();
+			currentText.setText(mapProvider.getCurrentFragmentHeader());
 			switchFragment(R.id.fragment_map_container, frag, tag);
 		}
 		if( v == previous)
 		{
-			frag = provider.getPreviousFragment();
-			tag = provider.getCurrentFragmentTag();
-			currentText.setText(provider.getCurrentFragmentHeader());
+			frag = mapProvider.getPreviousFragment();
+			tag = mapProvider.getCurrentFragmentTag();
+			currentText.setText(mapProvider.getCurrentFragmentHeader());
 			switchFragment(R.id.fragment_map_container, frag, tag);
 		}
 		
-		if(provider.getFragmentPosition() <  ( provider.getFragmentsSize() - 1) )
+		if(mapProvider.getFragmentPosition() <  ( mapProvider.getFragmentsSize() - 1) )
 			next.setVisibility(View.VISIBLE);
 		else
 			next.setVisibility(View.GONE);
 		
-		if(provider.getFragmentPosition() == 0)
+		if(mapProvider.getFragmentPosition() == 0)
 			previous.setVisibility(View.GONE);
 		else
 			previous.setVisibility(View.VISIBLE);
