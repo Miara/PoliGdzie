@@ -2,7 +2,9 @@ package com.poligdzie.activities;
 
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -12,12 +14,12 @@ import com.example.poligdzie.R;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.poligdzie.fragments.BuildingInfoFragment;
 import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
 import com.poligdzie.singletons.MapFragmentProvider;
-import com.poligdzie.singletons.RouteProvider;
 
-public class MapActivity extends PoliGdzieBaseActivity implements OnClickListener,OnMarkerClickListener {
+public class MapActivity extends PoliGdzieBaseActivity implements OnClickListener {
 
 	public PolylineOptions options;
 	//protected DatabaseHelper dbHelper;
@@ -60,12 +62,6 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 			
 	}
 
-	@Override
-	public boolean onMarkerClick(Marker arg0) {
-		arg0.showInfoWindow();
-		return false;
-		
-	}
 
 
 	@Override
