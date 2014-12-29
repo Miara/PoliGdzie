@@ -53,7 +53,7 @@ Constants {
 	routeProvider.setContext(this.getActivity());
 	
 	map = routeProvider.getMapWithRoute(map, dbHelper);
-	map.setOnMarkerClickListener(new MarkerOnClickCustomListener(this, map));
+	map.setOnMarkerClickListener(new MarkerOnClickCustomListener(this, map, dbHelper));
 	return rootView;
 	}
 	

@@ -12,15 +12,16 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.interfaces.NewFunctions;
-import com.poligdzie.json.DownloadDirectionsTask;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.DatabaseHelper;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
+import com.poligdzie.tasks.DownloadDirectionsTask;
 
 public class RouteProvider implements Constants,NewFunctions{
 
@@ -30,12 +31,14 @@ public class RouteProvider implements Constants,NewFunctions{
 	private Context context;
 	private Object from;
 	private Object to;
+	private List <Marker> markers;
 	
 	static final LatLng LOCATION_PIOTROWO = new LatLng(52.4022703, 16.9495847);
 
 	
 	protected RouteProvider() {
 		// konstruktor zas³aniaj¹cy domyœlny publiczny konstruktor
+		markers = new ArrayList <Marker>();
 	}
 	
 	//implementacja singletona
@@ -138,7 +141,7 @@ public class RouteProvider implements Constants,NewFunctions{
 					.icon(BitmapDescriptorFactory
 							.fromResource(getDrawableId(b.getImageResource(), context)));
 
-			map.addMarker(option);
+			markers.add(map.addMarker(option));
 		}
 
 		return map;
@@ -176,6 +179,14 @@ public class RouteProvider implements Constants,NewFunctions{
 
 	public void setContext(Context context) {
 		this.context = context;
+	}
+
+	public List <Marker> getMarkers() {
+		return markers;
+	}
+
+	public void setMarkers(List <Marker> markers) {
+		this.markers = markers;
 	}
 
 

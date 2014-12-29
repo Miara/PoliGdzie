@@ -23,5 +23,8 @@ public interface Constants {
 	public String MAP_MODE_INDOOR_FIRST = "indoor_first";
 	public String MAP_MODE_INDOOR_LAST = "indoor_last";
 
+	//tymczasowe sta³e marginesu do okienka po kliknieciu na marker
+	public int MARGIN_LEFT = 55;
+	public int MARGIN_TOP = 10;
 
 }
