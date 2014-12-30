@@ -99,13 +99,6 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 		}
 		
 		 
-		//SimpleAdapter adapter = new SimpleAdapter(this.context, aList, R.layout.position_prompt, from, to);
-        /*OnItemClickListener itemClickListener = new OnItemClickListener() {
-        	@Override
-        	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long id) {
-        	}
-		};
-		input.setOnItemClickListener(itemClickListener);*/
 		AutocompleteCustomAdapter adapter = new AutocompleteCustomAdapter(this.context, R.layout.prompt_item, aList);
 		
 		
