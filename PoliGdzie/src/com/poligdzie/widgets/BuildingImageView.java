@@ -15,7 +15,6 @@ import android.widget.ImageView;
 
 public class BuildingImageView extends ImageView implements Constants{
 
-	public static final String TAG = "test";
 	
     private int mActivePointerId = INVALID_CODE;
 
@@ -23,6 +22,12 @@ public class BuildingImageView extends ImageView implements Constants{
     private float viewHeight;
     private float viewWidth;
     float canvasWidth, canvasHeight;
+    
+    long startTime,stopTime;
+    int clickCount;
+    private long duration;
+    
+    
 
     private ScaleGestureDetector mScaleDetector;
     private float mScaleFactor = 1.f;
@@ -37,6 +42,8 @@ public class BuildingImageView extends ImageView implements Constants{
 
     private boolean panEnabled = true;
     private boolean zoomEnabled = true;
+
+	
     
     public BuildingImageView(Context context) {
         super(context);
@@ -138,10 +145,23 @@ public class BuildingImageView extends ImageView implements Constants{
         {
             final int action = ev.getAction();
             switch (action & MotionEvent.ACTION_MASK) {
+            
+            
                 case MotionEvent.ACTION_DOWN: {
                     mLastTouchX = ev.getX();
                     mLastTouchY = ev.getY();
                     mActivePointerId = ev.getPointerId(0);
+                    
+                    if((System.currentTimeMillis() - startTime) > DOUBLE_CLICK_DURATION)
+                    {
+                    	startTime = System.currentTimeMillis();
+                    	clickCount=1;
+                    }
+                    else
+                    {
+                    	clickCount++;
+                    }
+                    
                     break;
                 }
 
@@ -172,6 +192,18 @@ public class BuildingImageView extends ImageView implements Constants{
 
                 case MotionEvent.ACTION_UP:  {
                     mActivePointerId = INVALID_CODE;
+                    
+                    if(clickCount == 2)
+                    {
+                    	long duration = System.currentTimeMillis() - startTime;
+                        if(duration<= DOUBLE_CLICK_DURATION)
+                        {
+                        	mScaleFactor *= VIEW_ZOOM_IN;
+                        	invalidate();
+                        }
+                        clickCount = 0;
+                        duration = 0;
+                    }
                     break;
                 }
                                 

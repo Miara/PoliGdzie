@@ -24,6 +24,8 @@ public interface Constants {
 	public String MAP_MODE_INDOOR_LAST = "indoor_last";
 	
     public int  INVALID_CODE = -1;
+    public long DOUBLE_CLICK_DURATION = 600;
+    public double VIEW_ZOOM_IN = 1.35;
     public String TAG = "Poligdzie";
 
 
