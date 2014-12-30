@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout.LayoutParams;
+import android.widget.TextView;
 
 import com.example.poligdzie.R;
 import com.google.android.gms.maps.model.LatLng;
@@ -32,6 +33,7 @@ public class BuildingInfoFragment extends Fragment implements OnClickListener,
 	private Button fromButton;
 	private Button toButton;
 	private Button showInfoButton;
+	private TextView nameField;
 	private RouteProvider routeProvider;
 	private Marker marker;
 	private DatabaseHelper dbHelper;
@@ -57,6 +59,25 @@ public class BuildingInfoFragment extends Fragment implements OnClickListener,
 		showInfoButton = (Button) rootView
 				.findViewById(R.id.infoWindowInfoButton);
 
+		LatLng coords = new LatLng(0.0, 0.0);
+		
+		coords = marker.getPosition();
+		List <Building> buildings = new ArrayList <Building>();
+	
+			try {
+				buildings.addAll(dbHelper.getBuildingDao().queryBuilder()
+										 .where()
+										 .eq("coordX", coords.latitude)
+										 .and()
+										 .eq("coordY", coords.longitude)
+										 .query());
+			} catch (java.sql.SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		nameField = (TextView) rootView.findViewById(R.id.infoWindowNameField);
+		nameField.setText(buildings.get(0).getName());
 		return rootView;
 	}
 

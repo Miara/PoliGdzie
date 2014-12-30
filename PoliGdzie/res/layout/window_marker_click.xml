@@ -4,7 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@null" >
-
+	<LinearLayout
+	    style="@style/InfoWindow.Linear">
+	    <TextView
+	        style="@style/InfoWindow.TextView"
+	        android:id="@+id/infoWindowNameField"
+	    />   
+	</LinearLayout>
     <LinearLayout
         style="@style/InfoWindow.Linear">
         <ImageView 

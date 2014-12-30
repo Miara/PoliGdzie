@@ -139,7 +139,7 @@ public class RouteProvider implements Constants,NewFunctions{
 					.title(b.getName())
 					.snippet(b.getAddress())
 					.icon(BitmapDescriptorFactory
-							.fromResource(getDrawableId(b.getImageResource(), context)));
+							.fromResource(getDrawableId(b.getMarkerImageResource(), context)));
 
 			markers.add(map.addMarker(option));
 		}

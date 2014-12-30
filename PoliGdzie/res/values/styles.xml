@@ -58,13 +58,24 @@
     </style>
     <style name="InfoWindow.Button" >
         <item name="android:layout_width">match_parent</item> 
-        <item name="android:textSize">@dimen/info_window_text_size</item> 
+        <item name="android:textSize">@dimen/info_window_button_text_size</item> 
         <item name="android:minHeight">0dp</item> 
         <item name="android:minWidth">0dp</item> 
         <item name="android:layout_marginLeft">-5dip</item> 
         <item name="android:layout_marginRight">-5dip</item> 
         <item name="android:layout_marginTop">-5dip</item> 
         <item name="android:layout_marginBottom">-5dip</item> 
+    </style>
+    <style name="InfoWindow.TextView" >
+        <item name="android:layout_width">match_parent</item> 
+        <item name="android:textSize">@dimen/info_window_text_size</item> 
+        <item name="android:minHeight">0dp</item> 
+        <item name="android:minWidth">0dp</item> 
+        <item name="android:layout_marginLeft">5dip</item> 
+        <item name="android:layout_marginRight">5dip</item> 
+        <item name="android:layout_marginTop">5dip</item> 
+        <item name="android:layout_marginBottom">5dip</item>
+        <item name="android:background">#ffffff</item>
     </style>
 
     <!--                       Motyw aplikacji                       -->

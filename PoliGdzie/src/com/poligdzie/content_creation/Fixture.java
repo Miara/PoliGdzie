@@ -18,11 +18,11 @@ public class Fixture {
 		creator = new ContentCreator();
 
 		Building cw = new Building("Centrum wyk³adowe", 52.4037039,
-				16.949444, "Piotrowo 2", 150, 2, "cw_ic", "cw");
+				16.949444, "Piotrowo 2", 150, 2, "cw", "cw_ic", "cw_marker");
 		Building elektryk = new Building("Elektryk", 52.401972, 16.951360,
-				"Piotrowo 3a", 70, 10, "we_ic", "el;elektryk");
+				"Piotrowo 3a", 70, 10, "el;elektryk", "we_ic", "el_marker");
 		Building bm = new Building("Budowa maszyn", 52.402357, 16.950573,
-				"Piotrowo 3", 70, 10, "bm_ic", "bm;budynek z zegarem");
+				"Piotrowo 3", 70, 10, "bm;budynek z zegarem", "bm_ic", "bm_marker");
 		creator.add(cw);
 		creator.add(elektryk);
 		creator.add(bm);

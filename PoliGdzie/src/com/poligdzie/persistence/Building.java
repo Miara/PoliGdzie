@@ -35,6 +35,9 @@ public class Building implements Nameable, Imageable {
 
 	@DatabaseField
 	private String imageResource;
+	
+	@DatabaseField
+	private String markerImageResource;
 
 	@ForeignCollectionField(eager = true, columnName = "rooms")
 	private ForeignCollection<Room> rooms;
@@ -169,6 +172,28 @@ public class Building implements Nameable, Imageable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getMarkerImageResource() {
+		return markerImageResource;
+	}
+
+	public void setMarkerImageResource(String markerImageResource) {
+		this.markerImageResource = markerImageResource;
+	}
+
+	public Building(String name, double coordX, double coordY, String address,
+			int width, int height, String aliases, String imageResource,
+			String markerImageResource) {
+		this.name = name;
+		this.coordX = coordX;
+		this.coordY = coordY;
+		this.address = address;
+		this.width = width;
+		this.height = height;
+		this.aliases = aliases;
+		this.imageResource = imageResource;
+		this.markerImageResource = markerImageResource;
 	}
 
 }
