@@ -47,17 +47,17 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 		mapProvider.addFragment(MAP_MODE_OUTDOOR, "Droga na zewn¹trz", 0, outdoorMap);
 		switchFragment(R.id.fragment_map_container, outdoorMap, MAP_MODE_OUTDOOR);
 		
-		indoorMap = new MapIndoorFragment(activityManager);
+		indoorMap = new MapIndoorFragment();
 		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 0, indoorMap);
 
-		indoorMap = new MapIndoorFragment(activityManager);
+		indoorMap = new MapIndoorFragment();
 		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 1, indoorMap);
-		indoorMap = new MapIndoorFragment(activityManager);
+		indoorMap = new MapIndoorFragment();
 		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 2, indoorMap);
-		indoorMap = new MapIndoorFragment(activityManager);
+		indoorMap = new MapIndoorFragment();
 		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 3, indoorMap);
 		
-		indoorMap = new MapIndoorFragment(activityManager);
+		indoorMap = new MapIndoorFragment();
 		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 4, indoorMap);
 		
 
