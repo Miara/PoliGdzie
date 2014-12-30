@@ -1,6 +1,7 @@
 package com.poligdzie.activities;
 
 
+import android.app.ActivityManager;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -40,15 +41,29 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 		mapProvider = MapFragmentProvider.getInstance();
 		mapProvider.clearFragments();
 
+		ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+		
 		outdoorMap = new MapOutdoorFragment();
 		mapProvider.addFragment(MAP_MODE_OUTDOOR, "Droga na zewn¹trz", 0, outdoorMap);
 		switchFragment(R.id.fragment_map_container, outdoorMap, MAP_MODE_OUTDOOR);
 		
-		indoorMap = new MapIndoorFragment();
+		indoorMap = new MapIndoorFragment(activityManager);
 		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 0, indoorMap);
 
-		indoorMap = new MapIndoorFragment();
+		indoorMap = new MapIndoorFragment(activityManager);
 		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 1, indoorMap);
+		indoorMap = new MapIndoorFragment(activityManager);
+		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 2, indoorMap);
+		indoorMap = new MapIndoorFragment(activityManager);
+		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 3, indoorMap);
+		
+		indoorMap = new MapIndoorFragment(activityManager);
+		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 4, indoorMap);
+		
+
+		
+		int mem = activityManager.getMemoryClass();
+		Log.i("Poligdzie",""+mem);
 		
 		previous = (Button) findViewById(R.id.previous_map);
 		previous.setOnClickListener(this);

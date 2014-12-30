@@ -22,6 +22,9 @@ public interface Constants {
 	public String MAP_MODE_OUTDOOR = "outdoor";
 	public String MAP_MODE_INDOOR_FIRST = "indoor_first";
 	public String MAP_MODE_INDOOR_LAST = "indoor_last";
+	
+    public int  INVALID_CODE = -1;
+    public String TAG = "Poligdzie";
 
 
 }
