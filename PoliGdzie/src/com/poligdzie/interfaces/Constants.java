@@ -28,5 +28,8 @@ public interface Constants {
     public double VIEW_ZOOM_IN = 1.35;
     public String TAG = "Poligdzie";
 
+	//tymczasowe sta³e marginesu do okienka po kliknieciu na marker
+	public int MARGIN_LEFT = 55;
+	public int MARGIN_TOP = 10;
 
 }
