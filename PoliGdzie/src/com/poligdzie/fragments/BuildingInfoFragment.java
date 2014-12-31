@@ -22,7 +22,6 @@ import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.DatabaseHelper;
 import com.poligdzie.singletons.RouteProvider;
-import com.poligdzie.singletons.TextEditDataProvider;
 
 public class BuildingInfoFragment extends Fragment implements OnClickListener,
 		Constants {
@@ -30,13 +29,14 @@ public class BuildingInfoFragment extends Fragment implements OnClickListener,
 	private int posX;
 	private int posY;
 	private ViewGroup container;
-	private Button fromButton;
-	private Button toButton;
+	private Button startButton;
+	private Button goalButton;
 	private Button showInfoButton;
 	private TextView nameField;
 	private RouteProvider routeProvider;
 	private Marker marker;
 	private DatabaseHelper dbHelper;
+	private Building currentBuildingOnMarker;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,104 +52,68 @@ public class BuildingInfoFragment extends Fragment implements OnClickListener,
 		View rootView = inflater.inflate(R.layout.window_marker_click,
 				container, false);
 
-		fromButton = (Button) rootView.findViewById(R.id.infoWindowStartButton);
-		fromButton.setOnClickListener(this);
-		toButton = (Button) rootView.findViewById(R.id.infoWindowGoalButton);
-		toButton.setOnClickListener(this);
+		startButton = (Button) rootView
+				.findViewById(R.id.infoWindowStartButton);
+		startButton.setOnClickListener(this);
+		goalButton = (Button) rootView.findViewById(R.id.infoWindowGoalButton);
+		goalButton.setOnClickListener(this);
 		showInfoButton = (Button) rootView
 				.findViewById(R.id.infoWindowInfoButton);
 
-		LatLng coords = new LatLng(0.0, 0.0);
-		
-		coords = marker.getPosition();
-		List <Building> buildings = new ArrayList <Building>();
-	
-			try {
-				buildings.addAll(dbHelper.getBuildingDao().queryBuilder()
-										 .where()
-										 .eq("coordX", coords.latitude)
-										 .and()
-										 .eq("coordY", coords.longitude)
-										 .query());
-			} catch (java.sql.SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
 		nameField = (TextView) rootView.findViewById(R.id.infoWindowNameField);
-		nameField.setText(buildings.get(0).getName());
+		nameField.setText(currentBuildingOnMarker.getName());
 		return rootView;
 	}
 
 	@Override
 	public void onClick(View v) {
 		
-		if (v == fromButton) {
+		RouteProvider routeProvider = RouteProvider.getInstance();
+		
+		if (v == startButton) {
+		
+			routeProvider.setStart(currentBuildingOnMarker);
 			
-			LatLng coords = new LatLng(0.0, 0.0);
-			// TODO Auto-generated method stub
-			coords = marker.getPosition();
-			List <Building> buildings = new ArrayList <Building>();
-		
-				try {
-					buildings.addAll(dbHelper.getBuildingDao().queryBuilder()
-											 .where()
-											 .eq("coordX", coords.latitude)
-											 .and()
-											 .eq("coordY", coords.longitude)
-											 .query());
-				} catch (java.sql.SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		
-				
-				TextEditDataProvider provider = TextEditDataProvider.getInstance();
-				provider.setFrom(buildings.get(0));
-		
-				Intent intent = new Intent(this.getActivity(), SearchActivity.class);
-				this.getActivity().startActivity(intent);
+			Intent intent = new Intent(this.getActivity(), SearchActivity.class);
+			this.getActivity().startActivity(intent);
 		}
-		
-		if (v == toButton) {
-			LatLng coords = new LatLng(0.0, 0.0);
-			// TODO Auto-generated method stub
-			coords = marker.getPosition();
-			List <Building> buildings = new ArrayList <Building>();
-		
-				try {
-					buildings.addAll(dbHelper.getBuildingDao().queryBuilder()
-											 .where()
-											 .eq("coordX", coords.latitude)
-											 .and()
-											 .eq("coordY", coords.longitude)
-											 .query());
-				} catch (java.sql.SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		
-				
-				TextEditDataProvider provider = TextEditDataProvider.getInstance();
-				provider.setTo(buildings.get(0));
-				
-				Intent intent = new Intent(this.getActivity(), SearchActivity.class);
-				this.getActivity().startActivity(intent);
+
+		if (v == goalButton) {
+			
+			routeProvider.setGoal(currentBuildingOnMarker);
+			
+			Intent intent = new Intent(this.getActivity(), SearchActivity.class);
+			this.getActivity().startActivity(intent);
 		}
 
 		if (v == showInfoButton) {
 
 		}
 
-		
-		
 	}
 
-	public BuildingInfoFragment(int posX, int posY, Marker marker, DatabaseHelper dbHelper) {
+	public BuildingInfoFragment(int posX, int posY, Marker marker,
+			DatabaseHelper dbHelper) {
 		this.posX = posX;
 		this.posY = posY;
 		this.marker = marker;
 		this.dbHelper = dbHelper;
+
+		LatLng coords = new LatLng(0.0, 0.0);
+
+		coords = marker.getPosition();
+		List<Building> buildings = new ArrayList<Building>();
+
+		try {
+			buildings.addAll(dbHelper.getBuildingDao().queryBuilder().where()
+					.eq("coordX", coords.latitude).and()
+					.eq("coordY", coords.longitude).query());
+		} catch (java.sql.SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		currentBuildingOnMarker = buildings.get(0);
 	}
 
 }

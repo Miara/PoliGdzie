@@ -10,7 +10,7 @@ public class Room implements Nameable{
 	private int id;
 
 	@DatabaseField
-	private int number;
+	private String number;
 
 	@DatabaseField
 	private String name;
@@ -41,11 +41,11 @@ public class Room implements Nameable{
 		this.id = id;
 	}
 
-	public int getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 
@@ -93,7 +93,7 @@ public class Room implements Nameable{
 
 	}
 
-	public Room(int number, String name, RoomFunctions function, int coordX,
+	public Room(String number, String name, RoomFunctions function, int coordX,
 			int coordY, int floorNr, Building building) {
 		this.number = number;
 		this.name = name;
@@ -120,7 +120,7 @@ public class Room implements Nameable{
 		this.building = building;
 	}
 
-	public Room(int number, String name, RoomFunctions function,
+	public Room(String number, String name, RoomFunctions function,
 			int coordX, int coordY, int floorNr, String aliases,
 			Building building) {
 		this.number = number;

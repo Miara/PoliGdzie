@@ -67,6 +67,8 @@ public class ContextSearchTextWatcher implements TextWatcher, Constants{
 										 .like("name", "%" + s.toString() + "%")
 										 .or()
 										 .like("aliases", "%" + s.toString() + "%")
+										 .or()
+										 .like("number", "%" + s.toString() + "%")
 										 .query();
 						
 			units = dbHelper.getUnitDao().queryBuilder()

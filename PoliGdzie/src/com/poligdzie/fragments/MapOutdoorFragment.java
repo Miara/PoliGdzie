@@ -1,9 +1,7 @@
 package com.poligdzie.fragments;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,10 +10,7 @@ import android.view.ViewGroup;
 import com.example.poligdzie.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.poligdzie.adapters.InfoWindowCustomAdapter;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.listeners.MarkerOnClickCustomListener;
 import com.poligdzie.persistence.DatabaseHelper;
@@ -43,9 +38,6 @@ Constants {
 	map = ((MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.map_outdoor_googleMap))
 			.getMap();
 	
-	/*InfoWindowCustomAdapter adapter = new InfoWindowCustomAdapter(getActivity(), dbHelper);
-	map.setInfoWindowAdapter(adapter);
-	map.setOnInfoWindowClickListener(adapter);*/
 	
 	
 	

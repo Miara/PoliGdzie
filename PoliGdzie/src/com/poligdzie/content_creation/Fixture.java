@@ -34,10 +34,10 @@ public class Fixture {
 		Unit eit = new Unit("Wydzia³ Elektroniki i Telekomunikacji",
 				"http://et.put.poznan.pl", UnitTypes.FACULTY, "Wydzia³ Eit",elektryk);
 
-		Room cw8 = new Room(8, "Sala wyk³adowa 8", RoomFunctions.LECTURE, 30,
+		Room cw8 = new Room("8", "Sala wyk³adowa 8", RoomFunctions.LECTURE, 30,
 				30, 1, "ósemka;cw8;8cw;8 cw; cw 8",cw);
-		Room wc = new Room(0, "WC", RoomFunctions.RESTROOM, 10, 10, 0, "kibel",cw);
-		Room dziekanat = new Room(503, "Dziekanat", RoomFunctions.STAFF, 15,
+		Room wc = new Room("0", "WC", RoomFunctions.RESTROOM, 10, 10, 0, "kibel",cw);
+		Room dziekanat = new Room("503", "Dziekanat", RoomFunctions.STAFF, 15,
 				30, 5, "pani kasia",bm);
 
 		creator.add(cw8);

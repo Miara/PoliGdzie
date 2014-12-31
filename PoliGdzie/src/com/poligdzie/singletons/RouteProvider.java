@@ -30,8 +30,9 @@ public class RouteProvider implements Constants,NewFunctions{
 	private DatabaseHelper dbHelper;
 	private PolylineOptions options;
 	private Context context;
-	private Object from;
-	private Object to;
+	private Object start;
+	private Object goal;
+	private boolean drawRoute = false;
 	private List <Marker> markers;
 	
 	static final LatLng LOCATION_PIOTROWO = new LatLng(52.4022703, 16.9495847);
@@ -62,7 +63,7 @@ public class RouteProvider implements Constants,NewFunctions{
 
 		
 		String url = getMapsApiDirectionsUrl(map);
-		if(url != null) {
+		if(drawRoute && url != null) {
 			DownloadDirectionsTask downloadTask = new DownloadDirectionsTask(map,
 					options);
 			downloadTask.execute(url);
@@ -99,13 +100,13 @@ public class RouteProvider implements Constants,NewFunctions{
 		HashMap <String, Double> toCoords = new HashMap <String, Double>(); 
 		HashMap <String, Double> fromCoords = new HashMap <String, Double>();
 		
-		if(to == null || from == null) {
+		if(goal == null || start == null) {
 			return null;
 		}
 		
 		
-		fromCoords = getCoordsFromObject(from);
-		toCoords = getCoordsFromObject(to);
+		fromCoords = getCoordsFromObject(start);
+		toCoords = getCoordsFromObject(goal);
 		
 		if(fromCoords == null || toCoords == null) {
 			return null;
@@ -153,21 +154,8 @@ public class RouteProvider implements Constants,NewFunctions{
 
 	}
 
-	public Object getFrom() {
-		return from;
-	}
 
-	public void setFrom(Object from) {
-		this.from = from;
-	}
 
-	public Object getTo() {
-		return to;
-	}
-
-	public void setTo(Object to) {
-		this.to = to;
-	}
 	
 		
 	
@@ -192,6 +180,30 @@ public class RouteProvider implements Constants,NewFunctions{
 
 	public void setMarkers(List <Marker> markers) {
 		this.markers = markers;
+	}
+
+	public Object getStart() {
+		return start;
+	}
+
+	public void setStart(Object start) {
+		this.start = start;
+	}
+
+	public Object getGoal() {
+		return goal;
+	}
+
+	public void setGoal(Object goal) {
+		this.goal = goal;
+	}
+
+	public boolean isDrawRoute() {
+		return drawRoute;
+	}
+
+	public void setDrawRoute(boolean drawRoute) {
+		this.drawRoute = drawRoute;
 	}
 
 
