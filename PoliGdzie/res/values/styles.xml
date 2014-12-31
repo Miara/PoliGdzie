@@ -82,6 +82,9 @@
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
     </style>
     <style name="AppTheme" parent="AppBaseTheme"> 
-    </style>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+  	</style>
+    
 
 </resources>

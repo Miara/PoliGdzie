@@ -45,14 +45,7 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 		searchButton = (Button) rootView.findViewById(R.id.button_search_trace);
 		if (searchButton != null)
 			searchButton.setOnClickListener(this);
-		buttonMapStart = (Button) rootView
-				.findViewById(R.id.button_search_starting_point_map);
-		if (buttonMapStart != null)
-			buttonMapStart.setOnClickListener(this);
-		buttonMapGoal = (Button) rootView
-				.findViewById(R.id.button_search_goal_point_map);
-		if (buttonMapGoal != null)
-			buttonMapGoal.setOnClickListener(this);
+
 
 		startPosition = (SearchAutoCompleteTextView) rootView
 				.findViewById(R.id.starting_point_text_edit);

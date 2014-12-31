@@ -44,7 +44,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 		mapProvider.addFragment(MAP_MODE_OUTDOOR, "Droga na zewn¹trz", 0, outdoorMap);
 		switchFragment(R.id.fragment_map_container, outdoorMap, MAP_MODE_OUTDOOR);
 		
-		indoorMap = new MapIndoorFragment();
+	/*	indoorMap = new MapIndoorFragment();
 		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 0, indoorMap);
 
 		indoorMap = new MapIndoorFragment();
@@ -59,7 +59,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 		
 		currentText = (TextView) findViewById(R.id.current_map);
 		currentText.setText(mapProvider.getCurrentFragmentHeader());
-			
+			*/
 	}
 
 
