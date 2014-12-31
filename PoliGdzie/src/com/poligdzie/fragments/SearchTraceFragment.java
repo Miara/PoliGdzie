@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -13,10 +14,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.poligdzie.R;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.poligdzie.activities.MapActivity;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.interfaces.Nameable;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
+import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.DatabaseHelper;
 import com.poligdzie.singletons.RouteProvider;
 import com.poligdzie.singletons.TextEditDataProvider;
@@ -96,22 +100,21 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 		TextEditDataProvider dataProvider = TextEditDataProvider.getInstance();
 		
 		if (v == searchButton) {
-			if(startingPosition.getText().length() != 0)
-				provider.setTo(startingPosition.getAdapter().getItem(0));
-			if(startingPosition.getText().length() != 0)
-				provider.setFrom(goalPosition.getAdapter().getItem(0));
+			if(startingPosition.getText().length() != 0) 
+				provider.setFrom(startingPosition.getAdapter().getItem(0));
+			
+			if(goalPosition.getText().length() != 0)
+				provider.setTo(goalPosition.getAdapter().getItem(0));
 			
 			Intent intent = new Intent(getActivity(), MapActivity.class);
 			startActivity(intent);
 		}
 		if (v == buttonMapStart) {
-			dataProvider.setMode("from");
 			Intent intent = new Intent(getActivity(), MapActivity.class);
 			startActivity(intent);
 		}
 		
 		if (v == buttonMapStop) {
-			dataProvider.setMode("to");
 			Intent intent = new Intent(getActivity(), MapActivity.class);
 			startActivity(intent);
 		}

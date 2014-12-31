@@ -196,4 +196,9 @@ public class Building implements Nameable, Imageable {
 		this.markerImageResource = markerImageResource;
 	}
 
+	public Building(double coordX, double coordY) {
+		this.coordX = coordX;
+		this.coordY = coordY;
+	}
+
 }

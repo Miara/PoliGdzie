@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
+import android.location.Location;
 import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -60,7 +61,7 @@ public class RouteProvider implements Constants,NewFunctions{
 		map = addAllMarkersToMap(map);
 
 		
-		String url = getMapsApiDirectionsUrl();
+		String url = getMapsApiDirectionsUrl(map);
 		if(url != null) {
 			DownloadDirectionsTask downloadTask = new DownloadDirectionsTask(map,
 					options);
@@ -93,22 +94,26 @@ public class RouteProvider implements Constants,NewFunctions{
 		return result;
 	}
 	
-	private String getMapsApiDirectionsUrl() {
+	private String getMapsApiDirectionsUrl(GoogleMap map) {
 			
 		HashMap <String, Double> toCoords = new HashMap <String, Double>(); 
 		HashMap <String, Double> fromCoords = new HashMap <String, Double>();
 		
-		if(from == null || to == null) {
+		if(to == null || from == null) {
 			return null;
 		}
 		
-		toCoords = getCoordsFromObject(to);
-		fromCoords = getCoordsFromObject(from);
 		
+		fromCoords = getCoordsFromObject(from);
+		toCoords = getCoordsFromObject(to);
+		
+		if(fromCoords == null || toCoords == null) {
+			return null;
+		}
 			
-		String waypoints = "waypoints=optimize:true|" + toCoords.get("X") + ","
-				+ toCoords.get("Y") + "|" + "|" + fromCoords.get("X")
-				+ "," + fromCoords.get("Y");
+		String waypoints = "waypoints=optimize:true|" + fromCoords.get("X") + ","
+				+ fromCoords.get("Y") + "|" + "|" + toCoords.get("X")
+				+ "," + toCoords.get("Y");
 
 		String sensor = "sensor=false";
 		String mode  = "mode=" + GOOGLE_MAP_MODE; 
