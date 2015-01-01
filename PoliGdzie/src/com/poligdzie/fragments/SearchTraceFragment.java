@@ -99,8 +99,7 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 			
 			provider.setDrawRoute(true);
 			
-			Intent intent = new Intent(getActivity(), MapActivity.class);
-			startActivity(intent);
+			provider.drawRoute();
 		}
 		if (v == buttonMapStart || v == buttonMapGoal) {
 			
@@ -111,6 +110,14 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 
 		editor.commit();
 
+	}
+	
+	public void setStartPosition(String text) {
+		this.startPosition.setText(text);
+	}
+	
+	public void setGoalPosition(String text) {
+		this.goalPosition.setText(text);
 	}
 
 }

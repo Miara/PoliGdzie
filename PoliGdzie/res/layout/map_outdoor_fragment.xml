@@ -9,16 +9,16 @@
         android:id="@+id/search_frag"
         android:name="com.poligdzie.fragments.SearchTraceFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2">
+        android:layout_height="wrap_content"
+       >
     </fragment>
     
     <fragment
         android:id="@+id/map_outdoor_googleMap"
         android:name="com.google.android.gms.maps.MapFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.8" >
+        android:layout_height="match_parent"
+       >
 
         <FrameLayout
             android:id="@+id/window_info_container"

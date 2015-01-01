@@ -17,9 +17,7 @@
 	            android:hint="Twoja bieżąca lokalizacja">
 	        	<requestFocus />
 	        </com.poligdzie.widgets.SearchAutoCompleteTextView> 
-	        <Button
-	            style="@style/SearchEdit.Map"
-	            android:id="@+id/button_search_point_on_map" />   
+
     	</LinearLayout> 
 
     </LinearLayout>

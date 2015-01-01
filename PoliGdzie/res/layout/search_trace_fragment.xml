@@ -10,8 +10,8 @@
         android:orientation="horizontal" >
 
         <LinearLayout
-            android:layout_weight="0.7"
-            android:layout_width="0dp"
+            
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
@@ -54,9 +54,9 @@
 
         <Button
             android:id="@+id/button_search_trace"
-            android:layout_width="0dp"
-            android:layout_weight="0.3"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            
+            android:layout_height="match_parent"
             android:text="Wyszukaj" />
     </LinearLayout>
 

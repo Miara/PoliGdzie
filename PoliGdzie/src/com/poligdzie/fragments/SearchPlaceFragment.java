@@ -43,7 +43,7 @@ public class SearchPlaceFragment extends Fragment implements OnClickListener,
 		if (searchButton != null) 
 			searchButton.setOnClickListener(this);
 		
-		buttonMap = (Button) rootView.findViewById(R.id.button_search_point_on_map);
+		
 		
 		if (buttonMap != null) 
 			buttonMap.setOnClickListener(this);

@@ -5,10 +5,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.location.Location;
+import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.FusedLocationProviderApi;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -24,7 +37,8 @@ import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 import com.poligdzie.tasks.DownloadDirectionsTask;
 
-public class RouteProvider implements Constants,NewFunctions{
+public class RouteProvider implements Constants, NewFunctions,
+		ConnectionCallbacks, OnConnectionFailedListener  {
 
 	private static RouteProvider instance = null;
 	private DatabaseHelper dbHelper;
@@ -33,39 +47,38 @@ public class RouteProvider implements Constants,NewFunctions{
 	private Object start;
 	private Object goal;
 	private boolean drawRoute = false;
-	private List <Marker> markers;
-	
+	private GoogleMap map;
+	private List<Marker> markers;
+	private FusedLocationProviderApi api;
+
 	static final LatLng LOCATION_PIOTROWO = new LatLng(52.4022703, 16.9495847);
 
-	
 	protected RouteProvider() {
 		// konstruktor zas³aniaj¹cy domyœlny publiczny konstruktor
-		markers = new ArrayList <Marker>();
+		markers = new ArrayList<Marker>();
 	}
-	
-	//implementacja singletona
+
+	// implementacja singletona
 	public static RouteProvider getInstance() {
-		if(instance == null) {
-			instance =  new RouteProvider();
+		if (instance == null) {
+			instance = new RouteProvider();
 		}
 		return instance;
 	}
-	
-	
+
 	public GoogleMap getMapWithRoute(GoogleMap map, DatabaseHelper dbHelper) {
 
 		this.dbHelper = dbHelper;
-		
+		this.map = map;
 
 		map.setMyLocationEnabled(true);
 
 		map = addAllMarkersToMap(map);
 
-		
 		String url = getMapsApiDirectionsUrl(map);
-		if(drawRoute && url != null) {
-			DownloadDirectionsTask downloadTask = new DownloadDirectionsTask(map,
-					options);
+		if (drawRoute && url != null) {
+			DownloadDirectionsTask downloadTask = new DownloadDirectionsTask(
+					map, options);
 			downloadTask.execute(url);
 		}
 
@@ -73,56 +86,73 @@ public class RouteProvider implements Constants,NewFunctions{
 		// addMarkers();
 		return map;
 	}
-	
-	private HashMap <String, Double> getCoordsFromObject(Object object) {
-		HashMap <String, Double> result = new HashMap <String, Double>();
-		
-		if(object instanceof Building) {
+
+	public void drawRoute() {
+		map.clear();
+		map = this.addAllMarkersToMap(map);
+
+		String url = getMapsApiDirectionsUrl(map);
+		if (drawRoute && url != null) {
+			DownloadDirectionsTask downloadTask = new DownloadDirectionsTask(
+					map, options);
+			downloadTask.execute(url);
+		}
+	}
+
+	private HashMap<String, Double> getCoordsFromObject(Object object) {
+		HashMap<String, Double> result = new HashMap<String, Double>();
+
+		if (object instanceof Building) {
 			result.put("X", ((Building) object).getCoordX());
 			result.put("Y", ((Building) object).getCoordY());
 		}
-		
-		if(object instanceof Unit) {
+
+		if (object instanceof Unit) {
 			result.put("X", ((Unit) object).getBuilding().getCoordX());
 			result.put("Y", ((Unit) object).getBuilding().getCoordY());
 		}
-		
-		if(object instanceof Room) {
+
+		if (object instanceof Room) {
 			result.put("X", ((Room) object).getBuilding().getCoordX());
 			result.put("Y", ((Room) object).getBuilding().getCoordY());
 		}
-		
+
 		return result;
 	}
-	
+
 	private String getMapsApiDirectionsUrl(GoogleMap map) {
-			
-		HashMap <String, Double> toCoords = new HashMap <String, Double>(); 
-		HashMap <String, Double> fromCoords = new HashMap <String, Double>();
-		
-		if(goal == null || start == null) {
+
+		HashMap<String, Double> toCoords = new HashMap<String, Double>();
+		HashMap<String, Double> fromCoords = new HashMap<String, Double>();
+
+		if (goal == null) {
 			return null;
 		}
-		
-		
+
+		if (start == null) {
+			
+			
+			return null;
+		}
+
 		fromCoords = getCoordsFromObject(start);
 		toCoords = getCoordsFromObject(goal);
-		
-		if(fromCoords == null || toCoords == null) {
+
+		if (fromCoords == null || toCoords == null) {
 			return null;
 		}
-			
-		String waypoints = "waypoints=optimize:true|" + fromCoords.get("X") + ","
-				+ fromCoords.get("Y") + "|" + "|" + toCoords.get("X")
+
+		String waypoints = "waypoints=optimize:true|" + fromCoords.get("X")
+				+ "," + fromCoords.get("Y") + "|" + "|" + toCoords.get("X")
 				+ "," + toCoords.get("Y");
 
 		String sensor = "sensor=false";
-		String mode  = "mode=" + GOOGLE_MAP_MODE; 
+		String mode = "mode=" + GOOGLE_MAP_MODE;
 		String params = waypoints + "&" + sensor + "&" + mode;
 		String output = "json";
 		String url = "https://maps.googleapis.com/maps/api/directions/"
 				+ output + "?" + params;
-		
+
 		Log.i("POLIGDZIE", url);
 		return url;
 	}
@@ -144,8 +174,8 @@ public class RouteProvider implements Constants,NewFunctions{
 			option.position(new LatLng(b.getCoordX(), b.getCoordY()))
 					.title(b.getName())
 					.snippet(b.getAddress())
-					.icon(BitmapDescriptorFactory
-							.fromResource(getDrawableId(b.getMarkerImageResource(), context)));
+					.icon(BitmapDescriptorFactory.fromResource(getDrawableId(
+							b.getMarkerImageResource(), context)));
 
 			markers.add(map.addMarker(option));
 		}
@@ -154,15 +184,10 @@ public class RouteProvider implements Constants,NewFunctions{
 
 	}
 
-
-
-	
-		
-	
-
 	@Override
 	public int getDrawableId(String name, Context context) {
-		int resId =context.getResources().getIdentifier(name, "drawable", context.getPackageName());
+		int resId = context.getResources().getIdentifier(name, "drawable",
+				context.getPackageName());
 		return resId;
 	}
 
@@ -174,11 +199,11 @@ public class RouteProvider implements Constants,NewFunctions{
 		this.context = context;
 	}
 
-	public List <Marker> getMarkers() {
+	public List<Marker> getMarkers() {
 		return markers;
 	}
 
-	public void setMarkers(List <Marker> markers) {
+	public void setMarkers(List<Marker> markers) {
 		this.markers = markers;
 	}
 
@@ -206,9 +231,24 @@ public class RouteProvider implements Constants,NewFunctions{
 		this.drawRoute = drawRoute;
 	}
 
+	@Override
+	public void onConnected(Bundle arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onConnectionSuspended(int arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onConnectionFailed(ConnectionResult arg0) {
+		// TODO Auto-generated method stub
+
+	}
 
 
-	
 
-	
 }
