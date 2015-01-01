@@ -37,8 +37,7 @@ import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 import com.poligdzie.tasks.DownloadDirectionsTask;
 
-public class RouteProvider implements Constants, NewFunctions,
-		ConnectionCallbacks, OnConnectionFailedListener  {
+public class RouteProvider implements Constants, NewFunctions  {
 
 	private static RouteProvider instance = null;
 	private DatabaseHelper dbHelper;
@@ -231,23 +230,7 @@ public class RouteProvider implements Constants, NewFunctions,
 		this.drawRoute = drawRoute;
 	}
 
-	@Override
-	public void onConnected(Bundle arg0) {
-		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void onConnectionSuspended(int arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onConnectionFailed(ConnectionResult arg0) {
-		// TODO Auto-generated method stub
-
-	}
 
 
 

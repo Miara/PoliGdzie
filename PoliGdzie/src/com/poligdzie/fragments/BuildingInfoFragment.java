@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,10 +18,11 @@ import android.widget.TextView;
 import com.example.poligdzie.R;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.poligdzie.activities.SearchActivity;
+import com.poligdzie.activities.BuildingInfoActivity;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.DatabaseHelper;
+import com.poligdzie.singletons.MapFragmentProvider;
 import com.poligdzie.singletons.RouteProvider;
 
 public class BuildingInfoFragment extends Fragment implements OnClickListener,
@@ -38,6 +40,7 @@ public class BuildingInfoFragment extends Fragment implements OnClickListener,
 	private DatabaseHelper dbHelper;
 	private Building currentBuildingOnMarker;
 	private SearchTraceFragment searchFragment;
+	private MapFragmentProvider mapProvider;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,10 +64,12 @@ public class BuildingInfoFragment extends Fragment implements OnClickListener,
 		showInfoButton = (Button) rootView
 				.findViewById(R.id.infoWindowInfoButton);
 
+		showInfoButton.setOnClickListener(this);
+		
 		nameField = (TextView) rootView.findViewById(R.id.infoWindowNameField);
 		nameField.setText(currentBuildingOnMarker.getName());
 		
-		MapOutdoorFragment mapOutdoor = (MapOutdoorFragment) this.getActivity().getFragmentManager().findFragmentById(R.layout.map_outdoor_fragment);
+		
 		searchFragment = (SearchTraceFragment) this.getActivity().getFragmentManager().findFragmentById(R.id.search_frag);
 		
 		return rootView;
@@ -88,7 +93,9 @@ public class BuildingInfoFragment extends Fragment implements OnClickListener,
 		}
 
 		if (v == showInfoButton) {
-
+			Log.d("POLIGDZIE", "czemu sie kurwa nie odpalasz dziwko?");
+			Intent intent = new Intent(this.getActivity(), BuildingInfoActivity.class);
+			this.getActivity().startActivity(intent);
 		}
 
 	}
