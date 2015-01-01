@@ -26,6 +26,8 @@ Constants {
 	DatabaseHelper dbHelper;
 	private RouteProvider routeProvider;
 	private MapFragmentProvider mapProvider;
+	private SearchTraceFragment searchRouteFragment;
+	private SearchPlaceFragment searchPlaceFragment;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,7 +40,9 @@ Constants {
 	map = ((MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.map_outdoor_googleMap))
 			.getMap();
 	
-	
+	searchPlaceFragment = (SearchPlaceFragment) getActivity().getFragmentManager().findFragmentById(R.id.search_place_frag);
+	searchPlaceFragment.setFragment(this);
+	searchRouteFragment = (SearchTraceFragment) getActivity().getFragmentManager().findFragmentById(R.id.search_route_frag);
 	
 	
 	routeProvider = RouteProvider.getInstance();

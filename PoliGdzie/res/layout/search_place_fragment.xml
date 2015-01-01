@@ -3,28 +3,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <LinearLayout 
-   	    style="@style/SearchEdit.Linear">
-	    <ImageView 
-	        style="@style/SearchEdit.Image"
-	        android:src="@drawable/lupa"/>
-	    <LinearLayout 
-   	    	style="@style/SearchEdit.Linear"
-   	   		android:weightSum="1.0">
-		     <com.poligdzie.widgets.SearchAutoCompleteTextView
-		        style="@style/SearchEdit.Edit"
-	            android:id="@+id/search_point_text_edit"
-	            android:hint="Twoja bieżąca lokalizacja">
-	        	<requestFocus />
-	        </com.poligdzie.widgets.SearchAutoCompleteTextView> 
 
-    	</LinearLayout> 
-
-    </LinearLayout>
-    <Button
-        android:id="@+id/button_search_place"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Znajdź" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout style="@style/SearchEdit.Linear" >
+
+                <ImageView
+                    style="@style/SearchEdit.Image"
+                    android:src="@drawable/lupa" />
+
+                <LinearLayout style="@style/SearchEdit.Linear" >
+
+                    <com.poligdzie.widgets.SearchAutoCompleteTextView
+                        android:id="@+id/search_point_text_edit"
+                        style="@style/SearchEdit.Edit"
+                        android:hint="Czego szukasz?" >
+
+                        <requestFocus />
+                    </com.poligdzie.widgets.SearchAutoCompleteTextView>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_search_place"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="right"
+            android:text="Znajdź" />
+    </LinearLayout>
 
 </LinearLayout>

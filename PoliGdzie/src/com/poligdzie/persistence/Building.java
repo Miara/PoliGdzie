@@ -6,9 +6,10 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 import com.poligdzie.interfaces.Imageable;
 import com.poligdzie.interfaces.Nameable;
+import com.poligdzie.interfaces.WithCoordinates;
 
 @DatabaseTable(tableName = "building")
-public class Building implements Nameable, Imageable {
+public class Building implements Nameable, Imageable, WithCoordinates {
 	@DatabaseField(generatedId = true)
 	private int id;
 

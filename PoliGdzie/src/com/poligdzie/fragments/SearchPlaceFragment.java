@@ -1,7 +1,9 @@
 package com.poligdzie.fragments;
 
+import java.util.List;
+
 import android.app.Fragment;
-import android.content.Intent;
+import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
@@ -13,18 +15,28 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.poligdzie.R;
-import com.poligdzie.activities.MapActivity;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.poligdzie.callbacks.MarkerAnimationFinishCallback;
 import com.poligdzie.interfaces.Constants;
+import com.poligdzie.interfaces.WithCoordinates;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
+import com.poligdzie.persistence.DatabaseHelper;
+import com.poligdzie.singletons.RouteProvider;
+import com.poligdzie.tasks.AnimationClosureChecker;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
 public class SearchPlaceFragment extends Fragment implements OnClickListener,
 		Constants {
 
 	private Button searchButton;
-	private Button buttonMap;
 	private ContextSearchTextWatcher searchWatcher;
 	private SearchAutoCompleteTextView searchPosition;
+	private GoogleMap map;
+	private MapOutdoorFragment outdoorMap;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,23 +44,21 @@ public class SearchPlaceFragment extends Fragment implements OnClickListener,
 		View rootView = inflater.inflate(R.layout.search_place_fragment,
 				container, false);
 
-
-		
-		searchPosition = (SearchAutoCompleteTextView) rootView.findViewById(R.id.search_point_text_edit);
-		searchWatcher = new ContextSearchTextWatcher(searchPosition, this.getActivity());
+		searchPosition = (SearchAutoCompleteTextView) rootView
+				.findViewById(R.id.search_point_text_edit);
+		searchWatcher = new ContextSearchTextWatcher(searchPosition,
+				this.getActivity());
 		searchPosition.addTextChangedListener(searchWatcher);
-		
-		searchButton = (Button) rootView.findViewById(R.id.button_search_place);
-		
-		if (searchButton != null) 
-			searchButton.setOnClickListener(this);
-		
-		
-		
-		if (buttonMap != null) 
-			buttonMap.setOnClickListener(this);
 
+		searchButton = (Button) rootView.findViewById(R.id.button_search_place);
+
+		//
 		
+		
+		
+		if (searchButton != null)
+			searchButton.setOnClickListener(this);
+
 		return rootView;
 	}
 
@@ -59,16 +69,39 @@ public class SearchPlaceFragment extends Fragment implements OnClickListener,
 						.getApplicationContext());
 		Editor editor = prefs.edit();
 		if (v == searchButton) {
-			Intent intent = new Intent(getActivity(), MapActivity.class);
-			startActivity(intent);
+			map = ((MapFragment) this.getActivity().getFragmentManager().findFragmentById(R.id.map_outdoor_googleMap)).getMap();
 			
-			
+			Object object = searchPosition.getAdapter().getItem(0);
+			if (object instanceof WithCoordinates) {
+				LatLng pos = new LatLng(((WithCoordinates) object).getCoordX(), ((WithCoordinates) object).getCoordY());
+				
+				RouteProvider provider = RouteProvider.getInstance();
+				List <Marker> markers = provider.getMarkers();
+				
+				
+				for(Marker m : markers) {
+					if(m.getPosition().latitude == pos.latitude && m.getPosition().longitude == pos.longitude) {
+						MarkerAnimationFinishCallback callback = new MarkerAnimationFinishCallback();
+						map.animateCamera(CameraUpdateFactory.newLatLngZoom(
+								pos, 17), callback);
+						
+//						MapOutdoorFragment outdoorMap = (MapOutdoorFragment) this.getActivity().getFragmentManager().findFragmentById(R.layout.map_outdoor_fragment);
+						
+						AnimationClosureChecker checker = new AnimationClosureChecker(callback, map, m, this.outdoorMap, new DatabaseHelper(this.getActivity(), DATABASE_NAME, null, DATABASE_VERSION ));
+						checker.execute();
+						break;
+					}
+						
+				}
+				
+				}
 		}
-		if (v == buttonMap) {
-			Intent intent = new Intent(getActivity(), MapActivity.class);
-			startActivity(intent);
-		}
-
+		
 		editor.commit();
+	}
+
+	public void setFragment(MapOutdoorFragment mapOutdoorFragment) {
+		// TODO Auto-generated method stub
+		this.outdoorMap = mapOutdoorFragment;
 	}
 }

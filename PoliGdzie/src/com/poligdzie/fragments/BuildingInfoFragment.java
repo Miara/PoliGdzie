@@ -39,7 +39,7 @@ public class BuildingInfoFragment extends Fragment implements OnClickListener,
 	private Marker marker;
 	private DatabaseHelper dbHelper;
 	private Building currentBuildingOnMarker;
-	private SearchTraceFragment searchFragment;
+	private SearchTraceFragment searchRouteFragment;
 	private MapFragmentProvider mapProvider;
 
 	@Override
@@ -70,7 +70,7 @@ public class BuildingInfoFragment extends Fragment implements OnClickListener,
 		nameField.setText(currentBuildingOnMarker.getName());
 		
 		
-		searchFragment = (SearchTraceFragment) this.getActivity().getFragmentManager().findFragmentById(R.id.search_frag);
+		searchRouteFragment = (SearchTraceFragment) this.getActivity().getFragmentManager().findFragmentById(R.id.search_route_frag);
 		
 		return rootView;
 	}
@@ -83,17 +83,16 @@ public class BuildingInfoFragment extends Fragment implements OnClickListener,
 		if (v == startButton) {
 		
 			routeProvider.setStart(currentBuildingOnMarker);
-			searchFragment.setStartPosition(currentBuildingOnMarker.getName());
+			searchRouteFragment.setStartPosition(currentBuildingOnMarker.getName());
 		}
 
 		if (v == goalButton) {
 			
 			routeProvider.setGoal(currentBuildingOnMarker);
-			searchFragment.setGoalPosition(currentBuildingOnMarker.getName());
+			searchRouteFragment.setGoalPosition(currentBuildingOnMarker.getName());
 		}
 
 		if (v == showInfoButton) {
-			Log.d("POLIGDZIE", "czemu sie kurwa nie odpalasz dziwko?");
 			Intent intent = new Intent(this.getActivity(), BuildingInfoActivity.class);
 			this.getActivity().startActivity(intent);
 		}

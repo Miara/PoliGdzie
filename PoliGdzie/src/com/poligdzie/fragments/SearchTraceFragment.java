@@ -101,12 +101,6 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 			
 			provider.drawRoute();
 		}
-		if (v == buttonMapStart || v == buttonMapGoal) {
-			
-			Intent intent = new Intent(getActivity(), MapActivity.class);
-			startActivity(intent);
-		}
-
 
 		editor.commit();
 

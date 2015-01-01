@@ -5,8 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+     <fragment
+        android:id="@+id/search_place_frag"
+        android:name="com.poligdzie.fragments.SearchPlaceFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       >
+    </fragment>
     <fragment
-        android:id="@+id/search_frag"
+        android:id="@+id/search_route_frag"
         android:name="com.poligdzie.fragments.SearchTraceFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
