@@ -1,7 +1,10 @@
 package com.poligdzie.fragments;
 
 import android.app.Fragment;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,17 +12,29 @@ import android.view.View.OnClickListener;
 
 import com.example.poligdzie.R;
 import com.poligdzie.interfaces.Constants;
+import com.poligdzie.widgets.BuildingImageView;
 
 public class MapIndoorFragment extends Fragment implements OnClickListener,
 Constants {
+	
+	private BuildingImageView buildingImage;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		Bundle savedInstanceState) 
 	{
-	View rootView = inflater.inflate(R.layout.map_indoor_fragment,
-			container, false);
-	
-	return rootView;
+		buildingImage = new BuildingImageView(getActivity());
+		
+		BitmapFactory.Options options=new BitmapFactory.Options();
+		options.inSampleSize = 2;
+		options.inDither=false;                     //Disable Dithering mode
+		options.inPurgeable=true;                   //Tell to gc that whether it needs free memory, the Bitmap can be cleared
+		
+		Bitmap bmp = BitmapFactory.decodeResource(getResources(),R.drawable.cw_test_parter, options);
+		
+		buildingImage.setBitmap(bmp);
+			
+	return buildingImage;
 	}
 	
 	@Override
