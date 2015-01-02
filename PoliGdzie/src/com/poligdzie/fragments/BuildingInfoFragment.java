@@ -38,7 +38,7 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnCli
 	private TextView nameField;
 	private Marker marker;
 	private Building currentBuildingOnMarker;
-	private SearchTraceFragment searchRouteFragment;
+	private SearchRouteFragment searchRouteFragment;
 	private SearchPlaceFragment searchPlaceFragment;
 	
 
@@ -70,7 +70,7 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnCli
 		nameField = (TextView) rootView.findViewById(R.id.infoWindowNameField);
 		nameField.setText(currentBuildingOnMarker.getName());
 
-		searchRouteFragment = (SearchTraceFragment) this.getActivity()
+		searchRouteFragment = (SearchRouteFragment) this.getActivity()
 				.getFragmentManager().findFragmentById(R.id.search_route_frag);
 		searchPlaceFragment = (SearchPlaceFragment) this.getActivity()
 				.getFragmentManager().findFragmentById(R.id.search_place_frag);

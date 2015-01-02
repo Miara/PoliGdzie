@@ -22,7 +22,7 @@ Constants {
 	
 	GoogleMap map;
 	public PolylineOptions options;
-	private SearchTraceFragment searchRouteFragment;
+	private SearchRouteFragment searchRouteFragment;
 	private SearchPlaceFragment searchPlaceFragment;
 	
 	@Override
@@ -38,7 +38,7 @@ Constants {
 	
 	searchPlaceFragment = (SearchPlaceFragment) getActivity().getFragmentManager().findFragmentById(R.id.search_place_frag);
 	searchPlaceFragment.setFragment(this);
-	searchRouteFragment = (SearchTraceFragment) getActivity().getFragmentManager().findFragmentById(R.id.search_route_frag);
+	searchRouteFragment = (SearchRouteFragment) getActivity().getFragmentManager().findFragmentById(R.id.search_route_frag);
 	
 	
 	routeProvider = RouteProvider.getInstance();

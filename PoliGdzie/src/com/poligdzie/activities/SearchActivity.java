@@ -11,7 +11,7 @@ import android.widget.Button;
 import com.example.poligdzie.R;
 import com.poligdzie.fragments.SearchBuildingsFragment;
 import com.poligdzie.fragments.SearchPlaceFragment;
-import com.poligdzie.fragments.SearchTraceFragment;
+import com.poligdzie.fragments.SearchRouteFragment;
 
 public class SearchActivity extends PoliGdzieBaseActivity implements OnClickListener {
 
@@ -21,7 +21,7 @@ public class SearchActivity extends PoliGdzieBaseActivity implements OnClickList
 
 	
 
-	SearchTraceFragment fragment_trace;
+	SearchRouteFragment fragment_trace;
 	SearchPlaceFragment fragment_place;
 	SearchBuildingsFragment fragment_building;
 
@@ -30,7 +30,7 @@ public class SearchActivity extends PoliGdzieBaseActivity implements OnClickList
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.search_activity);
 
-		fragment_trace = new SearchTraceFragment();
+		fragment_trace = new SearchRouteFragment();
 		switchFragment(R.id.fragment_search_container, fragment_trace, "trace");
 		fragment_place = new SearchPlaceFragment();
 		fragment_building = new SearchBuildingsFragment();

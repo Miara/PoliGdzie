@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/search_route_frag"
-        android:name="com.poligdzie.fragments.SearchTraceFragment"
+        android:name="com.poligdzie.fragments.SearchRouteFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
        >
