@@ -23,7 +23,7 @@ import com.poligdzie.singletons.MapFragmentProvider;
 public class MapActivity extends PoliGdzieBaseActivity implements OnClickListener {
 
 	public PolylineOptions options;
-	//protected DatabaseHelper dbHelper;
+
 	MapFragmentProvider mapProvider;
 
 	private TextView currentText;
@@ -45,7 +45,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 		
 		outdoorMap = new MapOutdoorFragment();
 		mapProvider.addFragment(MAP_MODE_OUTDOOR, "Droga na zewn¹trz", 0, outdoorMap);
-		switchFragment(R.id.fragment_map_container, outdoorMap, MAP_MODE_OUTDOOR);
+		//switchFragment(R.id.fragment_map_container, outdoorMap, MAP_MODE_OUTDOOR);
 		
 	/*	indoorMap = new MapIndoorFragment();
 		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 0, indoorMap);
@@ -81,7 +81,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 
 	@Override
 	public void onClick(View v) {
-		Fragment frag;
+	/*	Fragment frag;
 		String tag;
 		if( v == next)
 		{
@@ -107,7 +107,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 			previous.setVisibility(View.GONE);
 		else
 			previous.setVisibility(View.VISIBLE);
-
+*/
 	}
 
 

@@ -1,16 +1,16 @@
 package com.poligdzie.activities;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.DatabaseHelper;
 
-public abstract class PoliGdzieBaseActivity extends Activity implements
+public abstract class PoliGdzieBaseActivity extends FragmentActivity implements
 		Constants {
 
 	protected DatabaseHelper dbHelper;
@@ -72,5 +72,6 @@ public abstract class PoliGdzieBaseActivity extends Activity implements
 
 	public PoliGdzieBaseActivity() {
 		this.dbHelper = new DatabaseHelper(this, DATABASE_NAME, null, DATABASE_VERSION);
+		
 	}
 }

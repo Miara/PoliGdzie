@@ -30,7 +30,7 @@ import com.poligdzie.singletons.RouteProvider;
 import com.poligdzie.tasks.AnimationClosureChecker;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
-public class SearchPlaceFragment extends Fragment implements OnClickListener,
+public class SearchPlaceFragment extends PoliGdzieBaseFragment implements OnClickListener,
 		Constants {
 
 	private Button searchButton;
@@ -42,6 +42,7 @@ public class SearchPlaceFragment extends Fragment implements OnClickListener,
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		super.onCreateView(inflater, container, savedInstanceState);
 		View rootView = inflater.inflate(R.layout.search_place_fragment,
 				container, false);
 
@@ -107,5 +108,10 @@ public class SearchPlaceFragment extends Fragment implements OnClickListener,
 	public void setFragment(MapOutdoorFragment mapOutdoorFragment) {
 		// TODO Auto-generated method stub
 		this.outdoorMap = mapOutdoorFragment;
+	}
+
+	public SearchPlaceFragment() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 }

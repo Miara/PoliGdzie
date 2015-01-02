@@ -26,7 +26,7 @@ import com.poligdzie.persistence.DatabaseHelper;
 import com.poligdzie.singletons.MapFragmentProvider;
 import com.poligdzie.singletons.RouteProvider;
 
-public class BuildingInfoFragment extends Fragment implements OnClickListener,
+public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnClickListener,
 		Constants {
 
 	private int posX;
@@ -36,17 +36,16 @@ public class BuildingInfoFragment extends Fragment implements OnClickListener,
 	private Button goalButton;
 	private Button showInfoButton;
 	private TextView nameField;
-	private RouteProvider routeProvider;
 	private Marker marker;
-	private DatabaseHelper dbHelper;
 	private Building currentBuildingOnMarker;
 	private SearchTraceFragment searchRouteFragment;
 	private SearchPlaceFragment searchPlaceFragment;
-	private MapFragmentProvider mapProvider;
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		super.onCreateView(inflater, container, savedInstanceState);
 		this.container = container;
 		LayoutParams params = (LayoutParams) container.getLayoutParams();
 
@@ -82,7 +81,7 @@ public class BuildingInfoFragment extends Fragment implements OnClickListener,
 	@Override
 	public void onClick(View v) {
 
-		RouteProvider routeProvider = RouteProvider.getInstance();
+		routeProvider = RouteProvider.getInstance();
 
 		if (v == startButton) {
 			switchPlaceSearchingToRouteSearching();
@@ -117,13 +116,13 @@ public class BuildingInfoFragment extends Fragment implements OnClickListener,
 		}
 	}
 
-	public BuildingInfoFragment(int posX, int posY, Marker marker,
-			DatabaseHelper dbHelper) {
+	public BuildingInfoFragment(int posX, int posY, Marker marker, DatabaseHelper dbHelper) {
+		
 		this.posX = posX;
 		this.posY = posY;
 		this.marker = marker;
-		this.dbHelper = dbHelper;
 
+				
 		LatLng coords = new LatLng(0.0, 0.0);
 
 		coords = marker.getPosition();

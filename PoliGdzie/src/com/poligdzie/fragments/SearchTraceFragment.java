@@ -26,8 +26,7 @@ import com.poligdzie.persistence.DatabaseHelper;
 import com.poligdzie.singletons.RouteProvider;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
-public class SearchTraceFragment extends Fragment implements OnClickListener,
-		Constants {
+public class SearchTraceFragment extends PoliGdzieBaseFragment implements OnClickListener {
 
 	private Button searchButton;
 	private Button buttonMapStart;
@@ -39,19 +38,18 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 	private ContextSearchTextWatcher startWatcher;
 	private ContextSearchTextWatcher goalWatcher;
 
-	private DatabaseHelper dbHelper;
 	private BuildingInfoFragment buildingInfoFragment;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		super.onCreateView(inflater, container, savedInstanceState);
 		View rootView = inflater.inflate(R.layout.search_trace_fragment,
 				container, false);
 
 		searchButton = (Button) rootView.findViewById(R.id.button_search_trace);
 		if (searchButton != null)
 			searchButton.setOnClickListener(this);
-
 
 		startPosition = (SearchAutoCompleteTextView) rootView
 				.findViewById(R.id.starting_point_text_edit);
@@ -64,17 +62,14 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 				this.getActivity());
 		goalPosition.addTextChangedListener(goalWatcher);
 
-		
-		
 		RouteProvider provider = RouteProvider.getInstance();
-		
-		
+
 		if (provider.getStart() != null) {
 			String temp = ((Nameable) provider.getStart()).getName();
 			if (temp != null && temp.length() != 0)
 				startPosition.setText(temp);
 		}
-		
+
 		if (provider.getGoal() != null) {
 			String temp = ((Nameable) provider.getGoal()).getName();
 			if (temp != null && temp.length() != 0)
@@ -94,46 +89,58 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 						.getApplicationContext());
 
 		Editor editor = prefs.edit();
-		RouteProvider provider = RouteProvider.getInstance();
-		
-		
+		routeProvider = RouteProvider.getInstance();
+
 		if (v == searchButton) {
-			if(startPosition.getText().length() != 0) 
-				provider.setStart(startPosition.getAdapter().getItem(0));
-			
-			if(goalPosition.getText().length() != 0)
-				provider.setGoal(goalPosition.getAdapter().getItem(0));
-			
+			if (startPosition.getText().length() != 0)
+				routeProvider.setStart(startPosition.getAdapter().getItem(0));
+
+			if (goalPosition.getText().length() != 0)
+				routeProvider.setGoal(goalPosition.getAdapter().getItem(0));
+
 			goalPosition.clearFocus();
 			startPosition.clearFocus();
+
+			InputMethodManager imm = (InputMethodManager) this.getActivity()
+					.getSystemService(Context.INPUT_METHOD_SERVICE);
 			
-			InputMethodManager imm = (InputMethodManager)this.getActivity().getSystemService(
-				      Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(startPosition.getWindowToken(), 0);
 			
-				imm.hideSoftInputFromWindow(startPosition.getWindowToken(), 0);
-				imm.hideSoftInputFromWindow(goalPosition.getWindowToken(), 0);
-			
-				buildingInfoFragment = (BuildingInfoFragment) this.getActivity().getFragmentManager().findFragmentById(R.id.window_info_container);
-				this.getActivity().getFragmentManager().beginTransaction().remove(buildingInfoFragment).commit();
-				GoogleMap map = ((MapFragment) this.getActivity().getFragmentManager().findFragmentById(R.id.map_outdoor_googleMap)).getMap();
-				LatLng zoom = new LatLng(((WithCoordinates)provider.getStart()).getCoordX(),((WithCoordinates)provider.getStart()).getCoordY());
-				map.animateCamera(CameraUpdateFactory.newLatLngZoom(
-						zoom, 17));
-			provider.setDrawRoute(true);
-			
-			provider.drawRoute();
+			imm.hideSoftInputFromWindow(goalPosition.getWindowToken(), 0);
+
+			buildingInfoFragment = (BuildingInfoFragment) this.getActivity()
+					.getFragmentManager()
+					.findFragmentById(R.id.window_info_container);
+			this.getActivity().getFragmentManager().beginTransaction()
+					.remove(buildingInfoFragment).commit();
+			GoogleMap map = ((MapFragment) this.getActivity()
+					.getFragmentManager()
+					.findFragmentById(R.id.map_outdoor_googleMap)).getMap();
+			LatLng zoom = new LatLng(
+					((WithCoordinates) routeProvider.getStart()).getCoordX(),
+					((WithCoordinates) routeProvider.getStart()).getCoordY());
+			map.animateCamera(CameraUpdateFactory.newLatLngZoom(zoom, 17));
+
+			routeProvider.setDrawRoute(true);
+
+			routeProvider.drawRoute();
 		}
 
 		editor.commit();
 
 	}
-	
+
 	public void setStartPosition(String text) {
 		this.startPosition.setText(text);
 	}
-	
+
 	public void setGoalPosition(String text) {
 		this.goalPosition.setText(text);
+	}
+
+	public SearchTraceFragment() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 }

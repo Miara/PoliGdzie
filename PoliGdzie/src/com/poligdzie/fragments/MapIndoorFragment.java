@@ -14,7 +14,7 @@ import com.example.poligdzie.R;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.widgets.BuildingImageView;
 
-public class MapIndoorFragment extends Fragment implements OnClickListener,
+public class MapIndoorFragment extends PoliGdzieBaseFragment implements OnClickListener,
 Constants {
 	
 	private BuildingImageView buildingImage;
@@ -23,6 +23,7 @@ Constants {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		Bundle savedInstanceState) 
 	{
+		super.onCreateView(inflater, container, savedInstanceState);
 		buildingImage = new BuildingImageView(getActivity());
 		
 		BitmapFactory.Options options=new BitmapFactory.Options();
@@ -42,4 +43,10 @@ Constants {
 	{
 	
 	}
+
+	public MapIndoorFragment() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 }

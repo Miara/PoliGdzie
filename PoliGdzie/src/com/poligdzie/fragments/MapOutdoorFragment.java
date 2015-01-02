@@ -17,15 +17,11 @@ import com.poligdzie.persistence.DatabaseHelper;
 import com.poligdzie.singletons.MapFragmentProvider;
 import com.poligdzie.singletons.RouteProvider;
 
-public class MapOutdoorFragment extends Fragment implements OnClickListener,
+public class MapOutdoorFragment extends PoliGdzieBaseFragment implements OnClickListener,
 Constants {
 	
 	GoogleMap map;
 	public PolylineOptions options;
-	//protected DatabaseHelper dbHelper;
-	DatabaseHelper dbHelper;
-	private RouteProvider routeProvider;
-	private MapFragmentProvider mapProvider;
 	private SearchTraceFragment searchRouteFragment;
 	private SearchPlaceFragment searchPlaceFragment;
 	
@@ -33,10 +29,10 @@ Constants {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		Bundle savedInstanceState) 
 	{
+		super.onCreateView(inflater, container, savedInstanceState);
 	View rootView = inflater.inflate(R.layout.map_outdoor_fragment,
 			container, false);
-	dbHelper = new DatabaseHelper(getActivity(), DATABASE_NAME, null,
-			DATABASE_VERSION);
+
 	map = ((MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.map_outdoor_googleMap))
 			.getMap();
 	
@@ -57,6 +53,11 @@ Constants {
 	public void onClick(View v) 
 	{
 	
+	}
+
+	public MapOutdoorFragment() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 	
 }

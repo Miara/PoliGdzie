@@ -28,8 +28,8 @@ import com.poligdzie.interfaces.NewFunctions;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.DatabaseHelper;
 
-public class SearchBuildingsFragment extends Fragment implements
-		OnClickListener, Constants, NewFunctions {
+public class SearchBuildingsFragment extends PoliGdzieBaseFragment implements
+		OnClickListener, NewFunctions {
 
 	private List<Building> buildings;
 	ListView list;
@@ -39,11 +39,12 @@ public class SearchBuildingsFragment extends Fragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		super.onCreateView(inflater, container, savedInstanceState);
 		View rootView = inflater.inflate(R.layout.search_buildings_fragment,
 				container, false); 
-		DatabaseHelper db = new DatabaseHelper(this.getActivity(), DATABASE_NAME, null,DATABASE_VERSION);
+		
 		try {
-			buildings = db.getBuildingDao().queryForAll();
+			buildings = dbHelper.getBuildingDao().queryForAll();
 			for(Building b : buildings)
 			{
 				names.add(b.getName()); 
@@ -110,5 +111,10 @@ public class SearchBuildingsFragment extends Fragment implements
 	public int getDrawableId(String name, Context context) 
 	{
 		return context.getResources().getIdentifier(name, "drawable", context.getPackageName());
+	}
+
+	public SearchBuildingsFragment() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 }

@@ -33,12 +33,19 @@
 			    android:text="&gt;" />
 	    
 		</LinearLayout>-->
-		<LinearLayout
+		<!-- <LinearLayout
 	        android:id="@+id/fragment_map_container"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:orientation="vertical">
 	    </LinearLayout>
-	    
+	     -->
+	   <fragment
+        android:id="@+id/map_outdoor_frag"
+        android:name="com.poligdzie.fragments.MapOutdoorFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       >
+       </fragment>
 	
 </LinearLayout>
