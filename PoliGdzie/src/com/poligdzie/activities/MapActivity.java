@@ -109,6 +109,13 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 			previous.setVisibility(View.VISIBLE);
 
 	}
+
+
+
+	public MapActivity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 

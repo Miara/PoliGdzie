@@ -1,7 +1,7 @@
 package com.poligdzie.fragments;
 
 import android.app.Fragment;
-import android.content.Intent;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
@@ -10,12 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
 import com.example.poligdzie.R;
-import com.poligdzie.activities.MapActivity;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.interfaces.Nameable;
+import com.poligdzie.interfaces.WithCoordinates;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
 import com.poligdzie.persistence.DatabaseHelper;
 import com.poligdzie.singletons.RouteProvider;
@@ -35,6 +40,7 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 	private ContextSearchTextWatcher goalWatcher;
 
 	private DatabaseHelper dbHelper;
+	private BuildingInfoFragment buildingInfoFragment;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +64,7 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 				this.getActivity());
 		goalPosition.addTextChangedListener(goalWatcher);
 
+		
 		
 		RouteProvider provider = RouteProvider.getInstance();
 		
@@ -97,6 +104,21 @@ public class SearchTraceFragment extends Fragment implements OnClickListener,
 			if(goalPosition.getText().length() != 0)
 				provider.setGoal(goalPosition.getAdapter().getItem(0));
 			
+			goalPosition.clearFocus();
+			startPosition.clearFocus();
+			
+			InputMethodManager imm = (InputMethodManager)this.getActivity().getSystemService(
+				      Context.INPUT_METHOD_SERVICE);
+			
+				imm.hideSoftInputFromWindow(startPosition.getWindowToken(), 0);
+				imm.hideSoftInputFromWindow(goalPosition.getWindowToken(), 0);
+			
+				buildingInfoFragment = (BuildingInfoFragment) this.getActivity().getFragmentManager().findFragmentById(R.id.window_info_container);
+				this.getActivity().getFragmentManager().beginTransaction().remove(buildingInfoFragment).commit();
+				GoogleMap map = ((MapFragment) this.getActivity().getFragmentManager().findFragmentById(R.id.map_outdoor_googleMap)).getMap();
+				LatLng zoom = new LatLng(((WithCoordinates)provider.getStart()).getCoordX(),((WithCoordinates)provider.getStart()).getCoordY());
+				map.animateCamera(CameraUpdateFactory.newLatLngZoom(
+						zoom, 17));
 			provider.setDrawRoute(true);
 			
 			provider.drawRoute();

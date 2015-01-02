@@ -62,5 +62,10 @@ public class SearchActivity extends PoliGdzieBaseActivity implements OnClickList
 		}
 
 	}
+
+	public SearchActivity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 }

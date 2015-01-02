@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,6 +41,7 @@ public class BuildingInfoFragment extends Fragment implements OnClickListener,
 	private DatabaseHelper dbHelper;
 	private Building currentBuildingOnMarker;
 	private SearchTraceFragment searchRouteFragment;
+	private SearchPlaceFragment searchPlaceFragment;
 	private MapFragmentProvider mapProvider;
 
 	@Override
@@ -65,38 +67,54 @@ public class BuildingInfoFragment extends Fragment implements OnClickListener,
 				.findViewById(R.id.infoWindowInfoButton);
 
 		showInfoButton.setOnClickListener(this);
-		
+
 		nameField = (TextView) rootView.findViewById(R.id.infoWindowNameField);
 		nameField.setText(currentBuildingOnMarker.getName());
-		
-		
-		searchRouteFragment = (SearchTraceFragment) this.getActivity().getFragmentManager().findFragmentById(R.id.search_route_frag);
-		
+
+		searchRouteFragment = (SearchTraceFragment) this.getActivity()
+				.getFragmentManager().findFragmentById(R.id.search_route_frag);
+		searchPlaceFragment = (SearchPlaceFragment) this.getActivity()
+				.getFragmentManager().findFragmentById(R.id.search_place_frag);
+
 		return rootView;
 	}
 
 	@Override
 	public void onClick(View v) {
-		
+
 		RouteProvider routeProvider = RouteProvider.getInstance();
-		
+
 		if (v == startButton) {
-		
+			switchPlaceSearchingToRouteSearching();
+			
 			routeProvider.setStart(currentBuildingOnMarker);
-			searchRouteFragment.setStartPosition(currentBuildingOnMarker.getName());
+			searchRouteFragment.setStartPosition(currentBuildingOnMarker
+					.getName());
+
 		}
 
 		if (v == goalButton) {
-			
+			switchPlaceSearchingToRouteSearching();
+
 			routeProvider.setGoal(currentBuildingOnMarker);
-			searchRouteFragment.setGoalPosition(currentBuildingOnMarker.getName());
+			searchRouteFragment.setGoalPosition(currentBuildingOnMarker
+					.getName());
 		}
 
 		if (v == showInfoButton) {
-			Intent intent = new Intent(this.getActivity(), BuildingInfoActivity.class);
+			Intent intent = new Intent(this.getActivity(),
+					BuildingInfoActivity.class);
 			this.getActivity().startActivity(intent);
 		}
 
+	}
+
+	private void switchPlaceSearchingToRouteSearching() {
+		if (searchPlaceFragment.isVisible()) {
+
+			searchPlaceFragment.getView().setVisibility(View.GONE);
+			searchRouteFragment.getView().setVisibility(View.VISIBLE);
+		}
 	}
 
 	public BuildingInfoFragment(int posX, int posY, Marker marker,

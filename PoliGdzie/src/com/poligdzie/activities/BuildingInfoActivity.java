@@ -27,4 +27,9 @@ Constants {
 		
 	}
 
+	public BuildingInfoActivity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 }

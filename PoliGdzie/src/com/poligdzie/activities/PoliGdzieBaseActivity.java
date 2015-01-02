@@ -16,6 +16,8 @@ public abstract class PoliGdzieBaseActivity extends Activity implements
 	protected DatabaseHelper dbHelper;
 	protected String lastTag;
 	
+	
+	
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
@@ -66,5 +68,9 @@ public abstract class PoliGdzieBaseActivity extends Activity implements
 	public void debugMsg(String msg)
 	{
 		Log.i("POLIGDZIE",msg);
+	}
+
+	public PoliGdzieBaseActivity() {
+		this.dbHelper = new DatabaseHelper(this, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 }

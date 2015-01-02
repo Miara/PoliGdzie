@@ -3,7 +3,7 @@ package com.poligdzie.fragments;
 import java.util.List;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
 import com.example.poligdzie.R;
@@ -51,8 +52,6 @@ public class SearchPlaceFragment extends Fragment implements OnClickListener,
 		searchPosition.addTextChangedListener(searchWatcher);
 
 		searchButton = (Button) rootView.findViewById(R.id.button_search_place);
-
-		//
 		
 		
 		
@@ -70,6 +69,11 @@ public class SearchPlaceFragment extends Fragment implements OnClickListener,
 		Editor editor = prefs.edit();
 		if (v == searchButton) {
 			map = ((MapFragment) this.getActivity().getFragmentManager().findFragmentById(R.id.map_outdoor_googleMap)).getMap();
+			
+			searchPosition.clearFocus();
+			InputMethodManager imm = (InputMethodManager)this.getActivity().getSystemService(
+				      Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(searchPosition.getWindowToken(), 0);
 			
 			Object object = searchPosition.getAdapter().getItem(0);
 			if (object instanceof WithCoordinates) {
