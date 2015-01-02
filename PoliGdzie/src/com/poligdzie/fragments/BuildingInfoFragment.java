@@ -35,6 +35,7 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnCli
 	private Button startButton;
 	private Button goalButton;
 	private Button showInfoButton;
+	private Button showIndoorMapButton;
 	private TextView nameField;
 	private Marker marker;
 	private Building currentBuildingOnMarker;
@@ -66,6 +67,11 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnCli
 				.findViewById(R.id.infoWindowInfoButton);
 
 		showInfoButton.setOnClickListener(this);
+		
+		showIndoorMapButton = (Button) rootView
+				.findViewById(R.id.indoorMapWindowInfoButton);
+
+		showIndoorMapButton.setOnClickListener(this);
 
 		nameField = (TextView) rootView.findViewById(R.id.infoWindowNameField);
 		nameField.setText(currentBuildingOnMarker.getName());

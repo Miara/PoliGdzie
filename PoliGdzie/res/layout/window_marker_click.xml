@@ -39,6 +39,16 @@
 	    <Button
 	        android:id="@+id/infoWindowInfoButton"
 	        style="@style/InfoWindow.Button"
-	        android:text="Informacje/Plan" />
+	        android:text="Informacje" />
+	</LinearLayout>
+	<LinearLayout
+        style="@style/InfoWindow.Linear">
+	    <ImageView 
+	        style="@style/InfoWindow.Image"
+	        android:src="@drawable/uniwersalna_bw"/>
+	    <Button
+	        android:id="@+id/indoorMapWindowInfoButton"
+	        style="@style/InfoWindow.Button"
+	        android:text="Plan wnętrza" />
 	</LinearLayout>
 </LinearLayout>
