@@ -3,11 +3,8 @@ package com.poligdzie.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,10 +17,10 @@ import com.example.poligdzie.R;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.poligdzie.activities.BuildingInfoActivity;
+import com.poligdzie.activities.PoliGdzieBaseActivity;
+import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
-import com.poligdzie.persistence.DatabaseHelper;
-import com.poligdzie.singletons.MapFragmentProvider;
 import com.poligdzie.singletons.RouteProvider;
 
 public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnClickListener,
@@ -38,6 +35,7 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnCli
 	private Button showIndoorMapButton;
 	private TextView nameField;
 	private Marker marker;
+	private MapIndoorFragment indoorMap;
 	private Building currentBuildingOnMarker;
 	private SearchRouteFragment searchRouteFragment;
 	private SearchPlaceFragment searchPlaceFragment;
@@ -81,6 +79,8 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnCli
 		searchPlaceFragment = (SearchPlaceFragment) this.getActivity()
 				.getFragmentManager().findFragmentById(R.id.search_place_frag);
 
+		indoorMap = new MapIndoorFragment();
+		
 		return rootView;
 	}
 
@@ -112,6 +112,10 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnCli
 			this.getActivity().startActivity(intent);
 		}
 
+		if (v == showIndoorMapButton) {
+			((PoliGdzieBaseActivity) this.getActivity()).switchFragment(R.id.map_container, indoorMap, MAP_MODE_INDOOR_LAST);
+		}
+		
 	}
 
 	private void switchPlaceSearchingToRouteSearching() {

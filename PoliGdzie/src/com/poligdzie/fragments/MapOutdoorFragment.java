@@ -11,13 +11,13 @@ import com.example.poligdzie.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.listeners.MarkerOnClickCustomListener;
-import com.poligdzie.persistence.DatabaseHelper;
 import com.poligdzie.singletons.MapFragmentProvider;
 import com.poligdzie.singletons.RouteProvider;
 
-public class MapOutdoorFragment extends PoliGdzieBaseFragment implements OnClickListener,
+public class MapOutdoorFragment extends PoliGdzieMapFragment implements OnClickListener,
 Constants {
 	
 	GoogleMap map;
@@ -57,6 +57,11 @@ Constants {
 
 	public MapOutdoorFragment() {
 		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public MapOutdoorFragment(int drawableId, String name) {
+		super(drawableId, name);
 		// TODO Auto-generated constructor stub
 	}
 	

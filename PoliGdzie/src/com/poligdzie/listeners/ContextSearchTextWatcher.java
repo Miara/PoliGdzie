@@ -7,9 +7,9 @@ import java.util.List;
 
 import com.example.poligdzie.R;
 import com.poligdzie.adapters.AutocompleteCustomAdapter;
+import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
-import com.poligdzie.persistence.DatabaseHelper;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 

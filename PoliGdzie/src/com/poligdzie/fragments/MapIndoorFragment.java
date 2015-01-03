@@ -14,10 +14,11 @@ import com.example.poligdzie.R;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.widgets.BuildingImageView;
 
-public class MapIndoorFragment extends PoliGdzieBaseFragment implements OnClickListener,
+public class MapIndoorFragment extends PoliGdzieMapFragment implements OnClickListener,
 Constants {
 	
 	private BuildingImageView buildingImage;
+	private int floorId;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +47,19 @@ Constants {
 
 	public MapIndoorFragment() {
 		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getFloorId() {
+		return floorId;
+	}
+
+	public void setFloorId(int floorId) {
+		this.floorId = floorId;
+	}
+
+	public MapIndoorFragment(int drawableId, String name) {
+		super(drawableId, name);
 		// TODO Auto-generated constructor stub
 	}
 	

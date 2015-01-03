@@ -1,7 +1,7 @@
 package com.poligdzie.content_creation;
 
+import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.persistence.Building;
-import com.poligdzie.persistence.DatabaseHelper;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.RoomFunctions;
 import com.poligdzie.persistence.Unit;

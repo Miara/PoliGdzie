@@ -18,11 +18,11 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.interfaces.Nameable;
 import com.poligdzie.interfaces.WithCoordinates;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
-import com.poligdzie.persistence.DatabaseHelper;
 import com.poligdzie.singletons.RouteProvider;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 

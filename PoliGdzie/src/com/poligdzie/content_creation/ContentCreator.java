@@ -4,8 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.persistence.Building;
-import com.poligdzie.persistence.DatabaseHelper;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 

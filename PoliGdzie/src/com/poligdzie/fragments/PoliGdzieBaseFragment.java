@@ -7,15 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
-import com.poligdzie.persistence.DatabaseHelper;
+import com.poligdzie.interfaces.Nameable;
 import com.poligdzie.singletons.MapFragmentProvider;
 import com.poligdzie.singletons.RouteProvider;
 
-public abstract class PoliGdzieBaseFragment extends Fragment implements Constants{
+public abstract class PoliGdzieBaseFragment extends Fragment implements Constants, Nameable{
 	protected DatabaseHelper dbHelper;
 	protected RouteProvider routeProvider;
 	protected MapFragmentProvider mapProvider;
+	protected String name;
 	
 	public PoliGdzieBaseFragment() {
 		setUp();
@@ -46,9 +48,14 @@ public abstract class PoliGdzieBaseFragment extends Fragment implements Constant
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return name;
+	}
 	
 	
-	
-	
+
 	
 }

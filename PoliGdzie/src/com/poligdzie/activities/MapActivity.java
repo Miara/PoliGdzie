@@ -2,8 +2,6 @@ package com.poligdzie.activities;
 
 
 import android.app.ActivityManager;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,12 +10,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.poligdzie.R;
-import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.poligdzie.fragments.BuildingInfoFragment;
 import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
+import com.poligdzie.fragments.PoliGdzieMapFragment;
 import com.poligdzie.singletons.MapFragmentProvider;
 
 public class MapActivity extends PoliGdzieBaseActivity implements OnClickListener {
@@ -39,26 +35,24 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 		setContentView(R.layout.map_activity);
 
 		mapProvider = MapFragmentProvider.getInstance();
-		mapProvider.clearFragments();
+		
 
 		ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
 		
-		outdoorMap = new MapOutdoorFragment();
-		mapProvider.addFragment(MAP_MODE_OUTDOOR, "Droga na zewn¹trz", 0, outdoorMap);
-		//switchFragment(R.id.fragment_map_container, outdoorMap, MAP_MODE_OUTDOOR);
+		// 0 - czyli brak bitmapy do rysowania
+		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna");
+		mapProvider.addFragment("outdoor", outdoorMap);
 		
-	/*	indoorMap = new MapIndoorFragment();
-		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 0, indoorMap);
+		switchFragment(R.id.map_container, outdoorMap, "outdoor");
+		
+		indoorMap = new MapIndoorFragment(R.drawable.cw_test_parter, "Centrum wyk³adowe - parter");
+		indoorMap.setFloorId(0);
+		mapProvider.addFragment("cw0p", indoorMap);
 
-		indoorMap = new MapIndoorFragment();
-		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 1, indoorMap);
-		indoorMap = new MapIndoorFragment();
-		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 2, indoorMap);
-		indoorMap = new MapIndoorFragment();
-		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 3, indoorMap);
-		
-		indoorMap = new MapIndoorFragment();
-		mapProvider.addFragment(MAP_MODE_INDOOR_LAST,"Centrum Wyk³adowe", 4, indoorMap);
+		indoorMap = new MapIndoorFragment(R.drawable.cw_test_parter, "Centrum wyk³adowe - pierwsze piêtro");
+		indoorMap.setFloorId(1);
+		mapProvider.addFragment("cw1p", indoorMap);
+				
 		
 
 		
@@ -73,41 +67,45 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 		next.setOnClickListener(this);
 		
 		currentText = (TextView) findViewById(R.id.current_map);
-		currentText.setText(mapProvider.getCurrentFragmentHeader());
-			*/
+		currentText.setText(mapProvider.getCurrentFragment().getName());
+	
 	}
 
 
 
 	@Override
 	public void onClick(View v) {
-	/*	Fragment frag;
+				
+		PoliGdzieMapFragment frag;
 		String tag;
 		if( v == next)
 		{
 			frag = mapProvider.getNextFragment();
-			tag = mapProvider.getCurrentFragmentTag();
-			currentText.setText(mapProvider.getCurrentFragmentHeader());
-			switchFragment(R.id.fragment_map_container, frag, tag);
+			tag = mapProvider.getNextKey();
+			
+			currentText.setText(frag.getName());
+			switchFragment(R.id.map_container, frag, tag);
 		}
 		if( v == previous)
 		{
 			frag = mapProvider.getPreviousFragment();
-			tag = mapProvider.getCurrentFragmentTag();
-			currentText.setText(mapProvider.getCurrentFragmentHeader());
-			switchFragment(R.id.fragment_map_container, frag, tag);
+			tag = mapProvider.getPreviousKey();
+		
+			currentText.setText(frag.getName());
+			switchFragment(R.id.map_container, frag, tag);
 		}
 		
-		if(mapProvider.getFragmentPosition() <  ( mapProvider.getFragmentsSize() - 1) )
-			next.setVisibility(View.VISIBLE);
-		else
-			next.setVisibility(View.GONE);
 		
-		if(mapProvider.getFragmentPosition() == 0)
+		if(mapProvider.getCurrentFragmentKeyPosition() >= (mapProvider.getFragmentsSize() - 1))
+			next.setVisibility(View.GONE);
+		else
+			next.setVisibility(View.VISIBLE);
+		
+		if(mapProvider.getCurrentFragmentKeyPosition() <= 0)
 			previous.setVisibility(View.GONE);
 		else
 			previous.setVisibility(View.VISIBLE);
-*/
+
 	}
 
 

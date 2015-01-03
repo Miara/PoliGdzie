@@ -11,7 +11,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.poligdzie.callbacks.MarkerAnimationFinishCallback;
 import com.poligdzie.fragments.BuildingInfoFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
-import com.poligdzie.persistence.DatabaseHelper;
+import com.poligdzie.helpers.DatabaseHelper;
 
 public class AnimationClosureChecker extends AsyncTask <String, Void, String> {
 

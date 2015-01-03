@@ -7,15 +7,18 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
-import com.poligdzie.persistence.DatabaseHelper;
+import com.poligdzie.singletons.MapFragmentProvider;
+import com.poligdzie.singletons.RouteProvider;
 
 public abstract class PoliGdzieBaseActivity extends FragmentActivity implements
 		Constants {
 
 	protected DatabaseHelper dbHelper;
 	protected String lastTag;
-	
+	protected MapFragmentProvider mapProvider;
+	protected RouteProvider routeProvider;
 	
 	
 	@Override
@@ -52,6 +55,8 @@ public abstract class PoliGdzieBaseActivity extends FragmentActivity implements
 		{
 			transaction.add(resource, fragment, tag);
 		}
+		mapProvider = MapFragmentProvider.getInstance();
+		mapProvider.setCurrentKey(tag);
 
 		transaction.commit();
 		setLastTag(tag);

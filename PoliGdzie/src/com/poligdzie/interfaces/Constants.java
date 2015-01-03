@@ -31,5 +31,8 @@ public interface Constants {
 	//tymczasowe sta³e marginesu do okienka po kliknieciu na marker
 	public int MARGIN_LEFT = 55;
 	public int MARGIN_TOP = 10;
+	
+	//do braku rysowania bitmapy
+	public int NO_BITMAP = 0;
 
 }

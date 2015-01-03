@@ -2,23 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-     <fragment
-        android:id="@+id/search_place_frag"
-        android:name="com.poligdzie.fragments.SearchPlaceFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       >
-    </fragment>
-    <fragment
-        android:id="@+id/search_route_frag"
-        android:name="com.poligdzie.fragments.SearchRouteFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       >
-    </fragment>
+     
     
     <fragment
         android:id="@+id/map_outdoor_googleMap"

@@ -23,10 +23,10 @@ import android.widget.Toast;
 
 import com.example.poligdzie.R;
 import com.poligdzie.activities.BuildingInfoActivity;
+import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.interfaces.NewFunctions;
 import com.poligdzie.persistence.Building;
-import com.poligdzie.persistence.DatabaseHelper;
 
 public class SearchBuildingsFragment extends PoliGdzieBaseFragment implements
 		OnClickListener, NewFunctions {
