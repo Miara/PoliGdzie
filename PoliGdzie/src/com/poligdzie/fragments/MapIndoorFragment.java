@@ -58,8 +58,9 @@ Constants {
 		this.floorId = floorId;
 	}
 
-	public MapIndoorFragment(int drawableId, String name) {
-		super(drawableId, name);
+	public MapIndoorFragment(int drawableId, String name, String viewTag, int floorId) {
+		super(drawableId, name, viewTag);
+		this.floorId = floorId;
 		// TODO Auto-generated constructor stub
 	}
 	

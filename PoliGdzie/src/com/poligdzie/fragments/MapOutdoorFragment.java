@@ -60,9 +60,10 @@ Constants {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MapOutdoorFragment(int drawableId, String name) {
-		super(drawableId, name);
+	public MapOutdoorFragment(int drawableId, String name, String viewTag) {
+		super(drawableId, name, viewTag);
 		// TODO Auto-generated constructor stub
 	}
+
 	
 }

@@ -40,18 +40,13 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 		ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
 		
 		// 0 - czyli brak bitmapy do rysowania
-		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna");
-		mapProvider.addFragment("outdoor", outdoorMap);
+		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna", "outdoor");
 		
-		switchFragment(R.id.map_container, outdoorMap, "outdoor");
+		switchFragment(R.id.map_container, outdoorMap, outdoorMap.getViewTag());
 		
-		indoorMap = new MapIndoorFragment(R.drawable.cw_test_parter, "Centrum wyk³adowe - parter");
-		indoorMap.setFloorId(0);
-		mapProvider.addFragment("cw0p", indoorMap);
-
-		indoorMap = new MapIndoorFragment(R.drawable.cw_test_parter, "Centrum wyk³adowe - pierwsze piêtro");
-		indoorMap.setFloorId(1);
-		mapProvider.addFragment("cw1p", indoorMap);
+		indoorMap = new MapIndoorFragment(R.drawable.cw_test_parter, "Centrum wyk³adowe - parter", "cw0p", 0);
+		indoorMap = new MapIndoorFragment(R.drawable.cw_test_parter, "Centrum wyk³adowe - pierwsze piêtro", "cw1p", 1);
+		
 				
 		
 
