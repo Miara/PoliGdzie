@@ -44,13 +44,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 		
 		switchFragment(R.id.map_container, outdoorMap, outdoorMap.getViewTag());
 		
-		indoorMap = new MapIndoorFragment(R.drawable.cw_test_parter, "Centrum wyk³adowe - parter", "cw0p", 0);
-		indoorMap = new MapIndoorFragment(R.drawable.cw_test_parter, "Centrum wyk³adowe - pierwsze piêtro", "cw1p", 1);
-		
 				
-		
-
-		
 		int mem = activityManager.getMemoryClass();
 		Log.i("Poligdzie",""+mem);
 		
@@ -58,9 +52,14 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 		previous.setOnClickListener(this);
 		previous.setVisibility(View.GONE);
 		
+		mapProvider = MapFragmentProvider.getInstance();
+		
 		next = (Button) findViewById(R.id.next_map);
 		next.setOnClickListener(this);
 		
+		if(mapProvider.getFragmentsSize() == 1)
+			next.setVisibility(View.GONE);
+			
 		currentText = (TextView) findViewById(R.id.current_map);
 		currentText.setText(mapProvider.getCurrentFragment().getName());
 	
@@ -78,7 +77,6 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 			frag = mapProvider.getNextFragment();
 			tag = mapProvider.getNextKey();
 			
-			currentText.setText(frag.getName());
 			switchFragment(R.id.map_container, frag, tag);
 		}
 		if( v == previous)
@@ -86,10 +84,11 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 			frag = mapProvider.getPreviousFragment();
 			tag = mapProvider.getPreviousKey();
 		
-			currentText.setText(frag.getName());
 			switchFragment(R.id.map_container, frag, tag);
 		}
 		
+		
+		currentText.setText(mapProvider.getCurrentFragment().getName());
 		
 		if(mapProvider.getCurrentFragmentKeyPosition() >= (mapProvider.getFragmentsSize() - 1))
 			next.setVisibility(View.GONE);

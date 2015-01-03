@@ -78,8 +78,6 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnCli
 				.getFragmentManager().findFragmentById(R.id.search_route_frag);
 		searchPlaceFragment = (SearchPlaceFragment) this.getActivity()
 				.getFragmentManager().findFragmentById(R.id.search_place_frag);
-
-		indoorMap = new MapIndoorFragment();
 		
 		return rootView;
 	}
@@ -113,7 +111,12 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnCli
 		}
 
 		if (v == showIndoorMapButton) {
-			((PoliGdzieBaseActivity) this.getActivity()).switchFragment(R.id.map_container, indoorMap, MAP_MODE_INDOOR_LAST);
+			indoorMap = new MapIndoorFragment(R.drawable.cw_test_parter, "Centrum wyk³adowe - parter", "cw0p", 0);
+			((PoliGdzieBaseActivity) this.getActivity()).switchFragment(R.id.map_container, indoorMap, indoorMap.getViewTag());
+			
+			indoorMap = new MapIndoorFragment(R.drawable.cw_test_parter, "Centrum wyk³adowe - pierwsze piêtro", "cw1p", 1);
+			
+			((OnClickListener) this.getActivity()).onClick(this.getActivity().findViewById(R.layout.map_activity));
 		}
 		
 	}
