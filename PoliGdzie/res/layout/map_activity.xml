@@ -1,42 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical">
-	
-    	<LinearLayout 
-		    android:id="@+id/overlapLinear"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal"
-		    android:weightSum="1.0" >
-
-			<Button
-			    android:layout_weight="0.15"
-			    android:id="@+id/previous_map"
-			    android:layout_width="0dp"
-			    android:layout_height="wrap_content"
-			    android:text="&lt;" />
-			<TextView
-			    android:layout_weight="0.7"
-			    android:id="@+id/current_map"
-			    android:layout_width="0dp"
-			    android:layout_height="wrap_content"
-			    android:gravity="center_horizontal"/>
-	
-			<Button
-			    android:layout_weight="0.15"
-			    android:id="@+id/next_map"
-			    android:layout_width="0dp"
-			    android:layout_height="wrap_content"
-			    android:text="&gt;" />
-	    
-		</LinearLayout>
 		<LinearLayout
 	        android:id="@+id/fragment_map_container"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:orientation="vertical">
 	    </LinearLayout>
-</LinearLayout>
+
+		<TextView
+		    android:id="@+id/current_map"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentTop="true"
+		    android:layout_centerInParent="true"
+		    android:background="#000000"
+		    android:textColor="#FFFFFF"
+		    android:gravity="center_horizontal"/>
+
+		<Button
+		    android:id="@+id/previous_map"
+		    android:layout_width="30dp"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentLeft="true"
+		    android:layout_centerInParent="true"
+		    android:gravity="center_vertical"
+		    android:background="#000000"
+		    android:textColor="#FFFFFF"
+		    android:text="&lt;" />
+		<Button
+		    android:id="@+id/next_map"
+		    android:layout_width="30dp"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentRight="true"
+		    android:layout_centerInParent="true"
+		    android:gravity="center_vertical"
+		    android:background="#000000"
+		    android:textColor="#FFFFFF"
+		    android:text="&gt;" />
+		<Button
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:gravity="center_horizontal"
+		    android:layout_alignParentBottom="true"
+		    android:layout_centerInParent="true"
+		    android:layout_marginBottom="20dp"
+		    android:background="#000000"
+		    android:textColor="#FFFFFF"
+		    android:text="Tu będzie list view" />
+		
+    
+		
+</RelativeLayout>
