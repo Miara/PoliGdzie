@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.poligdzie.fragments.MapOutdoorFragment;
 import com.poligdzie.fragments.PoliGdzieMapFragment;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.helpers.FragmentMapHelper;
 import com.poligdzie.interfaces.Constants;
-import com.poligdzie.interfaces.NewFunctions;
+import com.poligdzie.interfaces.WithDrawableId;
 
-public class MapFragmentProvider implements Constants, NewFunctions{
+public class MapFragmentProvider implements Constants, WithDrawableId{
 
 	private static MapFragmentProvider instance = null;
 	private DatabaseHelper dbHelper;
@@ -127,6 +127,15 @@ public class MapFragmentProvider implements Constants, NewFunctions{
 
 	public void setCurrentKey(String currentKey) {
 		this.currentKey = currentKey;
+	}
+
+	public void clearFragments() {
+		// TODO Auto-generated method stub
+		PoliGdzieMapFragment temp = fragments.getFragmentByKey("outdoor");
+		fragments.clear();
+		keys.clear();
+		keys.add("outdoor");
+		fragments.addFragment("outdoor", temp);
 	}
 
 

@@ -32,7 +32,7 @@ Constants {
 		options.inDither=false;                     //Disable Dithering mode
 		options.inPurgeable=true;                   //Tell to gc that whether it needs free memory, the Bitmap can be cleared
 		
-		Bitmap bmp = BitmapFactory.decodeResource(getResources(),R.drawable.cw_test_parter, options);
+		Bitmap bmp = BitmapFactory.decodeResource(getResources(),this.drawableId, options);
 		
 		buildingImage.setBitmap(bmp);
 			

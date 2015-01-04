@@ -32,5 +32,11 @@ public class FragmentMapHelper {
 		return fragments;
 	}
 
+	public void clear() {
+		// TODO Auto-generated method stub
+		fragments.clear();
+		
+	}
+
 	
 }

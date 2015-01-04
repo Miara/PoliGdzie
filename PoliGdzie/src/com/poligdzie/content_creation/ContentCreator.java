@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.persistence.Building;
+import com.poligdzie.persistence.Floor;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 
@@ -14,6 +15,7 @@ public class ContentCreator {
 	private List<Building> buildings;
 	private List<Unit> units;
 	private List<Room> rooms;
+	private List<Floor> floors;
 
 	public List<Building> getBuildings() {
 		return buildings;
@@ -50,6 +52,10 @@ public class ContentCreator {
 		if (value.getClass() == Room.class) {
 			this.addRoom((Room) value);
 		}
+		
+		if (value.getClass() == Floor.class) {
+			this.addFloor((Floor) value);
+		}
 
 	}
 
@@ -64,11 +70,16 @@ public class ContentCreator {
 	private void addRoom(Room value) {
 		this.rooms.add(value);
 	}
+	
+	private void addFloor(Floor value) {
+		this.floors.add(value);
+	}
 
 	public ContentCreator() {
 		buildings = new ArrayList<Building>();
 		units = new ArrayList<Unit>();
 		rooms = new ArrayList<Room>();
+		floors = new ArrayList<Floor>();
 	}
 
 	public void populateDatabase(DatabaseHelper dbHelper) {
@@ -99,5 +110,22 @@ public class ContentCreator {
 				e.printStackTrace();
 			}
 		}
+		
+		for (Floor floor : floors) {
+			try {
+				dbHelper.getFloorDao().createOrUpdate(floor);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public List<Floor> getFloors() {
+		return floors;
+	}
+
+	public void setFloors(List<Floor> floors) {
+		this.floors = floors;
 	}
 }

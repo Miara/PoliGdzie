@@ -25,11 +25,11 @@ import com.example.poligdzie.R;
 import com.poligdzie.activities.BuildingInfoActivity;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
-import com.poligdzie.interfaces.NewFunctions;
+import com.poligdzie.interfaces.WithDrawableId;
 import com.poligdzie.persistence.Building;
 
 public class SearchBuildingsFragment extends PoliGdzieBaseFragment implements
-		OnClickListener, NewFunctions {
+		OnClickListener, WithDrawableId {
 
 	private List<Building> buildings;
 	ListView list;

@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,10 +22,11 @@ import com.poligdzie.activities.PoliGdzieBaseActivity;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
+import com.poligdzie.persistence.Floor;
 import com.poligdzie.singletons.RouteProvider;
 
-public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnClickListener,
-		Constants {
+public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
+		OnClickListener, Constants {
 
 	private int posX;
 	private int posY;
@@ -39,7 +41,6 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnCli
 	private Building currentBuildingOnMarker;
 	private SearchRouteFragment searchRouteFragment;
 	private SearchPlaceFragment searchPlaceFragment;
-	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,7 +66,7 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnCli
 				.findViewById(R.id.infoWindowInfoButton);
 
 		showInfoButton.setOnClickListener(this);
-		
+
 		showIndoorMapButton = (Button) rootView
 				.findViewById(R.id.indoorMapWindowInfoButton);
 
@@ -78,7 +79,7 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnCli
 				.getFragmentManager().findFragmentById(R.id.search_route_frag);
 		searchPlaceFragment = (SearchPlaceFragment) this.getActivity()
 				.getFragmentManager().findFragmentById(R.id.search_place_frag);
-		
+
 		return rootView;
 	}
 
@@ -89,7 +90,7 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnCli
 
 		if (v == startButton) {
 			switchPlaceSearchingToRouteSearching();
-			
+
 			routeProvider.setStart(currentBuildingOnMarker);
 			searchRouteFragment.setStartPosition(currentBuildingOnMarker
 					.getName());
@@ -111,14 +112,26 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnCli
 		}
 
 		if (v == showIndoorMapButton) {
-			indoorMap = new MapIndoorFragment(R.drawable.cw_test_parter, "Centrum wyk³adowe - parter", "cw0p", 0);
-			((PoliGdzieBaseActivity) this.getActivity()).switchFragment(R.id.map_container, indoorMap, indoorMap.getViewTag());
+			mapProvider.clearFragments();
+			int i = 0;
+			Log.d("POLIGDZIE", currentBuildingOnMarker.getName());
 			
-			indoorMap = new MapIndoorFragment(R.drawable.cw_test_parter, "Centrum wyk³adowe - pierwsze piêtro", "cw1p", 1);
-			
-			((OnClickListener) this.getActivity()).onClick(this.getActivity().findViewById(R.layout.map_activity));
-		}
-		
+			for (Floor f : currentBuildingOnMarker.getFloors()) {
+				Log.d("POLIGDZIE", f.getName());
+				indoorMap = new MapIndoorFragment(f.getDrawableId(),
+						f.getName(), f.getTag(), f.getNumber());
+				if (i == 0) {
+					((PoliGdzieBaseActivity) this.getActivity())
+							.switchFragment(R.id.map_container, indoorMap,
+									indoorMap.getViewTag());
+				}
+				i++;
+			}
+
+			((OnClickListener) this.getActivity()).onClick(this.getActivity()
+					.findViewById(R.layout.map_activity));
+	}
+
 	}
 
 	private void switchPlaceSearchingToRouteSearching() {
@@ -129,13 +142,13 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements OnCli
 		}
 	}
 
-	public BuildingInfoFragment(int posX, int posY, Marker marker, DatabaseHelper dbHelper) {
-		
+	public BuildingInfoFragment(int posX, int posY, Marker marker,
+			DatabaseHelper dbHelper) {
+
 		this.posX = posX;
 		this.posY = posY;
 		this.marker = marker;
 
-				
 		LatLng coords = new LatLng(0.0, 0.0);
 
 		coords = marker.getPosition();

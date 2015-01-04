@@ -45,6 +45,9 @@ public class Building implements Nameable, Imageable, WithCoordinates {
 
 	@ForeignCollectionField(eager = true, columnName = "units")
 	private ForeignCollection<Unit> units;
+	
+	@ForeignCollectionField(eager = true, columnName = "floors")
+	private ForeignCollection<Floor> floors;
 
 	public int getId() {
 		return id;
@@ -200,6 +203,14 @@ public class Building implements Nameable, Imageable, WithCoordinates {
 	public Building(double coordX, double coordY) {
 		this.coordX = coordX;
 		this.coordY = coordY;
+	}
+
+	public ForeignCollection<Floor> getFloors() {
+		return floors;
+	}
+
+	public void setFloors(ForeignCollection<Floor> floors) {
+		this.floors = floors;
 	}
 
 }

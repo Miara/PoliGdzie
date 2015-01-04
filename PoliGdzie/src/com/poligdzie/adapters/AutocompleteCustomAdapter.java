@@ -15,14 +15,14 @@ import com.example.poligdzie.R;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.interfaces.Imageable;
 import com.poligdzie.interfaces.Nameable;
-import com.poligdzie.interfaces.NewFunctions;
+import com.poligdzie.interfaces.WithDrawableId;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 
 
 
-public class AutocompleteCustomAdapter extends ArrayAdapter implements NewFunctions{
+public class AutocompleteCustomAdapter extends ArrayAdapter implements WithDrawableId{
 
 	private Context context;
 	private List <Object> objects;

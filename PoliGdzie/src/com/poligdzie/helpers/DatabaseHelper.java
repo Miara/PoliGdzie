@@ -13,6 +13,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.poligdzie.content_creation.Fixture;
 import com.poligdzie.persistence.Building;
+import com.poligdzie.persistence.Floor;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 
@@ -26,6 +27,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	private Dao<Building, Integer> buildingDao = null;
 	private Dao<Unit, Integer> unitDao = null;
 	private Dao<Room, Integer> roomDao = null;
+	private Dao<Floor, Integer> floorDao = null;
 
 	@Override
 	public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
@@ -34,7 +36,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTable(connectionSource, Room.class);
 			TableUtils.createTable(connectionSource, Unit.class);
 			TableUtils.createTable(connectionSource, Building.class);
-
+			TableUtils.createTable(connectionSource, Floor.class);
 			Fixture fixture = new Fixture(this);
 			fixture.getCreator().populateDatabase(this);
 		} catch (SQLException e) {
@@ -53,6 +55,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.dropTable(connectionSource, Room.class, false);
 			TableUtils.dropTable(connectionSource, Unit.class, false);
 			TableUtils.dropTable(connectionSource, Building.class, false);
+			TableUtils.dropTable(connectionSource, Floor.class, false);
 			Log.i("DATABASE", "upgrade2");
 			this.onCreate(db, connectionSource);
 		} catch (SQLException e) {
@@ -82,6 +85,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		}
 		return roomDao;
 	}
+	
+	public Dao<Floor, Integer> getFloorDao() throws SQLException {
+		if (floorDao == null) {
+			floorDao = getDao(Floor.class);
+		}
+		return floorDao;
+	}
 
 	@Override
 	public void close() {
@@ -89,6 +99,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		buildingDao = null;
 		unitDao = null;
 		roomDao = null;
+		floorDao = null;
 	}
 
 }
