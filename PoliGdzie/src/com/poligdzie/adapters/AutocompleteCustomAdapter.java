@@ -21,26 +21,24 @@ import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 
 public class AutocompleteCustomAdapter extends ArrayAdapter implements
-		WithDrawableId {
+															WithDrawableId
+{
 
-	private Context context;
-	private List<Object> objects;
-	private int position;
+	private Context			context;
+	private List<Object>	objects;
+	private int				position;
 
 	public AutocompleteCustomAdapter(Context context, int textViewResourceId,
-			List<Object> objects) {
-
+			List<Object> objects)
+	{
 		super(context, textViewResourceId, objects);
 		this.context = context;
 		this.objects = objects;
-
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
-
+	public View getView(int position, View convertView, ViewGroup parent)
+	{
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.prompt_item, parent, false);
@@ -57,21 +55,24 @@ public class AutocompleteCustomAdapter extends ArrayAdapter implements
 		name.setText(((Nameable) object).getName());
 		int imgRes;
 
-		if (object instanceof Building) {
+		if (object instanceof Building)
+		{
 			desc.setText("Budynek");
 			imgRes = getDrawableId(((Imageable) object).getImageResource(),
 					context);
 			icon.setImageResource(imgRes);
 		}
 
-		if (object instanceof Unit) {
+		if (object instanceof Unit)
+		{
 			desc.setText("Jednostka organizacyjna");
 			imgRes = getDrawableId(((Unit) object).getBuilding()
 					.getImageResource(), context);
 			icon.setImageResource(imgRes);
 		}
 
-		if (object instanceof Room) {
+		if (object instanceof Room)
+		{
 			desc.setText("Pomieszczenie");
 			imgRes = getDrawableId(((Room) object).getBuilding()
 					.getImageResource(), context);
@@ -83,21 +84,21 @@ public class AutocompleteCustomAdapter extends ArrayAdapter implements
 	}
 
 	@Override
-	public Filter getFilter() {
-		// TODO Auto-generated method stub
-		return new Filter() {
+	public Filter getFilter()
+	{
+		return new Filter()
+		{
 
 			@Override
-			protected FilterResults performFiltering(CharSequence constraint) {
-				// TODO Auto-generated method stub
-
+			protected FilterResults performFiltering(CharSequence constraint)
+			{
 				return new FilterResults();
 			}
 
 			@Override
 			protected void publishResults(CharSequence constraint,
-					FilterResults results) {
-				// TODO Auto-generated method stub
+					FilterResults results)
+			{
 				AutocompleteCustomAdapter.this.notifyDataSetChanged();
 			}
 
@@ -105,7 +106,8 @@ public class AutocompleteCustomAdapter extends ArrayAdapter implements
 	}
 
 	@Override
-	public int getDrawableId(String name, Context context) {
+	public int getDrawableId(String name, Context context)
+	{
 		int resId = context.getResources().getIdentifier(name, "drawable",
 				context.getPackageName());
 		return resId;

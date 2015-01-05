@@ -25,26 +25,30 @@ import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Floor;
 import com.poligdzie.singletons.RouteProvider;
 
-public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
-		OnClickListener, Constants {
+public class BuildingInfoFragment extends PoliGdzieBaseFragment
+																implements
+																OnClickListener,
+																Constants
+{
 
-	private int posX;
-	private int posY;
-	private ViewGroup container;
-	private Button startButton;
-	private Button goalButton;
-	private Button showInfoButton;
-	private Button showIndoorMapButton;
-	private TextView nameField;
-	private Marker marker;
-	private MapIndoorFragment indoorMap;
-	private Building currentBuildingOnMarker;
-	private SearchRouteFragment searchRouteFragment;
-	private SearchPlaceFragment searchPlaceFragment;
+	private int					posX;
+	private int					posY;
+	private ViewGroup			container;
+	private Button				startButton;
+	private Button				goalButton;
+	private Button				showInfoButton;
+	private Button				showIndoorMapButton;
+	private TextView			nameField;
+	private Marker				marker;
+	private MapIndoorFragment	indoorMap;
+	private Building			currentBuildingOnMarker;
+	private SearchRouteFragment	searchRouteFragment;
+	private SearchPlaceFragment	searchPlaceFragment;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+			Bundle savedInstanceState)
+	{
 		super.onCreateView(inflater, container, savedInstanceState);
 		this.container = container;
 		LayoutParams params = (LayoutParams) container.getLayoutParams();
@@ -84,11 +88,13 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 	}
 
 	@Override
-	public void onClick(View v) {
+	public void onClick(View v)
+	{
 
 		routeProvider = RouteProvider.getInstance();
 
-		if (v == startButton) {
+		if (v == startButton)
+		{
 			switchPlaceSearchingToRouteSearching();
 
 			routeProvider.setStart(currentBuildingOnMarker);
@@ -97,7 +103,8 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 
 		}
 
-		if (v == goalButton) {
+		if (v == goalButton)
+		{
 			switchPlaceSearchingToRouteSearching();
 
 			routeProvider.setGoal(currentBuildingOnMarker);
@@ -105,22 +112,26 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 					.getName());
 		}
 
-		if (v == showInfoButton) {
+		if (v == showInfoButton)
+		{
 			Intent intent = new Intent(this.getActivity(),
 					BuildingInfoActivity.class);
 			this.getActivity().startActivity(intent);
 		}
 
-		if (v == showIndoorMapButton) {
+		if (v == showIndoorMapButton)
+		{
 			mapProvider.clearFragments();
 			int i = 0;
 			Log.d("POLIGDZIE", currentBuildingOnMarker.getName());
-			
-			for (Floor f : currentBuildingOnMarker.getFloors()) {
+
+			for (Floor f : currentBuildingOnMarker.getFloors())
+			{
 				Log.d("POLIGDZIE", f.getName());
 				indoorMap = new MapIndoorFragment(f.getDrawableId(),
 						f.getName(), f.getTag(), f.getNumber());
-				if (i == 0) {
+				if (i == 0)
+				{
 					((PoliGdzieBaseActivity) this.getActivity())
 							.switchFragment(R.id.map_container, indoorMap,
 									indoorMap.getViewTag());
@@ -130,12 +141,14 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 
 			((OnClickListener) this.getActivity()).onClick(this.getActivity()
 					.findViewById(R.layout.map_activity));
-	}
+		}
 
 	}
 
-	private void switchPlaceSearchingToRouteSearching() {
-		if (searchPlaceFragment.isVisible()) {
+	private void switchPlaceSearchingToRouteSearching()
+	{
+		if (searchPlaceFragment.isVisible())
+		{
 
 			searchPlaceFragment.getView().setVisibility(View.GONE);
 			searchRouteFragment.getView().setVisibility(View.VISIBLE);
@@ -143,7 +156,8 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 	}
 
 	public BuildingInfoFragment(int posX, int posY, Marker marker,
-			DatabaseHelper dbHelper) {
+			DatabaseHelper dbHelper)
+	{
 
 		this.posX = posX;
 		this.posY = posY;
@@ -154,12 +168,13 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 		coords = marker.getPosition();
 		List<Building> buildings = new ArrayList<Building>();
 
-		try {
+		try
+		{
 			buildings.addAll(dbHelper.getBuildingDao().queryBuilder().where()
 					.eq("coordX", coords.latitude).and()
 					.eq("coordY", coords.longitude).query());
-		} catch (java.sql.SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (java.sql.SQLException e)
+		{
 			e.printStackTrace();
 		}
 

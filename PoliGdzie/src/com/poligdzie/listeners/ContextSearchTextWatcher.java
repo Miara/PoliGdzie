@@ -26,102 +26,88 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class ContextSearchTextWatcher implements TextWatcher, Constants{
+public class ContextSearchTextWatcher implements TextWatcher, Constants
+{
 
-	private AutoCompleteTextView input;
-	private DatabaseHelper dbHelper;
-	private List <Building> buildings;
-	private List <Unit> units;
-	private List <Room> rooms;
+	private AutoCompleteTextView	input;
+	private DatabaseHelper			dbHelper;
+	private List<Building>			buildings;
+	private List<Unit>				units;
+	private List<Room>				rooms;
 
-	private Context context;
-	
-	private List<Object> aList;
+	private Context					context;
 
-	
-	
+	private List<Object>			aList;
+
 	@Override
 	public void beforeTextChanged(CharSequence s, int start, int count,
-			int after) {
-		// TODO Auto-generated method stub
-		
+			int after)
+	{
+
 	}
 
 	@Override
-	public void onTextChanged(CharSequence s, int start, int before, int count) {
-		// TODO Auto-generated method stub
+	public void onTextChanged(CharSequence s, int start, int before, int count)
+	{
 
 		aList.clear();
-		
-		try {
-			Log.i("POLIGDZIE",s.toString());
-			buildings = dbHelper.getBuildingDao().queryBuilder()
-												 .where()
-												 .like("name", "%" + s.toString() + "%")
-												 .or()
-												 .like("aliases", "%" + s.toString() + "%")
-												 .query();
-			
-			rooms = dbHelper.getRoomDao().queryBuilder()
-										 .where()
-										 .like("name", "%" + s.toString() + "%")
-										 .or()
-										 .like("aliases", "%" + s.toString() + "%")
-										 .or()
-										 .like("number", "%" + s.toString() + "%")
-										 .query();
-						
-			units = dbHelper.getUnitDao().queryBuilder()
-										 .where()
-										 .like("name", "%" + s.toString() + "%")
-										 .or()
-										 .like("aliases", "%" + s.toString() + "%")
-										 .query();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
+		try
+		{
+			Log.i("POLIGDZIE", s.toString());
+			buildings = dbHelper.getBuildingDao().queryBuilder().where()
+					.like("name", "%" + s.toString() + "%").or()
+					.like("aliases", "%" + s.toString() + "%").query();
+
+			rooms = dbHelper.getRoomDao().queryBuilder().where()
+					.like("name", "%" + s.toString() + "%").or()
+					.like("aliases", "%" + s.toString() + "%").or()
+					.like("number", "%" + s.toString() + "%").query();
+
+			units = dbHelper.getUnitDao().queryBuilder().where()
+					.like("name", "%" + s.toString() + "%").or()
+					.like("aliases", "%" + s.toString() + "%").query();
+		} catch (SQLException e)
+		{
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		for(Building b : buildings)
-		{
-			aList.add(b);
-		}
-		
-		for(Unit b : units)
-		{
-			aList.add(b);
-		}
-		
-		for(Room b : rooms)
-		{
-			aList.add(b);
-		}
-		
-		 
-		AutocompleteCustomAdapter adapter = new AutocompleteCustomAdapter(this.context, R.layout.prompt_item, aList);
-		
-		
-        input.setAdapter(adapter);
 
-		
+		for (Building b : buildings)
+		{
+			aList.add(b);
+		}
+
+		for (Unit b : units)
+		{
+			aList.add(b);
+		}
+
+		for (Room b : rooms)
+		{
+			aList.add(b);
+		}
+
+		AutocompleteCustomAdapter adapter = new AutocompleteCustomAdapter(
+				this.context, R.layout.prompt_item, aList);
+
+		input.setAdapter(adapter);
+
 	}
 
 	@Override
-	public void afterTextChanged(Editable s) {
-		// TODO Auto-generated method stub
-		
+	public void afterTextChanged(Editable s)
+	{
+
 	}
 
-	public ContextSearchTextWatcher(AutoCompleteTextView input, Context context) {
-		dbHelper = new DatabaseHelper(input.getContext(), DATABASE_NAME, null, DATABASE_VERSION);
+	public ContextSearchTextWatcher(AutoCompleteTextView input, Context context)
+	{
+		dbHelper = new DatabaseHelper(input.getContext(), DATABASE_NAME, null,
+				DATABASE_VERSION);
 		this.input = input;
 		this.context = context;
 
 		aList = new ArrayList<Object>();
 	}
-
 
 }

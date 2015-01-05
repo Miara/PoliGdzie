@@ -1,6 +1,5 @@
 package com.poligdzie.activities;
 
-
 import android.app.ActivityManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,93 +15,90 @@ import com.poligdzie.fragments.MapOutdoorFragment;
 import com.poligdzie.fragments.PoliGdzieMapFragment;
 import com.poligdzie.singletons.MapFragmentProvider;
 
-public class MapActivity extends PoliGdzieBaseActivity implements OnClickListener {
+public class MapActivity extends PoliGdzieBaseActivity implements
+														OnClickListener
+{
 
-	public PolylineOptions options;
+	public PolylineOptions	options;
 
-	MapFragmentProvider mapProvider;
+	MapFragmentProvider		mapProvider;
 
-	private TextView currentText;
-	private Button previous;
-	private Button next;
+	private TextView		currentText;
+	private Button			previous;
+	private Button			next;
 
-	MapOutdoorFragment outdoorMap;
-	MapIndoorFragment indoorMap;
+	MapOutdoorFragment		outdoorMap;
+	MapIndoorFragment		indoorMap;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.map_activity);
 
 		mapProvider = MapFragmentProvider.getInstance();
-		
-		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna", OUTDOOR_MAP_TAG);
-		
+
+		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna",
+				OUTDOOR_MAP_TAG);
+
 		switchFragment(R.id.map_container, outdoorMap, outdoorMap.getViewTag());
-		
 
 		previous = (Button) findViewById(R.id.previous_map);
 		previous.setOnClickListener(this);
 		previous.setVisibility(View.GONE);
-		
+
 		mapProvider = MapFragmentProvider.getInstance();
-		
+
 		next = (Button) findViewById(R.id.next_map);
 		next.setOnClickListener(this);
-		
-		if(mapProvider.getFragmentsSize() == 1)
+
+		if (mapProvider.getFragmentsSize() == 1)
 			next.setVisibility(View.GONE);
-			
+
 		currentText = (TextView) findViewById(R.id.current_map);
 		currentText.setText(mapProvider.getCurrentFragment().getName());
-	
+
 	}
 
-
-
 	@Override
-	public void onClick(View v) {
-				
+	public void onClick(View v)
+	{
+
 		PoliGdzieMapFragment frag;
 		String tag;
-		if( v == next)
+		if (v == next)
 		{
 			frag = mapProvider.getNextFragment();
 			tag = mapProvider.getNextKey();
-			
+
 			switchFragment(R.id.map_container, frag, tag);
 		}
-		if( v == previous)
+		if (v == previous)
 		{
 			frag = mapProvider.getPreviousFragment();
 			tag = mapProvider.getPreviousKey();
-		
+
 			switchFragment(R.id.map_container, frag, tag);
 		}
-		
-		
+
 		currentText.setText(mapProvider.getCurrentFragment().getName());
-		
-		if(mapProvider.getCurrentFragmentKeyPosition() >= (mapProvider.getFragmentsSize() - 1))
+
+		if (mapProvider.getCurrentFragmentKeyPosition() >= (mapProvider
+				.getFragmentsSize() - 1))
 			next.setVisibility(View.GONE);
 		else
 			next.setVisibility(View.VISIBLE);
-		
-		if(mapProvider.getCurrentFragmentKeyPosition() <= 0)
+
+		if (mapProvider.getCurrentFragmentKeyPosition() <= 0)
 			previous.setVisibility(View.GONE);
 		else
 			previous.setVisibility(View.VISIBLE);
 
 	}
 
-
-
-	public MapActivity() {
+	public MapActivity()
+	{
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
-	
-
 
 }

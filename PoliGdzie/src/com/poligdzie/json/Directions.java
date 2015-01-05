@@ -6,24 +6,31 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 import com.google.android.gms.maps.model.PolylineOptions;
 
-public class Directions {
+public class Directions
+{
 
-	private ArrayList<Routes> routes;
+	private ArrayList<Routes>	routes;
 
-	public ArrayList<Routes> getRoutes() {
+	public ArrayList<Routes> getRoutes()
+	{
 		return routes;
 	}
 
 	@JsonProperty("routes")
-	public void setRoutes(ArrayList<Routes> routes) {
+	public void setRoutes(ArrayList<Routes> routes)
+	{
 		this.routes = routes;
 	}
 
 	public PolylineOptions generatePolylineFromDirections(
-			PolylineOptions options) {
-		for (Routes route : getRoutes()) {
-			for (Legs leg : route.getLegs()) {
-				for (Steps step : leg.getSteps()) {
+			PolylineOptions options)
+	{
+		for (Routes route : getRoutes())
+		{
+			for (Legs leg : route.getLegs())
+			{
+				for (Steps step : leg.getSteps())
+				{
 					options.addAll(step.getPolyline().decodePolyline());
 				}
 			}

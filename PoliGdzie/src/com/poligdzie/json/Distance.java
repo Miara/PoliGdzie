@@ -2,26 +2,31 @@ package com.poligdzie.json;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
-public class Distance {
+public class Distance
+{
 
-	private String text;
-	private int value;
+	private String	text;
+	private int		value;
 
-	public String getText() {
+	public String getText()
+	{
 		return text;
 	}
 
 	@JsonProperty("text")
-	public void setText(String text) {
+	public void setText(String text)
+	{
 		this.text = text;
 	}
 
-	public int getValue() {
+	public int getValue()
+	{
 		return value;
 	}
 
 	@JsonProperty("value")
-	public void setValue(int value) {
+	public void setValue(int value)
+	{
 		this.value = value;
 	}
 }

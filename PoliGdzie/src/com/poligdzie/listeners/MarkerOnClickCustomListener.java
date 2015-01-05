@@ -14,17 +14,18 @@ import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.singletons.RouteProvider;
 import com.poligdzie.tasks.AnimationClosureChecker;
 
-public class MarkerOnClickCustomListener implements OnMarkerClickListener {
+public class MarkerOnClickCustomListener implements OnMarkerClickListener
+{
 
-	private MapOutdoorFragment mapOutdoorFragment;
-	private BuildingInfoFragment buildingInfoFragment;
-	private GoogleMap map;
-	private RouteProvider routeProvider;
-	private DatabaseHelper dbHelper;
+	private MapOutdoorFragment		mapOutdoorFragment;
+	private BuildingInfoFragment	buildingInfoFragment;
+	private GoogleMap				map;
+	private RouteProvider			routeProvider;
+	private DatabaseHelper			dbHelper;
 
 	public MarkerOnClickCustomListener(MapOutdoorFragment fragment,
-			GoogleMap map, DatabaseHelper dbHelper) {
-		// TODO Auto-generated constructor stub
+			GoogleMap map, DatabaseHelper dbHelper)
+	{
 		this.mapOutdoorFragment = fragment;
 		this.map = map;
 		routeProvider = RouteProvider.getInstance();
@@ -32,9 +33,11 @@ public class MarkerOnClickCustomListener implements OnMarkerClickListener {
 	}
 
 	@Override
-	public boolean onMarkerClick(Marker arg0) {
+	public boolean onMarkerClick(Marker arg0)
+	{
 
-		if (isFragmentVisible(arg0)) {
+		if (isFragmentVisible(arg0))
+		{
 			buildingInfoFragment = (BuildingInfoFragment) mapOutdoorFragment
 					.getFragmentManager().findFragmentByTag(arg0.getId());
 			FragmentTransaction transaction = mapOutdoorFragment
@@ -42,39 +45,46 @@ public class MarkerOnClickCustomListener implements OnMarkerClickListener {
 			transaction.remove(buildingInfoFragment);
 			transaction.commit();
 			return true;
-		} else {
+		} else
+		{
 
 			clearFragments();
 
 			MarkerAnimationFinishCallback callback = new MarkerAnimationFinishCallback();
-			map.animateCamera(CameraUpdateFactory.newLatLngZoom(
-					arg0.getPosition(), 17), callback);
-			
-			
-	
-			AnimationClosureChecker checker = new AnimationClosureChecker(callback, map, arg0, mapOutdoorFragment, dbHelper);
+			map.animateCamera(
+					CameraUpdateFactory.newLatLngZoom(arg0.getPosition(), 17),
+					callback);
+
+			AnimationClosureChecker checker = new AnimationClosureChecker(
+					callback, map, arg0, mapOutdoorFragment, dbHelper);
 			checker.execute();
 			return true;
 		}
 	}
 
-	private boolean isFragmentVisible(Marker arg0) {
+	private boolean isFragmentVisible(Marker arg0)
+	{
 		if (mapOutdoorFragment.getFragmentManager().findFragmentByTag(
 				arg0.getId()) != null
 				&& mapOutdoorFragment.getFragmentManager()
-						.findFragmentByTag(arg0.getId()).isVisible()) {
+						.findFragmentByTag(arg0.getId()).isVisible())
+		{
 			return true;
-		} else {
+		} else
+		{
 			return false;
 		}
 	}
 
-	private void clearFragments() {
+	private void clearFragments()
+	{
 		Fragment tempFragment = new Fragment();
-		for (Marker m : routeProvider.getMarkers()) {
+		for (Marker m : routeProvider.getMarkers())
+		{
 			tempFragment = (BuildingInfoFragment) mapOutdoorFragment
 					.getFragmentManager().findFragmentByTag(m.getId());
-			if (tempFragment != null) {
+			if (tempFragment != null)
+			{
 				mapOutdoorFragment.getFragmentManager().beginTransaction()
 						.remove(tempFragment).commit();
 			}

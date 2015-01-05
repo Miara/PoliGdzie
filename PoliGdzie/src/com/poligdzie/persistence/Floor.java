@@ -4,80 +4,95 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "floor")
-public class Floor {
+public class Floor
+{
 	@DatabaseField(generatedId = true)
-	private int id;
+	private int			id;
 
 	@DatabaseField
-	private int number;
-	
+	private int			number;
+
 	// TODO: zmienic na string
 	@DatabaseField
-	private int drawableId;
-	
-	@DatabaseField
-	private String name;
+	private int			drawableId;
 
 	@DatabaseField
-	private String tag;
-	
+	private String		name;
+
+	@DatabaseField
+	private String		tag;
+
 	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "building_id")
-	private Building building;
+	private Building	building;
 
-	public int getId() {
+	public int getId()
+	{
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(int id)
+	{
 		this.id = id;
 	}
 
-	public int getDrawableId() {
+	public int getDrawableId()
+	{
 		return drawableId;
 	}
 
-	public void setDrawableId(int drawableId) {
+	public void setDrawableId(int drawableId)
+	{
 		this.drawableId = drawableId;
 	}
 
-	public Building getBuilding() {
+	public Building getBuilding()
+	{
 		return building;
 	}
 
-	public void setBuilding(Building building) {
+	public void setBuilding(Building building)
+	{
 		this.building = building;
 	}
 
-
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name)
+	{
 		this.name = name;
 	}
 
-	public String getTag() {
+	public String getTag()
+	{
 		return tag;
 	}
 
-	public void setTag(String tag) {
+	public void setTag(String tag)
+	{
 		this.tag = tag;
 	}
 
-	public int getNumber() {
+	public int getNumber()
+	{
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(int number)
+	{
 		this.number = number;
 	}
-	
-	public Floor() {
+
+	public Floor()
+	{
+		//nie wyrzucac!
 	}
 
 	public Floor(int number, int drawableId, String name, String tag,
-			Building building) {
+			Building building)
+	{
 		this.number = number;
 		this.drawableId = drawableId;
 		this.name = name;
@@ -85,5 +100,4 @@ public class Floor {
 		this.building = building;
 	}
 
-	
 }

@@ -17,21 +17,25 @@ import com.poligdzie.persistence.Floor;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 
-public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
+public class DatabaseHelper extends OrmLiteSqliteOpenHelper
+{
 
 	public DatabaseHelper(Context context, String databaseName,
-			CursorFactory factory, int databaseVersion) {
+			CursorFactory factory, int databaseVersion)
+	{
 		super(context, databaseName, factory, databaseVersion);
 	}
 
-	private Dao<Building, Integer> buildingDao = null;
-	private Dao<Unit, Integer> unitDao = null;
-	private Dao<Room, Integer> roomDao = null;
-	private Dao<Floor, Integer> floorDao = null;
+	private Dao<Building, Integer>	buildingDao	= null;
+	private Dao<Unit, Integer>		unitDao		= null;
+	private Dao<Room, Integer>		roomDao		= null;
+	private Dao<Floor, Integer>		floorDao	= null;
 
 	@Override
-	public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
-		try {
+	public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource)
+	{
+		try
+		{
 			Log.i("DATABASE", "TABLES");
 			TableUtils.createTable(connectionSource, Room.class);
 			TableUtils.createTable(connectionSource, Unit.class);
@@ -39,7 +43,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTable(connectionSource, Floor.class);
 			Fixture fixture = new Fixture(this);
 			fixture.getCreator().populateDatabase(this);
-		} catch (SQLException e) {
+		} catch (SQLException e)
+		{
 
 			throw new RuntimeException(e);
 		}
@@ -48,9 +53,11 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, ConnectionSource connectionSource,
-			int oldVersion, int newVersion) {
+			int oldVersion, int newVersion)
+	{
 		Log.i("DATABASE", "upgrade in");
-		try {
+		try
+		{
 			Log.i("DATABASE", "upgrade1");
 			TableUtils.dropTable(connectionSource, Room.class, false);
 			TableUtils.dropTable(connectionSource, Unit.class, false);
@@ -58,43 +65,52 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.dropTable(connectionSource, Floor.class, false);
 			Log.i("DATABASE", "upgrade2");
 			this.onCreate(db, connectionSource);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (SQLException e)
+		{
 			e.printStackTrace();
 		}
 
 	}
 
-	public Dao<Building, Integer> getBuildingDao() throws SQLException {
-		if (buildingDao == null) {
+	public Dao<Building, Integer> getBuildingDao() throws SQLException
+	{
+		if (buildingDao == null)
+		{
 			buildingDao = getDao(Building.class);
 		}
 		return buildingDao;
 	}
 
-	public Dao<Unit, Integer> getUnitDao() throws SQLException {
-		if (unitDao == null) {
+	public Dao<Unit, Integer> getUnitDao() throws SQLException
+	{
+		if (unitDao == null)
+		{
 			unitDao = getDao(Unit.class);
 		}
 		return unitDao;
 	}
 
-	public Dao<Room, Integer> getRoomDao() throws SQLException {
-		if (roomDao == null) {
+	public Dao<Room, Integer> getRoomDao() throws SQLException
+	{
+		if (roomDao == null)
+		{
 			roomDao = getDao(Room.class);
 		}
 		return roomDao;
 	}
-	
-	public Dao<Floor, Integer> getFloorDao() throws SQLException {
-		if (floorDao == null) {
+
+	public Dao<Floor, Integer> getFloorDao() throws SQLException
+	{
+		if (floorDao == null)
+		{
 			floorDao = getDao(Floor.class);
 		}
 		return floorDao;
 	}
 
 	@Override
-	public void close() {
+	public void close()
+	{
 		super.close();
 		buildingDao = null;
 		unitDao = null;

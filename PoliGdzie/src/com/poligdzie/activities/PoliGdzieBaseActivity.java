@@ -13,45 +13,46 @@ import com.poligdzie.singletons.MapFragmentProvider;
 import com.poligdzie.singletons.RouteProvider;
 
 public abstract class PoliGdzieBaseActivity extends FragmentActivity implements
-		Constants {
+																	Constants
+{
 
-	protected DatabaseHelper dbHelper;
-	protected String lastTag;
-	protected MapFragmentProvider mapProvider;
-	protected RouteProvider routeProvider;
-	
-	
+	protected DatabaseHelper		dbHelper;
+	protected String				lastTag;
+	protected MapFragmentProvider	mapProvider;
+	protected RouteProvider			routeProvider;
+
 	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
+	protected void onDestroy()
+	{
 		super.onDestroy();
-		if (dbHelper != null) {
+		if (dbHelper != null)
+		{
 			OpenHelperManager.releaseHelper();
 			dbHelper = null;
 		}
 
 	}
-	
-	public void switchFragment(int resource, Fragment fragment, String tag) {
+
+	public void switchFragment(int resource, Fragment fragment, String tag)
+	{
 
 		String oldTag = getLastTag();
 		FragmentManager fragmentManager = getFragmentManager();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-		if (oldTag != null) 
+		if (oldTag != null)
 		{
 			Fragment lastFragment = fragmentManager.findFragmentByTag(oldTag);
-			if (lastFragment != null) 
+			if (lastFragment != null)
 			{
 				transaction.hide(lastFragment);
 			}
 		}
 
-		if (fragment.isAdded()) 
+		if (fragment.isAdded())
 		{
 			transaction.show(fragment);
-		} 
-		else 
+		} else
 		{
 			transaction.add(resource, fragment, tag);
 		}
@@ -61,18 +62,20 @@ public abstract class PoliGdzieBaseActivity extends FragmentActivity implements
 		transaction.commit();
 		setLastTag(tag);
 	}
-	
-	public String getLastTag() {
+
+	public String getLastTag()
+	{
 		return lastTag;
 	}
 
-	public void setLastTag(String lastTag) {
+	public void setLastTag(String lastTag)
+	{
 		this.lastTag = lastTag;
 	}
-	
-	
-	public PoliGdzieBaseActivity() {
-		this.dbHelper = new DatabaseHelper(this, DATABASE_NAME, null, DATABASE_VERSION);
-		
+
+	public PoliGdzieBaseActivity()
+	{
+		this.dbHelper = new DatabaseHelper(this, DATABASE_NAME, null,
+				DATABASE_VERSION);
 	}
 }

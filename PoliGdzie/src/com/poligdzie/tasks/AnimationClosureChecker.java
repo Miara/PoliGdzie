@@ -13,31 +13,32 @@ import com.poligdzie.fragments.BuildingInfoFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
 import com.poligdzie.helpers.DatabaseHelper;
 
-public class AnimationClosureChecker extends AsyncTask <String, Void, String> {
+public class AnimationClosureChecker extends AsyncTask<String, Void, String>
+{
 
-	private MarkerAnimationFinishCallback callback;
-	private GoogleMap map;
-	private Marker marker;
-	private MapOutdoorFragment mapOutdoorFragment;
-	private DatabaseHelper dbHelper;
-	
+	private MarkerAnimationFinishCallback	callback;
+	private GoogleMap						map;
+	private Marker							marker;
+	private MapOutdoorFragment				mapOutdoorFragment;
+	private DatabaseHelper					dbHelper;
+
 	@Override
-	protected String doInBackground(String... params) {
-		// TODO Auto-generated method stub
-		while(!callback.isFinished());
+	protected String doInBackground(String... params)
+	{
+		while (!callback.isFinished())
+			;
 		return null;
 	}
 
 	@Override
-	protected void onPostExecute(String result) {
-		// TODO Auto-generated method stub
+	protected void onPostExecute(String result)
+	{
 
 		Projection projection = map.getProjection();
 		Point point = projection.toScreenLocation(marker.getPosition());
-		
 
-		
-		BuildingInfoFragment buildingInfoFragment = new BuildingInfoFragment(point.x, point.y, marker, dbHelper);
+		BuildingInfoFragment buildingInfoFragment = new BuildingInfoFragment(
+				point.x, point.y, marker, dbHelper);
 
 		FragmentTransaction transaction = mapOutdoorFragment
 				.getFragmentManager().beginTransaction();
@@ -49,13 +50,14 @@ public class AnimationClosureChecker extends AsyncTask <String, Void, String> {
 	}
 
 	public AnimationClosureChecker(MarkerAnimationFinishCallback callback,
-			GoogleMap map, Marker marker, MapOutdoorFragment mapOutdoorFragment, DatabaseHelper dbHelper) {
+			GoogleMap map, Marker marker,
+			MapOutdoorFragment mapOutdoorFragment, DatabaseHelper dbHelper)
+	{
 		this.callback = callback;
 		this.map = map;
 		this.marker = marker;
 		this.mapOutdoorFragment = mapOutdoorFragment;
 		this.dbHelper = dbHelper;
 	}
-	
 
 }

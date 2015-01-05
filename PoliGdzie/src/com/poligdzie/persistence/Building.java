@@ -9,165 +9,194 @@ import com.poligdzie.interfaces.Nameable;
 import com.poligdzie.interfaces.WithCoordinates;
 
 @DatabaseTable(tableName = "building")
-public class Building implements Nameable, Imageable, WithCoordinates {
+public class Building implements Nameable, Imageable, WithCoordinates
+{
 	@DatabaseField(generatedId = true)
-	private int id;
+	private int							id;
 
 	@DatabaseField
-	private String name;
+	private String						name;
 
 	@DatabaseField
-	private double coordX;
+	private double						coordX;
 
 	@DatabaseField
-	private double coordY;
+	private double						coordY;
 
 	@DatabaseField
-	private String address;
+	private String						address;
 
 	@DatabaseField
-	private int width;
+	private int							width;
 
 	@DatabaseField
-	private int height;
+	private int							height;
 
 	@DatabaseField
-	private String aliases;
+	private String						aliases;
 
 	@DatabaseField
-	private String imageResource;
-	
+	private String						imageResource;
+
 	@DatabaseField
-	private String markerImageResource;
+	private String						markerImageResource;
 
 	@ForeignCollectionField(eager = true, columnName = "rooms")
-	private ForeignCollection<Room> rooms;
+	private ForeignCollection<Room>		rooms;
 
 	@ForeignCollectionField(eager = true, columnName = "units")
-	private ForeignCollection<Unit> units;
-	
-	@ForeignCollectionField(eager = true, columnName = "floors")
-	private ForeignCollection<Floor> floors;
+	private ForeignCollection<Unit>		units;
 
-	public int getId() {
+	@ForeignCollectionField(eager = true, columnName = "floors")
+	private ForeignCollection<Floor>	floors;
+
+	public int getId()
+	{
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(int id)
+	{
 		this.id = id;
 	}
 
-	public double getCoordX() {
+	public double getCoordX()
+	{
 		return coordX;
 	}
 
-	public void setCoordX(double coordX) {
+	public void setCoordX(double coordX)
+	{
 		this.coordX = coordX;
 	}
 
-	public double getCoordY() {
+	public double getCoordY()
+	{
 		return coordY;
 	}
 
-	public void setCoordY(double coordY) {
+	public void setCoordY(double coordY)
+	{
 		this.coordY = coordY;
 	}
 
-	public String getAddress() {
+	public String getAddress()
+	{
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(String address)
+	{
 		this.address = address;
 	}
 
-	public int getWidth() {
+	public int getWidth()
+	{
 		return width;
 	}
 
-	public void setWidth(int width) {
+	public void setWidth(int width)
+	{
 		this.width = width;
 	}
 
-	public int getHeight() {
+	public int getHeight()
+	{
 		return height;
 	}
 
-	public void setHeight(int height) {
+	public void setHeight(int height)
+	{
 		this.height = height;
 	}
 
-	public ForeignCollection<Room> getRooms() {
+	public ForeignCollection<Room> getRooms()
+	{
 		return rooms;
 	}
 
-	public void setRooms(ForeignCollection<Room> rooms) {
+	public void setRooms(ForeignCollection<Room> rooms)
+	{
 		this.rooms = rooms;
 	}
 
-	public ForeignCollection<Unit> getUnits() {
+	public ForeignCollection<Unit> getUnits()
+	{
 		return units;
 	}
 
-	public void setUnits(ForeignCollection<Unit> units) {
+	public void setUnits(ForeignCollection<Unit> units)
+	{
 		this.units = units;
 	}
 
-	public void add(Object value) {
-		if (value.getClass() == Unit.class) {
+	public void add(Object value)
+	{
+		if (value.getClass() == Unit.class)
+		{
 			this.units.add((Unit) value);
 		}
 
-		if (value.getClass() == Room.class) {
+		if (value.getClass() == Room.class)
+		{
 			this.rooms.add((Room) value);
 		}
 	}
 
-	public String getAliases() {
+	public String getAliases()
+	{
 		return aliases;
 	}
 
-	public void setAliases(String aliases) {
+	public void setAliases(String aliases)
+	{
 		this.aliases = aliases;
 	}
 
-	public String getImageResource() {
+	public String getImageResource()
+	{
 		return imageResource;
 	}
 
-	public void setImageResource(String image) {
+	public void setImageResource(String image)
+	{
 		this.imageResource = image;
 	}
 
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name)
+	{
 		this.name = name;
 	}
 
-	public String getMarkerImageResource() {
+	public String getMarkerImageResource()
+	{
 		return markerImageResource;
 	}
 
-	public void setMarkerImageResource(String markerImageResource) {
+	public void setMarkerImageResource(String markerImageResource)
+	{
 		this.markerImageResource = markerImageResource;
 	}
 
-
-	public ForeignCollection<Floor> getFloors() {
+	public ForeignCollection<Floor> getFloors()
+	{
 		return floors;
 	}
 
-	public void setFloors(ForeignCollection<Floor> floors) {
+	public void setFloors(ForeignCollection<Floor> floors)
+	{
 		this.floors = floors;
 	}
-	
-	
+
 	public Building(String name, double coordX, double coordY, String address,
 			int width, int height, String aliases, String imageResource,
-			String markerImageResource) {
+			String markerImageResource)
+	{
 		this.name = name;
 		this.coordX = coordX;
 		this.coordY = coordY;
@@ -179,12 +208,14 @@ public class Building implements Nameable, Imageable, WithCoordinates {
 		this.markerImageResource = markerImageResource;
 	}
 
-	public Building(double coordX, double coordY) {
+	public Building(double coordX, double coordY)
+	{
 		this.coordX = coordX;
 		this.coordY = coordY;
 	}
-	
-	public Building() {
-      // nie wyrzucac!
+
+	public Building()
+	{
+		// nie wyrzucac!
 	}
 }

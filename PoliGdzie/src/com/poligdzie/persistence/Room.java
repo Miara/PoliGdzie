@@ -5,110 +5,128 @@ import com.j256.ormlite.table.DatabaseTable;
 import com.poligdzie.interfaces.Nameable;
 
 @DatabaseTable(tableName = "room")
-public class Room implements Nameable{
+public class Room implements Nameable
+{
 	@DatabaseField(generatedId = true)
-	private int id;
+	private int				id;
 
 	@DatabaseField
-	private String number;
+	private String			number;
 
 	@DatabaseField
-	private String name;
+	private String			name;
 
 	@DatabaseField
-	private RoomFunctions function;
+	private RoomFunctions	function;
 
 	@DatabaseField
-	private int coordX;
+	private int				coordX;
 
 	@DatabaseField
-	private int coordY;
+	private int				coordY;
 
 	@DatabaseField
-	private int floorNr;
+	private int				floorNr;
 
 	@DatabaseField
-	private String aliases;
+	private String			aliases;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "building_id")
-	private Building building;
+	private Building		building;
 
-	public int getId() {
+	public int getId()
+	{
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(int id)
+	{
 		this.id = id;
 	}
 
-	public String getNumber() {
+	public String getNumber()
+	{
 		return number;
 	}
 
-	public void setNumber(String number) {
+	public void setNumber(String number)
+	{
 		this.number = number;
 	}
 
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name)
+	{
 		this.name = name;
 	}
 
-	public RoomFunctions getFunction() {
+	public RoomFunctions getFunction()
+	{
 		return function;
 	}
 
-	public void setFunction(RoomFunctions function) {
+	public void setFunction(RoomFunctions function)
+	{
 		this.function = function;
 	}
 
-	public int getCoordX() {
+	public int getCoordX()
+	{
 		return coordX;
 	}
 
-	public void setCoordX(int coordX) {
+	public void setCoordX(int coordX)
+	{
 		this.coordX = coordX;
 	}
 
-	public int getCoordY() {
+	public int getCoordY()
+	{
 		return coordY;
 	}
 
-	public void setCoordY(int coordY) {
+	public void setCoordY(int coordY)
+	{
 		this.coordY = coordY;
 	}
 
-	public int getFloorNr() {
+	public int getFloorNr()
+	{
 		return floorNr;
 	}
 
-	public void setFloorNr(int floorNr) {
+	public void setFloorNr(int floorNr)
+	{
 		this.floorNr = floorNr;
 	}
 
-
-	public String getAliases() {
+	public String getAliases()
+	{
 		return aliases;
 	}
 
-	public void setAliases(String aliases) {
+	public void setAliases(String aliases)
+	{
 		this.aliases = aliases;
 	}
 
-	public Building getBuilding() {
+	public Building getBuilding()
+	{
 		return building;
 	}
 
-	public void setBuilding(Building building) {
+	public void setBuilding(Building building)
+	{
 		this.building = building;
 	}
 
-	public Room(String number, String name, RoomFunctions function,
-			int coordX, int coordY, int floorNr, String aliases,
-			Building building) {
+	public Room(String number, String name, RoomFunctions function, int coordX,
+			int coordY, int floorNr, String aliases, Building building)
+	{
 		this.number = number;
 		this.name = name;
 		this.function = function;
@@ -118,9 +136,10 @@ public class Room implements Nameable{
 		this.aliases = aliases;
 		this.building = building;
 	}
-	
-	public Room() {
 
+	public Room()
+	{
+		// nie wyrzucac!
 	}
 
 }

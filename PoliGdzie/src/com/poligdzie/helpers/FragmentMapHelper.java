@@ -4,39 +4,38 @@ import java.util.HashMap;
 
 import com.poligdzie.fragments.PoliGdzieMapFragment;
 
-public class FragmentMapHelper {
-	private HashMap<String, PoliGdzieMapFragment> fragments;
-		
-	
-	
-	public PoliGdzieMapFragment getFragmentByTag(String tag) {
+public class FragmentMapHelper
+{
+	private HashMap<String, PoliGdzieMapFragment>	fragments;
+
+	public PoliGdzieMapFragment getFragmentByTag(String tag)
+	{
 		return fragments.get(tag);
 	}
-	
-	public void addFragment(String key, PoliGdzieMapFragment value) {
+
+	public void addFragment(String key, PoliGdzieMapFragment value)
+	{
 		fragments.put(key, value);
 	}
 
-	public FragmentMapHelper() {
+	public FragmentMapHelper()
+	{
 		fragments = new HashMap<String, PoliGdzieMapFragment>();
 	}
 
-
-	public int getSize() {
-		// TODO Auto-generated method stub
+	public int getSize()
+	{
 		return fragments.size();
 	}
 
-	public Object getFragments() {
-		// TODO Auto-generated method stub
+	public Object getFragments()
+	{
 		return fragments;
 	}
 
-	public void clear() {
-		// TODO Auto-generated method stub
+	public void clear()
+	{
 		fragments.clear();
-		
 	}
 
-	
 }

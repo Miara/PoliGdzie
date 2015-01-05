@@ -17,53 +17,56 @@ import com.poligdzie.listeners.MarkerOnClickCustomListener;
 import com.poligdzie.singletons.MapFragmentProvider;
 import com.poligdzie.singletons.RouteProvider;
 
-public class MapOutdoorFragment extends PoliGdzieMapFragment implements OnClickListener,
-Constants {
-	
-	GoogleMap map;
-	public PolylineOptions options;
-	private SearchRouteFragment searchRouteFragment;
-	private SearchPlaceFragment searchPlaceFragment;
-	
+public class MapOutdoorFragment extends PoliGdzieMapFragment implements
+															OnClickListener,
+															Constants
+{
+
+	GoogleMap					map;
+	public PolylineOptions		options;
+	private SearchRouteFragment	searchRouteFragment;
+	private SearchPlaceFragment	searchPlaceFragment;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-		Bundle savedInstanceState) 
+			Bundle savedInstanceState)
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
-	View rootView = inflater.inflate(R.layout.map_outdoor_fragment,
-			container, false);
+		View rootView = inflater.inflate(R.layout.map_outdoor_fragment,
+				container, false);
 
-	map = ((MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.map_outdoor_googleMap))
-			.getMap();
-	
-	searchPlaceFragment = (SearchPlaceFragment) getActivity().getFragmentManager().findFragmentById(R.id.search_place_frag);
-	searchPlaceFragment.setFragment(this);
-	searchRouteFragment = (SearchRouteFragment) getActivity().getFragmentManager().findFragmentById(R.id.search_route_frag);
-	
-	
-	routeProvider = RouteProvider.getInstance();
-	routeProvider.setContext(this.getActivity());
-	
-	map = routeProvider.getMapWithRoute(map, dbHelper);
-	map.setOnMarkerClickListener(new MarkerOnClickCustomListener(this, map, dbHelper));
-	return rootView;
+		map = ((MapFragment) getActivity().getFragmentManager()
+				.findFragmentById(R.id.map_outdoor_googleMap)).getMap();
+
+		searchPlaceFragment = (SearchPlaceFragment) getActivity()
+				.getFragmentManager().findFragmentById(R.id.search_place_frag);
+		searchPlaceFragment.setFragment(this);
+		searchRouteFragment = (SearchRouteFragment) getActivity()
+				.getFragmentManager().findFragmentById(R.id.search_route_frag);
+
+		routeProvider = RouteProvider.getInstance();
+		routeProvider.setContext(this.getActivity());
+
+		map = routeProvider.getMapWithRoute(map, dbHelper);
+		map.setOnMarkerClickListener(new MarkerOnClickCustomListener(this, map,
+				dbHelper));
+		return rootView;
 	}
-	
+
 	@Override
-	public void onClick(View v) 
+	public void onClick(View v)
 	{
-	
+
 	}
 
-	public MapOutdoorFragment() {
+	public MapOutdoorFragment()
+	{
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public MapOutdoorFragment(int drawableId, String name, String viewTag) {
+	public MapOutdoorFragment(int drawableId, String name, String viewTag)
+	{
 		super(drawableId, name, viewTag);
-		// TODO Auto-generated constructor stub
 	}
 
-	
 }

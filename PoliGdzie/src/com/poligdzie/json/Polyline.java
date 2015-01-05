@@ -7,25 +7,30 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 import com.google.android.gms.maps.model.LatLng;
 
-public class Polyline {
-	private String points;
+public class Polyline
+{
+	private String	points;
 
-	public String getPoints() {
+	public String getPoints()
+	{
 		return points;
 	}
 
 	@JsonProperty("points")
-	public void setPoints(String points) {
+	public void setPoints(String points)
+	{
 		this.points = points;
 	}
 
-	public List<LatLng> decodePolyline() {
+	public List<LatLng> decodePolyline()
+	{
 		List<LatLng> poly = new ArrayList<LatLng>();
 		int index = 0, len = points.length();
 		int lat = 0, lng = 0;
 
 		int result_tab[] = new int[2];
-		while (index < len) {
+		while (index < len)
+		{
 
 			result_tab = getValueAfterBitOperations(index);
 			lat += result_tab[0];
@@ -43,10 +48,12 @@ public class Polyline {
 		return poly;
 	}
 
-	private int[] getValueAfterBitOperations(int index) {
+	private int[] getValueAfterBitOperations(int index)
+	{
 		int shift = 0, value = 0, result = 0;
 		int initialAscii = 0, asciiAfterMask = 0;
-		do {
+		do
+		{
 			initialAscii = points.charAt(index++) - 63;
 			asciiAfterMask = initialAscii & 31;
 			asciiAfterMask = asciiAfterMask << shift;
@@ -54,9 +61,11 @@ public class Polyline {
 			shift += 5;
 		} while (initialAscii >= 0x20);
 
-		if ((value & 1) != 0) {
+		if ((value & 1) != 0)
+		{
 			result = ~(value >> 1);
-		} else {
+		} else
+		{
 			result = value >> 1;
 		}
 		int result_tab[] = new int[2];

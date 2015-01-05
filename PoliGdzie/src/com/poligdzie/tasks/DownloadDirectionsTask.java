@@ -16,24 +16,28 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.json.Directions;
 
-public class DownloadDirectionsTask extends AsyncTask<String, Void, String> {
+public class DownloadDirectionsTask extends AsyncTask<String, Void, String>
+{
 
-	public GoogleMap map;
-	public PolylineOptions options;
+	public GoogleMap		map;
+	public PolylineOptions	options;
 
-	public DownloadDirectionsTask(GoogleMap map, PolylineOptions options) {
+	public DownloadDirectionsTask(GoogleMap map, PolylineOptions options)
+	{
 		this.map = map;
 		this.options = options;
 	}
 
 	@Override
-	protected String doInBackground(String... url) {
+	protected String doInBackground(String... url)
+	{
 
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(
 				DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-		try {
+		try
+		{
 
 			Directions directions = mapper.readValue(new URL(url[0]),
 					Directions.class);
@@ -41,28 +45,25 @@ public class DownloadDirectionsTask extends AsyncTask<String, Void, String> {
 			options = new PolylineOptions();
 			options = directions.generatePolylineFromDirections(options);
 
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-
+		} catch (JsonParseException e)
+		{
 			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-
+		} catch (JsonMappingException e)
+		{
 			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-
+		} catch (MalformedURLException e)
+		{
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-
+		} catch (IOException e)
+		{
 			e.printStackTrace();
 		}
 		return "Not sure what should I return";
 	}
 
 	@Override
-	protected void onPostExecute(String result) {
+	protected void onPostExecute(String result)
+	{
 		super.onPostExecute(result);
 
 		if (options == null)

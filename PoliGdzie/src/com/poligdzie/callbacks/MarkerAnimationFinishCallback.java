@@ -4,23 +4,25 @@ import android.util.Log;
 
 import com.google.android.gms.maps.GoogleMap.CancelableCallback;
 
-public class MarkerAnimationFinishCallback implements CancelableCallback{
+public class MarkerAnimationFinishCallback implements CancelableCallback
+{
 
-	private boolean finished = false;
-	
+	private boolean	finished	= false;
+
 	@Override
-	public void onCancel() {
-		// TODO Auto-generated method stub
-		
+	public void onCancel()
+	{
+
 	}
 
 	@Override
-	public void onFinish() {
-		// TODO Auto-generated method stub
+	public void onFinish()
+	{
 		finished = true;
 	}
 
-	public boolean isFinished() {
+	public boolean isFinished()
+	{
 		return finished;
 	}
 

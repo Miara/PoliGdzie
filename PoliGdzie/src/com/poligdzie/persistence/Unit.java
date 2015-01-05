@@ -5,85 +5,98 @@ import com.j256.ormlite.table.DatabaseTable;
 import com.poligdzie.interfaces.Nameable;
 
 @DatabaseTable(tableName = "unit")
-public class Unit implements Nameable{
+public class Unit implements Nameable
+{
 	@DatabaseField(generatedId = true)
-	private int id;
+	private int			id;
 
 	@DatabaseField
-	private String name;
+	private String		name;
 
 	@DatabaseField
-	private String www;
+	private String		www;
 
 	@DatabaseField
-	private UnitTypes type;
+	private UnitTypes	type;
 
 	@DatabaseField
-	private String aliases;
+	private String		aliases;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "building_id")
-	private Building building;
+	private Building	building;
 
-	public int getId() {
+	public int getId()
+	{
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(int id)
+	{
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name)
+	{
 		this.name = name;
 	}
 
-	public String getWww() {
+	public String getWww()
+	{
 		return www;
 	}
 
-	public void setWww(String www) {
+	public void setWww(String www)
+	{
 		this.www = www;
 	}
 
-	public UnitTypes getType() {
+	public UnitTypes getType()
+	{
 		return type;
 	}
 
-	public void setType(UnitTypes type) {
+	public void setType(UnitTypes type)
+	{
 		this.type = type;
 	}
 
-
-	public Building getBuilding() {
+	public Building getBuilding()
+	{
 		return building;
 	}
 
-	public void setBuilding(Building building) {
+	public void setBuilding(Building building)
+	{
 		this.building = building;
 	}
 
-	public String getAliases() {
+	public String getAliases()
+	{
 		return aliases;
 	}
 
-	public void setAliases(String aliases) {
+	public void setAliases(String aliases)
+	{
 		this.aliases = aliases;
 	}
 
-	public Unit(String name, String www, UnitTypes type,
-			String aliases, Building building) {
+	public Unit(String name, String www, UnitTypes type, String aliases,
+			Building building)
+	{
 		this.name = name;
 		this.www = www;
 		this.type = type;
 		this.aliases = aliases;
 		this.building = building;
 	}
-	
 
-	public Unit() {
-
+	public Unit()
+	{
+		// nie wyrzucac!
 	}
 }

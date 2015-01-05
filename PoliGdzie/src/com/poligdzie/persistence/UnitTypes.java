@@ -1,5 +1,6 @@
 package com.poligdzie.persistence;
 
-public enum UnitTypes {
+public enum UnitTypes
+{
 	FACULTY, CHAIR, INSTITUTE
 }

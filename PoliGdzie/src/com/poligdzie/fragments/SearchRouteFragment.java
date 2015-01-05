@@ -26,21 +26,24 @@ import com.poligdzie.listeners.ContextSearchTextWatcher;
 import com.poligdzie.singletons.RouteProvider;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
-public class SearchRouteFragment extends PoliGdzieBaseFragment implements OnClickListener {
+public class SearchRouteFragment extends PoliGdzieBaseFragment implements
+																OnClickListener
+{
 
-	private Button searchButton;
+	private Button						searchButton;
 
-	private SearchAutoCompleteTextView startPosition;
-	private SearchAutoCompleteTextView goalPosition;
+	private SearchAutoCompleteTextView	startPosition;
+	private SearchAutoCompleteTextView	goalPosition;
 
-	private ContextSearchTextWatcher startWatcher;
-	private ContextSearchTextWatcher goalWatcher;
+	private ContextSearchTextWatcher	startWatcher;
+	private ContextSearchTextWatcher	goalWatcher;
 
-	private BuildingInfoFragment buildingInfoFragment;
+	private BuildingInfoFragment		buildingInfoFragment;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+			Bundle savedInstanceState)
+	{
 		super.onCreateView(inflater, container, savedInstanceState);
 		View rootView = inflater.inflate(R.layout.search_trace_fragment,
 				container, false);
@@ -62,24 +65,26 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements OnClic
 
 		RouteProvider provider = RouteProvider.getInstance();
 
-		if (provider.getStart() != null) {
+		if (provider.getStart() != null)
+		{
 			String temp = ((Nameable) provider.getStart()).getName();
 			if (temp != null && temp.length() != 0)
 				startPosition.setText(temp);
 		}
 
-		if (provider.getGoal() != null) {
+		if (provider.getGoal() != null)
+		{
 			String temp = ((Nameable) provider.getGoal()).getName();
 			if (temp != null && temp.length() != 0)
 				goalPosition.setText(temp);
 		}
 
-
 		return rootView;
 	}
 
 	@Override
-	public void onClick(View v) {
+	public void onClick(View v)
+	{
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(getActivity()
 						.getApplicationContext());
@@ -87,7 +92,8 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements OnClic
 		Editor editor = prefs.edit();
 		routeProvider = RouteProvider.getInstance();
 
-		if (v == searchButton) {
+		if (v == searchButton)
+		{
 			if (startPosition.getText().length() != 0)
 				routeProvider.setStart(startPosition.getAdapter().getItem(0));
 
@@ -99,15 +105,15 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements OnClic
 
 			InputMethodManager imm = (InputMethodManager) this.getActivity()
 					.getSystemService(Context.INPUT_METHOD_SERVICE);
-			
+
 			imm.hideSoftInputFromWindow(startPosition.getWindowToken(), 0);
-			
+
 			imm.hideSoftInputFromWindow(goalPosition.getWindowToken(), 0);
 
 			buildingInfoFragment = (BuildingInfoFragment) this.getActivity()
 					.getFragmentManager()
 					.findFragmentById(R.id.window_info_container);
-			
+
 			this.getActivity().getFragmentManager().beginTransaction()
 					.remove(buildingInfoFragment).commit();
 			GoogleMap map = ((MapFragment) this.getActivity()
@@ -127,17 +133,19 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements OnClic
 
 	}
 
-	public void setStartPosition(String text) {
+	public void setStartPosition(String text)
+	{
 		this.startPosition.setText(text);
 	}
 
-	public void setGoalPosition(String text) {
+	public void setGoalPosition(String text)
+	{
 		this.goalPosition.setText(text);
 	}
 
-	public SearchRouteFragment() {
+	public SearchRouteFragment()
+	{
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 }

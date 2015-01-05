@@ -30,18 +30,22 @@ import com.poligdzie.singletons.RouteProvider;
 import com.poligdzie.tasks.AnimationClosureChecker;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
-public class SearchPlaceFragment extends PoliGdzieBaseFragment implements OnClickListener,
-		Constants {
+public class SearchPlaceFragment extends PoliGdzieBaseFragment
+																implements
+																OnClickListener,
+																Constants
+{
 
-	private Button searchButton;
-	private ContextSearchTextWatcher searchWatcher;
-	private SearchAutoCompleteTextView searchPosition;
-	private GoogleMap map;
-	private MapOutdoorFragment outdoorMap;
-	
+	private Button						searchButton;
+	private ContextSearchTextWatcher	searchWatcher;
+	private SearchAutoCompleteTextView	searchPosition;
+	private GoogleMap					map;
+	private MapOutdoorFragment			outdoorMap;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+			Bundle savedInstanceState)
+	{
 		super.onCreateView(inflater, container, savedInstanceState);
 		View rootView = inflater.inflate(R.layout.search_place_fragment,
 				container, false);
@@ -53,68 +57,74 @@ public class SearchPlaceFragment extends PoliGdzieBaseFragment implements OnClic
 		searchPosition.addTextChangedListener(searchWatcher);
 
 		searchButton = (Button) rootView.findViewById(R.id.button_search_place);
-		
-		
-		
+
 		if (searchButton != null)
 			searchButton.setOnClickListener(this);
 
 		return rootView;
 	}
 
-	
-	//TODO: sprawdzic editora
-	
+	// TODO: sprawdzic editora
+
 	@Override
-	public void onClick(View v) {
+	public void onClick(View v)
+	{
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(getActivity()
 						.getApplicationContext());
 		Editor editor = prefs.edit();
-		if (v == searchButton) {
-			map = ((MapFragment) this.getActivity().getFragmentManager().findFragmentById(R.id.map_outdoor_googleMap)).getMap();
-			
+		if (v == searchButton)
+		{
+			map = ((MapFragment) this.getActivity().getFragmentManager()
+					.findFragmentById(R.id.map_outdoor_googleMap)).getMap();
+
 			searchPosition.clearFocus();
-			InputMethodManager imm = (InputMethodManager)this.getActivity().getSystemService(
-				      Context.INPUT_METHOD_SERVICE);
-				imm.hideSoftInputFromWindow(searchPosition.getWindowToken(), 0);
-			
+			InputMethodManager imm = (InputMethodManager) this.getActivity()
+					.getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(searchPosition.getWindowToken(), 0);
+
 			Object object = searchPosition.getAdapter().getItem(0);
-			if (object instanceof WithCoordinates) {
-				LatLng pos = new LatLng(((WithCoordinates) object).getCoordX(), ((WithCoordinates) object).getCoordY());
-				
+			if (object instanceof WithCoordinates)
+			{
+				LatLng pos = new LatLng(((WithCoordinates) object).getCoordX(),
+						((WithCoordinates) object).getCoordY());
+
 				RouteProvider provider = RouteProvider.getInstance();
-				List <Marker> markers = provider.getMarkers();
-				
-				
-				for(Marker m : markers) {
-					if(m.getPosition().latitude == pos.latitude && m.getPosition().longitude == pos.longitude) {
+				List<Marker> markers = provider.getMarkers();
+
+				for (Marker m : markers)
+				{
+					if (m.getPosition().latitude == pos.latitude
+							&& m.getPosition().longitude == pos.longitude)
+					{
 						MarkerAnimationFinishCallback callback = new MarkerAnimationFinishCallback();
-						map.animateCamera(CameraUpdateFactory.newLatLngZoom(
-								pos, 17), callback);
-						
-//						MapOutdoorFragment outdoorMap = (MapOutdoorFragment) this.getActivity().getFragmentManager().findFragmentById(R.layout.map_outdoor_fragment);
-						
-						AnimationClosureChecker checker = new AnimationClosureChecker(callback, map, m, this.outdoorMap, new DatabaseHelper(this.getActivity(), DATABASE_NAME, null, DATABASE_VERSION ));
+						map.animateCamera(
+								CameraUpdateFactory.newLatLngZoom(pos, 17),
+								callback);
+
+						AnimationClosureChecker checker = new AnimationClosureChecker(
+								callback, map, m, this.outdoorMap,
+								new DatabaseHelper(this.getActivity(),
+										DATABASE_NAME, null, DATABASE_VERSION));
 						checker.execute();
 						break;
 					}
-						
+
 				}
-				
-				}
+
+			}
 		}
-		
+
 		editor.commit();
 	}
 
-	public void setFragment(MapOutdoorFragment mapOutdoorFragment) {
-		// TODO Auto-generated method stub
+	public void setFragment(MapOutdoorFragment mapOutdoorFragment)
+	{
 		this.outdoorMap = mapOutdoorFragment;
 	}
 
-	public SearchPlaceFragment() {
+	public SearchPlaceFragment()
+	{
 		super();
-		// TODO Auto-generated constructor stub
 	}
 }
