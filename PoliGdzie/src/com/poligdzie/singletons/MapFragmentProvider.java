@@ -55,8 +55,7 @@ public class MapFragmentProvider implements Constants, WithDrawableId{
 		String key = keys.get(key_position);
 		if(key != null)
 		{
-			
-			return fragments.getFragmentByKey(key);
+			return fragments.getFragmentByTag(key);
 		}
 		return null;
 	}
@@ -65,7 +64,6 @@ public class MapFragmentProvider implements Constants, WithDrawableId{
 	{
 		int previous_key_position = keys.indexOf(currentKey) - 1;
 		return getFragmentPreviousOrNext(previous_key_position);
-		
 	}
 	
 	public PoliGdzieMapFragment getNextFragment()
@@ -74,12 +72,14 @@ public class MapFragmentProvider implements Constants, WithDrawableId{
 		return getFragmentPreviousOrNext(next_key_position);
 	}
 	
-	public String getNextKey() {
+	public String getNextKey() 
+	{
 		int resultKey = keys.indexOf(currentKey) + 1;
 		if(resultKey >= keys.size())
 			return null;
 		
 		String result = keys.get(resultKey);
+	
 		if(result != null)
 			return result;
 		else
@@ -108,7 +108,7 @@ public class MapFragmentProvider implements Constants, WithDrawableId{
 
 	public PoliGdzieMapFragment getCurrentFragment() {
 		// TODO Auto-generated method stub
-		return fragments.getFragmentByKey(currentKey);
+		return fragments.getFragmentByTag(currentKey);
 	}
 
 	public int getCurrentFragmentKeyPosition() {
@@ -131,11 +131,11 @@ public class MapFragmentProvider implements Constants, WithDrawableId{
 
 	public void clearFragments() {
 		// TODO Auto-generated method stub
-		PoliGdzieMapFragment temp = fragments.getFragmentByKey("outdoor");
+		PoliGdzieMapFragment temp = fragments.getFragmentByTag(OUTDOOR_MAP_TAG);
 		fragments.clear();
 		keys.clear();
-		keys.add("outdoor");
-		fragments.addFragment("outdoor", temp);
+		keys.add(OUTDOOR_MAP_TAG);
+		fragments.addFragment(OUTDOOR_MAP_TAG, temp);
 	}
 
 

@@ -29,8 +29,6 @@ import com.poligdzie.widgets.SearchAutoCompleteTextView;
 public class SearchRouteFragment extends PoliGdzieBaseFragment implements OnClickListener {
 
 	private Button searchButton;
-	private Button buttonMapStart;
-	private Button buttonMapGoal;
 
 	private SearchAutoCompleteTextView startPosition;
 	private SearchAutoCompleteTextView goalPosition;
@@ -76,8 +74,6 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements OnClic
 				goalPosition.setText(temp);
 		}
 
-		dbHelper = new DatabaseHelper(this.getActivity(), DATABASE_NAME, null,
-				DATABASE_VERSION);
 
 		return rootView;
 	}
@@ -111,6 +107,7 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements OnClic
 			buildingInfoFragment = (BuildingInfoFragment) this.getActivity()
 					.getFragmentManager()
 					.findFragmentById(R.id.window_info_container);
+			
 			this.getActivity().getFragmentManager().beginTransaction()
 					.remove(buildingInfoFragment).commit();
 			GoogleMap map = ((MapFragment) this.getActivity()

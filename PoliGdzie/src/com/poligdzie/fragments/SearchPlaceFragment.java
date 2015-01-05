@@ -62,6 +62,9 @@ public class SearchPlaceFragment extends PoliGdzieBaseFragment implements OnClic
 		return rootView;
 	}
 
+	
+	//TODO: sprawdzic editora
+	
 	@Override
 	public void onClick(View v) {
 		SharedPreferences prefs = PreferenceManager

@@ -4,6 +4,7 @@ import com.poligdzie.singletons.MapFragmentProvider;
 import com.poligdzie.singletons.RouteProvider;
 
 public class PoliGdzieMapFragment extends PoliGdzieBaseFragment {
+	//TODO: zmienic na string
 	protected int drawableId;
 	protected String viewTag;
 

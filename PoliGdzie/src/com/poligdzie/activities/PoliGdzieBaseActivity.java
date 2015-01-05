@@ -70,11 +70,7 @@ public abstract class PoliGdzieBaseActivity extends FragmentActivity implements
 		this.lastTag = lastTag;
 	}
 	
-	public void debugMsg(String msg)
-	{
-		Log.i("POLIGDZIE",msg);
-	}
-
+	
 	public PoliGdzieBaseActivity() {
 		this.dbHelper = new DatabaseHelper(this, DATABASE_NAME, null, DATABASE_VERSION);
 		

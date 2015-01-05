@@ -89,20 +89,6 @@ public class Room implements Nameable{
 		this.floorNr = floorNr;
 	}
 
-	public Room() {
-
-	}
-
-	public Room(String number, String name, RoomFunctions function, int coordX,
-			int coordY, int floorNr, Building building) {
-		this.number = number;
-		this.name = name;
-		this.function = function;
-		this.coordX = coordX;
-		this.coordY = coordY;
-		this.floorNr = floorNr;
-		this.building = building;
-	}
 
 	public String getAliases() {
 		return aliases;
@@ -132,4 +118,9 @@ public class Room implements Nameable{
 		this.aliases = aliases;
 		this.building = building;
 	}
+	
+	public Room() {
+
+	}
+
 }

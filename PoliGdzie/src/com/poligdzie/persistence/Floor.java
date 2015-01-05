@@ -11,6 +11,7 @@ public class Floor {
 	@DatabaseField
 	private int number;
 	
+	// TODO: zmienic na string
 	@DatabaseField
 	private int drawableId;
 	
@@ -47,21 +48,6 @@ public class Floor {
 		this.building = building;
 	}
 
-	public Floor(int number, int drawableId, Building building) {
-		this.number = number;
-		this.drawableId = drawableId;
-		this.building = building;
-	}
-
-	public Floor() {
-	}
-
-	public Floor(int number, int drawableId, String name, Building building) {
-		this.number = number;
-		this.drawableId = drawableId;
-		this.name = name;
-		this.building = building;
-	}
 
 	public String getName() {
 		return name;
@@ -69,15 +55,6 @@ public class Floor {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Floor(int number, int drawableId, String name, String tag,
-			Building building) {
-		this.number = number;
-		this.drawableId = drawableId;
-		this.name = name;
-		this.tag = tag;
-		this.building = building;
 	}
 
 	public String getTag() {
@@ -95,5 +72,18 @@ public class Floor {
 	public void setNumber(int number) {
 		this.number = number;
 	}
+	
+	public Floor() {
+	}
+
+	public Floor(int number, int drawableId, String name, String tag,
+			Building building) {
+		this.number = number;
+		this.drawableId = drawableId;
+		this.name = name;
+		this.tag = tag;
+		this.building = building;
+	}
+
 	
 }

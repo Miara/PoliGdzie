@@ -27,7 +27,7 @@ import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.interfaces.WithDrawableId;
 import com.poligdzie.persistence.Building;
-
+//TODO: wywalic
 public class SearchBuildingsFragment extends PoliGdzieBaseFragment implements
 		OnClickListener, WithDrawableId {
 

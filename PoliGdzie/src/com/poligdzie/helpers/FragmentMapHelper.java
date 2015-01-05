@@ -6,11 +6,11 @@ import com.poligdzie.fragments.PoliGdzieMapFragment;
 
 public class FragmentMapHelper {
 	private HashMap<String, PoliGdzieMapFragment> fragments;
-	private String currentFragmentKey;
+		
 	
 	
-	public PoliGdzieMapFragment getFragmentByKey(String key) {
-		return fragments.get(key);
+	public PoliGdzieMapFragment getFragmentByTag(String tag) {
+		return fragments.get(tag);
 	}
 	
 	public void addFragment(String key, PoliGdzieMapFragment value) {

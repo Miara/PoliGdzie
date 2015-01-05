@@ -20,21 +20,20 @@ import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 
-
-
-public class AutocompleteCustomAdapter extends ArrayAdapter implements WithDrawableId{
+public class AutocompleteCustomAdapter extends ArrayAdapter implements
+		WithDrawableId {
 
 	private Context context;
-	private List <Object> objects;
+	private List<Object> objects;
 	private int position;
-	
+
 	public AutocompleteCustomAdapter(Context context, int textViewResourceId,
-			List <Object> objects) {
-		
+			List<Object> objects) {
+
 		super(context, textViewResourceId, objects);
 		this.context = context;
 		this.objects = objects;
-		
+
 		// TODO Auto-generated constructor stub
 	}
 
@@ -42,41 +41,45 @@ public class AutocompleteCustomAdapter extends ArrayAdapter implements WithDrawa
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 
-		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		    View view = inflater.inflate(R.layout.prompt_item, parent, false);
-		    
-		    TextView name = (TextView) view.findViewById(R.id.autocomplete_name);
-		    TextView desc = (TextView) view.findViewById(R.id.autocomplete_description);
-		    ImageView icon = (ImageView) view.findViewById(R.id.autocomplete_icon);
-		    
-		    Object object = new Object();
-		    
-		    object = objects.get(position);
-		    
-		    name.setText(((Nameable) object).getName());
-		    int imgRes;
-		    	
-		    if(object instanceof Building) {
-			    desc.setText("Budynek");
-			    imgRes = getDrawableId(((Imageable) object).getImageResource(),context);
-			    icon.setImageResource(imgRes);
-			}
-		    
-		    if(object instanceof Unit) {
-		        desc.setText("Jednostka organizacyjna");
-		        imgRes = getDrawableId(((Unit) object).getBuilding().getImageResource(),context);
-		        icon.setImageResource(imgRes);
-			}
-		    
-		    if(object instanceof Room) {
-		    	desc.setText("Pomieszczenie");
-		    	imgRes = getDrawableId(((Room) object).getBuilding().getImageResource(),context);
-		    	icon.setImageResource(imgRes);
-			}
-		    
-		    
+		LayoutInflater inflater = (LayoutInflater) context
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View view = inflater.inflate(R.layout.prompt_item, parent, false);
+
+		TextView name = (TextView) view.findViewById(R.id.autocomplete_name);
+		TextView desc = (TextView) view
+				.findViewById(R.id.autocomplete_description);
+		ImageView icon = (ImageView) view.findViewById(R.id.autocomplete_icon);
+
+		Object object = new Object();
+
+		object = objects.get(position);
+
+		name.setText(((Nameable) object).getName());
+		int imgRes;
+
+		if (object instanceof Building) {
+			desc.setText("Budynek");
+			imgRes = getDrawableId(((Imageable) object).getImageResource(),
+					context);
+			icon.setImageResource(imgRes);
+		}
+
+		if (object instanceof Unit) {
+			desc.setText("Jednostka organizacyjna");
+			imgRes = getDrawableId(((Unit) object).getBuilding()
+					.getImageResource(), context);
+			icon.setImageResource(imgRes);
+		}
+
+		if (object instanceof Room) {
+			desc.setText("Pomieszczenie");
+			imgRes = getDrawableId(((Room) object).getBuilding()
+					.getImageResource(), context);
+			icon.setImageResource(imgRes);
+		}
+
 		return view;
-		
+
 	}
 
 	@Override
@@ -87,7 +90,7 @@ public class AutocompleteCustomAdapter extends ArrayAdapter implements WithDrawa
 			@Override
 			protected FilterResults performFiltering(CharSequence constraint) {
 				// TODO Auto-generated method stub
-				
+
 				return new FilterResults();
 			}
 
@@ -97,19 +100,15 @@ public class AutocompleteCustomAdapter extends ArrayAdapter implements WithDrawa
 				// TODO Auto-generated method stub
 				AutocompleteCustomAdapter.this.notifyDataSetChanged();
 			}
-			
+
 		};
 	}
 
 	@Override
 	public int getDrawableId(String name, Context context) {
-		int resId =context.getResources().getIdentifier(name, "drawable", context.getPackageName());
+		int resId = context.getResources().getIdentifier(name, "drawable",
+				context.getPackageName());
 		return resId;
 	}
-	
-
-
-
-	
 
 }

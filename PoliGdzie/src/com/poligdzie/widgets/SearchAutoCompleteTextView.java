@@ -8,6 +8,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.AutoCompleteTextView;
 
+
+//TODO: sprawdzic czy to potrzebne, jesli tak, to zrobic porzadek
 /** Customizing AutoCompleteTextView to return Country Name   
  *  corresponding to the selected item
  */

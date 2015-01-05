@@ -36,18 +36,11 @@ public class MapActivity extends PoliGdzieBaseActivity implements OnClickListene
 
 		mapProvider = MapFragmentProvider.getInstance();
 		
-
-		ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-		
-		// 0 - czyli brak bitmapy do rysowania
-		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna", "outdoor");
+		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna", OUTDOOR_MAP_TAG);
 		
 		switchFragment(R.id.map_container, outdoorMap, outdoorMap.getViewTag());
 		
-				
-		int mem = activityManager.getMemoryClass();
-		Log.i("Poligdzie",""+mem);
-		
+
 		previous = (Button) findViewById(R.id.previous_map);
 		previous.setOnClickListener(this);
 		previous.setVisibility(View.GONE);

@@ -56,23 +56,12 @@ public class Unit implements Nameable{
 		this.type = type;
 	}
 
-	public Unit() {
-
-	}
 
 	public Building getBuilding() {
 		return building;
 	}
 
 	public void setBuilding(Building building) {
-		this.building = building;
-	}
-
-	public Unit(String name, String www, UnitTypes type, Building building) {
-
-		this.name = name;
-		this.www = www;
-		this.type = type;
 		this.building = building;
 	}
 
@@ -91,5 +80,10 @@ public class Unit implements Nameable{
 		this.type = type;
 		this.aliases = aliases;
 		this.building = building;
+	}
+	
+
+	public Unit() {
+
 	}
 }

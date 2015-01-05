@@ -19,9 +19,8 @@ public interface Constants {
 	
 	public String GOOGLE_MAP_MODE = "walking";
 	
-	public String MAP_MODE_OUTDOOR = "outdoor";
-	public String MAP_MODE_INDOOR_FIRST = "indoor_first";
-	public String MAP_MODE_INDOOR_LAST = "indoor_last";
+	public String OUTDOOR_MAP_TAG = "outdoor";
+
 	
     public int  INVALID_CODE = -1;
     public long DOUBLE_CLICK_DURATION = 600;

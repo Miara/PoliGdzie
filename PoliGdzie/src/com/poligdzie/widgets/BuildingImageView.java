@@ -216,7 +216,7 @@ public class BuildingImageView extends ImageView implements Constants{
                     final int pointerIndex = (ev.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
                     final int pointerId = ev.getPointerId(pointerIndex);
                     if (pointerId == mActivePointerId) 
-                    {
+                    {//TODO: zmienic skladnie
                         final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
                         mLastTouchX = ev.getX(newPointerIndex);
                         mLastTouchY = ev.getY(newPointerIndex);
@@ -242,8 +242,7 @@ public class BuildingImageView extends ImageView implements Constants{
         }
     }
 
-    //Currently zoomEnabled/panEnabled can only be set programmatically, not in XML
-
+//TODO: wyrzucic kontrole zooma i pana
     public boolean isPanEnabled() {
         return panEnabled;
     }

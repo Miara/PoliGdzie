@@ -15,6 +15,8 @@ import com.poligdzie.fragments.SearchRouteFragment;
 
 public class SearchActivity extends PoliGdzieBaseActivity implements OnClickListener {
 
+	
+	//TODO: wywalic
 	private Button buttonTrace;
 	private Button buttonPlace;
 	private Button buttonBuilding;

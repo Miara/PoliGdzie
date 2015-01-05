@@ -123,37 +123,6 @@ public class Building implements Nameable, Imageable, WithCoordinates {
 		}
 	}
 
-	public Building() {
-
-	}
-
-	public Building(String name, double coordX, double coordY, String address,
-			int width, int height, String image, String aliases) {
-		this.name = name;
-		this.coordX = coordX;
-		this.coordY = coordY;
-		this.address = address;
-		this.width = width;
-		this.height = height;
-		this.imageResource = image;
-		this.aliases = aliases;
-	}
-
-	public Building(String name, double coordX, double coordY, String address,
-			int width, int height, String image, String aliases,
-			ForeignCollection<Room> rooms, ForeignCollection<Unit> units) {
-		this.name = name;
-		this.coordX = coordX;
-		this.coordY = coordY;
-		this.address = address;
-		this.width = width;
-		this.height = height;
-		this.imageResource = image;
-		this.aliases = aliases;
-		this.rooms = rooms;
-		this.units = units;
-	}
-
 	public String getAliases() {
 		return aliases;
 	}
@@ -186,6 +155,16 @@ public class Building implements Nameable, Imageable, WithCoordinates {
 		this.markerImageResource = markerImageResource;
 	}
 
+
+	public ForeignCollection<Floor> getFloors() {
+		return floors;
+	}
+
+	public void setFloors(ForeignCollection<Floor> floors) {
+		this.floors = floors;
+	}
+	
+	
 	public Building(String name, double coordX, double coordY, String address,
 			int width, int height, String aliases, String imageResource,
 			String markerImageResource) {
@@ -204,13 +183,8 @@ public class Building implements Nameable, Imageable, WithCoordinates {
 		this.coordX = coordX;
 		this.coordY = coordY;
 	}
-
-	public ForeignCollection<Floor> getFloors() {
-		return floors;
+	
+	public Building() {
+      // nie wyrzucac!
 	}
-
-	public void setFloors(ForeignCollection<Floor> floors) {
-		this.floors = floors;
-	}
-
 }

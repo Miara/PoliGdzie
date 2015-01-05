@@ -52,6 +52,9 @@ public class RouteProvider implements Constants, WithDrawableId  {
 
 	static final LatLng LOCATION_PIOTROWO = new LatLng(52.4022703, 16.9495847);
 
+	
+	//TODO: dostosowac nazwe 
+	
 	protected RouteProvider() {
 		// konstruktor zas³aniaj¹cy domyœlny publiczny konstruktor
 		markers = new ArrayList<Marker>();
@@ -64,7 +67,7 @@ public class RouteProvider implements Constants, WithDrawableId  {
 		}
 		return instance;
 	}
-
+//TODO: wyciagnac funkcje z wspolnego fragment kodu
 	public GoogleMap getMapWithRoute(GoogleMap map, DatabaseHelper dbHelper) {
 
 		this.dbHelper = dbHelper;
@@ -120,7 +123,7 @@ public class RouteProvider implements Constants, WithDrawableId  {
 	}
 
 	private String getMapsApiDirectionsUrl(GoogleMap map) {
-
+		//TODO: refaktor nazw
 		HashMap<String, Double> toCoords = new HashMap<String, Double>();
 		HashMap<String, Double> fromCoords = new HashMap<String, Double>();
 
@@ -129,8 +132,6 @@ public class RouteProvider implements Constants, WithDrawableId  {
 		}
 
 		if (start == null) {
-			
-			
 			return null;
 		}
 
