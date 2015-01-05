@@ -2,35 +2,29 @@ package com.poligdzie.listeners;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+
+import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.widget.AutoCompleteTextView;
 
 import com.example.poligdzie.R;
 import com.poligdzie.adapters.AutocompleteCustomAdapter;
+import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 
-import android.content.Context;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
-
-public class ContextSearchTextWatcher implements TextWatcher, Constants
+public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
+																TextWatcher,
+																Constants
 {
 
 	private AutoCompleteTextView	input;
-	private DatabaseHelper			dbHelper;
 	private List<Building>			buildings;
 	private List<Unit>				units;
 	private List<Room>				rooms;

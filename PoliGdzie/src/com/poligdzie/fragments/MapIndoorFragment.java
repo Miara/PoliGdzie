@@ -1,16 +1,14 @@
 package com.poligdzie.fragments;
 
-import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 
-import com.example.poligdzie.R;
+import com.poligdzie.base.PoliGdzieMapFragment;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.widgets.BuildingImageView;
 
@@ -36,7 +34,8 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 									// memory, the Bitmap can be cleared
 
 		Bitmap bmp = BitmapFactory.decodeResource(getResources(),
-				this.drawableId, options);
+				this.getDrawableId(this.drawableId, this.getActivity()),
+				options);
 
 		buildingImage.setBitmap(bmp);
 
@@ -64,7 +63,7 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 		this.floorId = floorId;
 	}
 
-	public MapIndoorFragment(int drawableId, String name, String viewTag,
+	public MapIndoorFragment(String drawableId, String name, String viewTag,
 			int floorId)
 	{
 		super(drawableId, name, viewTag);

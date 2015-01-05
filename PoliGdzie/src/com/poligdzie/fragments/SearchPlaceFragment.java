@@ -2,7 +2,6 @@ package com.poligdzie.fragments;
 
 import java.util.List;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -21,12 +20,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.poligdzie.base.PoliGdzieBaseFragment;
 import com.poligdzie.callbacks.MarkerAnimationFinishCallback;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.interfaces.WithCoordinates;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
-import com.poligdzie.singletons.RouteProvider;
+import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.tasks.AnimationClosureChecker;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
@@ -89,7 +89,7 @@ public class SearchPlaceFragment extends PoliGdzieBaseFragment
 				LatLng pos = new LatLng(((WithCoordinates) object).getCoordX(),
 						((WithCoordinates) object).getCoordY());
 
-				RouteProvider provider = RouteProvider.getInstance();
+				MapDrawingProvider provider = MapDrawingProvider.getInstance();
 				List<Marker> markers = provider.getMarkers();
 
 				for (Marker m : markers)

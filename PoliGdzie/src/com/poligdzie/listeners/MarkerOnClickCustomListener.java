@@ -7,28 +7,29 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.model.Marker;
+import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.callbacks.MarkerAnimationFinishCallback;
 import com.poligdzie.fragments.BuildingInfoFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
 import com.poligdzie.helpers.DatabaseHelper;
-import com.poligdzie.singletons.RouteProvider;
+import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.tasks.AnimationClosureChecker;
 
-public class MarkerOnClickCustomListener implements OnMarkerClickListener
+public class MarkerOnClickCustomListener extends PoliGdzieBaseClass implements
+																	OnMarkerClickListener
 {
 
 	private MapOutdoorFragment		mapOutdoorFragment;
 	private BuildingInfoFragment	buildingInfoFragment;
 	private GoogleMap				map;
-	private RouteProvider			routeProvider;
-	private DatabaseHelper			dbHelper;
+	private MapDrawingProvider		drawingProvider;
 
 	public MarkerOnClickCustomListener(MapOutdoorFragment fragment,
 			GoogleMap map, DatabaseHelper dbHelper)
 	{
 		this.mapOutdoorFragment = fragment;
 		this.map = map;
-		routeProvider = RouteProvider.getInstance();
+		drawingProvider = MapDrawingProvider.getInstance();
 		this.dbHelper = dbHelper;
 	}
 
@@ -79,7 +80,7 @@ public class MarkerOnClickCustomListener implements OnMarkerClickListener
 	private void clearFragments()
 	{
 		Fragment tempFragment = new Fragment();
-		for (Marker m : routeProvider.getMarkers())
+		for (Marker m : drawingProvider.getMarkers())
 		{
 			tempFragment = (BuildingInfoFragment) mapOutdoorFragment
 					.getFragmentManager().findFragmentByTag(m.getId());

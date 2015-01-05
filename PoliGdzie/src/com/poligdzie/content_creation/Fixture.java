@@ -1,6 +1,5 @@
 package com.poligdzie.content_creation;
 
-import com.example.poligdzie.R;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Floor;
@@ -46,14 +45,14 @@ public class Fixture
 		Room dziekanat = new Room("503", "Dziekanat", RoomFunctions.STAFF, 15,
 				30, 5, "pani kasia", bm);
 
-		Floor cw0p = new Floor(0, R.drawable.cw_test_parter,
+		Floor cw0p = new Floor(0, "cw_test_parter",
 				"Centrum wyk³adowe - parter", "cw0p", cw);
-		Floor cw1p = new Floor(1, R.drawable.cw_test_parter,
+		Floor cw1p = new Floor(1, "cw_test_parter",
 				"Centrum wyk³adowe - pierwsze piêtro", "cw1p", cw);
 
-		Floor el0p = new Floor(0, R.drawable.elektryk_parter,
+		Floor el0p = new Floor(0, "elektryk_parter",
 				"Budynek elektryczny - parter", "el0p", elektryk);
-		Floor el1p = new Floor(1, R.drawable.elektryk_pietro,
+		Floor el1p = new Floor(1, "elektryk_pietro",
 				"Budynek elektryczny - pierwsze piêtro", "el1p", elektryk);
 
 		creator.add(cw0p);

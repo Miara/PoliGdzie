@@ -2,9 +2,13 @@ package com.poligdzie.persistence;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import com.poligdzie.base.PoliGdzieBaseClass;
+import com.poligdzie.interfaces.Nameable;
+import com.poligdzie.interfaces.WithDrawableId;
 
 @DatabaseTable(tableName = "floor")
-public class Floor
+public class Floor extends PoliGdzieBaseClass implements Nameable,
+												WithDrawableId
 {
 	@DatabaseField(generatedId = true)
 	private int			id;
@@ -12,9 +16,8 @@ public class Floor
 	@DatabaseField
 	private int			number;
 
-	// TODO: zmienic na string
 	@DatabaseField
-	private int			drawableId;
+	private String		drawableId;
 
 	@DatabaseField
 	private String		name;
@@ -35,12 +38,12 @@ public class Floor
 		this.id = id;
 	}
 
-	public int getDrawableId()
+	public String getDrawableId()
 	{
 		return drawableId;
 	}
 
-	public void setDrawableId(int drawableId)
+	public void setDrawableId(String drawableId)
 	{
 		this.drawableId = drawableId;
 	}
@@ -87,10 +90,10 @@ public class Floor
 
 	public Floor()
 	{
-		//nie wyrzucac!
+		// nie wyrzucac!
 	}
 
-	public Floor(int number, int drawableId, String name, String tag,
+	public Floor(int number, String drawableId, String name, String tag,
 			Building building)
 	{
 		this.number = number;

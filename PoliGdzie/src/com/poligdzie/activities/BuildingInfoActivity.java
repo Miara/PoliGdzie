@@ -1,14 +1,11 @@
 package com.poligdzie.activities;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.TextView;
 
 import com.example.poligdzie.R;
+import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.interfaces.Constants;
 
 public class BuildingInfoActivity extends PoliGdzieBaseActivity

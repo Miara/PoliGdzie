@@ -1,25 +1,27 @@
-package com.poligdzie.activities;
+package com.poligdzie.base;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
+import com.poligdzie.interfaces.WithDrawableId;
+import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.singletons.MapFragmentProvider;
-import com.poligdzie.singletons.RouteProvider;
 
 public abstract class PoliGdzieBaseActivity extends FragmentActivity implements
-																	Constants
+																	Constants,
+																	WithDrawableId
 {
 
 	protected DatabaseHelper		dbHelper;
 	protected String				lastTag;
 	protected MapFragmentProvider	mapProvider;
-	protected RouteProvider			routeProvider;
+	protected MapDrawingProvider	drawingProvider;
 
 	@Override
 	protected void onDestroy()
@@ -77,5 +79,13 @@ public abstract class PoliGdzieBaseActivity extends FragmentActivity implements
 	{
 		this.dbHelper = new DatabaseHelper(this, DATABASE_NAME, null,
 				DATABASE_VERSION);
+	}
+
+	@Override
+	public int getDrawableId(String name, Context context)
+	{
+		int resId = context.getResources().getIdentifier(name, "drawable",
+				context.getPackageName());
+		return resId;
 	}
 }

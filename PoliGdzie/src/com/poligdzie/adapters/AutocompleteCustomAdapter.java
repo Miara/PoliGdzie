@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.poligdzie.R;
-import com.poligdzie.interfaces.Constants;
 import com.poligdzie.interfaces.Imageable;
 import com.poligdzie.interfaces.Nameable;
 import com.poligdzie.interfaces.WithDrawableId;

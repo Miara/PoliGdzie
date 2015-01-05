@@ -31,6 +31,6 @@ public interface Constants
 	public int		MARGIN_TOP				= 10;
 
 	// do braku rysowania bitmapy
-	public int		NO_BITMAP				= 0;
+	public String	NO_BITMAP				= "0";
 
 }

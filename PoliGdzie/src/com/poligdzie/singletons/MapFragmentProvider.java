@@ -7,18 +7,18 @@ import android.content.Context;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.poligdzie.fragments.MapOutdoorFragment;
-import com.poligdzie.fragments.PoliGdzieMapFragment;
-import com.poligdzie.helpers.DatabaseHelper;
+import com.poligdzie.base.PoliGdzieBaseClass;
+import com.poligdzie.base.PoliGdzieMapFragment;
 import com.poligdzie.helpers.FragmentMapHelper;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.interfaces.WithDrawableId;
 
-public class MapFragmentProvider implements Constants, WithDrawableId
+public class MapFragmentProvider extends PoliGdzieBaseClass implements
+															Constants,
+															WithDrawableId
 {
 
 	private static MapFragmentProvider	instance			= null;
-	private DatabaseHelper				dbHelper;
 	private PolylineOptions				options;
 	private static Context				context;
 

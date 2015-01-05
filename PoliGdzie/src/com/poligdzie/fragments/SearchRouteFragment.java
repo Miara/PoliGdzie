@@ -1,6 +1,5 @@
 package com.poligdzie.fragments;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -18,12 +17,11 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.poligdzie.helpers.DatabaseHelper;
-import com.poligdzie.interfaces.Constants;
+import com.poligdzie.base.PoliGdzieBaseFragment;
 import com.poligdzie.interfaces.Nameable;
 import com.poligdzie.interfaces.WithCoordinates;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
-import com.poligdzie.singletons.RouteProvider;
+import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
 public class SearchRouteFragment extends PoliGdzieBaseFragment implements
@@ -63,7 +61,7 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 				this.getActivity());
 		goalPosition.addTextChangedListener(goalWatcher);
 
-		RouteProvider provider = RouteProvider.getInstance();
+		MapDrawingProvider provider = MapDrawingProvider.getInstance();
 
 		if (provider.getStart() != null)
 		{
@@ -90,15 +88,15 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 						.getApplicationContext());
 
 		Editor editor = prefs.edit();
-		routeProvider = RouteProvider.getInstance();
+		drawingProvider = MapDrawingProvider.getInstance();
 
 		if (v == searchButton)
 		{
 			if (startPosition.getText().length() != 0)
-				routeProvider.setStart(startPosition.getAdapter().getItem(0));
+				drawingProvider.setStart(startPosition.getAdapter().getItem(0));
 
 			if (goalPosition.getText().length() != 0)
-				routeProvider.setGoal(goalPosition.getAdapter().getItem(0));
+				drawingProvider.setGoal(goalPosition.getAdapter().getItem(0));
 
 			goalPosition.clearFocus();
 			startPosition.clearFocus();
@@ -120,13 +118,13 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 					.getFragmentManager()
 					.findFragmentById(R.id.map_outdoor_googleMap)).getMap();
 			LatLng zoom = new LatLng(
-					((WithCoordinates) routeProvider.getStart()).getCoordX(),
-					((WithCoordinates) routeProvider.getStart()).getCoordY());
+					((WithCoordinates) drawingProvider.getStart()).getCoordX(),
+					((WithCoordinates) drawingProvider.getStart()).getCoordY());
 			map.animateCamera(CameraUpdateFactory.newLatLngZoom(zoom, 17));
 
-			routeProvider.setDrawRoute(true);
+			drawingProvider.setDrawRoute(true);
 
-			routeProvider.drawRoute();
+			drawingProvider.drawRoute();
 		}
 
 		editor.commit();

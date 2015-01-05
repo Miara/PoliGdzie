@@ -1,6 +1,7 @@
-package com.poligdzie.fragments;
+package com.poligdzie.base;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,14 +11,17 @@ import android.view.ViewGroup;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.interfaces.Nameable;
+import com.poligdzie.interfaces.WithDrawableId;
+import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.singletons.MapFragmentProvider;
-import com.poligdzie.singletons.RouteProvider;
 
 public abstract class PoliGdzieBaseFragment extends Fragment implements
-															Constants, Nameable
+															Constants,
+															Nameable,
+															WithDrawableId
 {
 	protected DatabaseHelper		dbHelper;
-	protected RouteProvider			routeProvider;
+	protected MapDrawingProvider	drawingProvider;
 	protected MapFragmentProvider	mapProvider;
 	protected String				name;
 
@@ -39,7 +43,7 @@ public abstract class PoliGdzieBaseFragment extends Fragment implements
 	{
 		dbHelper = new DatabaseHelper(this.getActivity(), DATABASE_NAME, null,
 				DATABASE_VERSION);
-		routeProvider = RouteProvider.getInstance();
+		drawingProvider = MapDrawingProvider.getInstance();
 		mapProvider = MapFragmentProvider.getInstance();
 	}
 
@@ -56,4 +60,11 @@ public abstract class PoliGdzieBaseFragment extends Fragment implements
 		return name;
 	}
 
+	@Override
+	public int getDrawableId(String name, Context context)
+	{
+		int resId = context.getResources().getIdentifier(name, "drawable",
+				context.getPackageName());
+		return resId;
+	}
 }

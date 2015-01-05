@@ -1,7 +1,5 @@
 package com.poligdzie.widgets;
 
-import com.poligdzie.interfaces.Constants;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -12,6 +10,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.widget.ImageView;
+
+import com.poligdzie.interfaces.Constants;
 
 public class BuildingImageView extends ImageView implements Constants
 {
@@ -324,22 +324,28 @@ public class BuildingImageView extends ImageView implements Constants
 
 		int width;
 		int height;
-// TODO: dodac nawiasy klamrowe
-		
+
 		if (widthMode == MeasureSpec.EXACTLY)
+		{
 			width = widthSize;
-		else if (widthMode == MeasureSpec.AT_MOST)
+		} else if (widthMode == MeasureSpec.AT_MOST)
+		{
 			width = Math.min(desiredWidth, widthSize);
-		else
+		} else
+		{
 			width = desiredWidth;
+		}
 
 		if (heightMode == MeasureSpec.EXACTLY)
+		{
 			height = heightSize;
-		else if (heightMode == MeasureSpec.AT_MOST)
+		} else if (heightMode == MeasureSpec.AT_MOST)
+		{
 			height = Math.min(desiredHeight, heightSize);
-		else
+		} else
+		{
 			height = desiredHeight;
-
+		}
 		setMeasuredDimension(width, height);
 	}
 

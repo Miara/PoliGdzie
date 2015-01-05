@@ -1,6 +1,5 @@
 package com.poligdzie.fragments;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +10,10 @@ import com.example.poligdzie.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.poligdzie.helpers.DatabaseHelper;
+import com.poligdzie.base.PoliGdzieMapFragment;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.listeners.MarkerOnClickCustomListener;
-import com.poligdzie.singletons.MapFragmentProvider;
-import com.poligdzie.singletons.RouteProvider;
+import com.poligdzie.singletons.MapDrawingProvider;
 
 public class MapOutdoorFragment extends PoliGdzieMapFragment implements
 															OnClickListener,
@@ -44,10 +42,10 @@ public class MapOutdoorFragment extends PoliGdzieMapFragment implements
 		searchRouteFragment = (SearchRouteFragment) getActivity()
 				.getFragmentManager().findFragmentById(R.id.search_route_frag);
 
-		routeProvider = RouteProvider.getInstance();
-		routeProvider.setContext(this.getActivity());
+		drawingProvider = MapDrawingProvider.getInstance();
+		drawingProvider.setContext(this.getActivity());
 
-		map = routeProvider.getMapWithRoute(map, dbHelper);
+		map = drawingProvider.getMapWithRoute(map, dbHelper);
 		map.setOnMarkerClickListener(new MarkerOnClickCustomListener(this, map,
 				dbHelper));
 		return rootView;
@@ -64,7 +62,7 @@ public class MapOutdoorFragment extends PoliGdzieMapFragment implements
 		super();
 	}
 
-	public MapOutdoorFragment(int drawableId, String name, String viewTag)
+	public MapOutdoorFragment(String drawableId, String name, String viewTag)
 	{
 		super(drawableId, name, viewTag);
 	}

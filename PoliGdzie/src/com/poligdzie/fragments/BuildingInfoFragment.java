@@ -18,12 +18,13 @@ import com.example.poligdzie.R;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.poligdzie.activities.BuildingInfoActivity;
-import com.poligdzie.activities.PoliGdzieBaseActivity;
+import com.poligdzie.base.PoliGdzieBaseActivity;
+import com.poligdzie.base.PoliGdzieBaseFragment;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Floor;
-import com.poligdzie.singletons.RouteProvider;
+import com.poligdzie.singletons.MapDrawingProvider;
 
 public class BuildingInfoFragment extends PoliGdzieBaseFragment
 																implements
@@ -91,13 +92,13 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment
 	public void onClick(View v)
 	{
 
-		routeProvider = RouteProvider.getInstance();
+		drawingProvider = MapDrawingProvider.getInstance();
 
 		if (v == startButton)
 		{
 			switchPlaceSearchingToRouteSearching();
 
-			routeProvider.setStart(currentBuildingOnMarker);
+			drawingProvider.setStart(currentBuildingOnMarker);
 			searchRouteFragment.setStartPosition(currentBuildingOnMarker
 					.getName());
 
@@ -107,7 +108,7 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment
 		{
 			switchPlaceSearchingToRouteSearching();
 
-			routeProvider.setGoal(currentBuildingOnMarker);
+			drawingProvider.setGoal(currentBuildingOnMarker);
 			searchRouteFragment.setGoalPosition(currentBuildingOnMarker
 					.getName());
 		}

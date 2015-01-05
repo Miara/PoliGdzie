@@ -1,7 +1,5 @@
 package com.poligdzie.callbacks;
 
-import android.util.Log;
-
 import com.google.android.gms.maps.GoogleMap.CancelableCallback;
 
 public class MarkerAnimationFinishCallback implements CancelableCallback

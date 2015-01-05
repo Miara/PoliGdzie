@@ -2,7 +2,7 @@ package com.poligdzie.helpers;
 
 import java.util.HashMap;
 
-import com.poligdzie.fragments.PoliGdzieMapFragment;
+import com.poligdzie.base.PoliGdzieMapFragment;
 
 public class FragmentMapHelper
 {

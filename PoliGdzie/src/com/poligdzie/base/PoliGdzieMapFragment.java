@@ -1,15 +1,14 @@
-package com.poligdzie.fragments;
+package com.poligdzie.base;
 
 import com.poligdzie.singletons.MapFragmentProvider;
-import com.poligdzie.singletons.RouteProvider;
 
 public class PoliGdzieMapFragment extends PoliGdzieBaseFragment
 {
-	// TODO: zmienic na string
-	protected int		drawableId;
+
+	protected String	drawableId;
 	protected String	viewTag;
 
-	public PoliGdzieMapFragment(int drawableId, String name, String viewTag)
+	public PoliGdzieMapFragment(String drawableId, String name, String viewTag)
 	{
 		this();
 		this.drawableId = drawableId;

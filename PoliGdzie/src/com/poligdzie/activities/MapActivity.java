@@ -1,8 +1,6 @@
 package com.poligdzie.activities;
 
-import android.app.ActivityManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -10,9 +8,10 @@ import android.widget.TextView;
 
 import com.example.poligdzie.R;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.poligdzie.base.PoliGdzieBaseActivity;
+import com.poligdzie.base.PoliGdzieMapFragment;
 import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
-import com.poligdzie.fragments.PoliGdzieMapFragment;
 import com.poligdzie.singletons.MapFragmentProvider;
 
 public class MapActivity extends PoliGdzieBaseActivity implements
