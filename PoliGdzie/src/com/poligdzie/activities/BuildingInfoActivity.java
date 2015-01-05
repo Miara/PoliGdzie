@@ -6,12 +6,9 @@ import android.view.View.OnClickListener;
 
 import com.example.poligdzie.R;
 import com.poligdzie.base.PoliGdzieBaseActivity;
-import com.poligdzie.interfaces.Constants;
 
-public class BuildingInfoActivity extends PoliGdzieBaseActivity
-																implements
-																OnClickListener,
-																Constants
+public class BuildingInfoActivity extends PoliGdzieBaseActivity implements
+																OnClickListener
 {
 
 	@Override

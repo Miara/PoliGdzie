@@ -9,12 +9,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import com.poligdzie.base.PoliGdzieMapFragment;
-import com.poligdzie.interfaces.Constants;
 import com.poligdzie.widgets.BuildingImageView;
 
 public class MapIndoorFragment extends PoliGdzieMapFragment implements
-															OnClickListener,
-															Constants
+															OnClickListener
 {
 
 	private BuildingImageView	buildingImage;

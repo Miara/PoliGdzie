@@ -4,11 +4,9 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.interfaces.Nameable;
-import com.poligdzie.interfaces.WithDrawableId;
 
 @DatabaseTable(tableName = "floor")
-public class Floor extends PoliGdzieBaseClass implements Nameable,
-												WithDrawableId
+public class Floor extends PoliGdzieBaseClass implements Nameable
 {
 	@DatabaseField(generatedId = true)
 	private int			id;

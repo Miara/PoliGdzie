@@ -21,15 +21,12 @@ import com.poligdzie.activities.BuildingInfoActivity;
 import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.base.PoliGdzieBaseFragment;
 import com.poligdzie.helpers.DatabaseHelper;
-import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Floor;
 import com.poligdzie.singletons.MapDrawingProvider;
 
-public class BuildingInfoFragment extends PoliGdzieBaseFragment
-																implements
-																OnClickListener,
-																Constants
+public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
+																OnClickListener
 {
 
 	private int					posX;

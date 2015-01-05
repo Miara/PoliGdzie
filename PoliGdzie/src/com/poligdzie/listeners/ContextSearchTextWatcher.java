@@ -14,14 +14,12 @@ import com.example.poligdzie.R;
 import com.poligdzie.adapters.AutocompleteCustomAdapter;
 import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.helpers.DatabaseHelper;
-import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 
 public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
-																TextWatcher,
-																Constants
+																TextWatcher
 {
 
 	private AutoCompleteTextView	input;

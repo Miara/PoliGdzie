@@ -18,16 +18,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.helpers.DatabaseHelper;
-import com.poligdzie.interfaces.Constants;
-import com.poligdzie.interfaces.WithDrawableId;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 import com.poligdzie.tasks.DownloadDirectionsTask;
 
-public class MapDrawingProvider extends PoliGdzieBaseClass implements
-															Constants,
-															WithDrawableId
+public class MapDrawingProvider extends PoliGdzieBaseClass
 {
 
 	private static MapDrawingProvider	instance			= null;

@@ -23,17 +23,14 @@ import com.google.android.gms.maps.model.Marker;
 import com.poligdzie.base.PoliGdzieBaseFragment;
 import com.poligdzie.callbacks.MarkerAnimationFinishCallback;
 import com.poligdzie.helpers.DatabaseHelper;
-import com.poligdzie.interfaces.Constants;
 import com.poligdzie.interfaces.WithCoordinates;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
 import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.tasks.AnimationClosureChecker;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
-public class SearchPlaceFragment extends PoliGdzieBaseFragment
-																implements
-																OnClickListener,
-																Constants
+public class SearchPlaceFragment extends PoliGdzieBaseFragment implements
+																OnClickListener
 {
 
 	private Button						searchButton;

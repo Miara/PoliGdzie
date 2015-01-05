@@ -11,13 +11,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.base.PoliGdzieMapFragment;
-import com.poligdzie.interfaces.Constants;
 import com.poligdzie.listeners.MarkerOnClickCustomListener;
 import com.poligdzie.singletons.MapDrawingProvider;
 
 public class MapOutdoorFragment extends PoliGdzieMapFragment implements
-															OnClickListener,
-															Constants
+															OnClickListener
 {
 
 	GoogleMap					map;

@@ -3,9 +3,10 @@ package com.poligdzie.base;
 import android.content.Context;
 
 import com.poligdzie.helpers.DatabaseHelper;
+import com.poligdzie.interfaces.Constants;
 import com.poligdzie.interfaces.WithDrawableId;
 
-public abstract class PoliGdzieBaseClass implements WithDrawableId
+public abstract class PoliGdzieBaseClass implements WithDrawableId, Constants
 {
 	protected DatabaseHelper	dbHelper;
 

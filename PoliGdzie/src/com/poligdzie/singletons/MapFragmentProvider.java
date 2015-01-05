@@ -10,12 +10,8 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.base.PoliGdzieMapFragment;
 import com.poligdzie.helpers.FragmentMapHelper;
-import com.poligdzie.interfaces.Constants;
-import com.poligdzie.interfaces.WithDrawableId;
 
-public class MapFragmentProvider extends PoliGdzieBaseClass implements
-															Constants,
-															WithDrawableId
+public class MapFragmentProvider extends PoliGdzieBaseClass
 {
 
 	private static MapFragmentProvider	instance			= null;
