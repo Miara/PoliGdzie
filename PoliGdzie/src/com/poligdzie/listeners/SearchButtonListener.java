@@ -3,10 +3,10 @@ package com.poligdzie.listeners;
 import java.util.List;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.example.poligdzie.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -167,29 +167,37 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 				.getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(searchPosition.getWindowToken(), 0);
 
-		Object object = searchPosition.getAdapter().getItem(0);
-		if (object != null)
+		if (!searchPosition.getAdapter().isEmpty())
 		{
-			if (object instanceof Building)
+			Object object = searchPosition.getAdapter().getItem(0);
+			if (object != null)
 			{
-				showPlaceOutdoor(object);
-
-			} else if (object instanceof Room)
-			{
-				showPlaceIndoor(object);
-
-			} else if (object instanceof Unit)
-			{
-				Unit unit = (Unit) object;
-				if (unit.getOffice() != null)
+				if (object instanceof Building)
 				{
-					showPlaceIndoor(unit);
+					showPlaceOutdoor(object);
 
-				} else
+				} else if (object instanceof Room)
 				{
-					showPlaceOutdoor(unit);
+					showPlaceIndoor(object);
+
+				} else if (object instanceof Unit)
+				{
+					Unit unit = (Unit) object;
+					if (unit.getOffice() != null)
+					{
+						showPlaceIndoor(unit);
+
+					} else
+					{
+						showPlaceOutdoor(unit);
+					}
 				}
 			}
+		} else
+		{
+			Toast toast = Toast.makeText(fragment.getActivity(),
+					"Nie znaleziono nic!", Toast.LENGTH_SHORT);
+			toast.show();
 		}
 	}
 
