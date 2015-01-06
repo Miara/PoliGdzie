@@ -83,11 +83,7 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 	@Override
 	public void onClick(View v)
 	{
-		SharedPreferences prefs = PreferenceManager
-				.getDefaultSharedPreferences(getActivity()
-						.getApplicationContext());
 
-		Editor editor = prefs.edit();
 		drawingProvider = MapDrawingProvider.getInstance();
 
 		if (v == searchButton)
@@ -126,8 +122,6 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 
 			drawingProvider.drawRoute();
 		}
-
-		editor.commit();
 
 	}
 

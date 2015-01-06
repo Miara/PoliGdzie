@@ -27,6 +27,7 @@ import com.poligdzie.persistence.Floor;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 import com.poligdzie.singletons.MapDrawingProvider;
+import com.poligdzie.singletons.MapFragmentProvider;
 import com.poligdzie.tasks.AnimationClosureChecker;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
@@ -155,6 +156,9 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 			map = ((MapFragment) fragment.getActivity().getFragmentManager()
 					.findFragmentById(R.id.map_outdoor_googleMap)).getMap();
 		}
+		MapFragmentProvider mapProvider = MapFragmentProvider.getInstance();
+		mapProvider.clearFragments();
+		
 		searchPosition.clearFocus();
 		InputMethodManager imm = (InputMethodManager) fragment.getActivity()
 				.getSystemService(Context.INPUT_METHOD_SERVICE);
