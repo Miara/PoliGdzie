@@ -26,6 +26,9 @@ public class Unit extends PoliGdzieBaseClass implements Nameable
 	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "building_id")
 	private Building	building;
 
+	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "room_id")
+	private Room		office;
+
 	public int getId()
 	{
 		return id;
@@ -86,6 +89,16 @@ public class Unit extends PoliGdzieBaseClass implements Nameable
 		this.aliases = aliases;
 	}
 
+	public Room getOffice()
+	{
+		return office;
+	}
+
+	public void setOffice(Room office)
+	{
+		this.office = office;
+	}
+
 	public Unit(String name, String www, UnitTypes type, String aliases,
 			Building building)
 	{
@@ -99,5 +112,16 @@ public class Unit extends PoliGdzieBaseClass implements Nameable
 	public Unit()
 	{
 		// nie wyrzucac!
+	}
+
+	public Unit(String name, String www, UnitTypes type, String aliases,
+			Building building, Room office)
+	{
+		this.name = name;
+		this.www = www;
+		this.type = type;
+		this.aliases = aliases;
+		this.building = building;
+		this.office = office;
 	}
 }

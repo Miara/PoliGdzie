@@ -18,16 +18,16 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 														OnClickListener
 {
 
-	public PolylineOptions	options;
+	public PolylineOptions		options;
 
-	MapFragmentProvider		mapProvider;
+	MapFragmentProvider			mapProvider;
 
-	private TextView		currentText;
-	private Button			previous;
-	private Button			next;
+	private TextView			currentText;
+	private Button				previous;
+	private Button				next;
 
-	MapOutdoorFragment		outdoorMap;
-	MapIndoorFragment		indoorMap;
+	private MapOutdoorFragment	outdoorMap;
+	private MapIndoorFragment	indoorMap;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -55,6 +55,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 			next.setVisibility(View.GONE);
 
 		currentText = (TextView) findViewById(R.id.current_map);
+
 		currentText.setText(mapProvider.getCurrentFragment().getName());
 
 	}

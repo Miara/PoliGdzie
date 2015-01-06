@@ -26,8 +26,8 @@ public class Room extends PoliGdzieBaseClass implements Nameable
 	@DatabaseField
 	private int				coordY;
 
-	@DatabaseField
-	private int				floorNr;
+	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "floor_id")
+	private Floor			floor;
 
 	@DatabaseField
 	private String			aliases;
@@ -95,14 +95,14 @@ public class Room extends PoliGdzieBaseClass implements Nameable
 		this.coordY = coordY;
 	}
 
-	public int getFloorNr()
+	public Floor getFloor()
 	{
-		return floorNr;
+		return floor;
 	}
 
-	public void setFloorNr(int floorNr)
+	public void setFloor(Floor floor)
 	{
-		this.floorNr = floorNr;
+		this.floor = floor;
 	}
 
 	public String getAliases()
@@ -126,14 +126,14 @@ public class Room extends PoliGdzieBaseClass implements Nameable
 	}
 
 	public Room(String number, String name, RoomFunctions function, int coordX,
-			int coordY, int floorNr, String aliases, Building building)
+			int coordY, Floor floor, String aliases, Building building)
 	{
 		this.number = number;
 		this.name = name;
 		this.function = function;
 		this.coordX = coordX;
 		this.coordY = coordY;
-		this.floorNr = floorNr;
+		this.floor = floor;
 		this.aliases = aliases;
 		this.building = building;
 	}

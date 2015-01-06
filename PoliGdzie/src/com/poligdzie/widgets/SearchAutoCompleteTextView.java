@@ -6,8 +6,6 @@ import android.widget.AutoCompleteTextView;
 
 import com.poligdzie.interfaces.Nameable;
 
-//TODO: sprawdzic czy to potrzebne
-
 public class SearchAutoCompleteTextView extends AutoCompleteTextView
 {
 
