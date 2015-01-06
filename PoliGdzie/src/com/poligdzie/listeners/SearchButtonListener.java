@@ -99,16 +99,14 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 		return null;
 	}
 
-	private void indoorRoomAction(Object object)
+	private void showPlaceIndoor(Object object)
 	{
 		for (Floor f : getFloors(object))
 		{
 			MapIndoorFragment indoorMap = new MapIndoorFragment(
 					f.getDrawableId(), f.getName(), f.getTag(), f.getNumber());
-			Log.d("POLIGDZIE", f.getTag());
 			if (f.getTag().equals(getTag(object)))
 			{
-				Log.d("POLIGDZIE", f.getTag());
 				((PoliGdzieBaseActivity) fragment.getActivity())
 						.switchFragment(R.id.map_container, indoorMap,
 								indoorMap.getViewTag());
@@ -156,9 +154,14 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 			map = ((MapFragment) fragment.getActivity().getFragmentManager()
 					.findFragmentById(R.id.map_outdoor_googleMap)).getMap();
 		}
+		if (outdoorMap == null)
+		{
+			outdoorMap = (MapOutdoorFragment) fragment.getFragmentManager()
+					.findFragmentByTag(OUTDOOR_MAP_TAG);
+		}
 		MapFragmentProvider mapProvider = MapFragmentProvider.getInstance();
 		mapProvider.clearFragments();
-		
+
 		searchPosition.clearFocus();
 		InputMethodManager imm = (InputMethodManager) fragment.getActivity()
 				.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -173,14 +176,14 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 
 			} else if (object instanceof Room)
 			{
-				indoorRoomAction(object);
+				showPlaceIndoor(object);
 
 			} else if (object instanceof Unit)
 			{
 				Unit unit = (Unit) object;
 				if (unit.getOffice() != null)
 				{
-					indoorRoomAction(unit);
+					showPlaceIndoor(unit);
 
 				} else
 				{

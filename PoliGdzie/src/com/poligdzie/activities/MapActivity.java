@@ -39,6 +39,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 
 		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna",
 				OUTDOOR_MAP_TAG);
+		
 
 		switchFragment(R.id.map_container, outdoorMap, outdoorMap.getViewTag());
 

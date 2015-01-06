@@ -30,6 +30,8 @@ public class SearchPlaceFragment extends PoliGdzieBaseFragment
 		View rootView = inflater.inflate(R.layout.search_place_fragment,
 				container, false);
 
+		
+		
 		searchPosition = (SearchAutoCompleteTextView) rootView
 				.findViewById(R.id.search_point_text_edit);
 		searchWatcher = new ContextSearchTextWatcher(searchPosition,
