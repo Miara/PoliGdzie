@@ -1,8 +1,12 @@
 package com.poligdzie.widgets;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -40,6 +44,7 @@ public class BuildingImageView extends ImageView implements Constants
 
 	private boolean					panEnabled			= true;
 	private boolean					zoomEnabled			= true;
+	ArrayList<Line> 				lines ;
 
 	public BuildingImageView(Context context)
 	{
@@ -63,6 +68,27 @@ public class BuildingImageView extends ImageView implements Constants
 	{
 		mScaleDetector = new ScaleGestureDetector(getContext(),
 				new ScaleListener());
+		lines = new ArrayList<Line>();
+		
+		
+	}
+
+	private void addLine(float x1, float y1, float x2, float y2)
+	{		 	
+			float bitmapWidth = bitmap.getWidth();
+		    float bitmapHeight = bitmap.getHeight();
+		    float originalWidth = 3404;
+		    float originalHeight = 3508;
+		    
+		    
+		    float startX =  x1 * bitmapWidth / originalWidth + mPosX; 
+		    float startY =  y1 * bitmapHeight / originalHeight + mPosY; 
+		    float stopX =  x2 * bitmapWidth / originalWidth + mPosX;
+		    float stopY =  y2 * bitmapHeight / originalHeight + mPosY;
+		    
+		    lines.add(new Line(startX, startY, stopX, stopY));
+
+		
 	}
 
 	public void setBitmap(Bitmap bmp)
@@ -75,6 +101,8 @@ public class BuildingImageView extends ImageView implements Constants
 		bitmap = bmp;
 		mScaleFactor = 1.0f;
 		mPosX = mPosY = 0f;
+		
+
 	}
 
 	public Bitmap getImageBitmap()
@@ -111,7 +139,7 @@ public class BuildingImageView extends ImageView implements Constants
 			super.onDraw(canvas);
 			return;
 		}
-
+		
 		mScaleFactor = Math.max(mScaleFactor, minScaleFactor);
 
 		canvasHeight = canvas.getHeight();
@@ -121,32 +149,53 @@ public class BuildingImageView extends ImageView implements Constants
 		// Log.d(TAG, "mScaleFactor: " + mScaleFactor);
 
 		canvas.save();
-		int maxX, minX, maxY, minY;
-		minX = (int) (((viewWidth / mScaleFactor) - bitmap.getWidth()) / 2);
-		maxX = 0;
+		int minX, maxX, minY, maxY;
+		maxX = (int) (((viewWidth / mScaleFactor) - bitmap.getWidth()) / 2);
+		minX = 0;
 		// How far can we move the image vertically without having a gap between
 		// image and frame?
-		minY = (int) (((viewHeight / mScaleFactor) - bitmap.getHeight()) / 2);
-		maxY = 0;
-		Log.d(TAG, "minX: " + minX + " maxX: " + maxX + " minY: " + minY
-				+ " maxY: " + maxY);
+		maxY = (int) (((viewHeight / mScaleFactor) - bitmap.getHeight()) / 2);
+		minY = 0;
+		Log.d(TAG, "minX: " + maxX + " maxX: " + minX + " minY: " + maxY
+				+ " maxY: " + minY);
 		// Do not go beyond the boundaries of the image
 
-		if (mPosX > maxX)
-			mPosX = maxX;
-		if (mPosX < minX)
+		if (mPosX > minX)
 			mPosX = minX;
+		if (mPosX < maxX)
+			mPosX = maxX;
 
-		if (mPosY > maxY)
-			mPosY = maxY;
-		if (mPosY < minY)
+		if (mPosY > minY)
 			mPosY = minY;
-
+		if (mPosY < maxY)
+			mPosY = maxY;
+		
+		
+		
 		canvas.scale(mScaleFactor, mScaleFactor);
 		canvas.translate(mPosX, mPosY);
+		
+		
 
 		super.onDraw(canvas);
 		canvas.drawBitmap(bitmap, mPosX, mPosY, null);
+		 
+		Paint redPaint = new Paint();
+	    redPaint .setColor(Color.RED);
+	    redPaint.setStrokeWidth(10);
+	    
+	    lines.clear();
+		addLine(857, 2705, 1141, 2477);
+		addLine(1141, 2477, 1717, 3197);
+		addLine(1141, 2477, 2161, 1641);
+		addLine(1141, 2477, 269, 2002);
+		addLine(1717, 3197, 2477, 2589);
+		addLine(2161, 1641, 2445, 1512);
+	   
+	    for (Line l : lines) {
+	        canvas.drawLine(l.startX, l.startY, l.stopX, l.stopY, redPaint);
+	      }
+	
 		canvas.restore(); // clear translation/scaling
 	}
 
@@ -168,6 +217,11 @@ public class BuildingImageView extends ImageView implements Constants
 			{
 				mLastTouchX = ev.getX();
 				mLastTouchY = ev.getY();
+				float d = 1727*viewWidth/bitmap.getWidth();
+				Log.i("Poligdzie","x:"+mLastTouchX+"-y:"+mLastTouchY+"-W:"+viewWidth+"-H:"+viewHeight);
+				Log.i("Poligdzie","y:"+d+"-bitmap:"+bitmap.getWidth()+"-view:"+viewWidth);
+				
+				
 				mActivePointerId = ev.getPointerId(0);
 
 				if ((System.currentTimeMillis() - startTime) > DOUBLE_CLICK_DURATION)
@@ -348,5 +402,15 @@ public class BuildingImageView extends ImageView implements Constants
 		}
 		setMeasuredDimension(width, height);
 	}
+	
+	private class Line {
+		  float startX, startY, stopX, stopY;
+		  public Line(float startX, float startY, float stopX, float stopY) {
+		    this.startX = startX;
+		    this.startY = startY;
+		    this.stopX = stopX;
+		    this.stopY = stopY;
+		  }
+		}
 
 }

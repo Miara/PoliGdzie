@@ -34,7 +34,7 @@ public class BitmapWorkerTask extends AsyncTask<Integer, Void, Bitmap> {
     	Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
         data = params[0];
         BitmapFactory.Options options=new BitmapFactory.Options();
-		options.inSampleSize = 2;
+		//options.inSampleSize = 2;
 		options.inDither=false;                     
 		options.inPurgeable=true;  
 		Log.i("t","1");
