@@ -16,6 +16,7 @@ import android.view.ScaleGestureDetector;
 import android.widget.ImageView;
 
 import com.poligdzie.interfaces.Constants;
+import com.poligdzie.route.Line;
 
 public class BuildingImageView extends ImageView implements Constants
 {
@@ -185,12 +186,31 @@ public class BuildingImageView extends ImageView implements Constants
 	    redPaint.setStrokeWidth(10);
 	    
 	    lines.clear();
-		addLine(857, 2705, 1141, 2477);
-		addLine(1141, 2477, 1717, 3197);
-		addLine(1141, 2477, 2161, 1641);
-		addLine(1141, 2477, 269, 2002);
-		addLine(1717, 3197, 2477, 2589);
-		addLine(2161, 1641, 2445, 1512);
+		addLine(857,2705, 1141,2477);//1 2
+		addLine(1141,2477,1717,3197);//2 3
+		addLine(1141,2477,2161,1641);//2 5
+		addLine(1141,2477,269,2002);//2 8
+		addLine(1717,3197,2477,2589);//3 4
+		
+		addLine(2161,1641,2445,1412);//5 6
+		addLine(2161,1641,1989,1389);//5 14
+		
+		addLine(269,2002,481,1126);//8 9
+		addLine(2445,1412,2613,1276);//6 7
+		addLine(2445,1412,2237,1193);//6 20
+		addLine(1989,1389,1885,1065);//14 13
+		addLine(1989,1389,2237,1193);//14 20
+		addLine(481,1126,1233,605);//9 10
+		addLine(2237,1193,2449,997);//20 19
+		addLine(1885,1065,1677,837);//13 12
+		addLine(1233,605,1401,769);//10 11
+		addLine(1233,605,1481,437);//10 15
+		addLine(2449,997,2053,445);//19 16
+		addLine(2449,997,2761,765);//19 18
+		addLine(1677,837,1401,769);//12 11
+		addLine(1481,437,2053,445);//15 16
+		addLine(2053,445,2505,445);//16 17
+		addLine(2505,445,2761,765);//17 18
 	   
 	    for (Line l : lines) {
 	        canvas.drawLine(l.startX, l.startY, l.stopX, l.stopY, redPaint);
@@ -403,14 +423,6 @@ public class BuildingImageView extends ImageView implements Constants
 		setMeasuredDimension(width, height);
 	}
 	
-	private class Line {
-		  float startX, startY, stopX, stopY;
-		  public Line(float startX, float startY, float stopX, float stopY) {
-		    this.startX = startX;
-		    this.startY = startY;
-		    this.stopX = stopX;
-		    this.stopY = stopY;
-		  }
-		}
+	
 
 }
