@@ -11,10 +11,10 @@ public class SpecialConnection extends PoliGdzieBaseClass
 	private int			id;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "specialPointLower_id")
-	private SpecialPoint	lowerFloor;
+	private NavigationPoint	lowerFloor;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "specialPointUpper_id")
-	private SpecialPoint	upperFloor;
+	private NavigationPoint	upperFloor;
 
 
 	public int getId()
@@ -28,22 +28,22 @@ public class SpecialConnection extends PoliGdzieBaseClass
 	}
 
 
-	public SpecialPoint getLowerFloor()
+	public NavigationPoint getLowerFloor()
 	{
 		return lowerFloor;
 	}
 
-	public void setLowerFloor(SpecialPoint lowerFloor)
+	public void setLowerFloor(NavigationPoint lowerFloor)
 	{
 		this.lowerFloor = lowerFloor;
 	}
 
-	public SpecialPoint getUpperFloor()
+	public NavigationPoint getUpperFloor()
 	{
 		return upperFloor;
 	}
 
-	public void setUpperFloor(SpecialPoint upperFloor)
+	public void setUpperFloor(NavigationPoint upperFloor)
 	{
 		this.upperFloor = upperFloor;
 	}
@@ -53,7 +53,7 @@ public class SpecialConnection extends PoliGdzieBaseClass
 		// nie wyrzucac !
 	}
 
-	public SpecialConnection(SpecialPoint lower, SpecialPoint upper)
+	public SpecialConnection(NavigationPoint lower, NavigationPoint upper)
 	{
 		this.lowerFloor = lower;
 		this.upperFloor = upper;

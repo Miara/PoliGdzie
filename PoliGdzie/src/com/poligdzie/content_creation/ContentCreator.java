@@ -11,7 +11,6 @@ import com.poligdzie.persistence.NavigationConnection;
 import com.poligdzie.persistence.NavigationPoint;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.SpecialConnection;
-import com.poligdzie.persistence.SpecialPoint;
 import com.poligdzie.persistence.Unit;
 
 public class ContentCreator
@@ -23,7 +22,6 @@ public class ContentCreator
 	private List<Floor>					floors;
 	private List<NavigationPoint>		navigationPoints;
 	private List<NavigationConnection>	navigationConnections;
-	private List<SpecialPoint>			specialPoints;
 	private List<SpecialConnection>		specialConnections;
 
 	public List<Building> getBuildings()
@@ -89,15 +87,6 @@ public class ContentCreator
 		this.navigationConnections = navigationConnections;
 	}
 
-	public List<SpecialPoint> getSpecialPoints()
-	{
-		return specialPoints;
-	}
-
-	public void setSpecialPoints(ArrayList<SpecialPoint> specialPoints)
-	{
-		this.specialPoints = specialPoints;
-	}
 
 	public List<SpecialConnection> getSpecialConnections()
 	{
@@ -139,10 +128,6 @@ public class ContentCreator
 		{
 			this.addNavigationConnection((NavigationConnection) value);
 		}
-		if (value.getClass() == SpecialPoint.class)
-		{
-			this.addSpecialPoint((SpecialPoint) value);
-		}
 
 		if (value.getClass() == SpecialConnection.class)
 		{
@@ -183,10 +168,6 @@ public class ContentCreator
 		this.navigationConnections.add(value);	
 	}
 	
-	private void addSpecialPoint(SpecialPoint value)
-	{
-		this.specialPoints.add(value);		
-	}
 
 	
 	private void addSpecialConnection(SpecialConnection value)
@@ -202,7 +183,6 @@ public class ContentCreator
 		floors = new ArrayList<Floor>();
 		navigationPoints = new ArrayList<NavigationPoint>();
 		navigationConnections = new ArrayList<NavigationConnection>();
-		specialPoints = new ArrayList<SpecialPoint>();
 		specialConnections = new ArrayList<SpecialConnection>();
 	}
 
@@ -275,16 +255,6 @@ public class ContentCreator
 			}
 		}
 		
-		for (SpecialPoint specialPoint : specialPoints)
-		{
-			try
-			{
-				dbHelper.getSpecialPointDao().createOrUpdate(specialPoint);
-			} catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-		}
 		
 		for (SpecialConnection specialConnection : specialConnections)
 		{

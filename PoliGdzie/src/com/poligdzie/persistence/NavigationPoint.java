@@ -18,6 +18,9 @@ public class NavigationPoint extends PoliGdzieBaseClass
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "floor_id")
 	private Floor	floor;
+	
+	@DatabaseField
+	private NavigationPointTypes type;
 
 
 	public int getId()
@@ -60,16 +63,29 @@ public class NavigationPoint extends PoliGdzieBaseClass
 	{
 		this.floor = floor;
 	}
+	
+	
+
+	public NavigationPointTypes getType()
+	{
+		return type;
+	}
+
+	public void setType(NavigationPointTypes type)
+	{
+		this.type = type;
+	}
 
 	public  NavigationPoint()
 	{
 		// nie wyrzucac !
 	}
 
-	public NavigationPoint(int coordX, int coordY, Floor floor)
+	public NavigationPoint(int coordX, int coordY, Floor floor, NavigationPointTypes type)
 	{
 		this.coordX = coordX;
 		this.coordY = coordY;
 		this.floor = floor;
+		this.type=type;
 	}
 }

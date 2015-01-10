@@ -18,7 +18,6 @@ import com.poligdzie.persistence.NavigationConnection;
 import com.poligdzie.persistence.NavigationPoint;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.SpecialConnection;
-import com.poligdzie.persistence.SpecialPoint;
 import com.poligdzie.persistence.Unit;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper
@@ -37,7 +36,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper
 	private Dao<Floor, Integer>					floorDao				= null;
 	private Dao<NavigationPoint, Integer>		navigationPointDao		= null;
 	private Dao<NavigationConnection, Integer>	navigationConnectionDao	= null;
-	private Dao<SpecialPoint, Integer>			specialPointDao			= null;
 	private Dao<SpecialConnection, Integer>		specialConnectionDao	= null;
 
 	@Override
@@ -53,7 +51,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper
 			TableUtils.createTable(connectionSource, Floor.class);
 			TableUtils.createTable(connectionSource, NavigationPoint.class);
 			TableUtils.createTable(connectionSource, NavigationConnection.class);
-			TableUtils.createTable(connectionSource, SpecialPoint.class);
 			TableUtils.createTable(connectionSource, SpecialConnection.class);
 			
 			CsvReader csvReader = new CsvReader(this,context);
@@ -80,7 +77,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper
 			TableUtils.dropTable(connectionSource, Floor.class, false);
 			TableUtils.dropTable(connectionSource, NavigationPoint.class,false);
 			TableUtils.dropTable(connectionSource, NavigationConnection.class,false);
-			TableUtils.dropTable(connectionSource, SpecialPoint.class,false);
 			TableUtils.dropTable(connectionSource, SpecialConnection.class,false);
 			Log.i("DATABASE", "upgrade2");
 			this.onCreate(db, connectionSource);
@@ -147,15 +143,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper
 		return navigationConnectionDao;
 	}
 
-	public Dao<SpecialPoint, Integer> getSpecialPointDao() throws SQLException
-	{
-		if (specialPointDao == null)
-		{
-			specialPointDao = getDao(SpecialPoint.class);
-		}
-		return specialPointDao;
-	}
-
 	public Dao<SpecialConnection, Integer> getSpecialConnectionDao() throws SQLException
 	{
 		if (specialConnectionDao == null)
@@ -175,7 +162,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper
 		floorDao = null;
 		navigationPointDao = null;
 		navigationConnectionDao = null;
-		specialPointDao = null;
 		specialConnectionDao = null;
 	}
 
