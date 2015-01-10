@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.poligdzie.helpers.DatabaseHelper;
+import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Floor;
 import com.poligdzie.persistence.NavigationConnection;
@@ -21,95 +22,46 @@ import com.poligdzie.persistence.UnitTypes;
 import android.content.Context;
 import android.util.Log;
 
-public class CsvReader
+public class CsvReader implements Constants
 {
 	private ContentCreator creator;
-	private DatabaseHelper databaseHelper ;
+	private DatabaseHelper dbHelper ;
+	private Context context;
 	
 	public CsvReader(DatabaseHelper dbHelper, Context context)
 	{
-		this.databaseHelper = dbHelper;
-		creator = new ContentCreator();
+		this.dbHelper = dbHelper;
+		this.creator = new ContentCreator();
+		this.context = context;
+		
+	}
+	
+	public void parseCsvToDatabase(String file,int mode)
+	{
 		try
 		{
 			
 			//Budynki
-			InputStream is = context.getAssets().open("Building.csv");
+			InputStream is = context.getAssets().open(file);
 		    BufferedReader reader = new BufferedReader(new InputStreamReader(is,"utf-8"));
 		    String line= reader.readLine();
 		    while((line=reader.readLine())!=null)
 		    {
-		    	addBuilding(line);
+		    	
+		    	switch(mode)
+		    	{
+			    	case CSV_BUILDING : 			addBuilding(line); break;
+			    	case CSV_FLOOR :				addFloor(line); break;
+			    	case CSV_NAVIGATION_POINT :		addNavigationPoint(line); break;
+			    	case CSV_NAVIGATION_CONNECTION :addNavigationConnection(line); break;
+			    	case CSV_SPECIAL_CONNECTION :	addSpecialConnection(line); break;
+			    	case CSV_ROOM :					addRoom(line); break;
+			    	case CSV_UNIT:		    		addUnit(line); break;
+		    	}
 		    }
 		    this.creator.populateDatabase(dbHelper);
 		    reader.close();
 		    
-		    //Pietra
-		    is = context.getAssets().open("Floor.csv");
-		    reader = new BufferedReader(new InputStreamReader(is,"utf-8"));
-		    line= reader.readLine();
-		    while((line=reader.readLine())!=null)
-		    {
-		    	addFloor(line);
-		    }
-		    reader.close();
-		    this.creator.populateDatabase(dbHelper);
-		    
-		    
-		    //Punkty nawigacyjne
-		    is = context.getAssets().open("NavigationPoint.csv");
-		    reader = new BufferedReader(new InputStreamReader(is,"utf-8"));
-		    line= reader.readLine();
-		    while((line=reader.readLine())!=null)
-		    {
-		    	addNavigationPoint(line);
-		    }
-		    reader.close();
-		    this.creator.populateDatabase(dbHelper);
-		    
-		    //Punkty nawigacyjne polaczenia
-		    is = context.getAssets().open("NavigationConnection.csv");
-		    reader = new BufferedReader(new InputStreamReader(is,"utf-8"));
-		    line= reader.readLine();
-		    while((line=reader.readLine())!=null)
-		    {
-		    	addNavigationConnection(line);
-		    }
-		    reader.close();
-		    this.creator.populateDatabase(dbHelper);
-		    
-		    //punkty specjalne pion
-		    is = context.getAssets().open("SpecialConnection.csv");
-		    reader = new BufferedReader(new InputStreamReader(is,"utf-8"));
-		    line= reader.readLine();
-		    while((line=reader.readLine())!=null)
-		    {
-		    	addSpecialConnection(line);
-		    }
-		    reader.close();
-		    this.creator.populateDatabase(dbHelper);
-		    
-		    //Pomieszczenia
-		    is = context.getAssets().open("Room.csv");
-		    reader = new BufferedReader(new InputStreamReader(is,"utf-8"));
-		    line= reader.readLine();
-		    while((line=reader.readLine())!=null)
-		    {
-		    	addRoom(line);
-		    }
-		    reader.close();
-		    this.creator.populateDatabase(dbHelper);
-		    
-		    //Wydzialy
-		    is = context.getAssets().open("Unit.csv");
-		    reader = new BufferedReader(new InputStreamReader(is,"utf-8"));
-		    line= reader.readLine();
-		    while((line=reader.readLine())!=null)
-		    {
-		    	addUnit(line);
-		    }
-		    reader.close();
-		    this.creator.populateDatabase(dbHelper);
 		}
 		catch(Exception e)
 		{
@@ -287,29 +239,17 @@ public class CsvReader
 	
 	private NavigationPoint getNavigationPoint(int id) throws SQLException
 	{
-		List<NavigationPoint> points = databaseHelper.getNavigationPointDao().
+		List<NavigationPoint> points = dbHelper.getNavigationPointDao().
 				queryBuilder().where().eq("id", id).query();
 		return points.get(0);
 	}
 	
 	private NavigationConnection getNavigationConnection(int id) throws SQLException
 	{
-		List<NavigationConnection> connections = databaseHelper.getNavigationConnectionDao().
+		List<NavigationConnection> connections = dbHelper.getNavigationConnectionDao().
 				queryBuilder().where().eq("id", id).query();
 		return connections.get(0);
 	}	
-
-	private Floor getFloor(int id) throws SQLException
-	{
-		List<Floor> floors = databaseHelper.getFloorDao().queryBuilder().where().eq("id", id).query();
-		return floors.get(0);
-	}
-	
-	private Room getRoom(int id) throws SQLException
-	{
-		List<Room> rooms = databaseHelper.getRoomDao().queryBuilder().where().eq("id", id).query();
-		return rooms.get(0);
-	}
 
 	private RoomFunctions getRoomFunction(String function) throws Exception
 	{
@@ -343,8 +283,20 @@ public class CsvReader
 
 	private Building getBuilding(int id) throws SQLException
 	{
-		List<Building> buildings = databaseHelper.getBuildingDao().queryBuilder().where().eq("id", id).query();
+		List<Building> buildings = dbHelper.getBuildingDao().queryBuilder().where().eq("id", id).query();
 		return buildings.get(0);
+	}
+	
+	private Floor getFloor(int id) throws SQLException
+	{
+		List<Floor> floors = dbHelper.getFloorDao().queryBuilder().where().eq("id", id).query();
+		return floors.get(0);
+	}
+	
+	private Room getRoom(int id) throws SQLException
+	{
+		List<Room> rooms = dbHelper.getRoomDao().queryBuilder().where().eq("id", id).query();
+		return rooms.get(0);
 	}
 	
 	public ContentCreator getCreator()

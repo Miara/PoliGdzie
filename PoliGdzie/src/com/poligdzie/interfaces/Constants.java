@@ -5,7 +5,7 @@ public interface Constants
 
 	// baza danych
 	public String	DATABASE_NAME			= "Poligdzie.db";
-	public int		DATABASE_VERSION		= 65;
+	public int		DATABASE_VERSION		= 71;
 
 	// Ustawienia aplikacji w PreferenceManager
 	public String	START_FIELD_VALUE		= "";
@@ -32,5 +32,14 @@ public interface Constants
 
 	// do braku rysowania bitmapy
 	public String	NO_BITMAP				= "0";
+	
+	public int CSV_BUILDING = 1;
+	public int CSV_FLOOR = 2;
+	public int CSV_NAVIGATION_POINT = 3;
+	public int CSV_NAVIGATION_CONNECTION = 4;
+	public int CSV_SPECIAL_CONNECTION = 5;
+	public int CSV_ROOM = 6;
+	public int CSV_UNIT = 7;
+	
 
 }

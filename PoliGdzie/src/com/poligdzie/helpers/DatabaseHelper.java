@@ -12,6 +12,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.poligdzie.content_creation.CsvReader;
+import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Floor;
 import com.poligdzie.persistence.NavigationConnection;
@@ -20,7 +21,7 @@ import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.SpecialConnection;
 import com.poligdzie.persistence.Unit;
 
-public class DatabaseHelper extends OrmLiteSqliteOpenHelper
+public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 {
 
 	public DatabaseHelper(Context context, String databaseName,
@@ -54,7 +55,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper
 			TableUtils.createTable(connectionSource, SpecialConnection.class);
 			
 			CsvReader csvReader = new CsvReader(this,context);
-			csvReader.getCreator().populateDatabase(this);
+			csvReader.parseCsvToDatabase("Building.csv",CSV_BUILDING);
+			csvReader.parseCsvToDatabase("Floor.csv", CSV_FLOOR);
+			csvReader.parseCsvToDatabase("NavigationPoint.csv", CSV_NAVIGATION_POINT);
+			csvReader.parseCsvToDatabase("NavigationConnection.csv", CSV_NAVIGATION_CONNECTION);
+			csvReader.parseCsvToDatabase("SpecialConnection.csv", CSV_SPECIAL_CONNECTION);
+			csvReader.parseCsvToDatabase("Room.csv", CSV_ROOM);
+			csvReader.parseCsvToDatabase("Unit.csv", CSV_UNIT);
+		
 		} catch (SQLException e)
 		{
 

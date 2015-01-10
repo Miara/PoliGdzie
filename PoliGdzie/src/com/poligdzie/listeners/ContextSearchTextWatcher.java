@@ -51,6 +51,7 @@ public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
 					.like("name", "%" + s.toString() + "%").or()
 					.like("aliases", "%" + s.toString() + "%").query();
 
+			
 			rooms = dbHelper.getRoomDao().queryBuilder().limit(maxRows).where()
 					.like("name", "%" + s.toString() + "%").or()
 					.like("aliases", "%" + s.toString() + "%").or()
