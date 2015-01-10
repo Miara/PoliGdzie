@@ -1,4 +1,6 @@
-package com.poligdzie.content_creation;
+/*package com.poligdzie.content_creation;
+
+import android.content.Context;
 
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.persistence.Building;
@@ -15,16 +17,18 @@ public class Fixture
 
 	// zmiena versionChanged w celach testowych ¿eby nie dodawaæ ci¹gle tych
 	// samych pól
-	public Fixture(DatabaseHelper dbHelper)
+	public Fixture(DatabaseHelper dbHelper,Context context)
 	{
 		creator = new ContentCreator();
 
+		CsvReader buildingsCSV = new CsvReader(creator,context);
+		buildingsCSV.fullDatabase("assets/database/Building.csv");
 		Building cw = new Building("Centrum wyk³adowe", 52.4037039, 16.949444,
 				"Piotrowo 2", 150, 2, "cw", "cw_ic", "cw_marker");
 		Building elektryk = new Building("Elektryk", 52.401972, 16.951360,
 				"Piotrowo 3a", 70, 10, "el;elektryk", "we_ic", "el_marker");
 		Building bm = new Building("Budowa maszyn", 52.402357, 16.950573,
-				"Piotrowo 3", 70, 10, "bm;budynek z zegarem", "bm_ic",
+				"Piotrowo 3", 7bm,0, 10, "bm;budynek z zegarem", "bm_ic",
 				"bm_marker");
 		creator.add(cw);
 		creator.add(elektryk);
@@ -104,3 +108,4 @@ public class Fixture
 	}
 
 }
+*/

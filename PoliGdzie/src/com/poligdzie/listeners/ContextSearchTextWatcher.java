@@ -43,20 +43,20 @@ public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
 	{
 
 		aList.clear();
-
+		long maxRows = 3;
 		try
 		{
 			Log.i("POLIGDZIE", s.toString());
-			buildings = dbHelper.getBuildingDao().queryBuilder().where()
+			buildings = dbHelper.getBuildingDao().queryBuilder().limit(maxRows).where()
 					.like("name", "%" + s.toString() + "%").or()
 					.like("aliases", "%" + s.toString() + "%").query();
 
-			rooms = dbHelper.getRoomDao().queryBuilder().where()
+			rooms = dbHelper.getRoomDao().queryBuilder().limit(maxRows).where()
 					.like("name", "%" + s.toString() + "%").or()
 					.like("aliases", "%" + s.toString() + "%").or()
 					.like("number", "%" + s.toString() + "%").query();
 
-			units = dbHelper.getUnitDao().queryBuilder().where()
+			units = dbHelper.getUnitDao().queryBuilder().limit(maxRows).where()
 					.like("name", "%" + s.toString() + "%").or()
 					.like("aliases", "%" + s.toString() + "%").query();
 		} catch (SQLException e)

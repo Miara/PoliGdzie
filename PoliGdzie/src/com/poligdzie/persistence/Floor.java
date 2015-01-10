@@ -18,13 +18,25 @@ public class Floor extends PoliGdzieBaseClass implements Nameable
 	private String		drawableId;
 
 	@DatabaseField
+	private int			width;
+	
+	@DatabaseField
+	private int			height;
+	
+	@DatabaseField
 	private String		name;
 
 	@DatabaseField
 	private String		tag;
+	
+	@DatabaseField
+	private int	pixelsPerMeter;
 
+	
 	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "building_id")
 	private Building	building;
+
+	
 
 	public int getId()
 	{
@@ -44,6 +56,26 @@ public class Floor extends PoliGdzieBaseClass implements Nameable
 	public void setDrawableId(String drawableId)
 	{
 		this.drawableId = drawableId;
+	}
+	
+	public int getWidth()
+	{
+		return width;
+	}
+
+	public void setWidth(int width)
+	{
+		this.width = width;
+	}
+
+	public int getHeight()
+	{
+		return height;
+	}
+
+	public void setHeight(int height)
+	{
+		this.height = height;
 	}
 
 	public Building getBuilding()
@@ -75,6 +107,16 @@ public class Floor extends PoliGdzieBaseClass implements Nameable
 	{
 		this.tag = tag;
 	}
+	
+	public int getPixelsPerMeter()
+	{
+		return pixelsPerMeter;
+	}
+
+	public void setPixelsPerMeter(int pixelsPerMeter)
+	{
+		this.pixelsPerMeter = pixelsPerMeter;
+	}
 
 	public int getNumber()
 	{
@@ -90,15 +132,19 @@ public class Floor extends PoliGdzieBaseClass implements Nameable
 	{
 		// nie wyrzucac!
 	}
-
-	public Floor(int number, String drawableId, String name, String tag,
-			Building building)
+	//id;name;building;floorNumber;width;height;scheme;tag
+	public Floor(String name,Building building,  int number,int width, int height, String drawableId, 
+			String tag,int pixelsPerMeter)
 	{
 		this.number = number;
 		this.drawableId = drawableId;
+		this.width=width;
+		this.height=height;
 		this.name = name;
 		this.tag = tag;
 		this.building = building;
+		this.pixelsPerMeter = pixelsPerMeter;
+		
 	}
 
 }

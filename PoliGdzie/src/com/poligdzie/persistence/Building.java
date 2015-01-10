@@ -195,7 +195,7 @@ public class Building extends PoliGdzieBaseClass implements Nameable,
 		this.floors = floors;
 	}
 
-	public Building(String name, double coordX, double coordY, String address,
+	public Building(String name, String address, double coordX, double coordY,
 			int width, int height, String aliases, String imageResource,
 			String markerImageResource)
 	{

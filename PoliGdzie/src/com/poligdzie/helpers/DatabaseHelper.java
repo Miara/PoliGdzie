@@ -11,10 +11,14 @@ import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import com.poligdzie.content_creation.Fixture;
+import com.poligdzie.content_creation.CsvReader;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Floor;
+import com.poligdzie.persistence.NavigationConnection;
+import com.poligdzie.persistence.NavigationPoint;
 import com.poligdzie.persistence.Room;
+import com.poligdzie.persistence.SpecialConnection;
+import com.poligdzie.persistence.SpecialPoint;
 import com.poligdzie.persistence.Unit;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper
@@ -24,12 +28,17 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper
 			CursorFactory factory, int databaseVersion)
 	{
 		super(context, databaseName, factory, databaseVersion);
+		this.context = context;
 	}
-
-	private Dao<Building, Integer>	buildingDao	= null;
-	private Dao<Unit, Integer>		unitDao		= null;
-	private Dao<Room, Integer>		roomDao		= null;
-	private Dao<Floor, Integer>		floorDao	= null;
+	private Context context;
+	private Dao<Building, Integer>				buildingDao				= null;
+	private Dao<Unit, Integer>					unitDao					= null;
+	private Dao<Room, Integer>					roomDao					= null;
+	private Dao<Floor, Integer>					floorDao				= null;
+	private Dao<NavigationPoint, Integer>		navigationPointDao		= null;
+	private Dao<NavigationConnection, Integer>	navigationConnectionDao	= null;
+	private Dao<SpecialPoint, Integer>			specialPointDao			= null;
+	private Dao<SpecialConnection, Integer>		specialConnectionDao	= null;
 
 	@Override
 	public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource)
@@ -37,12 +46,18 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper
 		try
 		{
 			Log.i("DATABASE", "TABLES");
+			
 			TableUtils.createTable(connectionSource, Room.class);
 			TableUtils.createTable(connectionSource, Unit.class);
 			TableUtils.createTable(connectionSource, Building.class);
 			TableUtils.createTable(connectionSource, Floor.class);
-			Fixture fixture = new Fixture(this);
-			fixture.getCreator().populateDatabase(this);
+			TableUtils.createTable(connectionSource, NavigationPoint.class);
+			TableUtils.createTable(connectionSource, NavigationConnection.class);
+			TableUtils.createTable(connectionSource, SpecialPoint.class);
+			TableUtils.createTable(connectionSource, SpecialConnection.class);
+			
+			CsvReader csvReader = new CsvReader(this,context);
+			csvReader.getCreator().populateDatabase(this);
 		} catch (SQLException e)
 		{
 
@@ -63,6 +78,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper
 			TableUtils.dropTable(connectionSource, Unit.class, false);
 			TableUtils.dropTable(connectionSource, Building.class, false);
 			TableUtils.dropTable(connectionSource, Floor.class, false);
+			TableUtils.dropTable(connectionSource, NavigationPoint.class,false);
+			TableUtils.dropTable(connectionSource, NavigationConnection.class,false);
+			TableUtils.dropTable(connectionSource, SpecialPoint.class,false);
+			TableUtils.dropTable(connectionSource, SpecialConnection.class,false);
 			Log.i("DATABASE", "upgrade2");
 			this.onCreate(db, connectionSource);
 		} catch (SQLException e)
@@ -107,6 +126,44 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper
 		}
 		return floorDao;
 	}
+	
+	
+
+	public Dao<NavigationPoint, Integer> getNavigationPointDao() throws SQLException
+	{
+		if (navigationPointDao == null)
+		{
+			navigationPointDao = getDao(NavigationPoint.class);
+		}
+		return navigationPointDao;
+	}
+
+	public Dao<NavigationConnection, Integer> getNavigationConnectionDao() throws SQLException
+	{
+		if (navigationConnectionDao == null)
+		{
+			navigationConnectionDao = getDao(NavigationConnection.class);
+		}
+		return navigationConnectionDao;
+	}
+
+	public Dao<SpecialPoint, Integer> getSpecialPointDao() throws SQLException
+	{
+		if (specialPointDao == null)
+		{
+			specialPointDao = getDao(SpecialPoint.class);
+		}
+		return specialPointDao;
+	}
+
+	public Dao<SpecialConnection, Integer> getSpecialConnectionDao() throws SQLException
+	{
+		if (specialConnectionDao == null)
+		{
+			specialConnectionDao = getDao(SpecialConnection.class);
+		}
+		return specialConnectionDao;
+	}
 
 	@Override
 	public void close()
@@ -116,6 +173,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper
 		unitDao = null;
 		roomDao = null;
 		floorDao = null;
+		navigationPointDao = null;
+		navigationConnectionDao = null;
+		specialPointDao = null;
+		specialConnectionDao = null;
 	}
 
 }

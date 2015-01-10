@@ -25,6 +25,16 @@ public class Room extends PoliGdzieBaseClass implements Nameable
 
 	@DatabaseField
 	private int				coordY;
+	
+	@DatabaseField
+	private int				radius;
+	
+	
+	@DatabaseField
+	private int				doorsX;
+	
+	@DatabaseField
+	private int				doorsY;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "floor_id")
 	private Floor			floor;
@@ -34,6 +44,9 @@ public class Room extends PoliGdzieBaseClass implements Nameable
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "building_id")
 	private Building		building;
+	
+	//@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "navigationPointConnection_id")
+	private NavigationConnection		navigationConnection;
 
 	public int getId()
 	{
@@ -94,6 +107,37 @@ public class Room extends PoliGdzieBaseClass implements Nameable
 	{
 		this.coordY = coordY;
 	}
+	
+	public int getRadius()
+	{
+		return radius;
+	}
+
+	public void setRadius(int radius)
+	{
+		this.radius = radius;
+	}
+
+	public int getDoorsX()
+	{
+		return doorsX;
+	}
+
+	public void setDoorsX(int doorsX)
+	{
+		this.doorsX = doorsX;
+	}
+
+	public int getDoorsY()
+	{
+		return doorsY;
+	}
+
+	public void setDoorsY(int doorsY)
+	{
+		this.doorsY = doorsY;
+	}
+
 
 	public Floor getFloor()
 	{
@@ -124,19 +168,35 @@ public class Room extends PoliGdzieBaseClass implements Nameable
 	{
 		this.building = building;
 	}
+	
+	public NavigationConnection getNavigationConnection()
+	{
+		return navigationConnection;
+	}
 
-	public Room(String number, String name, RoomFunctions function, int coordX,
-			int coordY, Floor floor, String aliases, Building building)
+	public void setNavigationConnection(NavigationConnection navigationConnection)
+	{
+		this.navigationConnection = navigationConnection;
+	}
+
+	public Room(String number, String name, RoomFunctions function, Building building, Floor floor, int coordX,
+			int coordY,int radius, int doorsX, int doorsY,NavigationConnection navigationConnection, String aliases)
 	{
 		this.number = number;
 		this.name = name;
 		this.function = function;
 		this.coordX = coordX;
 		this.coordY = coordY;
+		this.radius = radius;
+		this.doorsX = doorsX;
+		this.doorsY = doorsY;
 		this.floor = floor;
 		this.aliases = aliases;
 		this.building = building;
+		this.navigationConnection = navigationConnection;
 	}
+
+	
 
 	public Room()
 	{

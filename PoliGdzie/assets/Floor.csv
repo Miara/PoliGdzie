@@ -1,0 +1,11 @@
+id;name;building;floorNumber;width;height;scheme;tag;pixelsPerMeter
+1;Centrum wyk³adowe - parter;1;0;3404;3508;cw_test_parter;cw0p;42
+2;Centrum wyk³adowe - pierwsze piêtro;1;1;2250;2550;cw_test_parter;cw1p;29
+3;Budynek elektryczny - parter;2;0;0;0;elektryk_parter;el0p;
+4;Budynek elektryczny - pierwsze piêtro;2;1;0;0;elektryk_pietro;el1p;
+5;Budowa maszyn - parter;3;0;0;0;bm_p;bm0p;
+6;Budowa maszyn - pierwsze piêtro;3;1;0;0;bm_1;bm1p;
+7;Budowa maszyn - drugie piêtro;3;2;0;0;bm_2;bm2p;
+8;Budowa maszyn - trzecie piêtro;3;3;0;0;bm_3;bm3p;
+9;Budowa maszyn - czwarte piêtro;3;4;0;0;bm_4;bm4p;
+10;Budowa maszyn - pi¹te piêtro;3;5;0;0;bm_5;bm5p;
