@@ -76,10 +76,10 @@ public class CsvReader implements Constants
 			String[] value = line.split(";");
 	    	String name					= value[1];
 	    	String address				= value[2];
-			double coordX 				= Double.parseDouble( value[3] );
-	    	double coordY 				= Double.parseDouble( value[4] );
-	    	int width	  				= Integer.parseInt(value[5]);
-	    	int height	  				= Integer.parseInt(value[6]);
+			double coordX 				= toDouble(value[3]);
+	    	double coordY 				= toDouble(value[4]);
+	    	int width	  				= toInt(value[5]);
+	    	int height	  				= toInt(value[6]);
 	    	String aliases 				= value[7];
 	    	String imageResource		= value[8];
 			String markerImageResource  = value[9];
@@ -101,12 +101,12 @@ public class CsvReader implements Constants
 			String[] value = line.split(";");
 			String name			= value[1];
 			Building building 	= getBuilding(Integer.parseInt(value[2]));
-			int number 			= Integer.parseInt(value[3]);
-			int width	  		= Integer.parseInt(value[4]);
-			int height	  		= Integer.parseInt(value[5]);
+			int number 			= toInt(value[3]);
+			int width	  		= toInt(value[4]);
+			int height	  		= toInt(value[5]);
 			String scheme		= value[6];
 			String tag  		= value[7];
-			int pixelsPerMeter  = Integer.parseInt(value[8]);
+			int pixelsPerMeter  = toInt(value[8]);
 			
 			Floor  floor = new Floor(name,building,number,width,height,scheme,tag,pixelsPerMeter);
 	    	creator.add(floor);
@@ -302,6 +302,32 @@ public class CsvReader implements Constants
 	public ContentCreator getCreator()
 	{
 		return creator;
+	}
+	
+	public int toInt(String str)
+	{
+		try
+		{
+			int result = Integer.parseInt(str);
+			return result;
+		}
+		catch( Exception e)
+		{
+			return 0;
+		}
+	}
+	
+	public double toDouble(String str)
+	{
+		try
+		{
+			double result = Double.parseDouble(str);
+			return result;
+		}
+		catch( Exception e)
+		{
+			return 0;
+		}
 	}
 	
 	private void echo(String tag)
