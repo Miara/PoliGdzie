@@ -1,4 +1,4 @@
-id;number;name;function;building;floor;coordX;coordY;radius;doorsX;doorsY;navigationPointConnection;aliases
+﻿id;number;name;function;building;floor;coordX;coordY;radius;doorsX;doorsY;navigationPointConnection;aliases
 1;1;Sala 1;LECTURE;1;1;1711;2649;130;1501;2372;3;cw 1, 1 cw
 2;2;Sala 2;LECTURE;1;1;2117;2322;130;1895;2061;3;cw 2, 2 cw
 3;3;Sala 3;LECTURE;1;1;2515;2014;130;2284;1742;6;cw 3, 3 cw
@@ -20,16 +20,16 @@ id;number;name;function;building;floor;coordX;coordY;radius;doorsX;doorsY;naviga
 19;143;Laboratorium 143;LABORATORY;1;2;1425;2256;50;1320;2150;24;cw 143, 143 cw
 20;144;Laboratorium 144;LABORATORY;1;2;1535;2166;50;1453;2043;24;cw 144, 144 cw
 21;145;Laboratorium 145;LABORATORY;1;2;1642;2026;75;1533;1961;24;cw 145, 145 cw
-22;;freshmarket;GASTRONOMIC;1;1;2771;1555;150;2528;1511;6;freshmarket, bufet, sto��wka
+22;;freshmarket;GASTRONOMIC;1;1;2771;1555;150;2528;1511;6;freshmarket, bufet, stołówka
 23;;??;TECH;1;1;1979;3232;50;2028;3140;5;???
 24;;rozdzielnia elektryczna;TECH;1;1;1918;3166;40;2034;3154;5;rozdzielnia elektryczna
 25;;serwerownia;TECH;1;1;1596;3322;50;1648;3261;2;serwerownia
-26;;toaleta m�ska;RESTROOM;1;1;1169;2922;80;1269;1882;2;toaleta m�ska, wc m�skie, �azienka m�ska
-27;;toaleta damska;RESTROOM;1;1;1377;3203;80;1391;3031;2;toaleta damska, wc damskie, �azienka damska
-28;;toaleta damska;RESTROOM;1;1;1491;548;20;1420;585;16;toaleta damska, wc damskie, �azienka damska
-29;;toaleta dla niepe�nosprawnych;RESTROOM;1;1;1546;608;20;1492;679;16;toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych
+26;;toaleta męska;RESTROOM;1;1;1169;2922;80;1269;1882;2;toaleta męska, wc męskie, łazienka męska
+27;;toaleta damska;RESTROOM;1;1;1377;3203;80;1391;3031;2;toaleta damska, wc damskie, łazienka damska
+28;;toaleta damska;RESTROOM;1;1;1491;548;20;1420;585;16;toaleta damska, wc damskie, łazienka damska
+29;;toaleta dla niepełnosprawnych;RESTROOM;1;1;1546;608;20;1492;679;16;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych
 30;;automat;GASTRONOMIC;1;1;1575;2848;30;1575;2848;2;automat z jedzeniem, 
-31;;toaleta m�ska;RESTROOM;1;2;676;2078;80;778;2077;25;toaleta m�skia, wc m�skie, �azienka m�ska
-32;;toaleta damska;RESTROOM;1;2;849;2304;80;859;2128;25;toaleta damska, wc damskie, �azienka damska
-33;;toaleta m�ska;RESTROOM;1;2;934;450;20;882;475;40;toaleta m�ska, wc m�skie, �azienka m�ska
-34;;toaleta dla niepe�nosprawnych;RESTROOM;1;2;971;492;20;933;535;40;toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych
+31;;toaleta męska;RESTROOM;1;2;676;2078;80;778;2077;25;toaleta męskia, wc męskie, łazienka męska
+32;;toaleta damska;RESTROOM;1;2;849;2304;80;859;2128;25;toaleta damska, wc damskie, łazienka damska
+33;;toaleta męska;RESTROOM;1;2;934;450;20;882;475;40;toaleta męska, wc męskie, łazienka męska
+34;;toaleta dla niepełnosprawnych;RESTROOM;1;2;971;492;20;933;535;40;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych

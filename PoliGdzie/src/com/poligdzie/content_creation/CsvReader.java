@@ -43,7 +43,7 @@ public class CsvReader implements Constants
 			
 			//Budynki
 			InputStream is = context.getAssets().open(file);
-		    BufferedReader reader = new BufferedReader(new InputStreamReader(is,"utf-8"));
+		    BufferedReader reader = new BufferedReader(new InputStreamReader(is,"UTF-8"));
 		    String line= reader.readLine();
 		    while((line=reader.readLine())!=null)
 		    {
@@ -125,8 +125,8 @@ public class CsvReader implements Constants
 			//coordX,coordY,floor,type
 			String[] value = line.split(";");
 			
-			int coordX	  					= Integer.parseInt(value[1]);
-		    int coordY	  					= Integer.parseInt(value[2]);
+			int coordX	  					= toInt(value[1]);
+		    int coordY	  					= toInt(value[2]);
 		    Floor floor 					= getFloor(Integer.parseInt(value[3]));	
 			NavigationPointTypes type		= getNavigationPointType(value[4]);
 			
@@ -192,11 +192,11 @@ public class CsvReader implements Constants
 			RoomFunctions function 	= getRoomFunction(value[3]);
 			Building building 		= getBuilding(Integer.parseInt(value[4]));
 			Floor floor 			= getFloor(Integer.parseInt(value[5]));	
-			int coordX	  			= Integer.parseInt(value[6]);
-		    int coordY	  			= Integer.parseInt(value[7]);
-			int radius	  			= Integer.parseInt(value[8]);
-			int doorsX	  			= Integer.parseInt(value[9]);
-			int doorsY	  			= Integer.parseInt(value[10]);
+			int coordX	  			= toInt(value[6]);
+		    int coordY	  			= toInt(value[7]);
+			int radius	  			= toInt(value[8]);
+			int doorsX	  			= toInt(value[9]);
+			int doorsY	  			= toInt(value[10]);
 			NavigationConnection navigationConnection 
 									= getNavigationConnection(Integer.parseInt(value[11]));
 	    	String aliases			= value[12];
@@ -324,7 +324,7 @@ public class CsvReader implements Constants
 			double result = Double.parseDouble(str);
 			return result;
 		}
-		catch( Exception e)
+		catch(Exception e)
 		{
 			return 0;
 		}
