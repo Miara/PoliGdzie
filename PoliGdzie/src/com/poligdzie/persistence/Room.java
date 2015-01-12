@@ -11,10 +11,10 @@ public class Room extends PoliGdzieBaseClass implements Nameable
 	@DatabaseField(generatedId = true)
 	private int				id;
 
-	@DatabaseField
-	private String			number;
+	@DatabaseField (index = true)
+	private String 			number;
 
-	@DatabaseField
+	@DatabaseField (index = true)
 	private String			name;
 
 	@DatabaseField
@@ -39,7 +39,7 @@ public class Room extends PoliGdzieBaseClass implements Nameable
 	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "floor_id")
 	private Floor			floor;
 
-	@DatabaseField
+	@DatabaseField (index = true)
 	private String			aliases;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "building_id")

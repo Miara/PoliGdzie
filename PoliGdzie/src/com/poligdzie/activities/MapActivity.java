@@ -1,5 +1,7 @@
 package com.poligdzie.activities;
 
+import java.sql.SQLException;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,6 +14,7 @@ import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.base.PoliGdzieMapFragment;
 import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
+import com.poligdzie.singletons.DataProvider;
 import com.poligdzie.singletons.MapFragmentProvider;
 
 public class MapActivity extends PoliGdzieBaseActivity implements
@@ -37,6 +40,18 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 
 		mapProvider = MapFragmentProvider.getInstance();
 
+		DataProvider provider = DataProvider.getInstance();
+		
+		try
+		{
+			provider.setBuildings(dbHelper.getBuildingDao().queryForAll());
+			provider.setRooms(dbHelper.getRoomDao().queryForAll());
+			provider.setUnits(dbHelper.getUnitDao().queryForAll());
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna",
 				OUTDOOR_MAP_TAG);
 		

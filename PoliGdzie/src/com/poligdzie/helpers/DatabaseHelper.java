@@ -20,6 +20,7 @@ import com.poligdzie.persistence.NavigationPoint;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.SpecialConnection;
 import com.poligdzie.persistence.Unit;
+import com.poligdzie.singletons.DataProvider;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 {
@@ -53,6 +54,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 			TableUtils.createTable(connectionSource, NavigationPoint.class);
 			TableUtils.createTable(connectionSource, NavigationConnection.class);
 			TableUtils.createTable(connectionSource, SpecialConnection.class);
+		
 			
 			CsvReader csvReader = new CsvReader(this,context);
 			csvReader.parseCsvToDatabase("Building.csv",CSV_BUILDING);
@@ -62,6 +64,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 			csvReader.parseCsvToDatabase("SpecialConnection.csv", CSV_SPECIAL_CONNECTION);
 			csvReader.parseCsvToDatabase("Room.csv", CSV_ROOM);
 			csvReader.parseCsvToDatabase("Unit.csv", CSV_UNIT);
+			
+			
 		
 		} catch (SQLException e)
 		{

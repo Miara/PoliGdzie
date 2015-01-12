@@ -11,7 +11,7 @@ public class Unit extends PoliGdzieBaseClass implements Nameable
 	@DatabaseField(generatedId = true)
 	private int			id;
 
-	@DatabaseField
+	@DatabaseField (index = true)
 	private String		name;
 
 	@DatabaseField
@@ -20,7 +20,7 @@ public class Unit extends PoliGdzieBaseClass implements Nameable
 	@DatabaseField
 	private UnitTypes	type;
 
-	@DatabaseField
+	@DatabaseField (index = true)
 	private String		aliases;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "building_id")

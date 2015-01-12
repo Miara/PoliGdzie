@@ -2,6 +2,7 @@ package com.poligdzie.listeners;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import android.content.Context;
@@ -11,12 +12,14 @@ import android.util.Log;
 import android.widget.AutoCompleteTextView;
 
 import com.example.poligdzie.R;
+import com.j256.ormlite.dao.CloseableIterator;
 import com.poligdzie.adapters.AutocompleteCustomAdapter;
 import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
+import com.poligdzie.singletons.DataProvider;
 
 public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
 																TextWatcher
@@ -41,49 +44,93 @@ public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
 	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count)
 	{
+		String regex = "(?i:.*" + s.toString() + ".*)";
 
+		
+		buildings.clear();
+		rooms.clear();
+		units.clear();
 		aList.clear();
 		long maxRows = 3;
-		try
-		{
+		//if (s.length() >= 3)
+		//{
+			// try
+			// {
 			Log.i("POLIGDZIE", s.toString());
-			buildings = dbHelper.getBuildingDao().queryBuilder().limit(maxRows).where()
-					.like("name", "%" + s.toString() + "%").or()
-					.like("aliases", "%" + s.toString() + "%").query();
+
+			DataProvider provider = DataProvider.getInstance();
+			List <Building> bs = provider.getBuildings(); 
+			for(Building b : bs) {
+				Log.i("POLIGDZIE", b.getName());
+				if (b.getName().matches(regex)
+						|| b.getAliases().matches(regex))
+				{
+					
+					buildings.add(b);
+				}
+			}
+			
+
+			List <Room> rs = provider.getRooms();
+			for(Room b : rs) {
+				if (b.getName().matches(regex)
+						|| b.getAliases().matches(regex))
+				{
+					rooms.add(b);
+				}
+			}
+
+			List <Unit> us = provider.getUnits();
+			for(Unit b : us) {
+				if (b.getName().matches(regex)
+						|| b.getAliases().matches(regex))
+				{
+					units.add(b);
+				}
+			}
+
+			/*
+			 * buildings = dbHelper.getBuildingDao().queryBuilder()
+			 * .limit(maxRows).where() .like("name", s.toString() + "%").or()
+			 * .like("aliases", s.toString() + "%").query();
+			 */
+
+			/*
+			 * rooms = dbHelper.getRoomDao().queryBuilder().limit(maxRows)
+			 * .where().like("name", s.toString() + "%").or() .like("aliases",
+			 * s.toString() + "%").or() .like("number", s.toString() +
+			 * "%").query();
+			 * 
+			 * units = dbHelper.getUnitDao().queryBuilder().limit(maxRows)
+			 * .where().like("name", s.toString() + "%").or() .like("aliases",
+			 * s.toString() + "%").query();
+			 */
+			/*
+			 * } catch (SQLException e) { e.printStackTrace(); }
+			 */
+
+			for (Building b : buildings)
+			{
+				aList.add(b);
+			}
+
+			for (Unit b : units)
+			{
+				aList.add(b);
+			}
+
+			for (Room b : rooms)
+			{
+				aList.add(b);
+			}
 
 			
-			rooms = dbHelper.getRoomDao().queryBuilder().limit(maxRows).where()
-					.like("name", "%" + s.toString() + "%").or()
-					.like("aliases", "%" + s.toString() + "%").or()
-					.like("number", "%" + s.toString() + "%").query();
+			
+			AutocompleteCustomAdapter adapter = new AutocompleteCustomAdapter(
+					this.context, R.layout.prompt_item, aList);
 
-			units = dbHelper.getUnitDao().queryBuilder().limit(maxRows).where()
-					.like("name", "%" + s.toString() + "%").or()
-					.like("aliases", "%" + s.toString() + "%").query();
-		} catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-
-		for (Building b : buildings)
-		{
-			aList.add(b);
-		}
-
-		for (Unit b : units)
-		{
-			aList.add(b);
-		}
-
-		for (Room b : rooms)
-		{
-			aList.add(b);
-		}
-
-		AutocompleteCustomAdapter adapter = new AutocompleteCustomAdapter(
-				this.context, R.layout.prompt_item, aList);
-
-		input.setAdapter(adapter);
+			input.setAdapter(adapter);
+		//}
 
 	}
 
@@ -101,6 +148,9 @@ public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
 		this.context = context;
 
 		aList = new ArrayList<Object>();
+		rooms = new ArrayList<Room>();
+		units = new ArrayList<Unit>();
+		buildings = new ArrayList<Building>();
 	}
 
 }
