@@ -33,6 +33,8 @@ public interface Constants
 	// do braku rysowania bitmapy
 	public String	NO_BITMAP				= "0";
 	
+	
+	//TODO: zastapic publicznym enumem
 	public int CSV_BUILDING = 1;
 	public int CSV_FLOOR = 2;
 	public int CSV_NAVIGATION_POINT = 3;
