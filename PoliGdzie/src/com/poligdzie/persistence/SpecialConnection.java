@@ -2,10 +2,9 @@ package com.poligdzie.persistence;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-import com.poligdzie.base.PoliGdzieBaseClass;
 
 @DatabaseTable(tableName = "specialConnection")
-public class SpecialConnection extends PoliGdzieBaseClass
+public class SpecialConnection 
 {
 	@DatabaseField(generatedId = true)
 	private int			id;

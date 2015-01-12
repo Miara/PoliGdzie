@@ -1,0 +1,267 @@
+#
+# generated on 2015/01/13 12:52:18
+#
+# --table-start--
+dataClass=com.poligdzie.persistence.Building
+tableName=building
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=name
+indexName=building_name_idx
+# --field-end--
+# --field-start--
+fieldName=coordX
+# --field-end--
+# --field-start--
+fieldName=coordY
+# --field-end--
+# --field-start--
+fieldName=address
+# --field-end--
+# --field-start--
+fieldName=width
+# --field-end--
+# --field-start--
+fieldName=height
+# --field-end--
+# --field-start--
+fieldName=aliases
+indexName=building_aliases_idx
+# --field-end--
+# --field-start--
+fieldName=imageResource
+# --field-end--
+# --field-start--
+fieldName=markerImageResource
+# --field-end--
+# --field-start--
+fieldName=rooms
+columnName=rooms
+foreignCollection=true
+foreignCollectionEager=true
+foreignCollectionColumnName=rooms
+# --field-end--
+# --field-start--
+fieldName=units
+columnName=units
+foreignCollection=true
+foreignCollectionEager=true
+foreignCollectionColumnName=units
+# --field-end--
+# --field-start--
+fieldName=floors
+columnName=floors
+foreignCollection=true
+foreignCollectionEager=true
+foreignCollectionColumnName=floors
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.poligdzie.persistence.Floor
+tableName=floor
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=number
+# --field-end--
+# --field-start--
+fieldName=drawableId
+# --field-end--
+# --field-start--
+fieldName=width
+# --field-end--
+# --field-start--
+fieldName=height
+# --field-end--
+# --field-start--
+fieldName=name
+# --field-end--
+# --field-start--
+fieldName=tag
+# --field-end--
+# --field-start--
+fieldName=pixelsPerMeter
+# --field-end--
+# --field-start--
+fieldName=building
+columnName=building_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.poligdzie.persistence.NavigationConnection
+tableName=navigationConnection
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=firstPoint
+columnName=navigationPointFirst_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --field-start--
+fieldName=lastPoint
+columnName=navigationPointLast_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --field-start--
+fieldName=length
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.poligdzie.persistence.NavigationPoint
+tableName=navigationPoint
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=coordX
+# --field-end--
+# --field-start--
+fieldName=coordY
+# --field-end--
+# --field-start--
+fieldName=floor
+columnName=floor_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --field-start--
+fieldName=type
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.poligdzie.persistence.Room
+tableName=room
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=number
+indexName=room_number_idx
+# --field-end--
+# --field-start--
+fieldName=name
+indexName=room_name_idx
+# --field-end--
+# --field-start--
+fieldName=function
+# --field-end--
+# --field-start--
+fieldName=coordX
+# --field-end--
+# --field-start--
+fieldName=coordY
+# --field-end--
+# --field-start--
+fieldName=radius
+# --field-end--
+# --field-start--
+fieldName=doorsX
+# --field-end--
+# --field-start--
+fieldName=doorsY
+# --field-end--
+# --field-start--
+fieldName=floor
+columnName=floor_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --field-start--
+fieldName=aliases
+indexName=room_aliases_idx
+# --field-end--
+# --field-start--
+fieldName=building
+columnName=building_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.poligdzie.persistence.SpecialConnection
+tableName=specialConnection
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=lowerFloor
+columnName=specialPointLower_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --field-start--
+fieldName=upperFloor
+columnName=specialPointUpper_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.poligdzie.persistence.Unit
+tableName=unit
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=name
+indexName=unit_name_idx
+# --field-end--
+# --field-start--
+fieldName=www
+# --field-end--
+# --field-start--
+fieldName=type
+# --field-end--
+# --field-start--
+fieldName=aliases
+indexName=unit_aliases_idx
+# --field-end--
+# --field-start--
+fieldName=building
+columnName=building_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --field-start--
+fieldName=office
+columnName=room_id
+foreign=true
+foreignAutoRefresh=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################

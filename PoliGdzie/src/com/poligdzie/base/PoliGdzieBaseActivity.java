@@ -5,7 +5,9 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
+import com.example.poligdzie.R;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
@@ -77,6 +79,7 @@ public abstract class PoliGdzieBaseActivity extends FragmentActivity implements
 
 	public PoliGdzieBaseActivity()
 	{
+		Log.d("POLIGDZIE", Integer.toHexString(R.raw.ormlite_config));
 		this.dbHelper = new DatabaseHelper(this, DATABASE_NAME, null,
 				DATABASE_VERSION);
 	}

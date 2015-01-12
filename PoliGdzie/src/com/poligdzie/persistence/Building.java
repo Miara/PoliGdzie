@@ -4,13 +4,12 @@ import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
-import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.interfaces.Imageable;
 import com.poligdzie.interfaces.Nameable;
 import com.poligdzie.interfaces.WithCoordinates;
 
 @DatabaseTable(tableName = "building")
-public class Building extends PoliGdzieBaseClass implements Nameable,
+public class Building implements Nameable,
 												Imageable, WithCoordinates
 {
 	@DatabaseField(generatedId = true)

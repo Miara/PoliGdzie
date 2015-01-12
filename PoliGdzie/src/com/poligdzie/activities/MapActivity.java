@@ -40,7 +40,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 
 		mapProvider = MapFragmentProvider.getInstance();
 
-		DataProvider provider = DataProvider.getInstance();
+/*		DataProvider provider = DataProvider.getInstance();
 		
 		try
 		{
@@ -51,7 +51,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna",
 				OUTDOOR_MAP_TAG);
 		

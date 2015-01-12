@@ -2,10 +2,9 @@ package com.poligdzie.persistence;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-import com.poligdzie.base.PoliGdzieBaseClass;
 
 @DatabaseTable(tableName = "navigationPoint")
-public class NavigationPoint extends PoliGdzieBaseClass
+public class NavigationPoint 
 {
 	@DatabaseField(generatedId = true)
 	private int			id;

@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.util.Log;
 
+import com.example.poligdzie.R;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
@@ -20,7 +21,6 @@ import com.poligdzie.persistence.NavigationPoint;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.SpecialConnection;
 import com.poligdzie.persistence.Unit;
-import com.poligdzie.singletons.DataProvider;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 {
@@ -28,7 +28,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 	public DatabaseHelper(Context context, String databaseName,
 			CursorFactory factory, int databaseVersion)
 	{
-		super(context, databaseName, factory, databaseVersion);
+		super(context, databaseName, factory, databaseVersion, R.raw.ormlite_config);
 		this.context = context;
 	}
 	private Context context;
