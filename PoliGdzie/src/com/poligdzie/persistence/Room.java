@@ -45,7 +45,7 @@ public class Room extends PoliGdzieBaseClass implements Nameable
 	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "building_id")
 	private Building		building;
 	
-	//@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "navigationPointConnection_id")
+	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "navigationPointConnection_id")
 	private NavigationConnection		navigationConnection;
 
 	public int getId()

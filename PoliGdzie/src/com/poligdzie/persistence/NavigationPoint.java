@@ -22,6 +22,17 @@ public class NavigationPoint extends PoliGdzieBaseClass
 	@DatabaseField
 	private NavigationPointTypes type;
 
+	public boolean compareToFloor(Floor f)
+	{
+		if(this.floor.getId() == f.getId())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	public int getId()
 	{

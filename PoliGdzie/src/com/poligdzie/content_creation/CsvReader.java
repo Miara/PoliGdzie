@@ -149,7 +149,7 @@ public class CsvReader implements Constants
 			
 			NavigationPoint first = getNavigationPoint(Integer.parseInt(value[1])) ;
 			NavigationPoint last  = getNavigationPoint(Integer.parseInt(value[2])) ;
-			int length 			  = 0;
+			int length 			  = getNavigationConnectionLength(first, last);
 			
 			NavigationConnection  connection = new NavigationConnection(first,last,length);
 	    	creator.add(connection);
@@ -304,7 +304,7 @@ public class CsvReader implements Constants
 		return creator;
 	}
 	
-	public int toInt(String str)
+	private int toInt(String str)
 	{
 		try
 		{
@@ -317,7 +317,7 @@ public class CsvReader implements Constants
 		}
 	}
 	
-	public double toDouble(String str)
+	private double toDouble(String str)
 	{
 		try
 		{
@@ -329,6 +329,25 @@ public class CsvReader implements Constants
 			return 0;
 		}
 	}
+	
+	private int getNavigationConnectionLength(NavigationPoint p1, NavigationPoint p2)
+	{
+		if( p1.compareToFloor(p2.getFloor()) )
+		{
+			int scale = p1.getFloor().getPixelsPerMeter();
+			double a = p2.getCoordX() - p1.getCoordX();
+			double b = p2.getCoordY() - p1.getCoordY();
+			double length = Math.sqrt(a*a + b*b) / scale;
+			return (int)length;
+		}
+		else
+		{
+			Log.e("poligdzie","Polaczenie nawigacyjne dotyczy roznych pieter - blad");
+			// TODO : Dodaæ do pliku z b³êdami
+			return -1;
+		}
+	}
+	
 	
 	private void echo(String tag)
 	{
