@@ -9,6 +9,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.base.PoliGdzieMapFragment;
+import com.poligdzie.fragments.MapOutdoorFragment;
 import com.poligdzie.helpers.FragmentMapHelper;
 
 public class MapFragmentProvider extends PoliGdzieBaseClass
@@ -25,6 +26,10 @@ public class MapFragmentProvider extends PoliGdzieBaseClass
 	static final LatLng					LOCATION_PIOTROWO	= new LatLng(
 																	52.4022703,
 																	16.9495847);
+
+	PoliGdzieMapFragment googleMapFragment;
+	
+	
 
 	protected MapFragmentProvider()
 	{
@@ -45,6 +50,10 @@ public class MapFragmentProvider extends PoliGdzieBaseClass
 
 	public void addFragment(String tag, PoliGdzieMapFragment fragment)
 	{
+		if( fragment instanceof MapOutdoorFragment)
+		{
+			this.googleMapFragment = fragment;
+		}
 		fragments.addFragment(tag, fragment);
 		keys.add(tag);
 	}
@@ -131,14 +140,25 @@ public class MapFragmentProvider extends PoliGdzieBaseClass
 	{
 		this.currentKey = currentKey;
 	}
+	
+	
+	public PoliGdzieMapFragment getGoogleMapFragment()
+	{
+		return googleMapFragment;
+	}
+
+	public void addGoogleMapFragment()
+	{
+		fragments.addFragment(OUTDOOR_MAP_TAG, googleMapFragment);
+		keys.add(OUTDOOR_MAP_TAG);	
+	}
 
 	public void clearFragments()
 	{
-		PoliGdzieMapFragment temp = fragments.getFragmentByTag(OUTDOOR_MAP_TAG);
 		fragments.clear();
 		keys.clear();
-		keys.add(OUTDOOR_MAP_TAG);
-		fragments.addFragment(OUTDOOR_MAP_TAG, temp);
 	}
+
+	
 
 }

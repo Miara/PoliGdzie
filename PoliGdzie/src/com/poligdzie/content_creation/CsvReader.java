@@ -9,6 +9,7 @@ import java.util.List;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
+import com.poligdzie.persistence.BuildingEntry;
 import com.poligdzie.persistence.Floor;
 import com.poligdzie.persistence.NavigationConnection;
 import com.poligdzie.persistence.NavigationPoint;
@@ -42,6 +43,7 @@ public class CsvReader implements Constants
 		{
 			
 			//Budynki
+			int number=1;
 			InputStream is = context.getAssets().open(file);
 		    BufferedReader reader = new BufferedReader(new InputStreamReader(is,"UTF-8"));
 		    String line= reader.readLine();
@@ -50,14 +52,16 @@ public class CsvReader implements Constants
 		    	
 		    	switch(mode)
 		    	{
-			    	case CSV_BUILDING : 			addBuilding(line); break;
-			    	case CSV_FLOOR :				addFloor(line); break;
-			    	case CSV_NAVIGATION_POINT :		addNavigationPoint(line); break;
-			    	case CSV_NAVIGATION_CONNECTION :addNavigationConnection(line); break;
-			    	case CSV_SPECIAL_CONNECTION :	addSpecialConnection(line); break;
-			    	case CSV_ROOM :					addRoom(line); break;
-			    	case CSV_UNIT:		    		addUnit(line); break;
+			    	case CSV_BUILDING : 			addBuilding(line,number); break;
+			    	case CSV_FLOOR :				addFloor(line,number); break;
+			    	case CSV_NAVIGATION_POINT :		addNavigationPoint(line,number); break;
+			    	case CSV_BUILDING_ENTRY :		addBuildingEntry(line,number); break;
+			    	case CSV_NAVIGATION_CONNECTION :addNavigationConnection(line,number); break;
+			    	case CSV_SPECIAL_CONNECTION :	addSpecialConnection(line,number); break;
+			    	case CSV_ROOM :					addRoom(line,number); break;
+			    	case CSV_UNIT:		    		addUnit(line,number); break;
 		    	}
+		    	number++;
 		    }
 		    this.creator.populateDatabase(dbHelper);
 		    reader.close();
@@ -65,11 +69,13 @@ public class CsvReader implements Constants
 		}
 		catch(Exception e)
 		{
-		    Log.i("POLIGDZIE","Wystapil blad");
+		    Log.e("POLIGDZIE","Wystapil blad");
 		}
 	}
 	
-	private void addBuilding(String line)
+	
+
+	private void addBuilding(String line, int number)
 	{
 		try
 		{
@@ -89,11 +95,11 @@ public class CsvReader implements Constants
 		}
 		catch(Exception e)
 		{
-		    Log.i("POLIGDZIE","Nie dodano budynku do bazy");
+		    Log.e("POLIGDZIE",number+":Nie dodano budynku do bazy");
 		}
 	}
 	
-	private void addFloor(String line) throws NumberFormatException, SQLException
+	private void addFloor(String line, int number) throws NumberFormatException, SQLException
 	{
 		try
 		{
@@ -101,23 +107,23 @@ public class CsvReader implements Constants
 			String[] value = line.split(";");
 			String name			= value[1];
 			Building building 	= getBuilding(Integer.parseInt(value[2]));
-			int number 			= toInt(value[3]);
+			int floorNumber 	= toInt(value[3]);
 			int width	  		= toInt(value[4]);
 			int height	  		= toInt(value[5]);
 			String scheme		= value[6];
 			String tag  		= value[7];
 			int pixelsPerMeter  = toInt(value[8]);
 			
-			Floor  floor = new Floor(name,building,number,width,height,scheme,tag,pixelsPerMeter);
+			Floor  floor = new Floor(name,building,floorNumber,width,height,scheme,tag,pixelsPerMeter);
 	    	creator.add(floor);
 		}
 		catch(Exception e)
 		{
-		    Log.i("POLIGDZIE","Nie dodano pietra do bazy");
+		    Log.e("POLIGDZIE",number+":Nie dodano pietra do bazy");
 		}
 	}
 	
-	private void addNavigationPoint(String line)
+	private void addNavigationPoint(String line, int number)
 	{
 		
 		try
@@ -135,11 +141,33 @@ public class CsvReader implements Constants
 		}
 		catch(Exception e)
 		{
-		    Log.i("POLIGDZIE","Nie dodano punktu nawigacyjnego do bazy");
+		    Log.e("POLIGDZIE",number+":Nie dodano punktu nawigacyjnego do bazy");
 		}
 	}
 	
-	private void addNavigationConnection(String line)
+	private void addBuildingEntry(String line, int number)
+	{
+		try
+		{
+			//coordX,coordY,floor,type
+			String[] value = line.split(";");
+			
+			int coordX	  					= toInt(value[1]);
+		    int coordY	  					= toInt(value[2]);
+		    Building building 				= getBuilding(Integer.parseInt(value[3]));	
+			NavigationPoint point 			= getNavigationPoint(Integer.parseInt(value[4]));
+			
+			BuildingEntry  entry = new BuildingEntry(coordX,coordY,building	,point);
+	    	creator.add(entry);
+		}
+		catch(Exception e)
+		{
+		    Log.e("POLIGDZIE",number+":Nie dodano wejœcia do budynku do bazy");
+		}
+		
+	}
+	
+	private void addNavigationConnection(String line, int number)
 	{
 		
 		try
@@ -149,18 +177,18 @@ public class CsvReader implements Constants
 			
 			NavigationPoint first = getNavigationPoint(Integer.parseInt(value[1])) ;
 			NavigationPoint last  = getNavigationPoint(Integer.parseInt(value[2])) ;
-			int length 			  = getNavigationConnectionLength(first, last);
+			int length 			  = getNavigationConnectionLength(first, last,number);
 			
 			NavigationConnection  connection = new NavigationConnection(first,last,length);
 	    	creator.add(connection);
 		}
 		catch(Exception e)
 		{
-		    Log.i("POLIGDZIE","Nie dodano polaczenia nawigacyjnego do bazy");
+		    Log.e("POLIGDZIE",number+":Nie dodano polaczenia nawigacyjnego do bazy");
 		}
 	}
 	
-	private void addSpecialConnection(String line)
+	private void addSpecialConnection(String line, int number)
 	{
 		
 		try
@@ -176,42 +204,40 @@ public class CsvReader implements Constants
 		}
 		catch(Exception e)
 		{
-		    Log.i("POLIGDZIE","Nie dodano polaczenia specjalnego do bazy");
+		    Log.e("POLIGDZIE",number+":Nie dodano polaczenia specjalnego do bazy");
 		}
 	}
 	
-	private void addRoom(String line)
+	private void addRoom(String line, int number)
 	{
 		try
 		{
 			//id;number;name;function;building;floor;coordX;coordY;radius;doorsX;doorsY;navigationPointConnection;aliases
 			String[] value = line.split(";");
-			
-			String number 			= value[1]; 
+			String roomNumber 			= value[1]; 
 			String name				= value[2];
 			RoomFunctions function 	= getRoomFunction(value[3]);
-			Building building 		= getBuilding(Integer.parseInt(value[4]));
-			Floor floor 			= getFloor(Integer.parseInt(value[5]));	
-			int coordX	  			= toInt(value[6]);
-		    int coordY	  			= toInt(value[7]);
-			int radius	  			= toInt(value[8]);
-			int doorsX	  			= toInt(value[9]);
-			int doorsY	  			= toInt(value[10]);
+			Floor floor 			= getFloor(Integer.parseInt(value[4]));	
+			int coordX	  			= toInt(value[5]);
+		    int coordY	  			= toInt(value[6]);
+			int radius	  			= toInt(value[7]);
+			int doorsX	  			= toInt(value[8]);
+			int doorsY	  			= toInt(value[9]);
 			NavigationConnection navigationConnection 
-									= getNavigationConnection(Integer.parseInt(value[11]));
-	    	String aliases			= value[12];
+									= getNavigationConnection(Integer.parseInt(value[10]));
+			String aliases			= value[11];
 	
-			Room  room = new Room(number,name,function,building,floor,
+			Room  room = new Room(roomNumber,name,function,floor,
 					coordX,coordY,radius,doorsX,doorsY,navigationConnection,aliases);
 	    	creator.add(room);
 		}
 		catch(Exception e)
 		{
-		    Log.i("POLIGDZIE","Nie dodano pomieszczenia do bazy");
+		    Log.e("POLIGDZIE",number+":Nie dodano pomieszczenia do bazy");
 		}
 	}
 	
-	private void addUnit(String line)
+	private void addUnit(String line, int number)
 	{
 		
 		try
@@ -231,7 +257,7 @@ public class CsvReader implements Constants
 		}
 		catch(Exception e)
 		{
-		    Log.i("POLIGDZIE","Nie dodano jednostki organizacyjnej do bazy");
+		    Log.e("POLIGDZIE",number+":Nie dodano jednostki organizacyjnej do bazy");
 		}
 	}
 	
@@ -278,6 +304,7 @@ public class CsvReader implements Constants
 		//NAVIGATION,SPECIAL
 		if (type.equals("NAVIGATION")) return NavigationPointTypes.NAVIGATION;
 		if (type.equals("SPECIAL")) return NavigationPointTypes.SPECIAL;
+		if (type.equals("ENTRY")) return NavigationPointTypes.ENTRY;
 		else throw new Exception();
 	}
 
@@ -330,9 +357,9 @@ public class CsvReader implements Constants
 		}
 	}
 	
-	private int getNavigationConnectionLength(NavigationPoint p1, NavigationPoint p2)
+	private int getNavigationConnectionLength(NavigationPoint p1, NavigationPoint p2, int number)
 	{
-		if( p1.compareToFloor(p2.getFloor()) )
+		if( p1.hasEqualFloor(p2.getFloor()) )
 		{
 			int scale = p1.getFloor().getPixelsPerMeter();
 			double a = p2.getCoordX() - p1.getCoordX();
@@ -342,7 +369,7 @@ public class CsvReader implements Constants
 		}
 		else
 		{
-			Log.e("poligdzie","Polaczenie nawigacyjne dotyczy roznych pieter - blad");
+			Log.e("poligdzie",number+":Polaczenie nawigacyjne dotyczy roznych pieter - blad");
 			// TODO : Dodaæ do pliku z b³êdami
 			return -1;
 		}

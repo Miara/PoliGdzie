@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.persistence.Building;
+import com.poligdzie.persistence.BuildingEntry;
 import com.poligdzie.persistence.Floor;
 import com.poligdzie.persistence.NavigationConnection;
 import com.poligdzie.persistence.NavigationPoint;
@@ -21,6 +22,7 @@ public class ContentCreator
 	private List<Room>					rooms;
 	private List<Floor>					floors;
 	private List<NavigationPoint>		navigationPoints;
+	private List<BuildingEntry>			buildingEntries;
 	private List<NavigationConnection>	navigationConnections;
 	private List<SpecialConnection>		specialConnections;
 
@@ -75,6 +77,18 @@ public class ContentCreator
 	{
 		this.navigationPoints = navigationPoints;
 	}
+	
+	
+
+	public List<BuildingEntry> getBuildingEntries()
+	{
+		return buildingEntries;
+	}
+
+	public void setBuildingEntries(List<BuildingEntry> buildingEntries)
+	{
+		this.buildingEntries = buildingEntries;
+	}
 
 	public List<NavigationConnection> getNavigationConnections()
 	{
@@ -124,6 +138,11 @@ public class ContentCreator
 		{
 			this.addNavigationPoint((NavigationPoint) value);
 		}
+		
+		if (value.getClass() == BuildingEntry.class)
+		{
+			this.addBuildingEntry((BuildingEntry) value);
+		}
 		if (value.getClass() == NavigationConnection.class)
 		{
 			this.addNavigationConnection((NavigationConnection) value);
@@ -135,6 +154,8 @@ public class ContentCreator
 		}
 
 	}
+
+	
 
 	
 
@@ -163,6 +184,11 @@ public class ContentCreator
 		this.navigationPoints.add(value);	
 	}
 	
+	private void addBuildingEntry(BuildingEntry value)
+	{
+		this.buildingEntries.add(value);	
+	}
+	
 	private void addNavigationConnection(NavigationConnection value)
 	{
 		this.navigationConnections.add(value);	
@@ -182,6 +208,7 @@ public class ContentCreator
 		rooms = new ArrayList<Room>();
 		floors = new ArrayList<Floor>();
 		navigationPoints = new ArrayList<NavigationPoint>();
+		buildingEntries = new ArrayList<BuildingEntry>();
 		navigationConnections = new ArrayList<NavigationConnection>();
 		specialConnections = new ArrayList<SpecialConnection>();
 	}
@@ -238,6 +265,17 @@ public class ContentCreator
 			try
 			{
 				dbHelper.getNavigationPointDao().createOrUpdate(navigationPoint);
+			} catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		for (BuildingEntry entry : buildingEntries)
+		{
+			try
+			{
+				dbHelper.getBuildingEntryDao().createOrUpdate(entry);
 			} catch (SQLException e)
 			{
 				e.printStackTrace();

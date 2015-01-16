@@ -22,7 +22,7 @@ public class NavigationPoint extends PoliGdzieBaseClass
 	@DatabaseField
 	private NavigationPointTypes type;
 
-	public boolean compareToFloor(Floor f)
+	public boolean hasEqualFloor(Floor f)
 	{
 		if(this.floor.getId() == f.getId())
 		{

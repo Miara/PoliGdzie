@@ -15,6 +15,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.j256.ormlite.dao.ForeignCollection;
+import com.poligdzie.activities.MapActivity;
 import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.base.PoliGdzieBaseFragment;
@@ -36,12 +37,24 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 {
 
 	private SearchAutoCompleteTextView	searchPosition;
-	private GoogleMap					map;
-	private MapOutdoorFragment			outdoorMap;
 	private PoliGdzieBaseFragment		fragment;
+	private MapFragmentProvider	mapFragmentProvider;
 
 	private void showPlaceOutdoor(Object object)
 	{
+		
+		mapFragmentProvider.addGoogleMapFragment();
+		
+		MapOutdoorFragment outdoorMap = (MapOutdoorFragment) mapFragmentProvider.getGoogleMapFragment();
+		GoogleMap map = ((MapFragment) fragment.getActivity().getFragmentManager()
+					.findFragmentById(R.id.map_outdoor_googleMap)).getMap();
+		
+		((PoliGdzieBaseActivity) fragment.getActivity()).switchFragment(R.id.map_container, outdoorMap,
+				OUTDOOR_MAP_TAG);
+		
+		((MapActivity) fragment.getActivity()).setNavigationArrowsVisibility();
+		
+		
 		LatLng pos = getCoords(object);
 
 		MapDrawingProvider provider = MapDrawingProvider.getInstance();
@@ -57,7 +70,7 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 						callback);
 
 				AnimationClosureChecker checker = new AnimationClosureChecker(
-						callback, map, m, this.outdoorMap, new DatabaseHelper(
+						callback, map, m, outdoorMap, new DatabaseHelper(
 								fragment.getActivity(), DATABASE_NAME, null,
 								DATABASE_VERSION));
 				checker.execute();
@@ -101,6 +114,9 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 
 	private void showPlaceIndoor(Object object)
 	{
+		
+		mapFragmentProvider.addGoogleMapFragment();
+		
 		for (Floor f : getFloors(object))
 		{
 			MapIndoorFragment indoorMap = new MapIndoorFragment(
@@ -149,25 +165,15 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 	@Override
 	public void onClick(View v)
 	{
-		if (map == null)
-		{
-			map = ((MapFragment) fragment.getActivity().getFragmentManager()
-					.findFragmentById(R.id.map_outdoor_googleMap)).getMap();
-		}
-		if (outdoorMap == null)
-		{
-			outdoorMap = (MapOutdoorFragment) fragment.getFragmentManager()
-					.findFragmentByTag(OUTDOOR_MAP_TAG);
-		}
-		MapFragmentProvider mapProvider = MapFragmentProvider.getInstance();
-		mapProvider.clearFragments();
+		
+		mapFragmentProvider.clearFragments();
 
 		searchPosition.clearFocus();
 		InputMethodManager imm = (InputMethodManager) fragment.getActivity()
 				.getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(searchPosition.getWindowToken(), 0);
 
-		if (!searchPosition.getAdapter().isEmpty())
+		if (validateAdapter(searchPosition))
 		{
 			Object object = searchPosition.getAdapter().getItem(0);
 			if (object != null)
@@ -193,12 +199,17 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 					}
 				}
 			}
-		} else
+		} 
+	}
+	
+	private boolean validateAdapter(SearchAutoCompleteTextView searchPoint)
+	{
+		if(searchPoint.getAdapter().isEmpty())
 		{
-			Toast toast = Toast.makeText(fragment.getActivity(),
-					"Nie znaleziono nic!", Toast.LENGTH_SHORT);
-			toast.show();
+			makeToast("Proszê wybraæ miejsce",fragment.getActivity());
+			return false;
 		}
+		else return true;
 	}
 
 	public SearchButtonListener(SearchAutoCompleteTextView searchPosition,
@@ -206,9 +217,8 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 			PoliGdzieBaseFragment fragment)
 	{
 		this.searchPosition = searchPosition;
-		this.map = map;
-		this.outdoorMap = outdoorMap;
 		this.fragment = fragment;
+		this.mapFragmentProvider = MapFragmentProvider.getInstance();
 	}
 
 }

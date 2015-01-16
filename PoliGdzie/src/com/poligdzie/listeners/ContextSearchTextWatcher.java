@@ -151,6 +151,12 @@ public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
 		rooms = new ArrayList<Room>();
 		units = new ArrayList<Unit>();
 		buildings = new ArrayList<Building>();
+		
+		
+		AutocompleteCustomAdapter adapter = new AutocompleteCustomAdapter(
+				this.context, R.layout.prompt_item, aList);
+		input.setAdapter(adapter);
+		
 	}
 
 }

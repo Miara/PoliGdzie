@@ -64,9 +64,9 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		switchFragment(R.id.map_container, outdoorMap, outdoorMap.getViewTag());
 		
 		//ind
-		try
+	/*	try
 		{
-			Room r1 = dbHelper.getRoomDao().queryBuilder().where().eq("id", 16).queryForFirst();
+			Room r1 = dbHelper.getRoomDao().queryBuilder().where().eq("id", 8).queryForFirst();
 			Room r2 = dbHelper.getRoomDao().queryBuilder().where().eq("id", 22).queryForFirst();
 			IndoorRouteFinder test = new IndoorRouteFinder(dbHelper);
 			List<NavigationPoint> list = test.findRoute(r1, r2);
@@ -80,7 +80,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		{
 			Log.i("ROUTE","FAIL!");
 			e.printStackTrace();
-		}
+		}*/
 		//ind
 
 		previous = (Button) findViewById(R.id.previous_map);
@@ -105,8 +105,8 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 	public void onClick(View v)
 	{
 
-		PoliGdzieMapFragment frag;
-		String tag;
+		PoliGdzieMapFragment frag = null;
+		String tag = "";
 		if (v == next)
 		{
 			frag = mapProvider.getNextFragment();
@@ -118,14 +118,18 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		{
 			frag = mapProvider.getPreviousFragment();
 			tag = mapProvider.getPreviousKey();
-
+			
 			switchFragment(R.id.map_container, frag, tag);
 		}
-
-		currentText.setText(mapProvider.getCurrentFragment().getName());
-
-		if (mapProvider.getCurrentFragmentKeyPosition() >= (mapProvider
-				.getFragmentsSize() - 1))
+		
+		setNavigationArrowsVisibility();
+		
+		
+	}
+	
+	public void setNavigationArrowsVisibility()
+	{
+		if (mapProvider.getCurrentFragmentKeyPosition() >= (mapProvider.getFragmentsSize() - 1))
 			next.setVisibility(View.GONE);
 		else
 			next.setVisibility(View.VISIBLE);
@@ -134,7 +138,8 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 			previous.setVisibility(View.GONE);
 		else
 			previous.setVisibility(View.VISIBLE);
-
+		
+		currentText.setText(mapProvider.getCurrentFragment().getName());	
 	}
 
 	public MapActivity()

@@ -14,6 +14,7 @@ import com.j256.ormlite.table.TableUtils;
 import com.poligdzie.content_creation.CsvReader;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
+import com.poligdzie.persistence.BuildingEntry;
 import com.poligdzie.persistence.Floor;
 import com.poligdzie.persistence.NavigationConnection;
 import com.poligdzie.persistence.NavigationPoint;
@@ -37,6 +38,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 	private Dao<Room, Integer>					roomDao					= null;
 	private Dao<Floor, Integer>					floorDao				= null;
 	private Dao<NavigationPoint, Integer>		navigationPointDao		= null;
+	private Dao<BuildingEntry, Integer>		BuildingEntryDao		= null;
 	private Dao<NavigationConnection, Integer>	navigationConnectionDao	= null;
 	private Dao<SpecialConnection, Integer>		specialConnectionDao	= null;
 
@@ -52,6 +54,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 			TableUtils.createTable(connectionSource, Building.class);
 			TableUtils.createTable(connectionSource, Floor.class);
 			TableUtils.createTable(connectionSource, NavigationPoint.class);
+			TableUtils.createTable(connectionSource, BuildingEntry.class);
 			TableUtils.createTable(connectionSource, NavigationConnection.class);
 			TableUtils.createTable(connectionSource, SpecialConnection.class);
 		
@@ -60,6 +63,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 			csvReader.parseCsvToDatabase("Building.csv",CSV_BUILDING);
 			csvReader.parseCsvToDatabase("Floor.csv", CSV_FLOOR);
 			csvReader.parseCsvToDatabase("NavigationPoint.csv", CSV_NAVIGATION_POINT);
+			csvReader.parseCsvToDatabase("BuildingEntry.csv", CSV_BUILDING_ENTRY);			
 			csvReader.parseCsvToDatabase("NavigationConnection.csv", CSV_NAVIGATION_CONNECTION);
 			csvReader.parseCsvToDatabase("SpecialConnection.csv", CSV_SPECIAL_CONNECTION);
 			csvReader.parseCsvToDatabase("Room.csv", CSV_ROOM);
@@ -88,6 +92,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 			TableUtils.dropTable(connectionSource, Building.class, false);
 			TableUtils.dropTable(connectionSource, Floor.class, false);
 			TableUtils.dropTable(connectionSource, NavigationPoint.class,false);
+			TableUtils.dropTable(connectionSource, BuildingEntry.class,false);
 			TableUtils.dropTable(connectionSource, NavigationConnection.class,false);
 			TableUtils.dropTable(connectionSource, SpecialConnection.class,false);
 			Log.i("DATABASE", "upgrade2");
@@ -145,6 +150,15 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 		}
 		return navigationPointDao;
 	}
+	
+	public Dao<BuildingEntry, Integer> getBuildingEntryDao() throws SQLException
+	{
+		if (BuildingEntryDao == null)
+		{
+			BuildingEntryDao = getDao(BuildingEntry.class);
+		}
+		return BuildingEntryDao;
+	}
 
 	public Dao<NavigationConnection, Integer> getNavigationConnectionDao() throws SQLException
 	{
@@ -173,6 +187,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 		roomDao = null;
 		floorDao = null;
 		navigationPointDao = null;
+		BuildingEntryDao = null ;
 		navigationConnectionDao = null;
 		specialConnectionDao = null;
 	}

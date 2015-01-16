@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,6 +22,8 @@ import com.poligdzie.base.PoliGdzieBaseFragment;
 import com.poligdzie.interfaces.Nameable;
 import com.poligdzie.interfaces.WithCoordinates;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
+import com.poligdzie.listeners.RouteButtonListener;
+import com.poligdzie.listeners.SearchButtonListener;
 import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
@@ -37,6 +40,9 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 	private ContextSearchTextWatcher	goalWatcher;
 
 	private BuildingInfoFragment		buildingInfoFragment;
+	
+	private GoogleMap					map;
+	private MapOutdoorFragment			outdoorMap;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,20 +52,20 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 		View rootView = inflater.inflate(R.layout.search_trace_fragment,
 				container, false);
 
-		searchButton = (Button) rootView.findViewById(R.id.button_search_trace);
-		if (searchButton != null)
-			searchButton.setOnClickListener(this);
+		
 
 		startPosition = (SearchAutoCompleteTextView) rootView
 				.findViewById(R.id.starting_point_text_edit);
 		startWatcher = new ContextSearchTextWatcher(startPosition,
 				this.getActivity());
 		startPosition.addTextChangedListener(startWatcher);
+		if(startPosition == null )Log.i("poligdzie","test");
 		goalPosition = (SearchAutoCompleteTextView) rootView
 				.findViewById(R.id.goal_point_text_edit);
 		goalWatcher = new ContextSearchTextWatcher(goalPosition,
 				this.getActivity());
 		goalPosition.addTextChangedListener(goalWatcher);
+		if(goalPosition == null )Log.i("poligdzie","test2");
 
 		MapDrawingProvider provider = MapDrawingProvider.getInstance();
 
@@ -76,6 +82,11 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 			if (temp != null && temp.length() != 0)
 				goalPosition.setText(temp);
 		}
+		
+		searchButton = (Button) rootView.findViewById(R.id.button_search_trace);
+		if (searchButton != null)
+				searchButton.setOnClickListener(new RouteButtonListener(
+						startPosition, goalPosition, map, outdoorMap, this));
 
 		return rootView;
 	}
@@ -84,7 +95,7 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 	public void onClick(View v)
 	{
 
-		drawingProvider = MapDrawingProvider.getInstance();
+		/*drawingProvider = MapDrawingProvider.getInstance();
 
 		if (v == searchButton)
 		{
@@ -121,7 +132,7 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 			drawingProvider.setDrawRoute(true);
 
 			drawingProvider.drawRoute();
-		}
+		}*/
 
 	}
 

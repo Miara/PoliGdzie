@@ -179,7 +179,7 @@ public class Room extends PoliGdzieBaseClass implements Nameable
 		this.navigationConnection = navigationConnection;
 	}
 
-	public Room(String number, String name, RoomFunctions function, Building building, Floor floor, int coordX,
+	public Room(String number, String name, RoomFunctions function, Floor floor, int coordX,
 			int coordY,int radius, int doorsX, int doorsY,NavigationConnection navigationConnection, String aliases)
 	{
 		this.number = number;
@@ -192,7 +192,7 @@ public class Room extends PoliGdzieBaseClass implements Nameable
 		this.doorsY = doorsY;
 		this.floor = floor;
 		this.aliases = aliases;
-		this.building = building;
+		this.building = floor.getBuilding();
 		this.navigationConnection = navigationConnection;
 	}
 

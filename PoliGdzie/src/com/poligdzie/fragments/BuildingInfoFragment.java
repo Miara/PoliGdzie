@@ -120,6 +120,8 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 		if (v == showIndoorMapButton)
 		{
 			mapProvider.clearFragments();
+			mapProvider.addGoogleMapFragment();
+			
 			int i = 0;
 			Log.d("POLIGDZIE", currentBuildingOnMarker.getName());
 
