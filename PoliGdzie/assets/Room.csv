@@ -96,6 +96,6 @@ id;number;name;function;floor;coordX;coordY;radius;doorsX;doorsY;navigationPoint
 95;;toaleta damska;RESTROOM;11;718;1682;35;853;1643;75;toaleta damska, wc damskie, ³azienka damska
 96;;toaleta mêska;RESTROOM;11;718;1565;35;853;1583;75;toaleta mêska, wc mêskie, ³azienka mêska
 97;;toaleta dla niepe³nosprawnych;RESTROOM;11;800;1615;20;826;1614;75;toaleta dla niepe³nosprawnych, wc dla niepe³nosprawnych, ³azienka dla niepe³nosprawnych
-1000;1;Sala1TEst;LECTURE;14;1214;2069;50;1195;1955;1001;Sala 1 TCh
-1001;2;Sala2Test;LECTURE;14;1451;1848;30;1379;1792;1001;Sala 2 Tch
-1002;3;Sala3TEst;LECTURE;14;1789;1178;100;1425;1235;1002;Sala 3 TCh
+98;1;Sala1TEst;LECTURE;14;1214;2069;50;1195;1955;81;Sala 1 TCh
+99;2;Sala2Test;LECTURE;14;1451;1848;30;1379;1792;82;Sala 2 Tch
+100;3;Sala3TEst;LECTURE;14;1789;1178;100;1425;1235;83;Sala 3 TCh

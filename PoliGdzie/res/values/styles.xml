@@ -4,7 +4,8 @@
     <!--                     AutocompleteEdit do wyszukiwania            -->
     <style name="SearchEdit" >
        	<item name="android:layout_height">@dimen/search_edit_height</item> 
-    	<item name="android:paddingBottom">5dp</item>
+       	<item name="android:layout_width">@dimen/search_edit_width</item> 
+    	<item name="android:paddingBottom">1dp</item>
     	
     </style>
     <style name="SearchEdit.Linear" >
@@ -21,6 +22,11 @@
        	<item name="android:background">#FFFFFF</item> 
        	<item name="android:completionThreshold">1</item> 
        	<item name="android:layout_width">match_parent</item>
+       		<item name="android:scaleType">fitXY</item> 
+    </style> 
+    <style name="SearchEdit.Button" >
+       	<item name="android:layout_width">@dimen/search_edit_width</item>
+       	<item name="android:textSize">@dimen/search_edit_font_size</item>
     </style> 
 
  	

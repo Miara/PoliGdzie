@@ -185,7 +185,7 @@ public class BuildingImageView extends ImageView implements Constants
 	    redPaint .setColor(Color.RED);
 	    redPaint.setStrokeWidth(10);
 	    
-	    lines.clear();
+	  /*  lines.clear();
 		addLine(857,2705, 1141,2477);//1 2
 		addLine(1141,2477,1717,3197);//2 3
 		addLine(1141,2477,2161,1641);//2 5
@@ -211,7 +211,7 @@ public class BuildingImageView extends ImageView implements Constants
 		addLine(1481,437,2053,445);//15 16
 		addLine(2053,445,2505,445);//16 17
 		addLine(2505,445,2761,765);//17 18
-	   
+	   */
 	    for (Line l : lines) {
 	        canvas.drawLine(l.startX, l.startY, l.stopX, l.stopY, redPaint);
 	      }

@@ -22,6 +22,7 @@ import com.poligdzie.callbacks.MarkerAnimationFinishCallback;
 import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
 import com.poligdzie.helpers.DatabaseHelper;
+import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Floor;
 import com.poligdzie.persistence.Room;
@@ -35,40 +36,13 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 OnClickListener
 {
 
-	private GoogleMap					map;
-	private MapOutdoorFragment			outdoorMap;
 	private PoliGdzieBaseFragment		fragment;
 	private SearchAutoCompleteTextView	startPosition;
 	private SearchAutoCompleteTextView	goalPosition;
 	
 	private boolean error = false;
 
-	private void showPlaceOutdoor(Object object)
-	{
-		LatLng pos = getCoords(object);
 
-		MapDrawingProvider provider = MapDrawingProvider.getInstance();
-		List<Marker> markers = provider.getMarkers();
-
-		for (Marker m : markers)
-		{
-			if (m.getPosition().latitude == pos.latitude
-					&& m.getPosition().longitude == pos.longitude)
-			{
-				MarkerAnimationFinishCallback callback = new MarkerAnimationFinishCallback();
-				map.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 17),
-						callback);
-
-				AnimationClosureChecker checker = new AnimationClosureChecker(
-						callback, map, m, this.outdoorMap, new DatabaseHelper(
-								fragment.getActivity(), DATABASE_NAME, null,
-								DATABASE_VERSION));
-				checker.execute();
-				break;
-			}
-
-		}
-	}
 
 	private ForeignCollection<Floor> getFloors(Object object)
 	{
@@ -102,7 +76,7 @@ OnClickListener
 		return null;
 	}
 
-	private void showIndoorRoute(Object room, boolean firstIndoor)
+	private void showIndoorRoute(Object room, int indoorMode, int switchingMode)
 	{
 		Floor lastFloorInIndoor = null;
 		String roomFloorTag = "";
@@ -110,15 +84,15 @@ OnClickListener
 		{
 			
 			
-			if ((f.getTag().equals(getTag(room)) && firstIndoor ) ||
-					(f.getNumber() == 0 && !firstIndoor))
+			if ((f.getTag().equals(getTag(room)) && indoorMode == INDOOR_MODE_FIRST) ||
+					(f.getNumber() == 0 && indoorMode == INDOOR_MODE_LAST))
 			{
-					addIndoorFragment(f);
+					addIndoorFragment(f,switchingMode);
 					roomFloorTag = f.getTag();
 					
 			}
-			else if ((f.getTag().equals(getTag(room)) && !firstIndoor ) ||
-					(f.getNumber() == 0 && firstIndoor))
+			else if ((f.getTag().equals(getTag(room)) && indoorMode == INDOOR_MODE_LAST ) ||
+					(f.getNumber() == 0 && indoorMode == INDOOR_MODE_FIRST))
 			{
 					lastFloorInIndoor = f;
 			}
@@ -140,62 +114,42 @@ OnClickListener
 	}
 
 	
-	private void addIndoorFragment(Floor floor)
+	private void addIndoorFragment(Floor floor, int switchingMode)
 	{
 		MapIndoorFragment indoorMap = new MapIndoorFragment(
 				floor.getDrawableId(), floor.getName(), floor.getTag(), floor.getNumber());
-		((PoliGdzieBaseActivity) fragment.getActivity())
-				.switchFragment(R.id.map_container, indoorMap,
-						indoorMap.getViewTag());
-		
+		if(switchingMode == ENABLE_SWITCHING_FRAGMENT)
+		{
+			((PoliGdzieBaseActivity) fragment.getActivity())
+			.switchFragment(R.id.map_container, indoorMap,
+					indoorMap.getViewTag());
+		}	
 	}
 
-	private void showGeneralRoute()
+	private void showGeneralRoute(Object startObject, Object goalObject)
 	{
-		// TODO Auto-generated method stub
+		MapFragmentProvider mapProvider = MapFragmentProvider.getInstance();
+		if(startObject instanceof Building)
+		{
+			mapProvider.addGoogleMapFragment();
+		}
+		else if (startObject instanceof Room)
+		{
+			showIndoorRoute(startObject, INDOOR_MODE_FIRST, ENABLE_SWITCHING_FRAGMENT);
+			mapProvider.addGoogleMapFragment();
+		}
 		
-	}
-	private LatLng getCoords(Object object)
-	{
-		if (object instanceof Building)
+		if (goalObject instanceof Room)
 		{
-			Building temp = (Building) object;
-			return new LatLng(temp.getCoordX(), temp.getCoordY());
+			showIndoorRoute(goalObject, INDOOR_MODE_LAST, DISABLE_SWITCHING_FRAGMENT);
 		}
-		if (object instanceof Room)
-		{
-			Room temp = (Room) object;
-			return new LatLng(temp.getCoordX(), temp.getCoordY());
-		}
-		if (object instanceof Unit)
-		{
-			Unit temp = (Unit) object;
-			if (temp.getOffice() != null)
-			{
-				return new LatLng(temp.getOffice().getCoordX(), temp
-						.getOffice().getCoordY());
-			} else
-			{
-				return new LatLng(temp.getBuilding().getCoordX(), temp
-						.getBuilding().getCoordY());
-			}
-		}
-		return null;
+		
 	}
 
 	@Override
 	public void onClick(View v)
 	{
-		if (map == null)
-		{
-			map = ((MapFragment) fragment.getActivity().getFragmentManager()
-					.findFragmentById(R.id.map_outdoor_googleMap)).getMap();
-		}
-		if (outdoorMap == null)
-		{
-			outdoorMap = (MapOutdoorFragment) fragment.getFragmentManager()
-					.findFragmentByTag(OUTDOOR_MAP_TAG);
-		}
+
 		MapFragmentProvider mapProvider = MapFragmentProvider.getInstance();
 		mapProvider.clearFragments();
 
@@ -207,18 +161,18 @@ OnClickListener
 
 		if (validateAdapters(startPosition,goalPosition))
 		{
-			Object startObject = startPosition.getAdapter().getItem(0);
-			Object goalObject = goalPosition.getAdapter().getItem(0);
+			Object startObject = getRoomOrBuilding(startPosition.getAdapter().getItem(0));
+			Object goalObject = getRoomOrBuilding(goalPosition.getAdapter().getItem(0));
 			if(!validateRouteObjects(startObject,goalObject)) return;
 			
 			if ( objectsInTheSameBuilding(startObject,goalObject ))
 			{
-				showIndoorRoute(goalObject,false); 
+				showIndoorRoute(goalObject,INDOOR_MODE_LAST,ENABLE_SWITCHING_FRAGMENT); 
 				makeToast("Ten sam budynek",fragment.getActivity());
 			}
 			else if(!error)
 			{
-				showGeneralRoute();
+				showGeneralRoute(startObject,goalObject);
 				makeToast("obiekty w innych budynkach",fragment.getActivity());	
 			}
 			
@@ -228,6 +182,20 @@ OnClickListener
 	
 
 	
+
+	private Object getRoomOrBuilding(Object item)
+	{
+		if(item instanceof Unit) 
+		{
+			return ((Unit)item).getOffice();
+		}
+		else
+		{
+			return item;
+		}
+		
+
+	}
 
 	private boolean validateAdapters(SearchAutoCompleteTextView start, SearchAutoCompleteTextView goal)
 	{
@@ -328,8 +296,6 @@ OnClickListener
 	{
 		this.startPosition = startPosition;
 		this.goalPosition = goalPosition;
-		this.map = map;
-		this.outdoorMap = outdoorMap;
 		this.fragment = fragment;
 	}
 

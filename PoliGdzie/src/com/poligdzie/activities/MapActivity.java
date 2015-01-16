@@ -146,5 +146,5 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 	{
 		super();
 	}
-
+// TODO : powstawiac w layoutach contentDescription
 }

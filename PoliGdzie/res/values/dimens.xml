@@ -5,7 +5,12 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     
     <!-- Indywidualne zmiany -->
-	<dimen name="search_edit_height">40dp</dimen>
+	<dimen name="search_edit_height">30dp</dimen>
+	<dimen name="search_edit_width">30dp</dimen>
+	<dimen name="search_edit_font_size">10sp</dimen>
+	
+	
+	
 	<dimen name="search_text_height">40dp</dimen>
 	
 	<dimen name="info_window_height">30dp</dimen>
