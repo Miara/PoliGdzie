@@ -5,7 +5,7 @@ public interface Constants
 
 	// baza danych
 	public String	DATABASE_NAME			= "Poligdzie.db";
-	public int		DATABASE_VERSION		= 50;
+	public int		DATABASE_VERSION		= 52;
 
 	// Ustawienia aplikacji w PreferenceManager
 	public String	START_FIELD_VALUE		= "";
@@ -49,6 +49,9 @@ public interface Constants
 	
 	public int ENABLE_SWITCHING_FRAGMENT = 1;
 	public int DISABLE_SWITCHING_FRAGMENT = 2;
+	
+	
+	public int SPECIAL_CONNECTION_LENGTH = 15;
 	
 	
 

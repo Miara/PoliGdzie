@@ -52,22 +52,31 @@ public class IndoorRouteFinder implements Constants
 	{
 		
 		
-		if( startRoom.getBuilding().getId() == goalRoom.getBuilding().getId() )
+		if( checkIfRoomsInOneIndoor(startRoom,goalRoom) )
 		{
 			
 			this.startPoint = startRoom.getNavigationConnection().getFirstPoint();
-			this.goalPoint = goalRoom.getNavigationConnection().getLastPoint();
+			this.goalPoint = goalRoom.getNavigationConnection().getFirstPoint();
 			
-			Building building = startRoom.getBuilding();
+			Building startBulding = startRoom.getBuilding();
+			Building goalBuilding = goalRoom.getBuilding();
 			List<Floor> floors = new ArrayList<Floor>();
 			List<SpecialConnection> specialConnections = new ArrayList<SpecialConnection>();
 			
-			floors = dbHelper.getFloorDao().queryBuilder().where().eq("building_id", building).query();
+			floors = dbHelper.getFloorDao().queryBuilder().where().eq("building_id", startBulding).
+					or().eq("building_id", goalBuilding).query();
+			echo("building_id:"+startBulding.getId());
+			echo("floors size :"+ floors.size());
+			for(Floor f : floors)
+			{
+				echo("Floor:"+f.getId());
+			}
 			List<NavigationPoint> tempPoints = dbHelper.getNavigationPointDao().queryBuilder().where().in("floor_id", floors ).query();
 			connections = dbHelper.getNavigationConnectionDao().queryBuilder().
 					where().in("navigationPointFirst_id", tempPoints ).or().in("navigationPointLast_id", tempPoints).query();
 			specialConnections = dbHelper.getSpecialConnectionDao().queryBuilder().
 					where().in("specialPointLower_id", tempPoints ).or().in("specialPointUpper_id", tempPoints).query();
+			
 			addToConnections(specialConnections);
 			
 			
@@ -76,26 +85,49 @@ public class IndoorRouteFinder implements Constants
 			best = new int[graphSize];
 			checked = new boolean[graphSize];
 			previous = new int[graphSize];
-			echo("test1");
 			prepareGraph();
-			echo("test2");
 			fillGraphWithConnectionLength();
-			echo("test3");
 			findShortestPath(startPoint,goalPoint);
-			echo("test4");
 		}
 		return route;
 	}
 	
 	
 
-	private void addToConnections( List<SpecialConnection> specialConnections)
+
+
+
+	private boolean checkIfRoomsInOneIndoor(Room startRoom, Room goalRoom)
 	{
-		for(SpecialConnection special : specialConnections)
+		int startBuildingId =startRoom.getBuilding().getId(); 
+		int goalBuildingId =goalRoom.getBuilding().getId(); 
+		if(startBuildingId == goalBuildingId)
 		{
-			NavigationConnection conn = new NavigationConnection(special.getLowerFloor(),special.getUpperFloor(),0);
-			connections.add(conn);
-		};
+			return true;
+		}
+		else
+		{
+			
+			List<SpecialConnection> specialList = new ArrayList<SpecialConnection>();
+			try
+			{
+				specialList = dbHelper.getSpecialConnectionDao().queryForAll();
+				for(SpecialConnection conn : specialList)
+				{
+					int firstBuildingId = conn.getLowerFloor().getFloor().getBuilding().getId();
+					int lastBuildingId = conn.getUpperFloor().getFloor().getBuilding().getId();
+					if(  ( ( firstBuildingId == startBuildingId) && (lastBuildingId == goalBuildingId) ) ||
+							( ( firstBuildingId == goalBuildingId) && (lastBuildingId == startBuildingId) ) )
+					{
+						return true;
+					}
+				}
+			} catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+			return false;
+		}
 	}
 
 
@@ -106,11 +138,13 @@ public class IndoorRouteFinder implements Constants
 		int goal = getIndex(p2);
 		boolean finished = false;
 		
+		long startTime = System.currentTimeMillis() ;
+		long endTime;
 		int actual = start;	
-		int tmpActual = 0;	
-		int actualCount =0 ;
+		int tmpActual = -1;
+		int countActual=0;
 		best[actual] = 0;
-		echo("test5");
+		echo("test");
 		while(!finished)
 		{
 			for(i=0; i<graphSize ; i++)
@@ -119,8 +153,6 @@ public class IndoorRouteFinder implements Constants
 				{
 					best[i] = best[actual] + graph[actual][i];
 					previous[i]=actual;
-					//Log.i("poligdzie","graphLen:"+graph[actual][i]);
-					//Log.i("poligdzie",actual+"->"+i+"="+best[i]);
 				}
 			}
 			checked[actual] = true;
@@ -129,58 +161,68 @@ public class IndoorRouteFinder implements Constants
 			{
 				if( (best[i] < min) && !checked[i])
 				{
-					echo("actual:"+points.get(actual).getId());
 					actual = i;
 					min = best[i];
-					//Log.i("poligdzie","aktualny:"+actual);
 				}
 			}
-			echo("tessst");
+			
+			if(tmpActual == actual)
+			{
+				countActual ++;
+				if(countActual > 5) break;
+			}
+			else
+			{
+				countActual = 0;
+			}
+			tmpActual = actual;
+			
+			endTime = System.currentTimeMillis() - startTime;
+			echo(""+endTime+":"+points.get(actual).getId()+":"+points.get(previous[actual]).getId());
 			
 			if ( actual == goal ) 
 			{
 				finished = true;	
 				Log.i("poligdzie","znaleziono punkt goal");
-				echo("test5 finished1");
 			}
-			else if( allNodesChecked())		
+			else if( allNodesChecked()  || (  endTime > 5000))		
 			{
 				Log.i("poligdzie","nie znaleziono punktu goal");
-				finished = true;
-				echo("test5 finished2");
+				break;	
 			}
-			else if(tmpActual == actual)
+			
+				
+		}
+		
+		while( (actual != start) && finished)
+		{
+			route.add(0,points.get(actual));
+			if(previous[actual] != -1)
 			{
-				if(actualCount  > 5) finished = true;
+				actual = previous[actual];
 			}
 			else
 			{
-				actualCount = 0;
+				break;
 			}
-				
 		}
-		while(i != start && finished)
-		{
-			echo("test5 while");
-			Log.i("ROUTE",""+i);
-			route.add(0,points.get(i));
-			i = previous[i];
-		}
-		route.add(0,points.get(i));
-		Log.i("ROUTE",""+i);
+		route.add(0,points.get(actual));
 		
 	}
 	
-	private void showUnchecked()
+	private void addToConnections( List<SpecialConnection> specialConnections)
 	{
-		String ss = "";
-		for(int i=0; i< graphSize ;i++)
+		for(SpecialConnection special : specialConnections)
 		{
-			if(!checked[i]) ss = ss + points.get(i).getId() + "," ; 
-		}
-		echo(ss);
+			echo("specialConnection:"+special.getId()+":"+special.getLowerFloor().getId()+
+					":"+special.getUpperFloor().getId());
+			NavigationConnection conn = new NavigationConnection(special.getLowerFloor(),
+					special.getUpperFloor(),SPECIAL_CONNECTION_LENGTH);
+			echo("Connection:"+conn.getFirstPoint().getId()+":::"+conn.getLastPoint().getId());
+			connections.add(conn);
+		};
 	}
-
+	
 	private boolean allNodesChecked()
 	{
 		for(int i=0; i< graphSize ;i++)
@@ -195,6 +237,7 @@ public class IndoorRouteFinder implements Constants
 		for(int i=0; i< graphSize ;i++)
 		{
 			best[i] = Integer.MAX_VALUE;
+			previous[i] = -1;
 			checked[i] = false;
 			for(int j=0; j<graphSize ;j++)
 			{
@@ -227,7 +270,6 @@ public class IndoorRouteFinder implements Constants
 	
 	private void addPoint(NavigationPoint point)
 	{
-		int i = 0;
 		if(point != null)
 		{
 			for(NavigationPoint p : points)

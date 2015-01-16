@@ -1,6 +1,7 @@
 package com.poligdzie.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -44,6 +45,7 @@ public class MapOutdoorFragment extends PoliGdzieMapFragment implements
 		drawingProvider.setContext(this.getActivity());
 
 		map = drawingProvider.getMapWithRoute(map, dbHelper);
+		Log.i("poli","test4");
 		map.setOnMarkerClickListener(new MarkerOnClickCustomListener(this, map,
 				dbHelper));
 		return rootView;

@@ -33,63 +33,63 @@ id;number;name;function;floor;coordX;coordY;radius;doorsX;doorsY;navigationPoint
 32;;toaleta damska;RESTROOM;2;849;2304;80;859;2128;25;toaleta damska, wc damskie, ³azienka damska
 33;;toaleta mêska;RESTROOM;2;934;450;20;882;475;40;toaleta mêska, wc mêskie, ³azienka mêska
 34;;toaleta dla niepe³nosprawnych;RESTROOM;2;971;492;20;933;535;40;toaleta dla niepe³nosprawnych, wc dla niepe³nosprawnych, ³azienka dla niepe³nosprawnych
-35;2.6.2;laboratorium 2.6.2;STAFF;13;673;256;25;615;289;53;cw 2.6.2, 2.6.2 cw, centrum wyk³adowe sala 2.6.2, centrum wyk³adowe 2.6.2
-36;2.6.3;laboratorium 2.6.3;STAFF;13;91;248;30;95;293;55;cw 2.6.3, 2.6.3 cw, centrum wyk³adowe sala 2.6.3, centrum wyk³adowe 2.6.3
-37;2.6.4;laboratorium 2.6.4;STAFF;13;169;248;30;195;293;55;cw 2.6.4, 2.6.4 cw, centrum wyk³adowe sala 2.6.4, centrum wyk³adowe 2.6.4
-38;2.6.5;laboratorium 2.6.5;STAFF;13;243;248;30;219;293;54;cw 2.6.5, 2.6.5 cw, centrum wyk³adowe sala 2.6.5, centrum wyk³adowe 2.6.5
-39;2.6.6;laboratorium 2.6.6;STAFF;13;315;248;30;315;293;54;cw 2.6.6, 2.6.6 cw, centrum wyk³adowe sala 2.6.6, centrum wyk³adowe 2.6.6
-40;2.6.7;laboratorium 2.6.7;STAFF;13;391;248;30;391;293;54;cw 2.6.7, 2.6.7 cw, centrum wyk³adowe sala 2.6.7, centrum wyk³adowe 2.6.7
-41;2.6.8;laboratorium 2.6.8;STAFF;13;461;248;30;489;293;54;cw 2.6.8, 2.6.8 cw, centrum wyk³adowe sala 2.6.8, centrum wyk³adowe 2.6.8
-42;2.6.9;laboratorium 2.6.9;STAFF;13;544;248;30;514;293;54;cw 2.6.9, 2.6.9 cw, centrum wyk³adowe sala 2.6.9, centrum wyk³adowe 2.6.9
-43;2.6.10;laboratorium 2.6.10;LABORATORY;13;106;397;50;174;404;56;cw 2.6.10, 2.6.10 cw, centrum wyk³adowe sala 2.6.10, centrum wyk³adowe 2.6.10
-44;2.6.11;laboratorium 2.6.11;LABORATORY;13;113;484;25;175;474;56;cw 2.6.11, 2.6.11 cw, centrum wyk³adowe sala 2.6.11, centrum wyk³adowe 2.6.11
-45;2.6.12;laboratorium 2.6.12;LABORATORY;13;358;430;80;476;430;53;cw 2.6.12, 2.6.12 cw, centrum wyk³adowe sala 2.6.12, centrum wyk³adowe 2.6.12
-46;2.6.18;laboratorium 2.6.18;LABORATORY;13;524;1005;35;576;995;51;cw 2.6.18, 2.6.18 cw, centrum wyk³adowe sala 2.6.18, centrum wyk³adowe 2.6.18
-47;2.6.19;laboratorium 2.6.19;LABORATORY;13;673;767;40;675;711;52;cw 2.6.19, 2.6.19 cw, centrum wyk³adowe sala 2.6.19, centrum wyk³adowe 2.6.19
-48;2.6.20;laboratorium 2.6.20;LABORATORY;13;780;794;40;826;754;49;cw 2.6.20, 2.6.20 cw, centrum wyk³adowe sala 2.6.20, centrum wyk³adowe 2.6.20
-49;2.6.21;laboratorium 2.6.21;LABORATORY;13;780;970;40;847;970;49;cw 2.6.21, 2.6.21 cw, centrum wyk³adowe sala 2.6.21, centrum wyk³adowe 2.6.21
-50;2.6.22;laboratorium 2.6.22;LABORATORY;13;954;963;30;900;970;49;cw 2.6.22, 2.6.22 cw, centrum wyk³adowe sala 2.6.22, centrum wyk³adowe 2.6.22
-51;2.7.2;laboratorium 2.7.2;LABORATORY;13;964;1451;30;901;1472;47;cw 2.7.2, 2.7.2 cw, centrum wyk³adowe sala 2.7.2, centrum wyk³adowe 2.7.2
-52;2.7.3;laboratorium 2.7.3;LABORATORY;13;776;1367;30;846;1349;46;cw 2.7.3, 2.7.3 cw, centrum wyk³adowe sala 2.7.3, centrum wyk³adowe 2.7.3
-53;2.7.5;laboratorium 2.7.5;LABORATORY;13;670;1630;50;670;1561;46;cw 2.7.5, 2.7.5 cw, centrum wyk³adowe sala 2.7.5, centrum wyk³adowe 2.7.5
-54;2.7.6;laboratorium 2.7.6;LABORATORY;13;526;1629;60;536;1561;46;cw 2.7.6, 2.7.6 cw, centrum wyk³adowe sala 2.7.6, centrum wyk³adowe 2.7.6
-55;2.7.8;laboratorium 2.7.8;LABORATORY;13;415;1454;50;465;1511;46;cw 2.7.8, 2.7.8 cw, centrum wyk³adowe sala 2.7.8, centrum wyk³adowe 2.7.8
-56;2.7.13;laboratorium 2.7.13;LABORATORY;13;1025;1218;120;901;1190;47;cw 2.7.13, 2.7.13 cw, centrum wyk³adowe sala 2.7.13, centrum wyk³adowe 2.7.13
-57;2.7.14;laboratorium 2.7.14;LABORATORY;13;791;1222;35;847;1222;47;cw 2.7.14, 2.7.14 cw, centrum wyk³adowe sala 2.7.14, centrum wyk³adowe 2.7.14
-58;2.7.15;laboratorium 2.7.15;LABORATORY;13;682;1222;35;624;1222;50;cw 2.7.15, 2.7.15 cw, centrum wyk³adowe sala 2.7.15, centrum wyk³adowe 2.7.15
-59;2.7.16;laboratorium 2.7.16;LABORATORY;13;526;1222;35;575;1222;50;cw 2.7.16, 2.7.16 cw, centrum wyk³adowe sala 2.7.16, centrum wyk³adowe 2.7.16
+35;2.6.2;laboratorium 2.6.2;STAFF;13;673;256;25;615;289;53;bt 2.6.2, 2.6.2 bt, biblioteka techniczna sala 2.6.2, biblioteka techniczna 2.6.2
+36;2.6.3;laboratorium 2.6.3;STAFF;13;91;248;30;95;293;55;bt 2.6.3, 2.6.3 bt, biblioteka techniczna sala 2.6.3, biblioteka techniczna 2.6.3
+37;2.6.4;laboratorium 2.6.4;STAFF;13;169;248;30;195;293;55;bt 2.6.4, 2.6.4 bt, biblioteka techniczna sala 2.6.4, biblioteka techniczna 2.6.4
+38;2.6.5;laboratorium 2.6.5;STAFF;13;243;248;30;219;293;54;bt 2.6.5, 2.6.5 bt, biblioteka techniczna sala 2.6.5, biblioteka techniczna 2.6.5
+39;2.6.6;laboratorium 2.6.6;STAFF;13;315;248;30;315;293;54;bt 2.6.6, 2.6.6 bt, biblioteka techniczna sala 2.6.6, biblioteka techniczna 2.6.6
+40;2.6.7;laboratorium 2.6.7;STAFF;13;391;248;30;391;293;54;bt 2.6.7, 2.6.7 bt, biblioteka techniczna sala 2.6.7, biblioteka techniczna 2.6.7
+41;2.6.8;laboratorium 2.6.8;STAFF;13;461;248;30;489;293;54;bt 2.6.8, 2.6.8 bt, biblioteka techniczna sala 2.6.8, biblioteka techniczna 2.6.8
+42;2.6.9;laboratorium 2.6.9;STAFF;13;544;248;30;514;293;54;bt 2.6.9, 2.6.9 bt, biblioteka techniczna sala 2.6.9, biblioteka techniczna 2.6.9
+43;2.6.10;laboratorium 2.6.10;LABORATORY;13;106;397;50;174;404;56;bt 2.6.10, 2.6.10 bt, biblioteka techniczna sala 2.6.10, biblioteka techniczna 2.6.10
+44;2.6.11;laboratorium 2.6.11;LABORATORY;13;113;484;25;175;474;56;bt 2.6.11, 2.6.11 bt, biblioteka techniczna sala 2.6.11, biblioteka techniczna 2.6.11
+45;2.6.12;laboratorium 2.6.12;LABORATORY;13;358;430;80;476;430;53;bt 2.6.12, 2.6.12 bt, biblioteka techniczna sala 2.6.12, biblioteka techniczna 2.6.12
+46;2.6.18;laboratorium 2.6.18;LABORATORY;13;524;1005;35;576;995;51;bt 2.6.18, 2.6.18 bt, biblioteka techniczna sala 2.6.18, biblioteka techniczna 2.6.18
+47;2.6.19;laboratorium 2.6.19;LABORATORY;13;673;767;40;675;711;52;bt 2.6.19, 2.6.19 bt, biblioteka techniczna sala 2.6.19, biblioteka techniczna 2.6.19
+48;2.6.20;laboratorium 2.6.20;LABORATORY;13;780;794;40;826;754;49;bt 2.6.20, 2.6.20 bt, biblioteka techniczna sala 2.6.20, biblioteka techniczna 2.6.20
+49;2.6.21;laboratorium 2.6.21;LABORATORY;13;780;970;40;847;970;49;bt 2.6.21, 2.6.21 bt, biblioteka techniczna sala 2.6.21, biblioteka techniczna 2.6.21
+50;2.6.22;laboratorium 2.6.22;LABORATORY;13;954;963;30;900;970;49;bt 2.6.22, 2.6.22 bt, biblioteka techniczna sala 2.6.22, biblioteka techniczna 2.6.22
+51;2.7.2;laboratorium 2.7.2;LABORATORY;13;964;1451;30;901;1472;47;bt 2.7.2, 2.7.2 bt, biblioteka techniczna sala 2.7.2, biblioteka techniczna 2.7.2
+52;2.7.3;laboratorium 2.7.3;LABORATORY;13;776;1367;30;846;1349;46;bt 2.7.3, 2.7.3 bt, biblioteka techniczna sala 2.7.3, biblioteka techniczna 2.7.3
+53;2.7.5;laboratorium 2.7.5;LABORATORY;13;670;1630;50;670;1561;46;bt 2.7.5, 2.7.5 bt, biblioteka techniczna sala 2.7.5, biblioteka techniczna 2.7.5
+54;2.7.6;laboratorium 2.7.6;LABORATORY;13;526;1629;60;536;1561;46;bt 2.7.6, 2.7.6 bt, biblioteka techniczna sala 2.7.6, biblioteka techniczna 2.7.6
+55;2.7.8;laboratorium 2.7.8;LABORATORY;13;415;1454;50;465;1511;46;bt 2.7.8, 2.7.8 bt, biblioteka techniczna sala 2.7.8, biblioteka techniczna 2.7.8
+56;2.7.13;laboratorium 2.7.13;LABORATORY;13;1025;1218;120;901;1190;47;bt 2.7.13, 2.7.13 bt, biblioteka techniczna sala 2.7.13, biblioteka techniczna 2.7.13
+57;2.7.14;laboratorium 2.7.14;LABORATORY;13;791;1222;35;847;1222;47;bt 2.7.14, 2.7.14 bt, biblioteka techniczna sala 2.7.14, biblioteka techniczna 2.7.14
+58;2.7.15;laboratorium 2.7.15;LABORATORY;13;682;1222;35;624;1222;50;bt 2.7.15, 2.7.15 bt, biblioteka techniczna sala 2.7.15, biblioteka techniczna 2.7.15
+59;2.7.16;laboratorium 2.7.16;LABORATORY;13;526;1222;35;575;1222;50;bt 2.7.16, 2.7.16 bt, biblioteka techniczna sala 2.7.16, biblioteka techniczna 2.7.16
 60;;toaleta damska;RESTROOM;13;599;1482;30;682;1442;47;toaleta damska, wc damskie, ³azienka damska
 61;;toaleta mêska;RESTROOM;13;599;1384;30;682;1394;47;toaleta mêska, wc mêskie, ³azienka mêska
-62;1.6.16;laboratorium 1.6.16;LABORATORY;12;1793;661;50;1709;599;64;cw 1.6.16, 1.6.16 cw, centrum wyk³adowe sala 1.6.16, centrum wyk³adowe 1.6.16
-63;1.6.18;laboratorium 1.6.18;LABORATORY;12;1432;661;50;1513;598;64;cw 1.6.18, 1.6.18 cw, centrum wyk³adowe sala 1.6.18, centrum wyk³adowe 1.6.18
-64;1.6.19;laboratorium 1.6.19;LABORATORY;12;1142;452;45;1205;408;65;cw 1.6.19, 1.6.19 cw, centrum wyk³adowe sala 1.6.19, centrum wyk³adowe 1.6.19
-65;1.6.20;laboratorium 1.6.20;LABORATORY;12;1117;305;60;1205;318;78;cw 1.6.20, 1.6.20 cw, centrum wyk³adowe sala 1.6.20, centrum wyk³adowe 1.6.20
-66;1.6.21;laboratorium 1.6.21;LABORATORY;12;1346;305;60;1351;380;68;cw 1.6.21, 1.6.21 cw, centrum wyk³adowe sala 1.6.21, centrum wyk³adowe 1.6.21
-67;1.6.22;laboratorium 1.6.22;LABORATORY;12;1531;305;60;1550;380;68;cw 1.6.22, 1.6.22 cw, centrum wyk³adowe sala 1.6.22, centrum wyk³adowe 1.6.22
-68;1.6.23;laboratorium 1.6.23;LABORATORY;12;1722;305;60;1747;380;68;cw 1.6.23, 1.6.23 cw, centrum wyk³adowe sala 1.6.23, centrum wyk³adowe 1.6.23
-69;108;sala 108;LECTURE;12;900;1989;25;878;1895;79;cw 108, 108 cw, centrum wyk³adowe sala 108, centrum wyk³adowe 108
-70;122;sala 122;LECTURE;12;1652;1594;120;1587;1496;60;cw 122, 122 cw, centrum wyk³adowe sala 122, centrum wyk³adowe 122
-71;123;sala 123;LECTURE;12;1409;1842;120;1334;1778;60;cw 123, 123 cw, centrum wyk³adowe sala 123, centrum wyk³adowe 123
-72;125;sala 125;LECTURE;12;1134;1450;90;1027;1453;66;cw 125, 125 cw, centrum wyk³adowe sala 125, centrum wyk³adowe 125
-73;126;sala 126;LECTURE;12;1332;1423;70;1332;1541;60;cw 126, 126 cw, centrum wyk³adowe sala 126, centrum wyk³adowe 126
-74;127;sala 127;LECTURE;12;1179;1223;80;1027;1229;66;cw 127, 127 cw, centrum wyk³adowe sala 127, centrum wyk³adowe 127
-75;128;sala 128;LECTURE;12;1120;1011;80;1027;1019;66;cw 128, 128 cw, centrum wyk³adowe sala 128, centrum wyk³adowe 128
+62;1.6.16;laboratorium 1.6.16;LABORATORY;12;1793;661;50;1709;599;64;bt 1.6.16, 1.6.16 bt, biblioteka techniczna sala 1.6.16, biblioteka techniczna 1.6.16
+63;1.6.18;laboratorium 1.6.18;LABORATORY;12;1432;661;50;1513;598;64;bt 1.6.18, 1.6.18 bt, biblioteka techniczna sala 1.6.18, biblioteka techniczna 1.6.18
+64;1.6.19;laboratorium 1.6.19;LABORATORY;12;1142;452;45;1205;408;65;bt 1.6.19, 1.6.19 bt, biblioteka techniczna sala 1.6.19, biblioteka techniczna 1.6.19
+65;1.6.20;laboratorium 1.6.20;LABORATORY;12;1117;305;60;1205;318;78;bt 1.6.20, 1.6.20 bt, biblioteka techniczna sala 1.6.20, biblioteka techniczna 1.6.20
+66;1.6.21;laboratorium 1.6.21;LABORATORY;12;1346;305;60;1351;380;68;bt 1.6.21, 1.6.21 bt, biblioteka techniczna sala 1.6.21, biblioteka techniczna 1.6.21
+67;1.6.22;laboratorium 1.6.22;LABORATORY;12;1531;305;60;1550;380;68;bt 1.6.22, 1.6.22 bt, biblioteka techniczna sala 1.6.22, biblioteka techniczna 1.6.22
+68;1.6.23;laboratorium 1.6.23;LABORATORY;12;1722;305;60;1747;380;68;bt 1.6.23, 1.6.23 bt, biblioteka techniczna sala 1.6.23, biblioteka techniczna 1.6.23
+69;108;sala 108;LECTURE;12;900;1989;25;878;1895;79;bt 108, 108 bt, biblioteka techniczna sala 108, biblioteka techniczna 108
+70;122;sala 122;LECTURE;12;1652;1594;120;1587;1496;60;bt 122, 122 bt, biblioteka techniczna sala 122, biblioteka techniczna 122
+71;123;sala 123;LECTURE;12;1409;1842;120;1334;1778;60;bt 123, 123 bt, biblioteka techniczna sala 123, biblioteka techniczna 123
+72;125;sala 125;LECTURE;12;1134;1450;90;1027;1453;66;bt 125, 125 bt, biblioteka techniczna sala 125, biblioteka techniczna 125
+73;126;sala 126;LECTURE;12;1332;1423;70;1332;1541;60;bt 126, 126 bt, biblioteka techniczna sala 126, biblioteka techniczna 126
+74;127;sala 127;LECTURE;12;1179;1223;80;1027;1229;66;bt 127, 127 bt, biblioteka techniczna sala 127, biblioteka techniczna 127
+75;128;sala 128;LECTURE;12;1120;1011;80;1027;1019;66;bt 128, 128 bt, biblioteka techniczna sala 128, biblioteka techniczna 128
 76;;toaleta damska;RESTROOM;12;1308;487;50;1254;471;65;toaleta damska, wc damskie, ³azienka damska
 77;;toaleta mêska;RESTROOM;12;1471;487;50;1533;470;64;toaleta mêska, wc mêskie, ³azienka mêska
 78;;toaleta damska;RESTROOM;12;707;1789;50;864;1743;66;toaleta damska, wc damskie, ³azienka damska
 79;;toaleta mêska;RESTROOM;12;695;1680;50;863;1678;66;toaleta mêska, wc mêskie, ³azienka mêska
 80;;toaleta dla niepe³nosprawnych;RESTROOM;12;808;1714;30;839;1714;66;toaleta dla niepe³nosprawnych, wc dla niepe³nosprawnych, ³azienka dla niepe³nosprawnych
-81;51;sala 051;LECTURE;11;1109;226;100;982;329;76;cw 051, 051 cw, centrum wyk³adowe sala 051, centrum wyk³adowe 051
-82;53;sala 053;LECTURE;11;1627;323;190;1825;481;70;cw 053, 053 cw, centrum wyk³adowe sala 053, centrum wyk³adowe 053
-83;21;sala 021;LECTURE;11;1425;1623;90;1351;1536;73;cw 021, 021 cw, centrum wyk³adowe sala 021, centrum wyk³adowe 021
-84;22;sala 022;LECTURE;11;1295;1794;50;1205;1734;73;cw 022, 022 cw, centrum wyk³adowe sala 022, centrum wyk³adowe 022
-85;23;sala 023;LECTURE;11;797;1857;70;775;1779;77;cw 023, 023 cw, centrum wyk³adowe sala 023, centrum wyk³adowe 023
-86;24;sala 024;LECTURE;11;617;1857;40;665;1779;77;cw 024, 024 cw, centrum wyk³adowe sala 024, centrum wyk³adowe 024
-87;25;sala 025;LECTURE;11;446;1857;70;446;1779;77;cw 025, 025 cw, centrum wyk³adowe sala 025, centrum wyk³adowe 025
-88;27;sala 027;LECTURE;11;1102;1375;80;1000;1379;75;cw 027, 027 cw, centrum wyk³adowe sala 027, centrum wyk³adowe 027
-89;28;sala 028;LECTURE;11;1279;1349;65;1277;1455;73;cw 028, 028 cw, centrum wyk³adowe sala 028, centrum wyk³adowe 028
-90;29;sala 029;LECTURE;11;1132;1165;75;1000;1169;75;cw 029, 029 cw, centrum wyk³adowe sala 029, centrum wyk³adowe 029
-91;210;sala 0210;LECTURE;11;1084;975;75;1000;975;75;cw 0210, 0210 cw, centrum wyk³adowe sala 0210, centrum wyk³adowe 0210
+81;51;sala 051;LECTURE;11;1109;226;100;982;329;76;bt 051, 051 bt, biblioteka techniczna sala 051, biblioteka techniczna 051
+82;53;sala 053;LECTURE;11;1627;323;190;1825;481;70;bt 053, 053 bt, biblioteka techniczna sala 053, biblioteka techniczna 053
+83;21;sala 021;LECTURE;11;1425;1623;90;1351;1536;73;bt 021, 021 bt, biblioteka techniczna sala 021, biblioteka techniczna 021
+84;22;sala 022;LECTURE;11;1295;1794;50;1205;1734;73;bt 022, 022 bt, biblioteka techniczna sala 022, biblioteka techniczna 022
+85;23;sala 023;LECTURE;11;797;1857;70;775;1779;77;bt 023, 023 bt, biblioteka techniczna sala 023, biblioteka techniczna 023
+86;24;sala 024;LECTURE;11;617;1857;40;665;1779;77;bt 024, 024 bt, biblioteka techniczna sala 024, biblioteka techniczna 024
+87;25;sala 025;LECTURE;11;446;1857;70;446;1779;77;bt 025, 025 bt, biblioteka techniczna sala 025, biblioteka techniczna 025
+88;27;sala 027;LECTURE;11;1102;1375;80;1000;1379;75;bt 027, 027 bt, biblioteka techniczna sala 027, biblioteka techniczna 027
+89;28;sala 028;LECTURE;11;1279;1349;65;1277;1455;73;bt 028, 028 bt, biblioteka techniczna sala 028, biblioteka techniczna 028
+90;29;sala 029;LECTURE;11;1132;1165;75;1000;1169;75;bt 029, 029 bt, biblioteka techniczna sala 029, biblioteka techniczna 029
+91;210;sala 0210;LECTURE;11;1084;975;75;1000;975;75;bt 0210, 0210 bt, biblioteka techniczna sala 0210, biblioteka techniczna 0210
 92;;toaleta damska;RESTROOM;11;1844;787;30;1868;828;70;toaleta damska, wc damskie, ³azienka damska
 93;;toaleta mêska;RESTROOM;11;1898;944;30;1903;890;70;toaleta mêska, wc mêskie, ³azienka mêska
 94;;toaleta dla niepe³nosprawnych;RESTROOM;11;1826;858;20;1855;861;70;toaleta dla niepe³nosprawnych, wc dla niepe³nosprawnych, ³azienka dla niepe³nosprawnych

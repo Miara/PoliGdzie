@@ -43,31 +43,39 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.map_activity);
 
+		Log.i("poli","map1");
+		
 		mapProvider = MapFragmentProvider.getInstance();
 
 		DataProvider provider = DataProvider.getInstance();
+		Log.i("poli","map2");
 		
 		try
 		{
 			provider.setBuildings(dbHelper.getBuildingDao().queryForAll());
-			provider.setRooms(dbHelper.getRoomDao().queryForAll());
+			//provider.setRooms(dbHelper.getRoomDao().queryForAll());
 			provider.setUnits(dbHelper.getUnitDao().queryForAll());
+			Log.i("poli","map3");
 		} catch (SQLException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna",
-				OUTDOOR_MAP_TAG);
+		
+		
+		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna",OUTDOOR_MAP_TAG);
+		
+		Log.i("poli","map4");
 		
 
 		switchFragment(R.id.map_container, outdoorMap, outdoorMap.getViewTag());
+		Log.i("poli","map5");
 		
 		//ind
-	/*	try
+		try
 		{
-			Room r1 = dbHelper.getRoomDao().queryBuilder().where().eq("id", 8).queryForFirst();
-			Room r2 = dbHelper.getRoomDao().queryBuilder().where().eq("id", 22).queryForFirst();
+			Room r1 = dbHelper.getRoomDao().queryBuilder().where().eq("id", 22).queryForFirst();
+			Room r2 = dbHelper.getRoomDao().queryBuilder().where().eq("id", 50).queryForFirst();
 			IndoorRouteFinder test = new IndoorRouteFinder(dbHelper);
 			List<NavigationPoint> list = test.findRoute(r1, r2);
 			String mRoute ="";
@@ -80,7 +88,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		{
 			Log.i("ROUTE","FAIL!");
 			e.printStackTrace();
-		}*/
+		}
 		//ind
 
 		previous = (Button) findViewById(R.id.previous_map);
