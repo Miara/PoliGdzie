@@ -40,6 +40,8 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.map_activity);
 
+		Log.i("poli","map1");
+		
 		mapProvider = MapFragmentProvider.getInstance();
 
 		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna",
@@ -61,6 +63,9 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		 * Log.i("ROUTE","FAIL!"); e.printStackTrace(); }
 		 */
 		// ind
+		
+		switchFragment(R.id.map_container, outdoorMap, outdoorMap.getViewTag());
+
 
 		previous = (Button) findViewById(R.id.previous_map);
 		previous.setOnClickListener(this);

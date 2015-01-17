@@ -54,7 +54,7 @@
 		        android:text=">"
 		        android:textColor="#FFFFFF" />
 		
-		    <Button
+		    <!-- <Button
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_alignParentBottom="true"
@@ -62,7 +62,7 @@
 		        android:layout_marginBottom="20dp"
 		        android:background="#000000"
 		        android:text="Tu będzie list view"
-		        android:textColor="#FFFFFF" />
+		        android:textColor="#FFFFFF" /> -->
 		</RelativeLayout>
        
 </LinearLayout>

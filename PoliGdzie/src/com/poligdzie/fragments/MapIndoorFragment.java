@@ -1,5 +1,8 @@
 package com.poligdzie.fragments;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -10,6 +13,8 @@ import android.view.ViewGroup;
 
 import com.example.poligdzie.R;
 import com.poligdzie.base.PoliGdzieMapFragment;
+import com.poligdzie.persistence.NavigationPoint;
+import com.poligdzie.route.Line;
 import com.poligdzie.tasks.BitmapWorkerTask;
 import com.poligdzie.widgets.BuildingImageView;
 
@@ -19,6 +24,7 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 
 	private BuildingImageView	buildingImage;
 	private int					floorId;
+	private List<Line> routeLines = new ArrayList<Line>();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,7 +35,8 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 		View rootView = inflater.inflate(R.layout.map_indoor_fragment,
 				container, false);
 		
-		BitmapWorkerTask bitmapWorker = new BitmapWorkerTask(this,getActivity(),getActivity().getResources());
+		BitmapWorkerTask bitmapWorker = new BitmapWorkerTask(this,getActivity(),
+				getActivity().getResources());
 		bitmapWorker.execute(getDrawableId(drawableId, getActivity()));
 		
 		return rootView;
@@ -48,6 +55,7 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 		   View inflater = LayoutInflater.from(getActivity()).inflate(R.layout.map_indoor_floor_scheme, container);
 		   buildingImage = (BuildingImageView) inflater.findViewById(R.id.imageview_floor_scheme);
 		   buildingImage.setBitmap(bitmap);
+		   buildingImage.setLines(routeLines);
 	}
 
 	public MapIndoorFragment()
@@ -70,6 +78,34 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 	{
 		super(drawableId, name, viewTag);
 		this.floorId = floorId;
+	}
+
+	public MapIndoorFragment(String drawableId, String name, String viewTag,
+			int floorId, List<NavigationPoint> points)
+	{
+		super(drawableId, name, viewTag);
+		this.floorId = floorId;
+		
+		if(points.size() > 1)
+		{
+			boolean first= true;
+			NavigationPoint previous = null;
+			for(NavigationPoint current: points)
+			{
+				if(first)
+				{
+					previous = current;
+					first = false;
+				}
+				else
+				{
+					routeLines.add(new Line(previous.getCoordX(),previous.getCoordY(),
+							current.getCoordX(),current.getCoordY()));
+					previous = current;
+				}
+				
+			}
+		}
 	}
 
 }

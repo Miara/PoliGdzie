@@ -1,6 +1,7 @@
 package com.poligdzie.widgets;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -45,8 +46,10 @@ public class BuildingImageView extends ImageView implements Constants
 
 	private boolean					panEnabled			= true;
 	private boolean					zoomEnabled			= true;
-	ArrayList<Line> 				lines ;
+	List<Line> 						lines  				= new ArrayList<Line>();
 
+	private List<Line>	routeLines;
+	
 	public BuildingImageView(Context context)
 	{
 		super(context);
@@ -74,8 +77,13 @@ public class BuildingImageView extends ImageView implements Constants
 		
 	}
 
-	private void addLine(float x1, float y1, float x2, float y2)
+	private void addLine(Line line)
 	{		 	
+			float x1 = line.startX;
+			float y1 = line.startY;
+			float x2 = line.stopX;
+			float y2 = line.stopY;
+			
 			float bitmapWidth = bitmap.getWidth();
 		    float bitmapHeight = bitmap.getHeight();
 		    float originalWidth = 3404;
@@ -97,6 +105,11 @@ public class BuildingImageView extends ImageView implements Constants
 		setImageBitmap(bmp);
 	}
 
+	public void setLines(List<Line> routeLines)
+	{
+		this.routeLines = routeLines;
+	}
+	
 	public void setImageBitmap(Bitmap bmp)
 	{
 		bitmap = bmp;
@@ -185,36 +198,18 @@ public class BuildingImageView extends ImageView implements Constants
 	    redPaint .setColor(Color.RED);
 	    redPaint.setStrokeWidth(10);
 	    
-	  /*  lines.clear();
-		addLine(857,2705, 1141,2477);//1 2
-		addLine(1141,2477,1717,3197);//2 3
-		addLine(1141,2477,2161,1641);//2 5
-		addLine(1141,2477,269,2002);//2 8
-		addLine(1717,3197,2477,2589);//3 4
-		
-		addLine(2161,1641,2445,1412);//5 6
-		addLine(2161,1641,1989,1389);//5 14
-		
-		addLine(269,2002,481,1126);//8 9
-		addLine(2445,1412,2613,1276);//6 7
-		addLine(2445,1412,2237,1193);//6 20
-		addLine(1989,1389,1885,1065);//14 13
-		addLine(1989,1389,2237,1193);//14 20
-		addLine(481,1126,1233,605);//9 10
-		addLine(2237,1193,2449,997);//20 19
-		addLine(1885,1065,1677,837);//13 12
-		addLine(1233,605,1401,769);//10 11
-		addLine(1233,605,1481,437);//10 15
-		addLine(2449,997,2053,445);//19 16
-		addLine(2449,997,2761,765);//19 18
-		addLine(1677,837,1401,769);//12 11
-		addLine(1481,437,2053,445);//15 16
-		addLine(2053,445,2505,445);//16 17
-		addLine(2505,445,2761,765);//17 18
-	   */
-	    for (Line l : lines) {
+	    if( routeLines != null && !routeLines.isEmpty())
+		{
+	    	for (Line l : routeLines) 
+	    	{
+	    		addLine(l);
+	    	}
+		}
+	    
+	    for (Line l : lines) 
+    	{
 	        canvas.drawLine(l.startX, l.startY, l.stopX, l.stopY, redPaint);
-	      }
+	    }
 	
 		canvas.restore(); // clear translation/scaling
 	}
@@ -422,6 +417,8 @@ public class BuildingImageView extends ImageView implements Constants
 		}
 		setMeasuredDimension(width, height);
 	}
+
+	
 	
 	
 
