@@ -53,6 +53,8 @@ public interface Constants
 	
 	public int SPECIAL_CONNECTION_LENGTH = 15;
 	
+	public int ERROR_CODE = -1;
+	
 	
 
 }

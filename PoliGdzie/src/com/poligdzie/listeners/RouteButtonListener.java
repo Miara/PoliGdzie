@@ -1,5 +1,6 @@
 package com.poligdzie.listeners;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -25,8 +26,10 @@ import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Floor;
+import com.poligdzie.persistence.NavigationPoint;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
+import com.poligdzie.route.IndoorRouteFinder;
 import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.singletons.MapFragmentProvider;
 import com.poligdzie.tasks.AnimationClosureChecker;
@@ -76,22 +79,26 @@ OnClickListener
 		return null;
 	}
 
-	private void showIndoorRoute(Object room, int indoorMode, int switchingMode)
+	private void showIndoorRoute(Object startObject, Object goalObject, int indoorMode, int switchingMode)
 	{
 		Floor lastFloorInIndoor = null;
 		String roomFloorTag = "";
-		for (Floor f : getFloors(room))
+		IndoorRouteFinder finder = new IndoorRouteFinder(dbHelper);
+		List<NavigationPoint> routePoints = finder.findRoute((Room)startObject, (Room)goalObject);
+		List<NavigationPoint> points;
+		for (Floor f : getFloors(startObject))
 		{
 			
 			
-			if ((f.getTag().equals(getTag(room)) && indoorMode == INDOOR_MODE_FIRST) ||
+			if ((f.getTag().equals(getTag(startObject)) && indoorMode == INDOOR_MODE_FIRST) ||
 					(f.getNumber() == 0 && indoorMode == INDOOR_MODE_LAST))
 			{
-					addIndoorFragment(f,switchingMode);
+					points = getPointsAtFloor(routePoints, f);
+					addIndoorFragment(points,f,switchingMode);
 					roomFloorTag = f.getTag();
 					
 			}
-			else if ((f.getTag().equals(getTag(room)) && indoorMode == INDOOR_MODE_LAST ) ||
+			else if ((f.getTag().equals(getTag(startObject)) && indoorMode == INDOOR_MODE_LAST ) ||
 					(f.getNumber() == 0 && indoorMode == INDOOR_MODE_FIRST))
 			{
 					lastFloorInIndoor = f;
@@ -104,7 +111,8 @@ OnClickListener
 			if( (lastFloorInIndoor.getTag() != roomFloorTag))
 			{
 				Floor f = lastFloorInIndoor;
-				new MapIndoorFragment(f.getDrawableId(), f.getName(), f.getTag(), f.getNumber());
+				points = getPointsAtFloor(routePoints, f);
+				new MapIndoorFragment(f.getDrawableId(), f.getName(), f.getTag(), f.getNumber(),points);
 			}
 		}
 		
@@ -114,16 +122,30 @@ OnClickListener
 	}
 
 	
-	private void addIndoorFragment(Floor floor, int switchingMode)
+	private void addIndoorFragment(List<NavigationPoint> points,Floor floor, int switchingMode)
 	{
 		MapIndoorFragment indoorMap = new MapIndoorFragment(
-				floor.getDrawableId(), floor.getName(), floor.getTag(), floor.getNumber());
+				floor.getDrawableId(), floor.getName(), floor.getTag(), floor.getNumber(),points);
 		if(switchingMode == ENABLE_SWITCHING_FRAGMENT)
 		{
 			((PoliGdzieBaseActivity) fragment.getActivity())
 			.switchFragment(R.id.map_container, indoorMap,
 					indoorMap.getViewTag());
 		}	
+	}
+	
+	private List<NavigationPoint> getPointsAtFloor(List<NavigationPoint> points,Floor fl)
+	{
+		List<NavigationPoint> list = new ArrayList<NavigationPoint>();
+		for(NavigationPoint p: points)
+		{
+			if( p.getFloor().getId() == fl.getId() )
+			{
+				list.add(p);
+			}
+			
+		}
+		return list;	
 	}
 
 	private void showGeneralRoute(Object startObject, Object goalObject)
@@ -135,13 +157,14 @@ OnClickListener
 		}
 		else if (startObject instanceof Room)
 		{
-			showIndoorRoute(startObject, INDOOR_MODE_FIRST, ENABLE_SWITCHING_FRAGMENT);
+			// TODO: showGeneralRoute
+			//showIndoorRoute(startObject, INDOOR_MODE_FIRST, ENABLE_SWITCHING_FRAGMENT);
 			mapProvider.addGoogleMapFragment();
 		}
 		
 		if (goalObject instanceof Room)
 		{
-			showIndoorRoute(goalObject, INDOOR_MODE_LAST, DISABLE_SWITCHING_FRAGMENT);
+			//showIndoorRoute(goalObject, INDOOR_MODE_LAST, DISABLE_SWITCHING_FRAGMENT);
 		}
 		
 	}
@@ -167,7 +190,7 @@ OnClickListener
 			
 			if ( objectsInTheSameBuilding(startObject,goalObject ))
 			{
-				showIndoorRoute(goalObject,INDOOR_MODE_LAST,ENABLE_SWITCHING_FRAGMENT); 
+				showIndoorRoute(startObject,goalObject,INDOOR_MODE_LAST,ENABLE_SWITCHING_FRAGMENT); 
 				makeToast("Ten sam budynek",fragment.getActivity());
 			}
 			else if(!error)

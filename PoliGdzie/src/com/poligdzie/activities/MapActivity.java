@@ -53,7 +53,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		try
 		{
 			provider.setBuildings(dbHelper.getBuildingDao().queryForAll());
-			//provider.setRooms(dbHelper.getRoomDao().queryForAll());
+			provider.setRooms(dbHelper.getRoomDao().queryForAll());
 			provider.setUnits(dbHelper.getUnitDao().queryForAll());
 			Log.i("poli","map3");
 		} catch (SQLException e)
@@ -72,7 +72,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		Log.i("poli","map5");
 		
 		//ind
-		try
+		/*try
 		{
 			Room r1 = dbHelper.getRoomDao().queryBuilder().where().eq("id", 22).queryForFirst();
 			Room r2 = dbHelper.getRoomDao().queryBuilder().where().eq("id", 50).queryForFirst();
@@ -88,7 +88,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		{
 			Log.i("ROUTE","FAIL!");
 			e.printStackTrace();
-		}
+		}*/
 		//ind
 
 		previous = (Button) findViewById(R.id.previous_map);
