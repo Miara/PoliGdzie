@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.List;
 
+import android.content.Context;
+import android.util.Log;
+
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
@@ -19,9 +22,6 @@ import com.poligdzie.persistence.RoomFunctions;
 import com.poligdzie.persistence.SpecialConnection;
 import com.poligdzie.persistence.Unit;
 import com.poligdzie.persistence.UnitTypes;
-
-import android.content.Context;
-import android.util.Log;
 
 public class CsvReader implements Constants
 {

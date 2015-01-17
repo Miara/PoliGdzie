@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,21 +23,21 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 
 	private BuildingImageView	buildingImage;
 	private int					floorId;
-	private List<Line> routeLines = new ArrayList<Line>();
+	private List<Line>			routeLines	= new ArrayList<Line>();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
-		
+
 		View rootView = inflater.inflate(R.layout.map_indoor_fragment,
 				container, false);
-		
-		BitmapWorkerTask bitmapWorker = new BitmapWorkerTask(this,getActivity(),
-				getActivity().getResources());
+
+		BitmapWorkerTask bitmapWorker = new BitmapWorkerTask(this,
+				getActivity(), getActivity().getResources());
 		bitmapWorker.execute(getDrawableId(drawableId, getActivity()));
-		
+
 		return rootView;
 	}
 
@@ -47,15 +46,18 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 	{
 
 	}
-	
+
 	public void setFloorImage(Bitmap bitmap)
 	{
-		ViewGroup container = (ViewGroup) getView().findViewById(R.id.indoor_map_container);
-		   container.removeAllViews();
-		   View inflater = LayoutInflater.from(getActivity()).inflate(R.layout.map_indoor_floor_scheme, container);
-		   buildingImage = (BuildingImageView) inflater.findViewById(R.id.imageview_floor_scheme);
-		   buildingImage.setBitmap(bitmap);
-		   buildingImage.setLines(routeLines);
+		ViewGroup container = (ViewGroup) getView().findViewById(
+				R.id.indoor_map_container);
+		container.removeAllViews();
+		View inflater = LayoutInflater.from(getActivity()).inflate(
+				R.layout.map_indoor_floor_scheme, container);
+		buildingImage = (BuildingImageView) inflater
+				.findViewById(R.id.imageview_floor_scheme);
+		buildingImage.setBitmap(bitmap);
+		buildingImage.setLines(routeLines);
 	}
 
 	public MapIndoorFragment()
@@ -85,25 +87,25 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 	{
 		super(drawableId, name, viewTag);
 		this.floorId = floorId;
-		
-		if(points.size() > 1)
+
+		if (points.size() > 1)
 		{
-			boolean first= true;
+			boolean first = true;
 			NavigationPoint previous = null;
-			for(NavigationPoint current: points)
+			for (NavigationPoint current : points)
 			{
-				if(first)
+				if (first)
 				{
 					previous = current;
 					first = false;
-				}
-				else
+				} else
 				{
-					routeLines.add(new Line(previous.getCoordX(),previous.getCoordY(),
-							current.getCoordX(),current.getCoordY()));
+					routeLines.add(new Line(previous.getCoordX(), previous
+							.getCoordY(), current.getCoordX(), current
+							.getCoordY()));
 					previous = current;
 				}
-				
+
 			}
 		}
 	}

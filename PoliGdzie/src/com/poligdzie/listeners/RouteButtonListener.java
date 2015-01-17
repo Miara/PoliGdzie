@@ -8,32 +8,23 @@ import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
 import com.example.poligdzie.R;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.j256.ormlite.dao.ForeignCollection;
 import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.base.PoliGdzieBaseFragment;
-import com.poligdzie.callbacks.MarkerAnimationFinishCallback;
 import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
 import com.poligdzie.helpers.DatabaseHelper;
-import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Floor;
 import com.poligdzie.persistence.NavigationPoint;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 import com.poligdzie.route.IndoorRouteFinder;
-import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.singletons.MapFragmentProvider;
-import com.poligdzie.tasks.AnimationClosureChecker;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
 public class RouteButtonListener extends PoliGdzieBaseClass implements
@@ -44,6 +35,8 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 	private SearchAutoCompleteTextView	startPosition;
 	private SearchAutoCompleteTextView	goalPosition;
 
+	//TODO: zamiast zmiennej error proponuje wyciagnac ciezsze dzialo - exception i go obsluzyc odpowiednio.
+	// wyeliminuje to sprawdzanie flagi
 	private boolean						error	= false;
 
 	private ForeignCollection<Floor> getFloors(Object object)
@@ -54,7 +47,8 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 			Building building = new Building();
 			try
 			{
-				building = dbHelper.getBuildingDao().queryForId(room.getBuilding().getId());
+				building = dbHelper.getBuildingDao().queryForId(
+						room.getBuilding().getId());
 			} catch (SQLException e)
 			{
 				// TODO Auto-generated catch block
@@ -69,7 +63,8 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 			Building building = new Building();
 			try
 			{
-				building = dbHelper.getBuildingDao().queryForId(unit.getBuilding().getId());
+				building = dbHelper.getBuildingDao().queryForId(
+						unit.getBuilding().getId());
 			} catch (SQLException e)
 			{
 				// TODO Auto-generated catch block
@@ -88,7 +83,8 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 			Floor floor = new Floor();
 			try
 			{
-				floor = dbHelper.getFloorDao().queryForId(room.getFloor().getId());
+				floor = dbHelper.getFloorDao().queryForId(
+						room.getFloor().getId());
 			} catch (SQLException e)
 			{
 				// TODO Auto-generated catch block
@@ -104,8 +100,10 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 			Room office = new Room();
 			try
 			{
-				office = dbHelper.getRoomDao().queryForId(unit.getOffice().getId());
-				floor = dbHelper.getFloorDao().queryForId(office.getFloor().getId());
+				office = dbHelper.getRoomDao().queryForId(
+						unit.getOffice().getId());
+				floor = dbHelper.getFloorDao().queryForId(
+						office.getFloor().getId());
 			} catch (SQLException e)
 			{
 				// TODO Auto-generated catch block
@@ -116,7 +114,6 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 		return null;
 	}
 
-	
 	private void showIndoorRoute(Object startObject, Object goalObject,
 			int indoorMode, int switchingMode)
 	{
@@ -165,6 +162,8 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 		MapIndoorFragment indoorMap = new MapIndoorFragment(
 				floor.getDrawableId(), floor.getName(), floor.getTag(),
 				floor.getNumber(), points);
+		
+		//TODO: co tu sie wydarza?
 		if (switchingMode == ENABLE_SWITCHING_FRAGMENT)
 		{
 			((PoliGdzieBaseActivity) fragment.getActivity()).switchFragment(
@@ -178,18 +177,21 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 		List<NavigationPoint> list = new ArrayList<NavigationPoint>();
 		try
 		{
-			list.addAll(dbHelper.getNavigationPointDao().queryBuilder().where().eq("floor_id", fl.getId()).query());
+			list.addAll(dbHelper.getNavigationPointDao().queryBuilder().where()
+					.eq("floor_id", fl.getId()).query());
 		} catch (SQLException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
 		return list;
 	}
 
 	private void showGeneralRoute(Object startObject, Object goalObject)
 	{
+		//TODO: nie rozumiem co to ma robic.. 
+		
 		MapFragmentProvider mapProvider = MapFragmentProvider.getInstance();
 		if (startObject instanceof Building)
 		{
@@ -222,17 +224,19 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 
 		clearFocusAndHidePromptWindow(startPosition, imm);
 		clearFocusAndHidePromptWindow(goalPosition, imm);
-
+        //TODO: nazwy metod validate ... nie sugeruja zwrotu wartosci logicznej (przynajmniej dla mnie)
 		if (validateAdapters(startPosition, goalPosition))
 		{
 			Object startObject = getRoomOrBuilding(startPosition.getAdapter()
 					.getItem(0));
 			Object goalObject = getRoomOrBuilding(goalPosition.getAdapter()
 					.getItem(0));
+			
+			//TODO: zwracanie niczego zeby wyjsc z funkcji jest srednie,
 			if (!validateRouteObjects(startObject, goalObject))
 				return;
 
-			if (objectsInTheSameBuilding(startObject, goalObject))
+			if (areObjectsInTheSameBuilding(startObject, goalObject))
 			{
 				showIndoorRoute(startObject, goalObject, INDOOR_MODE_LAST,
 						ENABLE_SWITCHING_FRAGMENT);
@@ -253,7 +257,8 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 			Room office = new Room();
 			try
 			{
-				office = dbHelper.getRoomDao().queryForId(((Unit) item).getOffice().getId());
+				office = dbHelper.getRoomDao().queryForId(
+						((Unit) item).getOffice().getId());
 			} catch (SQLException e)
 			{
 				// TODO Auto-generated catch block
@@ -300,8 +305,8 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 		}
 		return true;
 	}
-
-	private boolean objectsInTheSameBuilding(Object startObject,
+	
+	private boolean areObjectsInTheSameBuilding(Object startObject,
 			Object goalObject)
 	{
 		Building building1 = getBuilding(startObject);
@@ -338,7 +343,8 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 		{
 			try
 			{
-				building = dbHelper.getBuildingDao().queryForId(((Room) object).getBuilding().getId());
+				building = dbHelper.getBuildingDao().queryForId(
+						((Room) object).getBuilding().getId());
 			} catch (SQLException e)
 			{
 				// TODO Auto-generated catch block
@@ -349,7 +355,8 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 		{
 			try
 			{
-				building = dbHelper.getBuildingDao().queryForId(((Unit) object).getBuilding().getId());
+				building = dbHelper.getBuildingDao().queryForId(
+						((Unit) object).getBuilding().getId());
 			} catch (SQLException e)
 			{
 				// TODO Auto-generated catch block
@@ -383,8 +390,9 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 		this.startPosition = startPosition;
 		this.goalPosition = goalPosition;
 		this.fragment = fragment;
-		
-		dbHelper = new DatabaseHelper(fragment.getActivity(), DATABASE_NAME, null, DATABASE_VERSION);
+
+		dbHelper = new DatabaseHelper(fragment.getActivity(), DATABASE_NAME,
+				null, DATABASE_VERSION);
 	}
 
 }

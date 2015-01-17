@@ -64,11 +64,12 @@ public abstract class PoliGdzieBaseActivity extends FragmentActivity implements
 		transaction.commit();
 		setLastTag(tag);
 	}
-	
+
 	public void clearFragments()
 	{
 		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+		fragmentManager.popBackStack(null,
+				FragmentManager.POP_BACK_STACK_INCLUSIVE);
 	}
 
 	public String getLastTag()

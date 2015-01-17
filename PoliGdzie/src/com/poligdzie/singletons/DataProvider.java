@@ -3,19 +3,18 @@ package com.poligdzie.singletons;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.android.gms.maps.model.Marker;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 
 public class DataProvider
 {
-	
-	private static DataProvider instance = null;
-	private List <Building> buildings;
-	private List <Room> rooms;
-	private List <Unit> units;
-	
+
+	private static DataProvider	instance	= null;
+	private List<Building>		buildings;
+	private List<Room>			rooms;
+	private List<Unit>			units;
+
 	protected DataProvider()
 	{
 		// konstruktor zas³aniaj¹cy domyœlny publiczny konstruktor

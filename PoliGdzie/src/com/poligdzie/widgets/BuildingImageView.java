@@ -46,10 +46,10 @@ public class BuildingImageView extends ImageView implements Constants
 
 	private boolean					panEnabled			= true;
 	private boolean					zoomEnabled			= true;
-	List<Line> 						lines  				= new ArrayList<Line>();
+	List<Line>						lines				= new ArrayList<Line>();
 
-	private List<Line>	routeLines;
-	
+	private List<Line>				routeLines;
+
 	public BuildingImageView(Context context)
 	{
 		super(context);
@@ -73,31 +73,28 @@ public class BuildingImageView extends ImageView implements Constants
 		mScaleDetector = new ScaleGestureDetector(getContext(),
 				new ScaleListener());
 		lines = new ArrayList<Line>();
-		
-		
+
 	}
 
 	private void addLine(Line line)
-	{		 	
-			float x1 = line.startX;
-			float y1 = line.startY;
-			float x2 = line.stopX;
-			float y2 = line.stopY;
-			
-			float bitmapWidth = bitmap.getWidth();
-		    float bitmapHeight = bitmap.getHeight();
-		    float originalWidth = 3404;
-		    float originalHeight = 3508;
-		    
-		    
-		    float startX =  x1 * bitmapWidth / originalWidth + mPosX; 
-		    float startY =  y1 * bitmapHeight / originalHeight + mPosY; 
-		    float stopX =  x2 * bitmapWidth / originalWidth + mPosX;
-		    float stopY =  y2 * bitmapHeight / originalHeight + mPosY;
-		    
-		    lines.add(new Line(startX, startY, stopX, stopY));
+	{
+		float x1 = line.startX;
+		float y1 = line.startY;
+		float x2 = line.stopX;
+		float y2 = line.stopY;
 
-		
+		float bitmapWidth = bitmap.getWidth();
+		float bitmapHeight = bitmap.getHeight();
+		float originalWidth = 3404;
+		float originalHeight = 3508;
+
+		float startX = x1 * bitmapWidth / originalWidth + mPosX;
+		float startY = y1 * bitmapHeight / originalHeight + mPosY;
+		float stopX = x2 * bitmapWidth / originalWidth + mPosX;
+		float stopY = y2 * bitmapHeight / originalHeight + mPosY;
+
+		lines.add(new Line(startX, startY, stopX, stopY));
+
 	}
 
 	public void setBitmap(Bitmap bmp)
@@ -109,13 +106,12 @@ public class BuildingImageView extends ImageView implements Constants
 	{
 		this.routeLines = routeLines;
 	}
-	
+
 	public void setImageBitmap(Bitmap bmp)
 	{
 		bitmap = bmp;
 		mScaleFactor = 1.0f;
 		mPosX = mPosY = 0f;
-		
 
 	}
 
@@ -153,7 +149,7 @@ public class BuildingImageView extends ImageView implements Constants
 			super.onDraw(canvas);
 			return;
 		}
-		
+
 		mScaleFactor = Math.max(mScaleFactor, minScaleFactor);
 
 		canvasHeight = canvas.getHeight();
@@ -183,34 +179,30 @@ public class BuildingImageView extends ImageView implements Constants
 			mPosY = minY;
 		if (mPosY < maxY)
 			mPosY = maxY;
-		
-		
-		
+
 		canvas.scale(mScaleFactor, mScaleFactor);
 		canvas.translate(mPosX, mPosY);
-		
-		
 
 		super.onDraw(canvas);
 		canvas.drawBitmap(bitmap, mPosX, mPosY, null);
-		 
+
 		Paint redPaint = new Paint();
-	    redPaint .setColor(Color.RED);
-	    redPaint.setStrokeWidth(10);
-	    
-	    if( routeLines != null && !routeLines.isEmpty())
+		redPaint.setColor(Color.RED);
+		redPaint.setStrokeWidth(10);
+
+		if (routeLines != null && !routeLines.isEmpty())
 		{
-	    	for (Line l : routeLines) 
-	    	{
-	    		addLine(l);
-	    	}
+			for (Line l : routeLines)
+			{
+				addLine(l);
+			}
 		}
-	    
-	    for (Line l : lines) 
-    	{
-	        canvas.drawLine(l.startX, l.startY, l.stopX, l.stopY, redPaint);
-	    }
-	
+
+		for (Line l : lines)
+		{
+			canvas.drawLine(l.startX, l.startY, l.stopX, l.stopY, redPaint);
+		}
+
 		canvas.restore(); // clear translation/scaling
 	}
 
@@ -232,11 +224,12 @@ public class BuildingImageView extends ImageView implements Constants
 			{
 				mLastTouchX = ev.getX();
 				mLastTouchY = ev.getY();
-				float d = 1727*viewWidth/bitmap.getWidth();
-				Log.i("Poligdzie","x:"+mLastTouchX+"-y:"+mLastTouchY+"-W:"+viewWidth+"-H:"+viewHeight);
-				Log.i("Poligdzie","y:"+d+"-bitmap:"+bitmap.getWidth()+"-view:"+viewWidth);
-				
-				
+				float d = 1727 * viewWidth / bitmap.getWidth();
+				Log.i("Poligdzie", "x:" + mLastTouchX + "-y:" + mLastTouchY
+						+ "-W:" + viewWidth + "-H:" + viewHeight);
+				Log.i("Poligdzie", "y:" + d + "-bitmap:" + bitmap.getWidth()
+						+ "-view:" + viewWidth);
+
 				mActivePointerId = ev.getPointerId(0);
 
 				if ((System.currentTimeMillis() - startTime) > DOUBLE_CLICK_DURATION)
@@ -417,9 +410,5 @@ public class BuildingImageView extends ImageView implements Constants
 		}
 		setMeasuredDimension(width, height);
 	}
-
-	
-	
-	
 
 }

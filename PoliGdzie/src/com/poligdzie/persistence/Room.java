@@ -9,44 +9,43 @@ import com.poligdzie.interfaces.Nameable;
 public class Room extends PoliGdzieBaseClass implements Nameable
 {
 	@DatabaseField(generatedId = true)
-	private int				id;
+	private int						id;
 
-	@DatabaseField (index = true)
-	private String 			number;
+	@DatabaseField(index = true)
+	private String					number;
 
-	@DatabaseField (index = true)
-	private String			name;
-
-	@DatabaseField
-	private RoomFunctions	function;
+	@DatabaseField(index = true)
+	private String					name;
 
 	@DatabaseField
-	private int				coordX;
+	private RoomFunctions			function;
 
 	@DatabaseField
-	private int				coordY;
-	
+	private int						coordX;
+
 	@DatabaseField
-	private int				radius;
-	
-	
+	private int						coordY;
+
 	@DatabaseField
-	private int				doorsX;
-	
+	private int						radius;
+
 	@DatabaseField
-	private int				doorsY;
+	private int						doorsX;
+
+	@DatabaseField
+	private int						doorsY;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "floor_id", useGetSet = true)
-	private Floor			floor;
+	private Floor					floor;
 
-	@DatabaseField (index = true)
-	private String			aliases;
+	@DatabaseField(index = true)
+	private String					aliases;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "building_id", useGetSet = true)
-	private Building		building;
-	
+	private Building				building;
+
 	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "navigationPointConnection_id", useGetSet = true)
-	private NavigationConnection		navigationConnection;
+	private NavigationConnection	navigationConnection;
 
 	public int getId()
 	{
@@ -107,7 +106,7 @@ public class Room extends PoliGdzieBaseClass implements Nameable
 	{
 		this.coordY = coordY;
 	}
-	
+
 	public int getRadius()
 	{
 		return radius;
@@ -138,7 +137,6 @@ public class Room extends PoliGdzieBaseClass implements Nameable
 		this.doorsY = doorsY;
 	}
 
-
 	public Floor getFloor()
 	{
 		return floor;
@@ -168,19 +166,22 @@ public class Room extends PoliGdzieBaseClass implements Nameable
 	{
 		this.building = building;
 	}
-	
+
 	public NavigationConnection getNavigationConnection()
 	{
 		return navigationConnection;
 	}
 
-	public void setNavigationConnection(NavigationConnection navigationConnection)
+	public void setNavigationConnection(
+			NavigationConnection navigationConnection)
 	{
 		this.navigationConnection = navigationConnection;
 	}
 
-	public Room(String number, String name, RoomFunctions function, Floor floor, int coordX,
-			int coordY,int radius, int doorsX, int doorsY,NavigationConnection navigationConnection, String aliases)
+	public Room(String number, String name, RoomFunctions function,
+			Floor floor, int coordX, int coordY, int radius, int doorsX,
+			int doorsY, NavigationConnection navigationConnection,
+			String aliases)
 	{
 		this.number = number;
 		this.name = name;
@@ -195,8 +196,6 @@ public class Room extends PoliGdzieBaseClass implements Nameable
 		this.building = floor.getBuilding();
 		this.navigationConnection = navigationConnection;
 	}
-
-	
 
 	public Room()
 	{

@@ -8,27 +8,26 @@ import com.poligdzie.base.PoliGdzieBaseClass;
 public class NavigationPoint extends PoliGdzieBaseClass
 {
 	@DatabaseField(generatedId = true)
-	private int			id;
-	
+	private int						id;
+
 	@DatabaseField
-	private int	coordX;
-	
+	private int						coordX;
+
 	@DatabaseField
-	private int	coordY;
+	private int						coordY;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "floor_id", useGetSet = true)
-	private Floor	floor;
-	
+	private Floor					floor;
+
 	@DatabaseField
-	private NavigationPointTypes type;
+	private NavigationPointTypes	type;
 
 	public boolean hasEqualFloor(Floor f)
 	{
-		if(this.floor.getId() == f.getId())
+		if (this.floor.getId() == f.getId())
 		{
 			return true;
-		}
-		else
+		} else
 		{
 			return false;
 		}
@@ -38,12 +37,11 @@ public class NavigationPoint extends PoliGdzieBaseClass
 	{
 		return id;
 	}
-	
+
 	public void setId(int id)
 	{
 		this.id = id;
 	}
-
 
 	public int getCoordX()
 	{
@@ -74,8 +72,6 @@ public class NavigationPoint extends PoliGdzieBaseClass
 	{
 		this.floor = floor;
 	}
-	
-	
 
 	public NavigationPointTypes getType()
 	{
@@ -87,16 +83,17 @@ public class NavigationPoint extends PoliGdzieBaseClass
 		this.type = type;
 	}
 
-	public  NavigationPoint()
+	public NavigationPoint()
 	{
 		// nie wyrzucac !
 	}
 
-	public NavigationPoint(int coordX, int coordY, Floor floor, NavigationPointTypes type)
+	public NavigationPoint(int coordX, int coordY, Floor floor,
+			NavigationPointTypes type)
 	{
 		this.coordX = coordX;
 		this.coordY = coordY;
 		this.floor = floor;
-		this.type=type;
+		this.type = type;
 	}
 }

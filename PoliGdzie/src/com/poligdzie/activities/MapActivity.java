@@ -1,8 +1,5 @@
 package com.poligdzie.activities;
 
-import java.sql.SQLException;
-import java.util.Timer;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +13,6 @@ import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.base.PoliGdzieMapFragment;
 import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
-import com.poligdzie.singletons.DataProvider;
 import com.poligdzie.singletons.MapFragmentProvider;
 
 public class MapActivity extends PoliGdzieBaseActivity implements
@@ -40,8 +36,8 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.map_activity);
 
-		Log.i("poli","map1");
-		
+		Log.i("poli", "map1");
+
 		mapProvider = MapFragmentProvider.getInstance();
 
 		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna",
@@ -63,9 +59,8 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		 * Log.i("ROUTE","FAIL!"); e.printStackTrace(); }
 		 */
 		// ind
-		
-		switchFragment(R.id.map_container, outdoorMap, outdoorMap.getViewTag());
 
+		switchFragment(R.id.map_container, outdoorMap, outdoorMap.getViewTag());
 
 		previous = (Button) findViewById(R.id.previous_map);
 		previous.setOnClickListener(this);

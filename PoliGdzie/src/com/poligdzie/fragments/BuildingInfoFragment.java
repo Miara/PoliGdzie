@@ -1,8 +1,5 @@
 package com.poligdzie.fragments;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -121,7 +118,7 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 		{
 			mapProvider.clearFragments();
 			mapProvider.addGoogleMapFragment();
-			
+
 			int i = 0;
 			Log.d("POLIGDZIE", currentBuildingOnMarker.getName());
 

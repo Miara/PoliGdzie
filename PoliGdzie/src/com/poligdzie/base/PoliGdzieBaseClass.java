@@ -19,17 +19,15 @@ public abstract class PoliGdzieBaseClass implements WithDrawableId, Constants
 				context.getPackageName());
 		return resId;
 	}
-	
-	
+
 	public void makeToast(String text, Context context)
 	{
-		Toast toast = Toast.makeText(context,
-				text, Toast.LENGTH_SHORT);
+		Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
 		toast.show();
 	}
-	
+
 	public void echo(String text)
 	{
-		Log.i("Poligdzie",text);
+		Log.i("Poligdzie", text);
 	}
 }

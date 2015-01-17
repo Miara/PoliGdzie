@@ -7,7 +7,6 @@ import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
 import com.example.poligdzie.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -39,23 +38,24 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 
 	private SearchAutoCompleteTextView	searchPosition;
 	private PoliGdzieBaseFragment		fragment;
-	private MapFragmentProvider	mapFragmentProvider;
+	private MapFragmentProvider			mapFragmentProvider;
 
 	private void showPlaceOutdoor(Object object)
 	{
-		
+
 		mapFragmentProvider.addGoogleMapFragment();
-		
-		MapOutdoorFragment outdoorMap = (MapOutdoorFragment) mapFragmentProvider.getGoogleMapFragment();
-		GoogleMap map = ((MapFragment) fragment.getActivity().getFragmentManager()
-					.findFragmentById(R.id.map_outdoor_googleMap)).getMap();
-		
-		((PoliGdzieBaseActivity) fragment.getActivity()).switchFragment(R.id.map_container, outdoorMap,
-				OUTDOOR_MAP_TAG);
-		
+
+		MapOutdoorFragment outdoorMap = (MapOutdoorFragment) mapFragmentProvider
+				.getGoogleMapFragment();
+		GoogleMap map = ((MapFragment) fragment.getActivity()
+				.getFragmentManager()
+				.findFragmentById(R.id.map_outdoor_googleMap)).getMap();
+
+		((PoliGdzieBaseActivity) fragment.getActivity()).switchFragment(
+				R.id.map_container, outdoorMap, OUTDOOR_MAP_TAG);
+
 		((MapActivity) fragment.getActivity()).setNavigationArrowsVisibility();
-		
-		
+
 		LatLng pos = getCoords(object);
 
 		MapDrawingProvider provider = MapDrawingProvider.getInstance();
@@ -89,7 +89,8 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 			Building building = new Building();
 			try
 			{
-				building = dbHelper.getBuildingDao().queryForId(room.getBuilding().getId());
+				building = dbHelper.getBuildingDao().queryForId(
+						room.getBuilding().getId());
 			} catch (SQLException e)
 			{
 				// TODO Auto-generated catch block
@@ -104,7 +105,8 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 			Building building = new Building();
 			try
 			{
-				building = dbHelper.getBuildingDao().queryForId(unit.getBuilding().getId());
+				building = dbHelper.getBuildingDao().queryForId(
+						unit.getBuilding().getId());
 			} catch (SQLException e)
 			{
 				// TODO Auto-generated catch block
@@ -123,7 +125,8 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 			Floor floor = new Floor();
 			try
 			{
-				floor = dbHelper.getFloorDao().queryForId(room.getFloor().getId());
+				floor = dbHelper.getFloorDao().queryForId(
+						room.getFloor().getId());
 			} catch (SQLException e)
 			{
 				// TODO Auto-generated catch block
@@ -139,8 +142,10 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 			Room office = new Room();
 			try
 			{
-				office = dbHelper.getRoomDao().queryForId(unit.getOffice().getId());
-				floor = dbHelper.getFloorDao().queryForId(office.getFloor().getId());
+				office = dbHelper.getRoomDao().queryForId(
+						unit.getOffice().getId());
+				floor = dbHelper.getFloorDao().queryForId(
+						office.getFloor().getId());
 			} catch (SQLException e)
 			{
 				// TODO Auto-generated catch block
@@ -153,9 +158,9 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 
 	private void showPlaceIndoor(Object object)
 	{
-		
+
 		mapFragmentProvider.addGoogleMapFragment();
-		
+
 		for (Floor f : getFloors(object))
 		{
 			MapIndoorFragment indoorMap = new MapIndoorFragment(
@@ -193,7 +198,8 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 				Room office = null;
 				try
 				{
-					office = dbHelper.getRoomDao().queryForId(temp.getOffice().getId());
+					office = dbHelper.getRoomDao().queryForId(
+							temp.getOffice().getId());
 				} catch (SQLException e)
 				{
 					// TODO Auto-generated catch block
@@ -205,7 +211,8 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 				Building building = null;
 				try
 				{
-					building = dbHelper.getBuildingDao().queryForId(temp.getId());
+					building = dbHelper.getBuildingDao().queryForId(
+							temp.getId());
 				} catch (SQLException e)
 				{
 					// TODO Auto-generated catch block
@@ -220,7 +227,7 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 	@Override
 	public void onClick(View v)
 	{
-		
+
 		mapFragmentProvider.clearFragments();
 
 		searchPosition.clearFocus();
@@ -254,17 +261,19 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 					}
 				}
 			}
-		} 
+		}
 	}
-	
+
 	private boolean validateAdapter(SearchAutoCompleteTextView searchPoint)
 	{
-		if(searchPoint.getAdapter().isEmpty())
+		if (searchPoint.getAdapter().isEmpty())
 		{
-			makeToast("Proszê wybraæ miejsce",fragment.getActivity());
+			//TODO: wrocilbym do pokazywania tego, ze nic nie znaleziono - to pokazuje sie przy pustym adapterze,
+			// czyli wtedy, kiedy wynik z textview nie pasuje do niczego. Nie tylko wtedy gdy jest pusty
+			makeToast("Proszê wybraæ miejsce", fragment.getActivity());
 			return false;
-		}
-		else return true;
+		} else
+			return true;
 	}
 
 	public SearchButtonListener(SearchAutoCompleteTextView searchPosition,
@@ -274,7 +283,8 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 		this.searchPosition = searchPosition;
 		this.fragment = fragment;
 		this.mapFragmentProvider = MapFragmentProvider.getInstance();
-		dbHelper = new DatabaseHelper(fragment.getActivity(), DATABASE_NAME, null, DATABASE_VERSION);
+		dbHelper = new DatabaseHelper(fragment.getActivity(), DATABASE_NAME,
+				null, DATABASE_VERSION);
 	}
 
 }

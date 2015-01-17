@@ -8,31 +8,29 @@ import com.poligdzie.base.PoliGdzieBaseClass;
 public class BuildingEntry extends PoliGdzieBaseClass
 {
 	@DatabaseField(generatedId = true)
-	private int			id;
-	
+	private int				id;
+
 	@DatabaseField
-	private int	coordX;
-	
+	private int				coordX;
+
 	@DatabaseField
-	private int	coordY;
+	private int				coordY;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "building_id", useGetSet = true)
-	private Building	building;
-	
+	private Building		building;
+
 	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "point_id", useGetSet = true)
 	private NavigationPoint	navigationPoint;
-
 
 	public int getId()
 	{
 		return id;
 	}
-	
+
 	public void setId(int id)
 	{
 		this.id = id;
 	}
-
 
 	public int getCoordX()
 	{
@@ -54,8 +52,6 @@ public class BuildingEntry extends PoliGdzieBaseClass
 		this.coordY = coordY;
 	}
 
-	
-
 	public Building getBuilding()
 	{
 		return building;
@@ -76,16 +72,17 @@ public class BuildingEntry extends PoliGdzieBaseClass
 		this.navigationPoint = navigationPoint;
 	}
 
-	public  BuildingEntry()
+	public BuildingEntry()
 	{
 		// nie wyrzucac !
 	}
 
-	public BuildingEntry(int coordX, int coordY, Building building, NavigationPoint navigationPoint)
+	public BuildingEntry(int coordX, int coordY, Building building,
+			NavigationPoint navigationPoint)
 	{
 		this.coordX = coordX;
 		this.coordY = coordY;
 		this.building = building;
-		this.navigationPoint=navigationPoint;
+		this.navigationPoint = navigationPoint;
 	}
 }

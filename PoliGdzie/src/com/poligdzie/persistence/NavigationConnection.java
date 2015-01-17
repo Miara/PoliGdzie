@@ -8,7 +8,7 @@ import com.poligdzie.base.PoliGdzieBaseClass;
 public class NavigationConnection extends PoliGdzieBaseClass
 {
 	@DatabaseField(generatedId = true)
-	private int			id;
+	private int				id;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "navigationPointFirst_id", useGetSet = true)
 	private NavigationPoint	firstPoint;
@@ -17,13 +17,13 @@ public class NavigationConnection extends PoliGdzieBaseClass
 	private NavigationPoint	lastPoint;
 
 	@DatabaseField
-	private int	length;
+	private int				length;
 
 	public int getId()
 	{
 		return id;
 	}
-	
+
 	public void setId(int id)
 	{
 		this.id = id;
@@ -59,12 +59,13 @@ public class NavigationConnection extends PoliGdzieBaseClass
 		this.length = length;
 	}
 
-	public  NavigationConnection()
+	public NavigationConnection()
 	{
 		// nie wyrzucac !
 	}
 
-	public NavigationConnection(NavigationPoint first, NavigationPoint last, int length)
+	public NavigationConnection(NavigationPoint first, NavigationPoint last,
+			int length)
 	{
 		this.firstPoint = first;
 		this.lastPoint = last;
