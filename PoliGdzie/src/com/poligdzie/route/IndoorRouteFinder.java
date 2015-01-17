@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.util.Log;
 
+import com.j256.ormlite.stmt.QueryBuilder;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
@@ -267,8 +268,20 @@ public class IndoorRouteFinder implements Constants
 	
 	private boolean checkIfPointsInOneIndoor(NavigationPoint startPoint2, NavigationPoint goalPoint2)
 	{
-		int startBuildingId =startPoint2.getFloor().getBuilding().getId(); 
-		int goalBuildingId =goalPoint2.getFloor().getBuilding().getId(); 
+		Floor floorStart = new Floor();
+		Floor floorGoal = new Floor();
+		try
+		{
+			floorStart = dbHelper.getFloorDao().queryForId(startPoint2.getFloor().getId());
+			floorGoal = dbHelper.getFloorDao().queryForId(goalPoint2.getFloor().getId());
+		} catch (SQLException e1)
+		{
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		int startBuildingId = floorStart.getBuilding().getId(); 
+		int goalBuildingId = floorGoal.getBuilding().getId(); 
 		if(startBuildingId == goalBuildingId)
 		{
 			return true;
@@ -280,6 +293,7 @@ public class IndoorRouteFinder implements Constants
 			try
 			{
 				specialList = dbHelper.getSpecialConnectionDao().queryForAll();
+
 				for(SpecialConnection conn : specialList)
 				{
 					int firstBuildingId = conn.getLowerFloor().getFloor().getBuilding().getId();

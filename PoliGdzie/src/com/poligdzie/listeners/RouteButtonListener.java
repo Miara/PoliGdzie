@@ -1,5 +1,6 @@
 package com.poligdzie.listeners;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,29 +37,45 @@ import com.poligdzie.tasks.AnimationClosureChecker;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
 public class RouteButtonListener extends PoliGdzieBaseClass implements
-OnClickListener
+															OnClickListener
 {
 
 	private PoliGdzieBaseFragment		fragment;
 	private SearchAutoCompleteTextView	startPosition;
 	private SearchAutoCompleteTextView	goalPosition;
-	
-	private boolean error = false;
 
-
+	private boolean						error	= false;
 
 	private ForeignCollection<Floor> getFloors(Object object)
 	{
 		if (object instanceof Room)
 		{
 			Room room = (Room) object;
-			return room.getBuilding().getFloors();
+			Building building = new Building();
+			try
+			{
+				building = dbHelper.getBuildingDao().queryForId(room.getBuilding().getId());
+			} catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return building.getFloors();
 		}
 
 		if (object instanceof Unit)
 		{
 			Unit unit = (Unit) object;
-			return unit.getBuilding().getFloors();
+			Building building = new Building();
+			try
+			{
+				building = dbHelper.getBuildingDao().queryForId(unit.getBuilding().getId());
+			} catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return building.getFloors();
 		}
 		return null;
 	}
@@ -68,105 +85,129 @@ OnClickListener
 		if (object instanceof Room)
 		{
 			Room room = (Room) object;
-			return room.getFloor().getTag();
+			Floor floor = new Floor();
+			try
+			{
+				floor = dbHelper.getFloorDao().queryForId(room.getFloor().getId());
+			} catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return floor.getTag();
 		}
 
 		if (object instanceof Unit)
 		{
 			Unit unit = (Unit) object;
-			return unit.getOffice().getFloor().getTag();
+			Floor floor = new Floor();
+			Room office = new Room();
+			try
+			{
+				office = dbHelper.getRoomDao().queryForId(unit.getOffice().getId());
+				floor = dbHelper.getFloorDao().queryForId(office.getFloor().getId());
+			} catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return floor.getTag();
 		}
 		return null;
 	}
 
-	private void showIndoorRoute(Object startObject, Object goalObject, int indoorMode, int switchingMode)
+	
+	private void showIndoorRoute(Object startObject, Object goalObject,
+			int indoorMode, int switchingMode)
 	{
 		Floor lastFloorInIndoor = null;
 		String roomFloorTag = "";
 		IndoorRouteFinder finder = new IndoorRouteFinder(dbHelper);
-		List<NavigationPoint> routePoints = finder.findRoute((Room)startObject, (Room)goalObject);
+		List<NavigationPoint> routePoints = finder.findRoute(
+				(Room) startObject, (Room) goalObject);
 		List<NavigationPoint> points;
 		for (Floor f : getFloors(startObject))
 		{
-			
-			
-			if ((f.getTag().equals(getTag(startObject)) && indoorMode == INDOOR_MODE_FIRST) ||
-					(f.getNumber() == 0 && indoorMode == INDOOR_MODE_LAST))
+
+			if ((f.getTag().equals(getTag(startObject)) && indoorMode == INDOOR_MODE_FIRST)
+					|| (f.getNumber() == 0 && indoorMode == INDOOR_MODE_LAST))
 			{
-					points = getPointsAtFloor(routePoints, f);
-					addIndoorFragment(points,f,switchingMode);
-					roomFloorTag = f.getTag();
-					
-			}
-			else if ((f.getTag().equals(getTag(startObject)) && indoorMode == INDOOR_MODE_LAST ) ||
-					(f.getNumber() == 0 && indoorMode == INDOOR_MODE_FIRST))
+				points = getPointsAtFloor(routePoints, f);
+				addIndoorFragment(points, f, switchingMode);
+				roomFloorTag = f.getTag();
+
+			} else if ((f.getTag().equals(getTag(startObject)) && indoorMode == INDOOR_MODE_LAST)
+					|| (f.getNumber() == 0 && indoorMode == INDOOR_MODE_FIRST))
 			{
-					lastFloorInIndoor = f;
+				lastFloorInIndoor = f;
 			}
-			
+
 		}
-		
-		if(lastFloorInIndoor != null )
+
+		if (lastFloorInIndoor != null)
 		{
-			if( (lastFloorInIndoor.getTag() != roomFloorTag))
+			if ((lastFloorInIndoor.getTag() != roomFloorTag))
 			{
 				Floor f = lastFloorInIndoor;
 				points = getPointsAtFloor(routePoints, f);
-				new MapIndoorFragment(f.getDrawableId(), f.getName(), f.getTag(), f.getNumber(),points);
+				new MapIndoorFragment(f.getDrawableId(), f.getName(),
+						f.getTag(), f.getNumber(), points);
 			}
 		}
-		
 
 		((OnClickListener) fragment.getActivity()).onClick(fragment
 				.getActivity().findViewById(R.layout.map_activity));
 	}
 
-	
-	private void addIndoorFragment(List<NavigationPoint> points,Floor floor, int switchingMode)
+	private void addIndoorFragment(List<NavigationPoint> points, Floor floor,
+			int switchingMode)
 	{
 		MapIndoorFragment indoorMap = new MapIndoorFragment(
-				floor.getDrawableId(), floor.getName(), floor.getTag(), floor.getNumber(),points);
-		if(switchingMode == ENABLE_SWITCHING_FRAGMENT)
+				floor.getDrawableId(), floor.getName(), floor.getTag(),
+				floor.getNumber(), points);
+		if (switchingMode == ENABLE_SWITCHING_FRAGMENT)
 		{
-			((PoliGdzieBaseActivity) fragment.getActivity())
-			.switchFragment(R.id.map_container, indoorMap,
-					indoorMap.getViewTag());
-		}	
+			((PoliGdzieBaseActivity) fragment.getActivity()).switchFragment(
+					R.id.map_container, indoorMap, indoorMap.getViewTag());
+		}
 	}
-	
-	private List<NavigationPoint> getPointsAtFloor(List<NavigationPoint> points,Floor fl)
+
+	private List<NavigationPoint> getPointsAtFloor(
+			List<NavigationPoint> points, Floor fl)
 	{
 		List<NavigationPoint> list = new ArrayList<NavigationPoint>();
-		for(NavigationPoint p: points)
+		try
 		{
-			if( p.getFloor().getId() == fl.getId() )
-			{
-				list.add(p);
-			}
-			
+			list.addAll(dbHelper.getNavigationPointDao().queryBuilder().where().eq("floor_id", fl.getId()).query());
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return list;	
+	
+		return list;
 	}
 
 	private void showGeneralRoute(Object startObject, Object goalObject)
 	{
 		MapFragmentProvider mapProvider = MapFragmentProvider.getInstance();
-		if(startObject instanceof Building)
+		if (startObject instanceof Building)
 		{
 			mapProvider.addGoogleMapFragment();
-		}
-		else if (startObject instanceof Room)
+		} else if (startObject instanceof Room)
 		{
 			// TODO: showGeneralRoute
-			//showIndoorRoute(startObject, INDOOR_MODE_FIRST, ENABLE_SWITCHING_FRAGMENT);
+			// showIndoorRoute(startObject, INDOOR_MODE_FIRST,
+			// ENABLE_SWITCHING_FRAGMENT);
 			mapProvider.addGoogleMapFragment();
 		}
-		
+
 		if (goalObject instanceof Room)
 		{
-			//showIndoorRoute(goalObject, INDOOR_MODE_LAST, DISABLE_SWITCHING_FRAGMENT);
+			// showIndoorRoute(goalObject, INDOOR_MODE_LAST,
+			// DISABLE_SWITCHING_FRAGMENT);
 		}
-		
+
 	}
 
 	@Override
@@ -178,67 +219,72 @@ OnClickListener
 
 		InputMethodManager imm = (InputMethodManager) fragment.getActivity()
 				.getSystemService(Context.INPUT_METHOD_SERVICE);
-		
+
 		clearFocusAndHidePromptWindow(startPosition, imm);
 		clearFocusAndHidePromptWindow(goalPosition, imm);
 
-		if (validateAdapters(startPosition,goalPosition))
+		if (validateAdapters(startPosition, goalPosition))
 		{
-			Object startObject = getRoomOrBuilding(startPosition.getAdapter().getItem(0));
-			Object goalObject = getRoomOrBuilding(goalPosition.getAdapter().getItem(0));
-			if(!validateRouteObjects(startObject,goalObject)) return;
-			
-			if ( objectsInTheSameBuilding(startObject,goalObject ))
+			Object startObject = getRoomOrBuilding(startPosition.getAdapter()
+					.getItem(0));
+			Object goalObject = getRoomOrBuilding(goalPosition.getAdapter()
+					.getItem(0));
+			if (!validateRouteObjects(startObject, goalObject))
+				return;
+
+			if (objectsInTheSameBuilding(startObject, goalObject))
 			{
-				showIndoorRoute(startObject,goalObject,INDOOR_MODE_LAST,ENABLE_SWITCHING_FRAGMENT); 
-				makeToast("Ten sam budynek",fragment.getActivity());
-			}
-			else if(!error)
+				showIndoorRoute(startObject, goalObject, INDOOR_MODE_LAST,
+						ENABLE_SWITCHING_FRAGMENT);
+				makeToast("Ten sam budynek", fragment.getActivity());
+			} else if (!error)
 			{
-				showGeneralRoute(startObject,goalObject);
-				makeToast("obiekty w innych budynkach",fragment.getActivity());	
+				showGeneralRoute(startObject, goalObject);
+				makeToast("obiekty w innych budynkach", fragment.getActivity());
 			}
-			
-		} 
+
+		}
 	}
-
-	
-
-	
 
 	private Object getRoomOrBuilding(Object item)
 	{
-		if(item instanceof Unit) 
+		if (item instanceof Unit)
 		{
-			return ((Unit)item).getOffice();
-		}
-		else
+			Room office = new Room();
+			try
+			{
+				office = dbHelper.getRoomDao().queryForId(((Unit) item).getOffice().getId());
+			} catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return office;
+		} else
 		{
 			return item;
 		}
-		
 
 	}
 
-	private boolean validateAdapters(SearchAutoCompleteTextView start, SearchAutoCompleteTextView goal)
+	private boolean validateAdapters(SearchAutoCompleteTextView start,
+			SearchAutoCompleteTextView goal)
 	{
-		
-		if(start.getAdapter().isEmpty()  && goal.getAdapter().isEmpty() )
+
+		if (start.getAdapter().isEmpty() && goal.getAdapter().isEmpty())
 		{
-			makeToast("Proszê uzupe³niæ pola wyszukiwania",fragment.getActivity());
+			makeToast("Proszê uzupe³niæ pola wyszukiwania",
+					fragment.getActivity());
 			return false;
-		}
-		else if(start.getAdapter().isEmpty())
+		} else if (start.getAdapter().isEmpty())
 		{
-			makeToast("Proszê wybraæ punkt startowy",fragment.getActivity());
+			makeToast("Proszê wybraæ punkt startowy", fragment.getActivity());
 			return false;
-		}
-		else if(goal.getAdapter().isEmpty())
+		} else if (goal.getAdapter().isEmpty())
 		{
-			makeToast("Proszê wybraæ punkt docelowy",fragment.getActivity());
+			makeToast("Proszê wybraæ punkt docelowy", fragment.getActivity());
 			return false;
-		}
-		else
+		} else
 		{
 			return true;
 		}
@@ -246,32 +292,36 @@ OnClickListener
 
 	private boolean validateRouteObjects(Object startObject, Object goalObject)
 	{
-		if((startObject == null || goalObject == null) || (startObject == goalObject)	) 
+		if ((startObject == null || goalObject == null)
+				|| (startObject == goalObject))
 		{
-			makeToast("Pola nie mog¹ byæ te same",fragment.getActivity());
+			makeToast("Pola nie mog¹ byæ te same", fragment.getActivity());
 			return false;
 		}
 		return true;
 	}
 
-	private boolean objectsInTheSameBuilding(Object startObject, Object goalObject)
+	private boolean objectsInTheSameBuilding(Object startObject,
+			Object goalObject)
 	{
 		Building building1 = getBuilding(startObject);
 		Building building2 = getBuilding(goalObject);
-		
-		if(building1 == null || building2 == null)
+
+		if (building1 == null || building2 == null)
 		{
-			makeToast("Nie mozna zidentyfikowaæ budynków ",fragment.getActivity());
+			makeToast("Nie mozna zidentyfikowaæ budynków ",
+					fragment.getActivity());
 			error = true;
 			return false;
 		}
-		
-		if(building1.getId() == building2.getId() )
+
+		if (building1.getId() == building2.getId())
 		{
-			if(startObject instanceof Building || goalObject instanceof Building )
+			if (startObject instanceof Building
+					|| goalObject instanceof Building)
 			{
 				// TODO: route listener
-				makeToast("Do poprawy..",fragment.getActivity());
+				makeToast("Do poprawy..", fragment.getActivity());
 				error = true;
 				return false;
 			}
@@ -279,47 +329,62 @@ OnClickListener
 		}
 		return false;
 	}
-	
+
 	private Building getBuilding(Object object)
 	{
-		
-		if( object instanceof Room) 
+
+		Building building = new Building();
+		if (object instanceof Room)
 		{
-			return ((Room) object).getBuilding();
-		} 
-		else if( object instanceof Unit) 
+			try
+			{
+				building = dbHelper.getBuildingDao().queryForId(((Room) object).getBuilding().getId());
+			} catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return building;
+		} else if (object instanceof Unit)
 		{
-			return ((Unit) object).getBuilding();
-		} 
-		else if( object instanceof Building) 
+			try
+			{
+				building = dbHelper.getBuildingDao().queryForId(((Unit) object).getBuilding().getId());
+			} catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return building;
+		} else if (object instanceof Building)
 		{
 			return ((Building) object);
-		}
-		else
+		} else
 		{
 			return null;
 		}
 	}
-	
+
 	private void clearFocusAndHidePromptWindow(
 			SearchAutoCompleteTextView position, InputMethodManager imm)
 	{
-		if(position.hasFocus())
+		if (position.hasFocus())
 		{
 			position.clearFocus();
 			imm.hideSoftInputFromWindow(position.getWindowToken(), 0);
 		}
-		
+
 	}
 
 	public RouteButtonListener(SearchAutoCompleteTextView startPosition,
-			SearchAutoCompleteTextView goalPosition,
-			GoogleMap map, MapOutdoorFragment outdoorMap,
-			PoliGdzieBaseFragment fragment)
+			SearchAutoCompleteTextView goalPosition, GoogleMap map,
+			MapOutdoorFragment outdoorMap, PoliGdzieBaseFragment fragment)
 	{
 		this.startPosition = startPosition;
 		this.goalPosition = goalPosition;
 		this.fragment = fragment;
+		
+		dbHelper = new DatabaseHelper(fragment.getActivity(), DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
 }
