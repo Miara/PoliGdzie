@@ -10,10 +10,10 @@ public class NavigationConnection extends PoliGdzieBaseClass
 	@DatabaseField(generatedId = true)
 	private int			id;
 
-	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "navigationPointFirst_id")
+	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "navigationPointFirst_id", useGetSet = true)
 	private NavigationPoint	firstPoint;
 
-	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "navigationPointLast_id")
+	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "navigationPointLast_id", useGetSet = true)
 	private NavigationPoint	lastPoint;
 
 	@DatabaseField

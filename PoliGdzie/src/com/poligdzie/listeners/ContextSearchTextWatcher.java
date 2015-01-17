@@ -2,7 +2,6 @@ package com.poligdzie.listeners;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import android.content.Context;
@@ -12,27 +11,37 @@ import android.util.Log;
 import android.widget.AutoCompleteTextView;
 
 import com.example.poligdzie.R;
-import com.j256.ormlite.dao.CloseableIterator;
+import com.j256.ormlite.stmt.PreparedQuery;
+import com.j256.ormlite.stmt.SelectArg;
 import com.poligdzie.adapters.AutocompleteCustomAdapter;
 import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
-import com.poligdzie.singletons.DataProvider;
 
 public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
 																TextWatcher
 {
 
-	private AutoCompleteTextView	input;
-	private List<Building>			buildings;
-	private List<Unit>				units;
-	private List<Room>				rooms;
+	private AutoCompleteTextView		input;
+	private List<Building>				buildings;
+	private List<Unit>					units;
+	private List<Room>					rooms;
 
-	private Context					context;
+	private PreparedQuery<Building>		buildingQuery;
+	private PreparedQuery<Unit>			unitQuery;
+	private PreparedQuery<Room>			roomQuery;
 
-	private List<Object>			aList;
+	private List<SelectArg>				arg;
+
+	private int							maxAListCapacity	= 5;
+
+	private Context						context;
+	private AutocompleteCustomAdapter	adapter;
+
+	private List<Object>				aList;
+	private int							argCount			= 7;
 
 	@Override
 	public void beforeTextChanged(CharSequence s, int start, int count,
@@ -44,93 +53,54 @@ public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
 	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count)
 	{
-		String regex = "(?i:.*" + s.toString() + ".*)";
+		for (int i = 0; i < arg.size(); i++)
+		{
+			SelectArg a = arg.get(i);
+			a.setValue(s + "%");
+			arg.set(i, a);
+		}
 
-		
 		buildings.clear();
 		rooms.clear();
 		units.clear();
 		aList.clear();
-		long maxRows = 3;
-		//if (s.length() >= 3)
-		//{
-			// try
-			// {
-			Log.i("POLIGDZIE", s.toString());
+		try
+		{
+			long start_t = System.nanoTime();
+			buildings = dbHelper.getBuildingDao().query(buildingQuery);
+			units = dbHelper.getUnitDao().query(unitQuery);
+			rooms = dbHelper.getRoomDao().query(roomQuery);
+			long end = System.nanoTime();
+			Log.d("POLIGDZIE", "Czas selectow: "
+					+ ((float) (end - start_t) / 1000000000));
+		} catch (java.sql.SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-			DataProvider provider = DataProvider.getInstance();
-			List <Building> bs = provider.getBuildings(); 
-			for(Building b : bs) {
-				Log.i("POLIGDZIE", b.getName());
-				if (b.getName().matches(regex)
-						|| b.getAliases().matches(regex))
-				{
-					
-					buildings.add(b);
-				}
-			}
-			
+		for (Building b : buildings)
+		{
+			if (aList.size() >= maxAListCapacity)
+				break;
+			aList.add(b);
+		}
 
-			List <Room> rs = provider.getRooms();
-			for(Room b : rs) {
-				if (b.getName().matches(regex)
-						|| b.getAliases().matches(regex))
-				{
-					rooms.add(b);
-				}
-			}
+		for (Unit b : units)
+		{
+			if (aList.size() >= maxAListCapacity)
+				break;
+			aList.add(b);
+		}
 
-			List <Unit> us = provider.getUnits();
-			for(Unit b : us) {
-				if (b.getName().matches(regex)
-						|| b.getAliases().matches(regex))
-				{
-					units.add(b);
-				}
-			}
+		for (Room b : rooms)
+		{
+			if (aList.size() >= maxAListCapacity)
+				break;
+			aList.add(b);
+		}
 
-			/*
-			 * buildings = dbHelper.getBuildingDao().queryBuilder()
-			 * .limit(maxRows).where() .like("name", s.toString() + "%").or()
-			 * .like("aliases", s.toString() + "%").query();
-			 */
-
-			/*
-			 * rooms = dbHelper.getRoomDao().queryBuilder().limit(maxRows)
-			 * .where().like("name", s.toString() + "%").or() .like("aliases",
-			 * s.toString() + "%").or() .like("number", s.toString() +
-			 * "%").query();
-			 * 
-			 * units = dbHelper.getUnitDao().queryBuilder().limit(maxRows)
-			 * .where().like("name", s.toString() + "%").or() .like("aliases",
-			 * s.toString() + "%").query();
-			 */
-			/*
-			 * } catch (SQLException e) { e.printStackTrace(); }
-			 */
-
-			for (Building b : buildings)
-			{
-				aList.add(b);
-			}
-
-			for (Unit b : units)
-			{
-				aList.add(b);
-			}
-
-			for (Room b : rooms)
-			{
-				aList.add(b);
-			}
-
-			
-			
-			AutocompleteCustomAdapter adapter = new AutocompleteCustomAdapter(
-					this.context, R.layout.prompt_item, aList);
-
-			input.setAdapter(adapter);
-		//}
+		input.setAdapter(adapter);
 
 	}
 
@@ -151,12 +121,37 @@ public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
 		rooms = new ArrayList<Room>();
 		units = new ArrayList<Unit>();
 		buildings = new ArrayList<Building>();
-		
-		
-		AutocompleteCustomAdapter adapter = new AutocompleteCustomAdapter(
-				this.context, R.layout.prompt_item, aList);
-		input.setAdapter(adapter);
-		
+
+		adapter = new AutocompleteCustomAdapter(dbHelper, this.context,
+				R.layout.prompt_item, aList);
+
+		arg = new ArrayList<SelectArg>();
+
+		for (int i = 0; i < argCount; i++)
+		{
+			arg.add(new SelectArg());
+		}
+		int location = 0;
+		try
+		{
+			buildingQuery = dbHelper.getBuildingDao().queryBuilder().where()
+					.like("name", arg.get(location++)).or()
+					.like("aliases", arg.get(location++)).prepare();
+
+			roomQuery = dbHelper.getRoomDao().queryBuilder().where()
+					.like("name", arg.get(location++)).or()
+					.like("aliases", arg.get(location++)).or()
+					.like("number", arg.get(location++)).prepare();
+
+			unitQuery = dbHelper.getUnitDao().queryBuilder().where()
+					.like("name", arg.get(location++)).or()
+					.like("aliases", arg.get(location++)).prepare();
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 }

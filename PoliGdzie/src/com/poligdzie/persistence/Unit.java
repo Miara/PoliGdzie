@@ -23,10 +23,10 @@ public class Unit extends PoliGdzieBaseClass implements Nameable
 	@DatabaseField (index = true)
 	private String		aliases;
 
-	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "building_id")
+	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "building_id", useGetSet = true)
 	private Building	building;
 
-	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "room_id")
+	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "room_id", useGetSet = true)
 	private Room		office;
 
 	public int getId()

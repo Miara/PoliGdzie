@@ -33,7 +33,7 @@ public class Floor extends PoliGdzieBaseClass implements Nameable
 	private int	pixelsPerMeter;
 
 	
-	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "building_id")
+	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "building_id", useGetSet = true)
 	private Building	building;
 
 	

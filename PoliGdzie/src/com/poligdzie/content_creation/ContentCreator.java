@@ -55,7 +55,7 @@ public class ContentCreator
 	{
 		this.rooms = rooms;
 	}
-	
+
 	public List<Floor> getFloors()
 	{
 		return floors;
@@ -65,8 +65,6 @@ public class ContentCreator
 	{
 		this.floors = floors;
 	}
-	
-	
 
 	public List<NavigationPoint> getNavigationPoints()
 	{
@@ -77,8 +75,6 @@ public class ContentCreator
 	{
 		this.navigationPoints = navigationPoints;
 	}
-	
-	
 
 	public List<BuildingEntry> getBuildingEntries()
 	{
@@ -101,17 +97,16 @@ public class ContentCreator
 		this.navigationConnections = navigationConnections;
 	}
 
-
 	public List<SpecialConnection> getSpecialConnections()
 	{
 		return specialConnections;
 	}
 
-	public void setSpecialConnections(ArrayList<SpecialConnection> specialConnections)
+	public void setSpecialConnections(
+			ArrayList<SpecialConnection> specialConnections)
 	{
 		this.specialConnections = specialConnections;
 	}
-
 
 	public void add(Object value)
 	{
@@ -133,12 +128,12 @@ public class ContentCreator
 		{
 			this.addFloor((Floor) value);
 		}
-		
+
 		if (value.getClass() == NavigationPoint.class)
 		{
 			this.addNavigationPoint((NavigationPoint) value);
 		}
-		
+
 		if (value.getClass() == BuildingEntry.class)
 		{
 			this.addBuildingEntry((BuildingEntry) value);
@@ -154,10 +149,6 @@ public class ContentCreator
 		}
 
 	}
-
-	
-
-	
 
 	private void addBuilding(Building value)
 	{
@@ -178,27 +169,25 @@ public class ContentCreator
 	{
 		this.floors.add(value);
 	}
-	
+
 	private void addNavigationPoint(NavigationPoint value)
 	{
-		this.navigationPoints.add(value);	
+		this.navigationPoints.add(value);
 	}
-	
+
 	private void addBuildingEntry(BuildingEntry value)
 	{
-		this.buildingEntries.add(value);	
+		this.buildingEntries.add(value);
 	}
-	
+
 	private void addNavigationConnection(NavigationConnection value)
 	{
-		this.navigationConnections.add(value);	
+		this.navigationConnections.add(value);
 	}
-	
 
-	
 	private void addSpecialConnection(SpecialConnection value)
 	{
-		this.specialConnections.add(value);	
+		this.specialConnections.add(value);
 	}
 
 	public ContentCreator()
@@ -259,18 +248,19 @@ public class ContentCreator
 				e.printStackTrace();
 			}
 		}
-		
+
 		for (NavigationPoint navigationPoint : navigationPoints)
 		{
 			try
 			{
-				dbHelper.getNavigationPointDao().createOrUpdate(navigationPoint);
+				dbHelper.getNavigationPointDao()
+						.createOrUpdate(navigationPoint);
 			} catch (SQLException e)
 			{
 				e.printStackTrace();
 			}
 		}
-		
+
 		for (BuildingEntry entry : buildingEntries)
 		{
 			try
@@ -281,24 +271,25 @@ public class ContentCreator
 				e.printStackTrace();
 			}
 		}
-		
+
 		for (NavigationConnection navigationConnection : navigationConnections)
 		{
 			try
 			{
-				dbHelper.getNavigationConnectionDao().createOrUpdate(navigationConnection);
+				dbHelper.getNavigationConnectionDao().createOrUpdate(
+						navigationConnection);
 			} catch (SQLException e)
 			{
 				e.printStackTrace();
 			}
 		}
-		
-		
+
 		for (SpecialConnection specialConnection : specialConnections)
 		{
 			try
 			{
-				dbHelper.getSpecialConnectionDao().createOrUpdate(specialConnection);
+				dbHelper.getSpecialConnectionDao().createOrUpdate(
+						specialConnection);
 			} catch (SQLException e)
 			{
 				e.printStackTrace();
@@ -306,5 +297,4 @@ public class ContentCreator
 		}
 	}
 
-	
 }

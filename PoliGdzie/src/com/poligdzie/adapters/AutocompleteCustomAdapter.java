@@ -1,8 +1,10 @@
 package com.poligdzie.adapters;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.poligdzie.R;
+import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Imageable;
 import com.poligdzie.interfaces.Nameable;
 import com.poligdzie.interfaces.WithDrawableId;
@@ -26,13 +29,15 @@ public class AutocompleteCustomAdapter extends ArrayAdapter implements
 	private Context			context;
 	private List<Object>	objects;
 	private int				position;
+	private DatabaseHelper	dbHelper;
 
-	public AutocompleteCustomAdapter(Context context, int textViewResourceId,
-			List<Object> objects)
+	public AutocompleteCustomAdapter(DatabaseHelper dbHelper, Context context,
+			int textViewResourceId, List<Object> objects)
 	{
 		super(context, textViewResourceId, objects);
 		this.context = context;
 		this.objects = objects;
+		this.dbHelper = dbHelper;
 	}
 
 	@Override
@@ -64,17 +69,39 @@ public class AutocompleteCustomAdapter extends ArrayAdapter implements
 
 		if (object instanceof Unit)
 		{
+
+			Unit unit = (Unit) object;
+			Building building = new Building();
+			try
+			{
+				building = dbHelper.getBuildingDao().queryForId(
+						unit.getBuilding().getId());
+
+			} catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			desc.setText("Jednostka organizacyjna");
-			imgRes = getDrawableId(((Unit) object).getBuilding()
-					.getImageResource(), context);
+			imgRes = getDrawableId(building.getImageResource(), context);
 			icon.setImageResource(imgRes);
 		}
 
 		if (object instanceof Room)
 		{
+			Room room = (Room) object;
+			Building building = new Building();
+			try
+			{
+				building = dbHelper.getBuildingDao().queryForId(
+						room.getBuilding().getId());
+			} catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			desc.setText("Pomieszczenie");
-			imgRes = getDrawableId(((Room) object).getBuilding()
-					.getImageResource(), context);
+			imgRes = getDrawableId(building.getImageResource(), context);
 			icon.setImageResource(imgRes);
 		}
 

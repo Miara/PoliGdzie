@@ -166,19 +166,19 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 		LatLng coords = new LatLng(0.0, 0.0);
 
 		coords = marker.getPosition();
-		List<Building> buildings = new ArrayList<Building>();
+		Building building = new Building();
 
 		try
 		{
-			buildings.addAll(dbHelper.getBuildingDao().queryBuilder().where()
+			building = dbHelper.getBuildingDao().queryBuilder().where()
 					.eq("coordX", coords.latitude).and()
-					.eq("coordY", coords.longitude).query());
+					.eq("coordY", coords.longitude).queryForFirst();
 		} catch (java.sql.SQLException e)
 		{
 			e.printStackTrace();
 		}
 
-		currentBuildingOnMarker = buildings.get(0);
+		currentBuildingOnMarker = building;
 	}
 
 }

@@ -10,10 +10,10 @@ public class SpecialConnection extends PoliGdzieBaseClass
 	@DatabaseField(generatedId = true)
 	private int			id;
 
-	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "specialPointLower_id")
+	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "specialPointLower_id", useGetSet = true)
 	private NavigationPoint	lowerFloor;
 
-	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "specialPointUpper_id")
+	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "specialPointUpper_id", useGetSet = true)
 	private NavigationPoint	upperFloor;
 
 

@@ -1,5 +1,6 @@
 package com.poligdzie.listeners;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import android.content.Context;
@@ -85,13 +86,31 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 		if (object instanceof Room)
 		{
 			Room room = (Room) object;
-			return room.getBuilding().getFloors();
+			Building building = new Building();
+			try
+			{
+				building = dbHelper.getBuildingDao().queryForId(room.getBuilding().getId());
+			} catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return building.getFloors();
 		}
 
 		if (object instanceof Unit)
 		{
 			Unit unit = (Unit) object;
-			return unit.getBuilding().getFloors();
+			Building building = new Building();
+			try
+			{
+				building = dbHelper.getBuildingDao().queryForId(unit.getBuilding().getId());
+			} catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return building.getFloors();
 		}
 		return null;
 	}
@@ -101,13 +120,33 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 		if (object instanceof Room)
 		{
 			Room room = (Room) object;
-			return room.getFloor().getTag();
+			Floor floor = new Floor();
+			try
+			{
+				floor = dbHelper.getFloorDao().queryForId(room.getFloor().getId());
+			} catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return floor.getTag();
 		}
 
 		if (object instanceof Unit)
 		{
 			Unit unit = (Unit) object;
-			return unit.getOffice().getFloor().getTag();
+			Floor floor = new Floor();
+			Room office = new Room();
+			try
+			{
+				office = dbHelper.getRoomDao().queryForId(unit.getOffice().getId());
+				floor = dbHelper.getFloorDao().queryForId(office.getFloor().getId());
+			} catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return floor.getTag();
 		}
 		return null;
 	}
@@ -151,12 +190,28 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 			Unit temp = (Unit) object;
 			if (temp.getOffice() != null)
 			{
-				return new LatLng(temp.getOffice().getCoordX(), temp
-						.getOffice().getCoordY());
+				Room office = null;
+				try
+				{
+					office = dbHelper.getRoomDao().queryForId(temp.getOffice().getId());
+				} catch (SQLException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return new LatLng(office.getCoordX(), office.getCoordY());
 			} else
 			{
-				return new LatLng(temp.getBuilding().getCoordX(), temp
-						.getBuilding().getCoordY());
+				Building building = null;
+				try
+				{
+					building = dbHelper.getBuildingDao().queryForId(temp.getId());
+				} catch (SQLException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return new LatLng(building.getCoordX(), building.getCoordY());
 			}
 		}
 		return null;
@@ -219,6 +274,7 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 		this.searchPosition = searchPosition;
 		this.fragment = fragment;
 		this.mapFragmentProvider = MapFragmentProvider.getInstance();
+		dbHelper = new DatabaseHelper(fragment.getActivity(), DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
 }

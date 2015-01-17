@@ -16,10 +16,10 @@ public class BuildingEntry extends PoliGdzieBaseClass
 	@DatabaseField
 	private int	coordY;
 
-	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "building_id")
+	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "building_id", useGetSet = true)
 	private Building	building;
 	
-	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "point_id")
+	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "point_id", useGetSet = true)
 	private NavigationPoint	navigationPoint;
 
 
