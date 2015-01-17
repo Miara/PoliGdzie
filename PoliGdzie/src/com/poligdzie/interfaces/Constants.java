@@ -52,6 +52,9 @@ public interface Constants
 
 	public int		SPECIAL_CONNECTION_LENGTH	= 15;
 
+	
+	//TODO: zamiast zwracac kod bledu, lepiej rzucac wyjatek - pozniej bez sensu sprawdzanie czy gdzies blad nie wystapil
+	
 	public int		ERROR_CODE					= -1;
 
 }

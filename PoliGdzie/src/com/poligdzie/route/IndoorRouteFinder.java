@@ -321,12 +321,12 @@ public class IndoorRouteFinder implements Constants
 			return true;
 		} else
 		{
-			Log.d("POLIGDZIE", "else");
+			//TODO: martwy kod?
 			List<SpecialConnection> specialList = new ArrayList<SpecialConnection>();
 			try
 			{
 				specialList = dbHelper.getSpecialConnectionDao().queryForAll();
-				Log.d("POLIGDZIE", specialList.toString());
+			
 				for (SpecialConnection conn : specialList)
 				{
 					int firstBuildingId = conn.getLowerFloor().getFloor()
@@ -510,7 +510,7 @@ public class IndoorRouteFinder implements Constants
 		}
 		return -1;
 	}
-
+//TODO: uzywamy tego? : D
 	private void echo(String s)
 	{
 		Log.i("Poligdzie", s);
