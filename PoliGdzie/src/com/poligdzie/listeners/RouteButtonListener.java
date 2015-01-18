@@ -69,15 +69,12 @@ OnClickListener
 		for(NavigationPoint routePoint : routePoints)
 		{
 			
-			
 			Floor currentFloor = dbHelper.getFloorDao().queryForId(getFloor(routePoint).getId());
-			
-			points.add(routePoint);
 			if(floors.isEmpty())
 			{
+				points.add(routePoint);
 				previousFloor = dbHelper.getFloorDao().queryForId(getFloor(routePoint).getId());;
 				floors.add(previousFloor);
-				
 				continue;
 			}
 
@@ -94,6 +91,7 @@ OnClickListener
 				previousFloor = currentFloor;
 				points.clear();
 			}
+			points.add(routePoint);
 
 		}
 		if(!previousFloor.getTag().equals("") && previousFloor.getTag() != null)
