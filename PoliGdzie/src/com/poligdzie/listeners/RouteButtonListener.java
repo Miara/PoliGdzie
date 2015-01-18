@@ -129,7 +129,7 @@ OnClickListener
 				continue;
 			}
 
-			if(previousFloor.getId() != currentFloor.getId() &&  previousFloor.getTag() != "")
+			if(previousFloor.getId() != currentFloor.getId() &&  !previousFloor.getTag().equals(""))
 			{
 				Log.i("Poligdzie","drawable:"+previousFloor.getDrawableId());
 				Log.i("Poligdzie","Tag:"+previousFloor.getTag());
@@ -148,14 +148,19 @@ OnClickListener
 			}
 
 		}
-		if(previousFloor.getTag() != "" && previousFloor.getTag() != null)
+		if(!previousFloor.getTag().equals("") && previousFloor.getTag() != null)
 		{
 			Log.i("Poligdzie","drawable:"+previousFloor.getDrawableId());
 			Log.i("Poligdzie","Tag:"+previousFloor.getTag());
 			Log.i("Poligdzie","name:"+previousFloor.getName());
 			Log.i("Poligdzie","id:"+previousFloor.getId());
-			new MapIndoorFragment(previousFloor.getDrawableId(), 
+			MapIndoorFragment indoorMap = new MapIndoorFragment(previousFloor.getDrawableId(), 
 					previousFloor.getName(), previousFloor.getTag(), previousFloor.getId(),points);
+			if(previousFloor.getId() == getFloor(startObject).getId())
+			{
+				((PoliGdzieBaseActivity) fragment.getActivity()).switchFragment(R.id.map_container,
+						indoorMap, indoorMap.getViewTag());
+			}
 		}
 		/*for (Floor f : floors)
 		{
