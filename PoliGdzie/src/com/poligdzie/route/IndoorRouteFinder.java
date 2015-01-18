@@ -192,8 +192,6 @@ public class IndoorRouteFinder implements Constants
 			double finalX = (connFactorB - pointFactorB)/(pointFactorA - connFactorA);
 			double finalY = pointFactorA*finalX + pointFactorB;
 		
-			
-			
 			return addConnectionsInsideOtherConnection((int)finalX, (int)finalY, point, connection);
 		}
 	}
@@ -233,10 +231,16 @@ public class IndoorRouteFinder implements Constants
 			{
 				if(getConnectionLength(first, point) < getConnectionLength(last, point))
 				{
+					echo("connection out:"+first.getId()+":"+point.getId());
+					echo("connection out:"+first.getCoordX()+","+first.getCoordY()+":"+point.getCoordX()+","+point.getCoordY());
+					echo("Connection length:"+getConnectionLength(first, point));
 					return new NavigationConnection(first,point,getConnectionLength(first, point));
 				}
 				else
 				{
+					echo("connection last:"+last.getId()+":"+point.getId());
+					echo("connection last:"+last.getCoordX()+","+last.getCoordY()+":"+point.getCoordX()+","+point.getCoordY());
+					echo("Connection length:"+getConnectionLength(last, point));
 					return new NavigationConnection(last,point,getConnectionLength(last, point));
 				}
 			}	
@@ -271,11 +275,19 @@ public class IndoorRouteFinder implements Constants
 	
 	private int getConnectionLength(NavigationPoint p1, NavigationPoint p2)
 	{
-			int scale = p1.getFloor().getPixelsPerMeter();
-			double a = p2.getCoordX() - p1.getCoordX();
-			double b = p2.getCoordY() - p1.getCoordY();
-			double length = Math.sqrt(a*a + b*b) / scale;
-			return (int)length;
+			
+			int scale;
+			try
+			{
+				scale = dbHelper.getFloorDao().queryForId(p1.getFloor().getId()).getPixelsPerMeter();
+				double a = p2.getCoordX() - p1.getCoordX();
+				double b = p2.getCoordY() - p1.getCoordY();
+				double length = Math.sqrt(a*a + b*b) / scale;
+				return (int)length;
+			} catch (SQLException e)
+			{
+				return 0;
+			}
 	}
 
 	private List<NavigationPoint>  findRouteBetweenPoints(NavigationPoint startPoint, NavigationPoint goalPoint) 
@@ -284,6 +296,12 @@ public class IndoorRouteFinder implements Constants
 			prepareGraph();
 			fillGraphWithConnectionLength();
 			
+			String s = "";
+			for(NavigationPoint p: points)
+			{
+				s = s +":"+ p.getId();
+			}
+			echo("NAVIGATIONS:"+s);
 			return findShortestPath(startPoint,goalPoint);
 	}
 	
