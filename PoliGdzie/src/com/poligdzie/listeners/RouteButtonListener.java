@@ -48,52 +48,9 @@ OnClickListener
 	private SearchAutoCompleteTextView	goalPosition;
 	
 
-
-
-	private ForeignCollection<Floor> getFloors(Object object) throws SQLException
-	{
-		if (object instanceof Room)
-		{
-			Room room = (Room) object;
-			return room.getBuilding().getFloors();
-		}
-		
-		if (object instanceof NavigationPoint)
-		{
-			NavigationPoint point = (NavigationPoint) object;
-			int buildingId = dbHelper.getFloorDao().queryForId(point.getFloor().getId()).getBuilding().getId();
-			Building building = dbHelper.getBuildingDao().queryForId(buildingId);
-			return building.getFloors();
-		}
-
-		if (object instanceof Unit)
-		{
-			Unit unit = (Unit) object;
-			return unit.getBuilding().getFloors();
-		}
-		return null;
-	}
-
-	private String getTag(Object object)
-	{
-		if (object instanceof Room)
-		{
-			Room room = (Room) object;
-			return room.getFloor().getTag();
-		}
-
-		if (object instanceof Unit)
-		{
-			Unit unit = (Unit) object;
-			return unit.getOffice().getFloor().getTag();
-		}
-		return null;
-	}
-
 	private void showIndoorRoute(Object startObject, Object goalObject,int entryFloorNumber, int indoorMode) throws SQLException
 	{
-		Floor lastFloorInIndoor = null;
-		String roomFloorTag = "";
+	
 		List<NavigationPoint> routePoints = new ArrayList<NavigationPoint>();
 		IndoorRouteFinder finder = new IndoorRouteFinder(dbHelper);
 		if(startObject instanceof Room  && goalObject instanceof Room)
@@ -104,12 +61,7 @@ OnClickListener
 			routePoints = finder.findRoute((NavigationPoint)startObject, (Room)goalObject);
 		if(startObject instanceof NavigationPoint  && goalObject instanceof NavigationPoint)
 			routePoints = finder.findRoute((NavigationPoint)startObject, (NavigationPoint)goalObject);
-		
-		String s = ":";
-		for(NavigationPoint r : routePoints)
-			s= s+":"+r.getId();
-		Log.i("poligdzie","trasa:"+s);
-		
+				
 		List<NavigationPoint> points = new ArrayList<NavigationPoint>();
 		
 		List<Floor> floors = new ArrayList<Floor>();
@@ -131,10 +83,6 @@ OnClickListener
 
 			if(previousFloor.getId() != currentFloor.getId() &&  !previousFloor.getTag().equals(""))
 			{
-				Log.i("Poligdzie","drawable:"+previousFloor.getDrawableId());
-				Log.i("Poligdzie","Tag:"+previousFloor.getTag());
-				Log.i("Poligdzie","name:"+previousFloor.getName());
-				Log.i("Poligdzie","id:"+previousFloor.getId());
 				MapIndoorFragment indoorMap = new MapIndoorFragment(previousFloor.getDrawableId(), 
 						previousFloor.getName(), previousFloor.getTag(), previousFloor.getId(),points);
 				if(previousFloor.getId() == getFloor(startObject).getId())
@@ -150,10 +98,6 @@ OnClickListener
 		}
 		if(!previousFloor.getTag().equals("") && previousFloor.getTag() != null)
 		{
-			Log.i("Poligdzie","drawable:"+previousFloor.getDrawableId());
-			Log.i("Poligdzie","Tag:"+previousFloor.getTag());
-			Log.i("Poligdzie","name:"+previousFloor.getName());
-			Log.i("Poligdzie","id:"+previousFloor.getId());
 			MapIndoorFragment indoorMap = new MapIndoorFragment(previousFloor.getDrawableId(), 
 					previousFloor.getName(), previousFloor.getTag(), previousFloor.getId(),points);
 			if(previousFloor.getId() == getFloor(startObject).getId())
@@ -162,66 +106,11 @@ OnClickListener
 						indoorMap, indoorMap.getViewTag());
 			}
 		}
-		/*for (Floor f : floors)
-		{
-			
-			
-			if ((f.getTag().equals(getTag(startObject)) && indoorMode == INDOOR_MODE_FIRST) ||
-					(f.getNumber() == entryFloorNumber && indoorMode == INDOOR_MODE_LAST))
-			{
-					points = getPointsAtFloor(routePoints, f);
-					addIndoorFragment(points,f,indoorMode);
-					roomFloorTag = f.getTag();
-					
-			}
-			else if ((f.getTag().equals(getTag(startObject)) && indoorMode == INDOOR_MODE_LAST ) ||
-					(f.getNumber() == entryFloorNumber && indoorMode == INDOOR_MODE_FIRST))
-			{
-					lastFloorInIndoor = f;
-			}
-			
-		}
-		
-		if(lastFloorInIndoor != null )
-		{
-			if( (lastFloorInIndoor.getTag() != roomFloorTag))
-			{
-				Floor f = lastFloorInIndoor;
-				points = getPointsAtFloor(routePoints, f);
-				new MapIndoorFragment(f.getDrawableId(), f.getName(), f.getTag(), f.getId(),points);
-			}
-		}*/
-		
 
 		((OnClickListener) fragment.getActivity()).onClick(fragment
 				.getActivity().findViewById(R.layout.map_activity));
 	}
 	
-	private void addIndoorFragment(List<NavigationPoint> points,Floor floor, int indoorMode)
-	{
-		MapIndoorFragment indoorMap = new MapIndoorFragment(
-				floor.getDrawableId(), floor.getName(), floor.getTag(), floor.getId(),points);
-		if(indoorMode == INDOOR_MODE_FIRST)
-		{
-			((PoliGdzieBaseActivity) fragment.getActivity())
-			.switchFragment(R.id.map_container, indoorMap,
-					indoorMap.getViewTag());
-		}	
-	}
-	
-	private List<NavigationPoint> getPointsAtFloor(List<NavigationPoint> points,Floor fl)
-	{
-		List<NavigationPoint> list = new ArrayList<NavigationPoint>();
-		for(NavigationPoint p: points)
-		{
-			if( p.getFloor().getId() == fl.getId() )
-			{
-				list.add(p);
-			}
-			
-		}
-		return list;	
-	}
 
 	private void showGeneralRoute(Object startObject, Object goalObject) throws SQLException
 	{
