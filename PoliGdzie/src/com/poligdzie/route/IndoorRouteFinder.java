@@ -56,10 +56,8 @@ public class IndoorRouteFinder implements Constants
 		if(init(first,last) != ERROR_CODE )
 		{
 			connList = getNearestPointAndMakeConnection(first, start.getNavigationConnection());
-			echo("conn1:"+connList.size());
 			if(connList != null) connections.addAll(connList);
 			connList = getNearestPointAndMakeConnection(last, goal.getNavigationConnection());
-			echo("conn1:"+connList.size());
 			if(connList != null) connections.addAll(connList);
 			return findRouteBetweenPoints(first, last);
 		}
@@ -74,6 +72,7 @@ public class IndoorRouteFinder implements Constants
 		List<NavigationConnection> connList;
 		NavigationPoint first = new NavigationPoint(start.getDoorsX(),start.getDoorsY(),
 				start.getFloor(),NavigationPointTypes.NAVIGATION);
+		first.setId(point_id++);
 		if(init(first,goal) != ERROR_CODE )
 		{
 			connList = getNearestPointAndMakeConnection(first, start.getNavigationConnection());
@@ -91,6 +90,7 @@ public class IndoorRouteFinder implements Constants
 		List<NavigationConnection> connList;
 		NavigationPoint last = new NavigationPoint(goal.getDoorsX(),goal.getDoorsY(),
 				goal.getFloor(),NavigationPointTypes.NAVIGATION);
+		last.setId(point_id++);
 		if(init(start,last) != ERROR_CODE )
 		{
 			connList = getNearestPointAndMakeConnection(last, goal.getNavigationConnection());
@@ -121,44 +121,29 @@ public class IndoorRouteFinder implements Constants
 		int goalBuildingId =0;
 		try
 		{
-			startBuildingId = dbHelper.getFloorDao().
-					queryForId(startPoint.getFloor().getId()).getBuilding().getId();
-			goalBuildingId = dbHelper.getFloorDao().
-						queryForId(goalPoint.getFloor().getId()).getBuilding().getId();
-		} catch (SQLException e1)
-		{
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		startBuildingId = dbHelper.getFloorDao().
+				queryForId(startPoint.getFloor().getId()).getBuilding().getId();
+		goalBuildingId = dbHelper.getFloorDao().
+					queryForId(goalPoint.getFloor().getId()).getBuilding().getId();
 		
+		List<Floor> floors = new ArrayList<Floor>();
+		List<SpecialConnection> specialConnections = new ArrayList<SpecialConnection>();
+		floors = dbHelper.getFloorDao().queryBuilder().where().
+				eq("building_id", startBuildingId).or().eq("building_id", goalBuildingId).query();
+		List<NavigationPoint> tempPoints = dbHelper.getNavigationPointDao().queryBuilder()
+				.where().in("floor_id", floors ).query();
+		connections = dbHelper.getNavigationConnectionDao().queryBuilder()
+				.where().in("navigationPointFirst_id", tempPoints ).or().in("navigationPointLast_id", tempPoints).query();
+		specialConnections = dbHelper.getSpecialConnectionDao().queryBuilder()
+				.where().in("specialPointLower_id", tempPoints ).or().in("specialPointUpper_id", tempPoints).query();
 		
-		
-		if( checkIfPointsInOneIndoor(startBuildingId,goalBuildingId) )
-		{
-			List<Floor> floors = new ArrayList<Floor>();
-			List<SpecialConnection> specialConnections = new ArrayList<SpecialConnection>();
-			
-			try
-			{
-				floors = dbHelper.getFloorDao().queryBuilder().where().
-						eq("building_id", startBuildingId).or().eq("building_id", goalBuildingId).query();
-				List<NavigationPoint> tempPoints = dbHelper.getNavigationPointDao().queryBuilder()
-						.where().in("floor_id", floors ).query();
-				connections = dbHelper.getNavigationConnectionDao().queryBuilder()
-						.where().in("navigationPointFirst_id", tempPoints ).or().in("navigationPointLast_id", tempPoints).query();
-				specialConnections = dbHelper.getSpecialConnectionDao().queryBuilder()
-						.where().in("specialPointLower_id", tempPoints ).or().in("specialPointUpper_id", tempPoints).query();
-			} catch (SQLException e)
-			{
-				return ERROR_CODE;
-			}
-			addToConnections(specialConnections);
-			return 1;
-		}
-		else
+		addToConnections(specialConnections);
+		return 1;
+		} catch (SQLException e)
 		{
 			return ERROR_CODE;
 		}
+
 	}
 	
 	private List<NavigationConnection> getNearestPointAndMakeConnection(NavigationPoint point, NavigationConnection connection)
@@ -231,16 +216,10 @@ public class IndoorRouteFinder implements Constants
 			{
 				if(getConnectionLength(first, point) < getConnectionLength(last, point))
 				{
-					echo("connection out:"+first.getId()+":"+point.getId());
-					echo("connection out:"+first.getCoordX()+","+first.getCoordY()+":"+point.getCoordX()+","+point.getCoordY());
-					echo("Connection length:"+getConnectionLength(first, point));
 					return new NavigationConnection(first,point,getConnectionLength(first, point));
 				}
 				else
 				{
-					echo("connection last:"+last.getId()+":"+point.getId());
-					echo("connection last:"+last.getCoordX()+","+last.getCoordY()+":"+point.getCoordX()+","+point.getCoordY());
-					echo("Connection length:"+getConnectionLength(last, point));
 					return new NavigationConnection(last,point,getConnectionLength(last, point));
 				}
 			}	
@@ -296,52 +275,14 @@ public class IndoorRouteFinder implements Constants
 			prepareGraph();
 			fillGraphWithConnectionLength();
 			
-			String s = "";
-			for(NavigationPoint p: points)
-			{
-				s = s +":"+ p.getId();
-			}
-			echo("NAVIGATIONS:"+s);
 			return findShortestPath(startPoint,goalPoint);
 	}
 	
-	private boolean checkIfPointsInOneIndoor(int startBuildingId, int goalBuildingId)
-	{
-		if(startBuildingId == goalBuildingId)
-		{
-			return true;
-		}
-		else
-		{
-			List<SpecialConnection> specialList = new ArrayList<SpecialConnection>();
-			try
-			{
-				specialList = dbHelper.getSpecialConnectionDao().queryForAll();
-				for(SpecialConnection conn : specialList)
-				{
-					int firstBuildingId = conn.getLowerPoint().getFloor().getBuilding().getId();
-					int lastBuildingId = conn.getUpperPoint().getFloor().getBuilding().getId();
-					if(  ( ( firstBuildingId == startBuildingId) && (lastBuildingId == goalBuildingId) ) ||
-							( ( firstBuildingId == goalBuildingId) && (lastBuildingId == startBuildingId) ) )
-					{
-						return true;
-					}
-				}
-			} catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-			return false;
-		}
-	}
-
 	private List<NavigationPoint> findShortestPath(NavigationPoint p1, NavigationPoint p2)
 	{
 		int i=0,min;
 		int start = getIndex(p1);
 		int goal = getIndex(p2);
-		echo("p1:"+p1.getId());
-		echo("p2:"+p2.getId());
 		
 		boolean finished = false;
 		
@@ -353,7 +294,7 @@ public class IndoorRouteFinder implements Constants
 		}
 		catch(ArrayIndexOutOfBoundsException e)
 		{
-			echo("ARRAY INDEX OUT !!");
+			Log.e("poligdzie","ARRAY INDEX OUT !!");
 			return new ArrayList<NavigationPoint>();
 		}
 		
@@ -398,7 +339,6 @@ public class IndoorRouteFinder implements Constants
 			currentRoute.add(0,points.get(actual));
 			if(previous[actual] != -1)
 			{
-				echo("ROUTE:"+points.get(actual).getId());
 				actual = previous[actual];
 			}
 			else
@@ -505,10 +445,4 @@ public class IndoorRouteFinder implements Constants
 		return -1;
 	}
 	
-	private void echo(String s)
-	{
-		Log.i("Poligdzie",s);
-	}
-
-
 }
