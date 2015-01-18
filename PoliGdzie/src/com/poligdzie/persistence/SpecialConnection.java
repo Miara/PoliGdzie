@@ -28,7 +28,7 @@ public class SpecialConnection extends PoliGdzieBaseClass
 	}
 
 
-	public NavigationPoint getLowerFloor()
+	public NavigationPoint getLowerPoint()
 	{
 		return lowerFloor;
 	}
@@ -38,7 +38,7 @@ public class SpecialConnection extends PoliGdzieBaseClass
 		this.lowerFloor = lowerFloor;
 	}
 
-	public NavigationPoint getUpperFloor()
+	public NavigationPoint getUpperPoint()
 	{
 		return upperFloor;
 	}

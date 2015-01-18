@@ -1,11 +1,13 @@
 package com.poligdzie.fragments;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.poligdzie.R;
 import com.poligdzie.base.PoliGdzieMapFragment;
+import com.poligdzie.persistence.Floor;
 import com.poligdzie.persistence.NavigationPoint;
 import com.poligdzie.route.Line;
 import com.poligdzie.tasks.BitmapWorkerTask;
@@ -53,9 +56,21 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 		ViewGroup container = (ViewGroup) getView().findViewById(R.id.indoor_map_container);
 		   container.removeAllViews();
 		   View inflater = LayoutInflater.from(getActivity()).inflate(R.layout.map_indoor_floor_scheme, container);
+		  
+		   
 		   buildingImage = (BuildingImageView) inflater.findViewById(R.id.imageview_floor_scheme);
 		   buildingImage.setBitmap(bitmap);
-		   buildingImage.setLines(routeLines);
+		   try
+			{
+				Floor floor = dbHelper.getFloorDao().queryForId(floorId);
+				buildingImage.setLines(routeLines);
+				buildingImage.setOriginalWidth(floor.getWidth());
+				buildingImage.setOriginalHeight(floor.getHeight());
+			} catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
 	public MapIndoorFragment()
@@ -85,6 +100,7 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 	{
 		super(drawableId, name, viewTag);
 		this.floorId = floorId;
+		Log.i("poligdzie","floor:"+floorId);
 		
 		if(points.size() > 1)
 		{
@@ -92,6 +108,7 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 			NavigationPoint previous = null;
 			for(NavigationPoint current: points)
 			{
+				Log.i("poligdzie","current:"+current.getId());
 				if(first)
 				{
 					previous = current;

@@ -56,12 +56,12 @@ public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
 		//{
 			// try
 			// {
-			Log.i("POLIGDZIE", s.toString());
+			//Log.i("POLIGDZIE", s.toString());
 
 			DataProvider provider = DataProvider.getInstance();
 			List <Building> bs = provider.getBuildings(); 
 			for(Building b : bs) {
-				Log.i("POLIGDZIE", b.getName());
+				//Log.i("POLIGDZIE", b.getName());
 				if (b.getName().matches(regex)
 						|| b.getAliases().matches(regex))
 				{

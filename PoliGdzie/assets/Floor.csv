@@ -9,9 +9,9 @@ id;name;building;floorNumber;width;height;scheme;tag;pixelsPerMeter
 8;Budowa maszyn - trzecie piêtro;3;3;0;0;bm_3;bm3p;0
 9;Budowa maszyn - czwarte piêtro;3;4;0;0;bm_4;bm4p;0
 10;Budowa maszyn - pi¹te piêtro;3;5;0;0;bm_5;bm5p;0
-11;Biblioteka techniczna - parter;4;0;2249;2008;bt_parter;bt0p;24.5
-12;Biblioteka techniczna - pierwsze piêtro;4;1;2279;2148;bt_1_pietro;bt1p;26.7
-13;Biblioteka techniczna - drugie piêtro;4;2;1879;1768;bt_2_pietro;bt2p;20.5
+11;Biblioteka techniczna - parter;4;0;2249;2008;bt_parter;bt0p;24
+12;Biblioteka techniczna - pierwsze piêtro;4;1;2279;2148;bt_1_pietro;bt1p;26
+13;Biblioteka techniczna - drugie piêtro;4;2;1879;1768;bt_2_pietro;bt2p;20
 14;Chemia - parter;5;0;2908;2479;tch_parter;tch0p;27
 15;Chemia - pierwsze piêtro;5;1;2908;2479;tch_1_pietro;tch1p;27
 16;Chemia - drugie piêtro;5;2;2908;2479;tch_2_pietro;tch2p;27

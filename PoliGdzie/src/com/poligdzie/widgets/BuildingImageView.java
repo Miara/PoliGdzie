@@ -28,6 +28,9 @@ public class BuildingImageView extends ImageView implements Constants
 	private float					viewHeight;
 	private float					viewWidth;
 	float							canvasWidth, canvasHeight;
+	
+	private int originalWidth = 0;
+	private int originalHeight = 0;
 
 	long							startTime, stopTime;
 	int								clickCount;
@@ -84,10 +87,9 @@ public class BuildingImageView extends ImageView implements Constants
 			float x2 = line.stopX;
 			float y2 = line.stopY;
 			
-			float bitmapWidth = bitmap.getWidth();
-		    float bitmapHeight = bitmap.getHeight();
-		    float originalWidth = 3404;
-		    float originalHeight = 3508;
+			int bitmapWidth = bitmap.getWidth();
+			int bitmapHeight = bitmap.getHeight();
+			
 		    
 		    
 		    float startX =  x1 * bitmapWidth / originalWidth + mPosX; 
@@ -196,10 +198,11 @@ public class BuildingImageView extends ImageView implements Constants
 		 
 		Paint redPaint = new Paint();
 	    redPaint .setColor(Color.RED);
-	    redPaint.setStrokeWidth(10);
+	    redPaint.setStrokeWidth(5);
 	    
 	    if( routeLines != null && !routeLines.isEmpty())
 		{
+	    	lines.clear();
 	    	for (Line l : routeLines) 
 	    	{
 	    		addLine(l);
@@ -417,6 +420,27 @@ public class BuildingImageView extends ImageView implements Constants
 		}
 		setMeasuredDimension(width, height);
 	}
+
+	public int getOriginalWidth()
+	{
+		return originalWidth;
+	}
+
+	public void setOriginalWidth(int originalWidth)
+	{
+		this.originalWidth = originalWidth;
+	}
+
+	public int getOriginalHeight()
+	{
+		return originalHeight;
+	}
+
+	public void setOriginalHeight(int originalHeight)
+	{
+		this.originalHeight = originalHeight;
+	}
+
 
 	
 	

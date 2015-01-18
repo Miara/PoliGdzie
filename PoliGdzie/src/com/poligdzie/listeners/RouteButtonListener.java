@@ -112,7 +112,7 @@ OnClickListener
 			{
 				Floor f = lastFloorInIndoor;
 				points = getPointsAtFloor(routePoints, f);
-				new MapIndoorFragment(f.getDrawableId(), f.getName(), f.getTag(), f.getNumber(),points);
+				new MapIndoorFragment(f.getDrawableId(), f.getName(), f.getTag(), f.getId(),points);
 			}
 		}
 		
@@ -125,7 +125,7 @@ OnClickListener
 	private void addIndoorFragment(List<NavigationPoint> points,Floor floor, int switchingMode)
 	{
 		MapIndoorFragment indoorMap = new MapIndoorFragment(
-				floor.getDrawableId(), floor.getName(), floor.getTag(), floor.getNumber(),points);
+				floor.getDrawableId(), floor.getName(), floor.getTag(), floor.getId(),points);
 		if(switchingMode == ENABLE_SWITCHING_FRAGMENT)
 		{
 			((PoliGdzieBaseActivity) fragment.getActivity())
@@ -150,6 +150,7 @@ OnClickListener
 
 	private void showGeneralRoute(Object startObject, Object goalObject)
 	{
+		
 		MapFragmentProvider mapProvider = MapFragmentProvider.getInstance();
 		if(startObject instanceof Building)
 		{
@@ -158,13 +159,13 @@ OnClickListener
 		else if (startObject instanceof Room)
 		{
 			// TODO: showGeneralRoute
-			//showIndoorRoute(startObject, INDOOR_MODE_FIRST, ENABLE_SWITCHING_FRAGMENT);
+			showIndoorRoute(startObject, goalObject, INDOOR_MODE_FIRST, ENABLE_SWITCHING_FRAGMENT);
 			mapProvider.addGoogleMapFragment();
 		}
 		
 		if (goalObject instanceof Room)
 		{
-			//showIndoorRoute(goalObject, INDOOR_MODE_LAST, DISABLE_SWITCHING_FRAGMENT);
+			showIndoorRoute(goalObject, goalObject, INDOOR_MODE_LAST, DISABLE_SWITCHING_FRAGMENT);
 		}
 		
 	}
@@ -320,6 +321,7 @@ OnClickListener
 		this.startPosition = startPosition;
 		this.goalPosition = goalPosition;
 		this.fragment = fragment;
+		this.dbHelper = new DatabaseHelper(fragment.getActivity(), DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
 }

@@ -19,7 +19,6 @@ import com.poligdzie.persistence.SpecialConnection;
 public class IndoorRouteFinder implements Constants
 {
 	private DatabaseHelper dbHelper;
-	
 	List<NavigationConnection> connections;
 	List<NavigationPoint> points;
 	List<NavigationPoint> currentRoute;
@@ -29,6 +28,8 @@ public class IndoorRouteFinder implements Constants
 	private boolean[] checked;
 	private int[] previous;
 	private int[] best;
+	
+	private int point_id = NEW_NAVIGATION_POINT_ID;
 
 	private int graphSize;
 		
@@ -47,13 +48,18 @@ public class IndoorRouteFinder implements Constants
 		List<NavigationConnection> connList;
 		NavigationPoint first = new NavigationPoint(start.getDoorsX(),start.getDoorsY(),
 				start.getFloor(),NavigationPointTypes.NAVIGATION);
+		first.setId(point_id++);
 		NavigationPoint last  = new NavigationPoint(goal.getDoorsX(),goal.getDoorsY(),
 				goal.getFloor(),NavigationPointTypes.NAVIGATION);
+		last.setId(point_id++);
+		
 		if(init(first,last) != ERROR_CODE )
 		{
 			connList = getNearestPointAndMakeConnection(first, start.getNavigationConnection());
+			echo("conn1:"+connList.size());
 			if(connList != null) connections.addAll(connList);
 			connList = getNearestPointAndMakeConnection(last, goal.getNavigationConnection());
+			echo("conn1:"+connList.size());
 			if(connList != null) connections.addAll(connList);
 			return findRouteBetweenPoints(first, last);
 		}
@@ -111,17 +117,31 @@ public class IndoorRouteFinder implements Constants
 	
 	private int init(NavigationPoint startPoint, NavigationPoint goalPoint) 
 	{
-		if( checkIfPointsInOneIndoor(startPoint,goalPoint) )
+		int startBuildingId = 0;
+		int goalBuildingId =0;
+		try
 		{
-			Building startBulding = startPoint.getFloor().getBuilding();
-			Building goalBuilding = goalPoint.getFloor().getBuilding();
+			startBuildingId = dbHelper.getFloorDao().
+					queryForId(startPoint.getFloor().getId()).getBuilding().getId();
+			goalBuildingId = dbHelper.getFloorDao().
+						queryForId(goalPoint.getFloor().getId()).getBuilding().getId();
+		} catch (SQLException e1)
+		{
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		
+		if( checkIfPointsInOneIndoor(startBuildingId,goalBuildingId) )
+		{
 			List<Floor> floors = new ArrayList<Floor>();
 			List<SpecialConnection> specialConnections = new ArrayList<SpecialConnection>();
 			
 			try
 			{
-				floors = dbHelper.getFloorDao().queryBuilder()
-							.where().eq("building_id", startBulding).or().eq("building_id", goalBuilding).query();
+				floors = dbHelper.getFloorDao().queryBuilder().where().
+						eq("building_id", startBuildingId).or().eq("building_id", goalBuildingId).query();
 				List<NavigationPoint> tempPoints = dbHelper.getNavigationPointDao().queryBuilder()
 						.where().in("floor_id", floors ).query();
 				connections = dbHelper.getNavigationConnectionDao().queryBuilder()
@@ -143,15 +163,7 @@ public class IndoorRouteFinder implements Constants
 	
 	private List<NavigationConnection> getNearestPointAndMakeConnection(NavigationPoint point, NavigationConnection connection)
 	{
-		int connX1,connY1,connX2,connY2,pointX,pointY;
-		List<NavigationConnection> newConnections = new ArrayList<NavigationConnection>();
-		
-		NavigationConnection  finalConnection  = addConnectionIfPointOutOfConnection(point,connection);
-		if( finalConnection != null)
-		{
-			newConnections.add(finalConnection);
-			return newConnections;
-		}
+		double connX1,connY1,connX2,connY2,pointX,pointY;
 
 		connX1 = connection.getFirstPoint().getCoordX();
 		connY1 = connection.getFirstPoint().getCoordY();
@@ -163,28 +175,30 @@ public class IndoorRouteFinder implements Constants
 		
 		if(connX1 == connX2)
 		{
-			return addConnectionsInsideOtherConnection(connX1, pointY, point, connection);
+			return addConnectionsInsideOtherConnection((int)connX1, (int)pointY, point, connection);
 		}
 		else if(connY1 == connY2)
 		{
-			return addConnectionsInsideOtherConnection(pointX, connY1, point, connection);
+			return addConnectionsInsideOtherConnection((int)pointX, (int)connY1, point, connection);
 		}
 		else
 		{
-			double connFactorB = (connY2 - connY1)/(connY2 - connY1);
-			double connFactorA = (connY1 - connFactorB)/connX1;
-			
+			double one = (connY2 - connY1);
+			double two =(connX2 - connX1);
+			double connFactorA = one/two;
+			double connFactorB = connY1 - (connFactorA*connX1);
 			double pointFactorA = (-1)/connFactorA;
 			double pointFactorB = pointY - pointFactorA*pointX;
-			
-			int finalX = (int)((connFactorA - pointFactorA)/(pointFactorB - connFactorB));
-			int finalY = (int)(pointFactorA*finalX + pointFactorB);
+			double finalX = (connFactorB - pointFactorB)/(pointFactorA - connFactorA);
+			double finalY = pointFactorA*finalX + pointFactorB;
 		
-			return addConnectionsInsideOtherConnection(finalX, finalY, point, connection);
+			
+			
+			return addConnectionsInsideOtherConnection((int)finalX, (int)finalY, point, connection);
 		}
 	}
 	
-	private  NavigationConnection  addConnectionIfPointOutOfConnection(NavigationPoint point, NavigationConnection connection)
+	private  NavigationConnection  addConnectionIfPointOutOfConnection(int pointX,int pointY,NavigationPoint point, NavigationConnection connection)
 	{
 		NavigationPoint first = connection.getFirstPoint();
 		NavigationPoint last = connection.getLastPoint();
@@ -193,8 +207,6 @@ public class IndoorRouteFinder implements Constants
 		int firstY  = first.getCoordY();
 		int lastX  =  last.getCoordX();
 		int lastY = last.getCoordY();
-		int pointX =  point.getCoordX();
-		int pointY = point.getCoordY();
 		
 		NavigationConnection conn = null;
 		
@@ -214,10 +226,10 @@ public class IndoorRouteFinder implements Constants
 	private NavigationConnection getConnectionIfpointOutOfLine(int pointX,int pointY,int lineMinX,int lineMaxX,int lineMinY,int lineMaxY
 			,NavigationPoint first,NavigationPoint last,NavigationPoint point)
 	{
-		if(lineMinX < lineMaxX && lineMinY < lineMaxY)
+		if(lineMinX <= lineMaxX && lineMinY <= lineMaxY)
 		{
-			if( (pointX < lineMinX || pointX > lineMaxX) 
-					&& (pointY < lineMinY || pointY > lineMaxY) )
+			if( (pointX <= lineMinX || pointX >= lineMaxX) 
+					&& (pointY <= lineMinY || pointY >= lineMaxY) )
 			{
 				if(getConnectionLength(first, point) < getConnectionLength(last, point))
 				{
@@ -235,15 +247,25 @@ public class IndoorRouteFinder implements Constants
 	private List<NavigationConnection> addConnectionsInsideOtherConnection(int addPointX, int addPointY, 
 			NavigationPoint point,NavigationConnection connection)
 	{
+		List<NavigationConnection> newConnections = new ArrayList<NavigationConnection>();
+		
+		NavigationConnection  finalConnection  = addConnectionIfPointOutOfConnection(addPointX,addPointY,point,connection);
+		if( finalConnection != null)
+		{
+			newConnections.add(finalConnection);
+			return newConnections;
+		}
+		
 		List<NavigationConnection> conns = new ArrayList<NavigationConnection>();
 		NavigationPoint finalPoint = new NavigationPoint(addPointX,addPointY,
 				point.getFloor(),NavigationPointTypes.NAVIGATION);
+		finalPoint.setId(point_id++);
 		conns.add(new NavigationConnection(finalPoint,point, 
 				getConnectionLength(finalPoint, point)));
 		conns.add(new NavigationConnection(finalPoint,connection.getFirstPoint(), 
-				getConnectionLength(finalPoint, point)));
-		conns.add(new NavigationConnection(finalPoint,connection.getFirstPoint(), 
-				getConnectionLength(finalPoint, point)));
+				getConnectionLength(finalPoint, connection.getFirstPoint())));
+		conns.add(new NavigationConnection(finalPoint,connection.getLastPoint(), 
+				getConnectionLength(finalPoint, connection.getLastPoint())));
 		return conns;
 	}
 	
@@ -265,25 +287,22 @@ public class IndoorRouteFinder implements Constants
 			return findShortestPath(startPoint,goalPoint);
 	}
 	
-	private boolean checkIfPointsInOneIndoor(NavigationPoint startPoint2, NavigationPoint goalPoint2)
+	private boolean checkIfPointsInOneIndoor(int startBuildingId, int goalBuildingId)
 	{
-		int startBuildingId =startPoint2.getFloor().getBuilding().getId(); 
-		int goalBuildingId =goalPoint2.getFloor().getBuilding().getId(); 
 		if(startBuildingId == goalBuildingId)
 		{
 			return true;
 		}
 		else
 		{
-			
 			List<SpecialConnection> specialList = new ArrayList<SpecialConnection>();
 			try
 			{
 				specialList = dbHelper.getSpecialConnectionDao().queryForAll();
 				for(SpecialConnection conn : specialList)
 				{
-					int firstBuildingId = conn.getLowerFloor().getFloor().getBuilding().getId();
-					int lastBuildingId = conn.getUpperFloor().getFloor().getBuilding().getId();
+					int firstBuildingId = conn.getLowerPoint().getFloor().getBuilding().getId();
+					int lastBuildingId = conn.getUpperPoint().getFloor().getBuilding().getId();
 					if(  ( ( firstBuildingId == startBuildingId) && (lastBuildingId == goalBuildingId) ) ||
 							( ( firstBuildingId == goalBuildingId) && (lastBuildingId == startBuildingId) ) )
 					{
@@ -303,11 +322,22 @@ public class IndoorRouteFinder implements Constants
 		int i=0,min;
 		int start = getIndex(p1);
 		int goal = getIndex(p2);
+		echo("p1:"+p1.getId());
+		echo("p2:"+p2.getId());
+		
 		boolean finished = false;
 		
 		long startTime = System.currentTimeMillis() ;
 		int actual = start;	
-		best[actual] = 0;
+		try
+		{
+			best[actual] = 0;
+		}
+		catch(ArrayIndexOutOfBoundsException e)
+		{
+			echo("ARRAY INDEX OUT !!");
+			return new ArrayList<NavigationPoint>();
+		}
 		
 		while(!finished)
 		{
@@ -350,6 +380,7 @@ public class IndoorRouteFinder implements Constants
 			currentRoute.add(0,points.get(actual));
 			if(previous[actual] != -1)
 			{
+				echo("ROUTE:"+points.get(actual).getId());
 				actual = previous[actual];
 			}
 			else
@@ -368,11 +399,8 @@ public class IndoorRouteFinder implements Constants
 	{
 		for(SpecialConnection special : specialConnections)
 		{
-			echo("specialConnection:"+special.getId()+":"+special.getLowerFloor().getId()+
-					":"+special.getUpperFloor().getId());
-			NavigationConnection conn = new NavigationConnection(special.getLowerFloor(),
-					special.getUpperFloor(),SPECIAL_CONNECTION_LENGTH);
-			echo("Connection:"+conn.getFirstPoint().getId()+":::"+conn.getLastPoint().getId());
+			NavigationConnection conn = new NavigationConnection(special.getLowerPoint(),
+					special.getUpperPoint(),SPECIAL_CONNECTION_LENGTH);
 			connections.add(conn);
 		};
 	}
