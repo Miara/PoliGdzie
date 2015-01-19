@@ -82,7 +82,7 @@ OnClickListener
 			{
 				MapIndoorFragment indoorMap = new MapIndoorFragment(previousFloor.getDrawableId(), 
 						previousFloor.getName(), previousFloor.getTag(), previousFloor.getId(),points);
-				if(previousFloor.getId() == getFloor(startObject).getId())
+				if(previousFloor.getId() == getFloor(startObject).getId() && indoorMode == INDOOR_MODE_FIRST)
 				{
 					((PoliGdzieBaseActivity) fragment.getActivity()).switchFragment(R.id.map_container,
 							indoorMap, indoorMap.getViewTag());
@@ -98,7 +98,7 @@ OnClickListener
 		{
 			MapIndoorFragment indoorMap = new MapIndoorFragment(previousFloor.getDrawableId(), 
 					previousFloor.getName(), previousFloor.getTag(), previousFloor.getId(),points);
-			if(previousFloor.getId() == getFloor(startObject).getId())
+			if(previousFloor.getId() == getFloor(startObject).getId() && indoorMode == INDOOR_MODE_FIRST)
 			{
 				((PoliGdzieBaseActivity) fragment.getActivity()).switchFragment(R.id.map_container,
 						indoorMap, indoorMap.getViewTag());
@@ -127,6 +127,8 @@ OnClickListener
 			if(startObject instanceof Building && goalObject instanceof Building)
 			{
 				mapProvider.addGoogleMapFragment();
+				((PoliGdzieBaseActivity) fragment.getActivity()).switchFragment(R.id.map_container,
+						mapProvider.getGoogleMapFragment(), mapProvider.getGoogleMapFragment().getViewTag());
 				//TODO: Draw route
 				
 			}
@@ -134,6 +136,8 @@ OnClickListener
 			{
 				
 				mapProvider.addGoogleMapFragment();
+				((PoliGdzieBaseActivity) fragment.getActivity()).switchFragment(R.id.map_container,
+						mapProvider.getGoogleMapFragment(), mapProvider.getGoogleMapFragment().getViewTag());
 				//TODO: Draw route
 				
 				NavigationPoint startIndoorPoint = entrances.get(1).getNavigationPoint(); // 2nd building entry
