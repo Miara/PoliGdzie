@@ -149,11 +149,8 @@ public class MapFragmentProvider extends PoliGdzieBaseClass
 
 	public void addGoogleMapFragment()
 	{
-		if(!keys.contains(OUTDOOR_MAP_TAG))
-		{
-			fragments.addFragment(OUTDOOR_MAP_TAG, googleMapFragment);
-			keys.add(OUTDOOR_MAP_TAG);	
-		}
+		fragments.addFragment(OUTDOOR_MAP_TAG, googleMapFragment);
+		keys.add(OUTDOOR_MAP_TAG);	
 	}
 
 	public void clearFragments()

@@ -331,7 +331,10 @@ OnClickListener
 					if(  ( ( firstBuildingId == startBuildingId) && (lastBuildingId == goalBuildingId) ) ||
 							( ( firstBuildingId == goalBuildingId) && (lastBuildingId == startBuildingId) ) )
 					{
-						return true;
+						if(!(startObject instanceof Building) && !(goalObject instanceof Building) )
+						{
+							return true;
+						}
 					}
 				}
 			} catch (SQLException e)
