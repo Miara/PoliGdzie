@@ -1,54 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@null" >
 	<LinearLayout
-	    style="@style/InfoWindow.Linear">
+	    android:layout_height="@dimen/info_window_height"
+	    android:layout_width="match_parent"
+	    android:layout_marginTop="40dp">
 	    <TextView
-	        style="@style/InfoWindow.TextView"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:background="#ffffff"
+	        android:textSize="@dimen/info_window_text_size"
 	        android:id="@+id/infoWindowNameField"
-	    />   
+	        android:gravity="center"/>   
 	</LinearLayout>
-    <LinearLayout
-        style="@style/InfoWindow.Linear">
-        <ImageView 
+	<LinearLayout 
+	    android:orientation="horizontal"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center_horizontal">
+	    <ImageButton 
+            android:id="@+id/infoWindowStartButton"
 	        style="@style/InfoWindow.Image"
-	        android:src="@drawable/z_nogps"/>
-	    <Button
-	        android:id="@+id/infoWindowStartButton"
-	        style="@style/InfoWindow.Button"
-	        android:text="Punkt startowy" />
-    </LinearLayout>
-    <LinearLayout
-        style="@style/InfoWindow.Linear">
-	    <ImageView 
+	        android:background="@drawable/z_nogps"
+	        android:contentDescription="Z"/>
+	    <ImageButton 
+            android:id="@+id/infoWindowGoalButton"
 	        style="@style/InfoWindow.Image"
-	        android:src="@drawable/do_nogps"/>
-	    <Button
-	        android:id="@+id/infoWindowGoalButton"
-	        style="@style/InfoWindow.Button"
-	        android:text="Punkt docelowy" />
-    </LinearLayout>
-    <LinearLayout
-        style="@style/InfoWindow.Linear">
-	    <ImageView 
+	        android:background="@drawable/do_nogps"
+	        android:contentDescription="DO"/>
+	    <ImageButton 
+            android:id="@+id/infoWindowInfoButton"
 	        style="@style/InfoWindow.Image"
-	        android:src="@drawable/uniwersalna_bw"/>
-	    <Button
-	        android:id="@+id/infoWindowInfoButton"
-	        style="@style/InfoWindow.Button"
-	        android:text="Informacje" />
-	</LinearLayout>
-	<LinearLayout
-        style="@style/InfoWindow.Linear">
-	    <ImageView 
+	        android:background="@drawable/building_info_info"
+	        android:contentDescription="I"/>
+	    <ImageButton 
+            android:id="@+id/indoorMapWindowInfoButton"
 	        style="@style/InfoWindow.Image"
-	        android:src="@drawable/uniwersalna_bw"/>
-	    <Button
-	        android:id="@+id/indoorMapWindowInfoButton"
-	        style="@style/InfoWindow.Button"
-	        android:text="Plan wnętrza" />
+	        android:background="@drawable/building_info_plan"
+	        android:contentDescription="IN"/>
+	    
 	</LinearLayout>
 </LinearLayout>

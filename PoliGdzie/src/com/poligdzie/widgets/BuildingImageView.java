@@ -109,7 +109,14 @@ public class BuildingImageView extends ImageView implements Constants
 
 	public void setLines(List<Line> routeLines)
 	{
-		this.routeLines = routeLines;
+		if(routeLines == null)
+		{
+			this.routeLines = new ArrayList<Line>();
+		}
+		else
+		{
+			this.routeLines = routeLines;
+		}
 	}
 	
 	public void setImageBitmap(Bitmap bmp)

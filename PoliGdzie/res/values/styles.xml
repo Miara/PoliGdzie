@@ -46,23 +46,24 @@
         <item name="android:orientation">horizontal</item>
     </style>
     <style name="InfoWindow.Image" >
-        <item name="android:layout_width">@dimen/info_window_height</item> 
+        <item name="android:layout_height">@dimen/info_window_image_height</item> 
+        <item name="android:layout_width">@dimen/info_window_image_height</item> 
         <item name="android:adjustViewBounds">true</item>
        	<item name="android:scaleType">fitXY</item>
-       	<item name="android:alpha">0.7</item>
+       	<item name="android:alpha">1</item>
+       	<item name="android:layout_marginLeft">1dip</item> 
+        <item name="android:layout_marginRight">1dip</item> 
+        <item name="android:layout_marginTop">1dip</item> 
+        <item name="android:layout_marginBottom">1dip</item>
     </style>
     <style name="InfoWindow.Button" >
-        <item name="android:layout_width">match_parent</item> 
-        <item name="android:textSize">@dimen/info_window_button_text_size</item> 
+        <item name="android:layout_width">wrap_content</item> 
+        <item name="android:text">.</item> 
         <item name="android:minHeight">0dp</item> 
         <item name="android:minWidth">0dp</item> 
-        <item name="android:layout_marginLeft">-5dip</item> 
-        <item name="android:layout_marginRight">-5dip</item> 
-        <item name="android:layout_marginTop">-5dip</item> 
-        <item name="android:layout_marginBottom">-5dip</item> 
     </style>
     <style name="InfoWindow.TextView" >
-        <item name="android:layout_width">match_parent</item> 
+        <item name="android:layout_width">wrap_content</item> 
         <item name="android:textSize">@dimen/info_window_text_size</item> 
         <item name="android:minHeight">0dp</item> 
         <item name="android:minWidth">0dp</item> 
@@ -70,6 +71,7 @@
         <item name="android:layout_marginRight">5dip</item> 
         <item name="android:layout_marginTop">5dip</item> 
         <item name="android:layout_marginBottom">5dip</item>
+        
         <item name="android:background">#ffffff</item>
     </style>
 

@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout.LayoutParams;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.poligdzie.R;
@@ -32,10 +33,10 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 	private int					posX;
 	private int					posY;
 	private ViewGroup			container;
-	private Button				startButton;
-	private Button				goalButton;
-	private Button				showInfoButton;
-	private Button				showIndoorMapButton;
+	private ImageButton				startButton;
+	private ImageButton				goalButton;
+	private ImageButton				showInfoButton;
+	private ImageButton				showIndoorMapButton;
 	private TextView			nameField;
 	private Marker				marker;
 	private MapIndoorFragment	indoorMap;
@@ -59,17 +60,17 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 		View rootView = inflater.inflate(R.layout.window_marker_click,
 				container, false);
 
-		startButton = (Button) rootView
+		startButton = (ImageButton) rootView
 				.findViewById(R.id.infoWindowStartButton);
 		startButton.setOnClickListener(this);
-		goalButton = (Button) rootView.findViewById(R.id.infoWindowGoalButton);
+		goalButton = (ImageButton) rootView.findViewById(R.id.infoWindowGoalButton);
 		goalButton.setOnClickListener(this);
-		showInfoButton = (Button) rootView
+		showInfoButton = (ImageButton) rootView
 				.findViewById(R.id.infoWindowInfoButton);
 
 		showInfoButton.setOnClickListener(this);
 
-		showIndoorMapButton = (Button) rootView
+		showIndoorMapButton = (ImageButton) rootView
 				.findViewById(R.id.indoorMapWindowInfoButton);
 
 		showIndoorMapButton.setOnClickListener(this);
@@ -129,7 +130,7 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 			{
 				Log.d("POLIGDZIE", f.getName());
 				indoorMap = new MapIndoorFragment(f.getDrawableId(),
-						f.getName(), f.getTag(), f.getNumber());
+						f.getName(), f.getTag(), f.getId());
 				if (i == 0)
 				{
 					((PoliGdzieBaseActivity) this.getActivity())
