@@ -43,13 +43,13 @@ public class Building extends PoliGdzieBaseClass implements Nameable,
 	@DatabaseField
 	private String						markerImageResource;
 
-	@ForeignCollectionField(eager = true, columnName = "rooms")
+	@ForeignCollectionField(columnName = "rooms")
 	private ForeignCollection<Room>		rooms;
 
-	@ForeignCollectionField(eager = true, columnName = "units")
+	@ForeignCollectionField(columnName = "units")
 	private ForeignCollection<Unit>		units;
 
-	@ForeignCollectionField(eager = true, columnName = "floors")
+	@ForeignCollectionField(columnName = "floors")
 	private ForeignCollection<Floor>	floors;
 
 	public int getId()

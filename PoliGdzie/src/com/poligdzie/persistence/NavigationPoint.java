@@ -16,7 +16,7 @@ public class NavigationPoint extends PoliGdzieBaseClass
 	@DatabaseField
 	private int	coordY;
 
-	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "floor_id")
+	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "floor_id")
 	private Floor	floor;
 	
 	@DatabaseField

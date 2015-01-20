@@ -9,23 +9,16 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
 import com.example.poligdzie.R;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.j256.ormlite.dao.ForeignCollection;
+import com.j256.ormlite.stmt.QueryBuilder;
 import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.base.PoliGdzieBaseFragment;
-import com.poligdzie.callbacks.MarkerAnimationFinishCallback;
 import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
 import com.poligdzie.helpers.DatabaseHelper;
-import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.BuildingEntry;
 import com.poligdzie.persistence.Floor;
@@ -34,58 +27,71 @@ import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.SpecialConnection;
 import com.poligdzie.persistence.Unit;
 import com.poligdzie.route.IndoorRouteFinder;
-import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.singletons.MapFragmentProvider;
-import com.poligdzie.tasks.AnimationClosureChecker;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
 public class RouteButtonListener extends PoliGdzieBaseClass implements
-OnClickListener
+															OnClickListener
 {
 
 	private PoliGdzieBaseFragment		fragment;
 	private SearchAutoCompleteTextView	startPosition;
 	private SearchAutoCompleteTextView	goalPosition;
-	
 
-	private void showIndoorRoute(Object startObject, Object goalObject,int entryFloorNumber, int indoorMode) throws SQLException
+	private void showIndoorRoute(Object startObject, Object goalObject,
+			int entryFloorNumber, int indoorMode) throws SQLException
 	{
-	
+
+		
 		List<NavigationPoint> routePoints = new ArrayList<NavigationPoint>();
 		IndoorRouteFinder finder = new IndoorRouteFinder(dbHelper);
-		if(startObject instanceof Room  && goalObject instanceof Room)
-			routePoints = finder.findRoute((Room)startObject, (Room)goalObject);
-		if(startObject instanceof Room  && goalObject instanceof NavigationPoint)
-			routePoints = finder.findRoute((Room)startObject, (NavigationPoint)goalObject);
-		if(startObject instanceof NavigationPoint  && goalObject instanceof Room)
-			routePoints = finder.findRoute((NavigationPoint)startObject, (Room)goalObject);
-		if(startObject instanceof NavigationPoint  && goalObject instanceof NavigationPoint)
-			routePoints = finder.findRoute((NavigationPoint)startObject, (NavigationPoint)goalObject);
-				
+		if (startObject instanceof Room && goalObject instanceof Room)
+			routePoints = finder.findRoute((Room) startObject,
+					(Room) goalObject);
+		if (startObject instanceof Room
+				&& goalObject instanceof NavigationPoint)
+			routePoints = finder.findRoute((Room) startObject,
+					(NavigationPoint) goalObject);
+		if (startObject instanceof NavigationPoint
+				&& goalObject instanceof Room)
+			routePoints = finder.findRoute((NavigationPoint) startObject,
+					(Room) goalObject);
+		if (startObject instanceof NavigationPoint
+				&& goalObject instanceof NavigationPoint)
+			routePoints = finder.findRoute((NavigationPoint) startObject,
+					(NavigationPoint) goalObject);
+
 		List<NavigationPoint> points = new ArrayList<NavigationPoint>();
-		
+
 		List<Floor> floors = new ArrayList<Floor>();
 		Floor previousFloor = new Floor();
-		for(NavigationPoint routePoint : routePoints)
+		for (NavigationPoint routePoint : routePoints)
 		{
-			
-			Floor currentFloor = dbHelper.getFloorDao().queryForId(getFloor(routePoint).getId());
-			if(floors.isEmpty())
+
+			Floor currentFloor = dbHelper.getFloorDao().queryForId(
+					getFloor(routePoint).getId());
+			if (floors.isEmpty())
 			{
 				points.add(routePoint);
-				previousFloor = dbHelper.getFloorDao().queryForId(getFloor(routePoint).getId());;
+				previousFloor = dbHelper.getFloorDao().queryForId(
+						getFloor(routePoint).getId());
+				;
 				floors.add(previousFloor);
 				continue;
 			}
 
-			if(previousFloor.getId() != currentFloor.getId() &&  !previousFloor.getTag().equals(""))
+			if (previousFloor.getId() != currentFloor.getId()
+					&& !previousFloor.getTag().equals(""))
 			{
-				MapIndoorFragment indoorMap = new MapIndoorFragment(previousFloor.getDrawableId(), 
-						previousFloor.getName(), previousFloor.getTag(), previousFloor.getId(),points);
-				if(previousFloor.getId() == getFloor(startObject).getId() && indoorMode == INDOOR_MODE_FIRST)
+				MapIndoorFragment indoorMap = new MapIndoorFragment(
+						previousFloor.getDrawableId(), previousFloor.getName(),
+						previousFloor.getTag(), previousFloor.getId(), points);
+				if (previousFloor.getId() == getFloor(startObject).getId()
+						&& indoorMode == INDOOR_MODE_FIRST)
 				{
-					((PoliGdzieBaseActivity) fragment.getActivity()).switchFragment(R.id.map_container,
-							indoorMap, indoorMap.getViewTag());
+					((PoliGdzieBaseActivity) fragment.getActivity())
+							.switchFragment(R.id.map_container, indoorMap,
+									indoorMap.getViewTag());
 				}
 				floors.add(currentFloor);
 				previousFloor = currentFloor;
@@ -94,120 +100,135 @@ OnClickListener
 			points.add(routePoint);
 
 		}
-		if(!previousFloor.getTag().equals("") && previousFloor.getTag() != null)
+		if (!previousFloor.getTag().equals("")
+				&& previousFloor.getTag() != null)
 		{
-			MapIndoorFragment indoorMap = new MapIndoorFragment(previousFloor.getDrawableId(), 
-					previousFloor.getName(), previousFloor.getTag(), previousFloor.getId(),points);
-			if(previousFloor.getId() == getFloor(startObject).getId() && indoorMode == INDOOR_MODE_FIRST)
+			MapIndoorFragment indoorMap = new MapIndoorFragment(
+					previousFloor.getDrawableId(), previousFloor.getName(),
+					previousFloor.getTag(), previousFloor.getId(), points);
+			if (previousFloor.getId() == getFloor(startObject).getId()
+					&& indoorMode == INDOOR_MODE_FIRST)
 			{
-				((PoliGdzieBaseActivity) fragment.getActivity()).switchFragment(R.id.map_container,
-						indoorMap, indoorMap.getViewTag());
+				((PoliGdzieBaseActivity) fragment.getActivity())
+						.switchFragment(R.id.map_container, indoorMap,
+								indoorMap.getViewTag());
 			}
 		}
 
 		((OnClickListener) fragment.getActivity()).onClick(fragment
 				.getActivity().findViewById(R.layout.map_activity));
 	}
-	
 
-	private void showGeneralRoute(Object startObject, Object goalObject) throws SQLException
+	private void showGeneralRoute(Object startObject, Object goalObject)
+			throws SQLException
 	{
-		
-		if ( checkIfPointsInOneIndoor(startObject,goalObject ))
+
+		if (checkIfPointsInOneIndoor(startObject, goalObject))
 		{
-			showIndoorRoute(startObject,goalObject,getFloor(goalObject).getNumber(),INDOOR_MODE_FIRST); 
-		}
-		else 
+			showIndoorRoute(startObject, goalObject, getFloor(goalObject)
+					.getNumber(), INDOOR_MODE_FIRST);
+		} else
 		{
 			int mainFloorNumber = 0;
 			MapFragmentProvider mapProvider = MapFragmentProvider.getInstance();
 			List<BuildingEntry> entrances = new ArrayList<BuildingEntry>();
-			entrances = getEntrancesBetweenBuildings( getBuilding(startObject).getId(),
-					getBuilding(goalObject).getId() );
-			if(startObject instanceof Building && goalObject instanceof Building)
+			entrances = getEntrancesBetweenBuildings(getBuilding(startObject)
+					.getId(), getBuilding(goalObject).getId());
+			if (startObject instanceof Building
+					&& goalObject instanceof Building)
 			{
 				mapProvider.addGoogleMapFragment();
-				((PoliGdzieBaseActivity) fragment.getActivity()).switchFragment(R.id.map_container,
-						mapProvider.getGoogleMapFragment(), mapProvider.getGoogleMapFragment().getViewTag());
-				//TODO: Draw route
-				
-			}
-			else if( startObject instanceof Building)
+				((PoliGdzieBaseActivity) fragment.getActivity())
+						.switchFragment(R.id.map_container, mapProvider
+								.getGoogleMapFragment(), mapProvider
+								.getGoogleMapFragment().getViewTag());
+				// TODO: Draw route
+
+			} else if (startObject instanceof Building)
 			{
-				
+
 				mapProvider.addGoogleMapFragment();
-				((PoliGdzieBaseActivity) fragment.getActivity()).switchFragment(R.id.map_container,
-						mapProvider.getGoogleMapFragment(), mapProvider.getGoogleMapFragment().getViewTag());
-				//TODO: Draw route
-				
-				NavigationPoint startIndoorPoint = entrances.get(1).getNavigationPoint(); // 2nd building entry
-				if(goalObject instanceof NavigationPoint)
+				((PoliGdzieBaseActivity) fragment.getActivity())
+						.switchFragment(R.id.map_container, mapProvider
+								.getGoogleMapFragment(), mapProvider
+								.getGoogleMapFragment().getViewTag());
+				// TODO: Draw route
+				//TODO zabezpieczyc, zebye nie bylo indeksu poza granicami
+				NavigationPoint startIndoorPoint = entrances.get(1)
+						.getNavigationPoint(); // 2nd building entry
+				if (goalObject instanceof NavigationPoint)
 				{
 					// TODO: navigation point route (clicked points on bitmap )
-				}
-				else if(goalObject instanceof Room)
+				} else if (goalObject instanceof Room)
 				{
-					showIndoorRoute(startIndoorPoint, goalObject, 
-							getFloor(startIndoorPoint).getNumber(), INDOOR_MODE_LAST);
+					showIndoorRoute(startIndoorPoint, goalObject,
+							getFloor(startIndoorPoint).getNumber(),
+							INDOOR_MODE_LAST);
 				}
-			}
-			else if( goalObject instanceof Building)
+			} else if (goalObject instanceof Building)
 			{
-				NavigationPoint goalIndoorPoint = entrances.get(0).getNavigationPoint(); // 2nd building entry
-				if(startObject instanceof NavigationPoint)
+				NavigationPoint goalIndoorPoint = entrances.get(0)
+						.getNavigationPoint(); // 2nd building entry
+				if (startObject instanceof NavigationPoint)
 				{
 					// TODO: navigation point route (clicked points on bitmap )
-				}
-				else if(startObject instanceof Room)
+				} else if (startObject instanceof Room)
 				{
-					showIndoorRoute(startObject, goalIndoorPoint, 
-							getFloor(startObject).getNumber(), INDOOR_MODE_FIRST);
+					showIndoorRoute(startObject, goalIndoorPoint,
+							getFloor(startObject).getNumber(),
+							INDOOR_MODE_FIRST);
 				}
-				
+
 				mapProvider.addGoogleMapFragment();
-				//TODO: Draw route
-			}
-			else
+				// TODO: Draw route
+			} else
 			{
 				if (startObject instanceof Room)
 				{
-					NavigationPoint exit = entrances.get(0).getNavigationPoint(); 
+					NavigationPoint exit = entrances.get(0)
+							.getNavigationPoint();
 					mainFloorNumber = getFloor(exit).getNumber();
 					// TODO: showGeneralRoute
-					showIndoorRoute(startObject, exit ,mainFloorNumber,  INDOOR_MODE_FIRST);
+					showIndoorRoute(startObject, exit, mainFloorNumber,
+							INDOOR_MODE_FIRST);
 					mapProvider.addGoogleMapFragment();
 				}
-				
+
 				if (goalObject instanceof Room)
 				{
-					NavigationPoint entry = entrances.get(1).getNavigationPoint(); 
+					NavigationPoint entry = entrances.get(1)
+							.getNavigationPoint();
 					mainFloorNumber = getFloor(entry).getNumber();
-					showIndoorRoute(entry, goalObject, mainFloorNumber, INDOOR_MODE_LAST);
+					showIndoorRoute(entry, goalObject, mainFloorNumber,
+							INDOOR_MODE_LAST);
 				}
-				
-				//TODO : cases when start and goal are NavigationPoints
+
+				// TODO : cases when start and goal are NavigationPoints
 			}
-		}		
+		}
 	}
 
-	private List<BuildingEntry> getEntrancesBetweenBuildings(int startBuildingId, int goalBuildingId) throws SQLException
+	private List<BuildingEntry> getEntrancesBetweenBuildings(
+			int startBuildingId, int goalBuildingId) throws SQLException
 	{
 		List<BuildingEntry> resultEntrances = new ArrayList<BuildingEntry>();
-		List<BuildingEntry> startEntrances = dbHelper.getBuildingEntryDao().
-				queryBuilder().where().eq("building_id", startBuildingId).query();
-		List<BuildingEntry> goalEntrances = dbHelper.getBuildingEntryDao().
-				queryBuilder().where().eq("building_id", goalBuildingId).query();
-		double a,b,tmpLength;
+		List<BuildingEntry> startEntrances = dbHelper.getBuildingEntryDao()
+				.queryBuilder().where().eq("building_id", startBuildingId)
+				.query();
+		List<BuildingEntry> goalEntrances = dbHelper.getBuildingEntryDao()
+				.queryBuilder().where().eq("building_id", goalBuildingId)
+				.query();
+		double a, b, tmpLength;
 		double length = Integer.MAX_VALUE;
-		
-		for(BuildingEntry en1 : startEntrances)
+
+		for (BuildingEntry en1 : startEntrances)
 		{
-			for(BuildingEntry en2 : goalEntrances)
+			for (BuildingEntry en2 : goalEntrances)
 			{
 				a = en2.getCoordX() - en1.getCoordX();
 				b = en2.getCoordY() - en1.getCoordY();
-				tmpLength = Math.sqrt(a*a + b*b);
-				if(tmpLength < length)
+				tmpLength = Math.sqrt(a * a + b * b);
+				if (tmpLength < length)
 				{
 					resultEntrances.clear();
 					resultEntrances.add(en1);
@@ -217,7 +238,6 @@ OnClickListener
 		}
 		return resultEntrances;
 	}
-	
 
 	@Override
 	public void onClick(View v)
@@ -226,64 +246,63 @@ OnClickListener
 		{
 			MapFragmentProvider mapProvider = MapFragmentProvider.getInstance();
 			mapProvider.clearFragments();
-	
-			InputMethodManager imm = (InputMethodManager) fragment.getActivity()
-					.getSystemService(Context.INPUT_METHOD_SERVICE);
-			
+
+			InputMethodManager imm = (InputMethodManager) fragment
+					.getActivity().getSystemService(
+							Context.INPUT_METHOD_SERVICE);
+
 			clearFocusAndHidePromptWindow(startPosition, imm);
 			clearFocusAndHidePromptWindow(goalPosition, imm);
-	
-			if (validateAdapters(startPosition,goalPosition))
+
+			if (validateAdapters(startPosition, goalPosition))
 			{
-				Object startObject = ifUnitChangeToRoom(startPosition.getAdapter().getItem(0));
-				Object goalObject = ifUnitChangeToRoom(goalPosition.getAdapter().getItem(0));
-				if(validateRouteObjects(startObject,goalObject)) 
+				Object startObject = ifUnitChangeToRoom(startPosition
+						.getAdapter().getItem(0));
+				Object goalObject = ifUnitChangeToRoom(goalPosition
+						.getAdapter().getItem(0));
+				if (validateRouteObjects(startObject, goalObject))
 				{
-					showGeneralRoute(startObject,goalObject);
+					showGeneralRoute(startObject, goalObject);
 				}
 			}
-			
-		} 
-		catch (SQLException e)
+
+		} catch (SQLException e)
 		{
 			// TODO Auto-generated catch block
-			Log.e("poligdzie","ERROR RouteButtonlistener");
-		}	 
+			Log.e("poligdzie", "ERROR RouteButtonlistener");
+		}
 	}
 
 	private Object ifUnitChangeToRoom(Object item)
 	{
-		if(item instanceof Unit) 
+		if (item instanceof Unit)
 		{
-			return ((Unit)item).getOffice();
-		}
-		else
+			return ((Unit) item).getOffice();
+		} else
 		{
 			return item;
 		}
-		
 
 	}
 
-	private boolean validateAdapters(SearchAutoCompleteTextView start, SearchAutoCompleteTextView goal)
+	private boolean validateAdapters(SearchAutoCompleteTextView start,
+			SearchAutoCompleteTextView goal)
 	{
-		
-		if(start.getAdapter().isEmpty()  && goal.getAdapter().isEmpty() )
+
+		if (start.getAdapter().isEmpty() && goal.getAdapter().isEmpty())
 		{
-			makeToast("Proszê uzupe³niæ pola wyszukiwania",fragment.getActivity());
+			makeToast("Proszê uzupe³niæ pola wyszukiwania",
+					fragment.getActivity());
 			return false;
-		}
-		else if(start.getAdapter().isEmpty())
+		} else if (start.getAdapter().isEmpty())
 		{
-			makeToast("Proszê wybraæ punkt startowy",fragment.getActivity());
+			makeToast("Proszê wybraæ punkt startowy", fragment.getActivity());
 			return false;
-		}
-		else if(goal.getAdapter().isEmpty())
+		} else if (goal.getAdapter().isEmpty())
 		{
-			makeToast("Proszê wybraæ punkt docelowy",fragment.getActivity());
+			makeToast("Proszê wybraæ punkt docelowy", fragment.getActivity());
 			return false;
-		}
-		else
+		} else
 		{
 			return true;
 		}
@@ -291,47 +310,92 @@ OnClickListener
 
 	private boolean validateRouteObjects(Object startObject, Object goalObject)
 	{
-		if((startObject == null || goalObject == null) || (startObject == goalObject)	) 
+		if ((startObject == null || goalObject == null)
+				|| (startObject == goalObject))
 		{
-			makeToast("Pola nie mog¹ byæ te same",fragment.getActivity());
+			makeToast("Pola nie mog¹ byæ te same", fragment.getActivity());
 			return false;
 		}
 		return true;
 	}
 
-	private boolean checkIfPointsInOneIndoor(Object startObject, Object goalObject)
+	private boolean checkIfPointsInOneIndoor(Object startObject,
+			Object goalObject)
 	{
-		Building building1 = getBuilding(startObject);
-		Building building2 = getBuilding(goalObject);
-				
+		Building building1 = null;
+		Building building2 = null;
+		try
+		{
+			building1 = getBuilding(startObject);
+			building2 = getBuilding(goalObject);
+		} catch (SQLException e1)
+		{
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		int startBuildingId = building1.getId();
 		int goalBuildingId = building2.getId();
-		
-		if(startBuildingId == goalBuildingId)
+
+		if (startBuildingId == goalBuildingId)
 		{
-			if(startObject instanceof Building || goalObject instanceof Building )
+			if (startObject instanceof Building
+					|| goalObject instanceof Building)
 			{
 				return false;
-			}
-			else
+			} else
 			{
 				return true;
-			}	
-		}
-		else
+			}
+		} else
 		{
+
 			List<SpecialConnection> specialList = new ArrayList<SpecialConnection>();
 			try
 			{
-				specialList = dbHelper.getSpecialConnectionDao().queryForAll();
-				for(SpecialConnection conn : specialList)
+
+				QueryBuilder<NavigationPoint, Integer> lowerPoint = dbHelper
+						.getNavigationPointDao().queryBuilder();
+				QueryBuilder<Floor, Integer> floor = dbHelper.getFloorDao()
+						.queryBuilder();
+				QueryBuilder<SpecialConnection, Integer> specConn = dbHelper
+						.getSpecialConnectionDao().queryBuilder();
+				QueryBuilder<Building, Integer> building = dbHelper
+						.getBuildingDao().queryBuilder();
+
+				building.where().idEq(startBuildingId).or()
+						.idEq(goalBuildingId);
+				floor.join(building);
+				lowerPoint.join(floor);
+				specConn.join(lowerPoint);
+
+				specialList = specConn.query();
+
+				Log.d("POLIGDZIE", specialList.toString());
+				for (SpecialConnection conn : specialList)
 				{
-					int firstBuildingId = conn.getLowerPoint().getFloor().getBuilding().getId();
-					int lastBuildingId = conn.getUpperPoint().getFloor().getBuilding().getId();
-					if(  ( ( firstBuildingId == startBuildingId) && (lastBuildingId == goalBuildingId) ) ||
-							( ( firstBuildingId == goalBuildingId) && (lastBuildingId == startBuildingId) ) )
+					lowerPoint.reset();
+					lowerPoint.where().idEq(conn.getLowerPoint().getId());
+					NavigationPoint lower = lowerPoint.queryForFirst();
+
+					floor.reset();
+					Floor fl = floor.where().idEq(lower.getFloor().getId())
+							.queryForFirst();
+					int firstBuildingId = fl.getBuilding().getId();
+
+					lowerPoint.reset();
+					lowerPoint.where().idEq(conn.getUpperPoint().getId());
+					NavigationPoint upper = lowerPoint.queryForFirst();
+
+					floor.reset();
+					fl = floor.where().idEq(upper.getFloor().getId())
+							.queryForFirst();
+					int lastBuildingId = fl.getBuilding().getId();
+					if (((firstBuildingId == startBuildingId) && (lastBuildingId == goalBuildingId))
+							|| ((firstBuildingId == goalBuildingId) && (lastBuildingId == startBuildingId)))
 					{
-						if(!(startObject instanceof Building) && !(goalObject instanceof Building) )
+						if (!(startObject instanceof Building)
+								&& !(goalObject instanceof Building))
 						{
 							return true;
 						}
@@ -344,70 +408,78 @@ OnClickListener
 			return false;
 		}
 	}
-	
-	private Building getBuilding(Object object)
+
+	private Building getBuilding(Object object) throws SQLException
 	{
-		
-		if( object instanceof Room) 
+
+		Building building = new Building();
+		if (object instanceof Room)
 		{
-			return ((Room) object).getBuilding();
-		} 
-		else if( object instanceof Unit) 
+			Room room = (Room) object;
+			building = dbHelper.getBuildingDao().queryForId(
+					room.getBuilding().getId());
+			return building;
+		} else if (object instanceof Unit)
 		{
-			return ((Unit) object).getBuilding();
-		} 
-		else if( object instanceof Building) 
+			Unit unit = (Unit) object;
+			building = dbHelper.getBuildingDao().queryForId(
+					unit.getBuilding().getId());
+			return building;
+		} else if (object instanceof Building)
 		{
 			return ((Building) object);
-		}
-		else
+		} else
 		{
 			return null;
 		}
 	}
-	
+
 	private Floor getFloor(Object object) throws SQLException
 	{
-		
-		if( object instanceof Room) 
+
+		if (object instanceof Room)
 		{
-			return dbHelper.getFloorDao().queryForId(((Room) object).getFloor().getId());
-		} 
-		else if( object instanceof Unit) 
+			Room room = (Room) object;
+			Floor floor = dbHelper.getFloorDao().queryForId(room.getFloor().getId()); 
+			return floor;
+		} else if (object instanceof Unit)
 		{
-			Room room = dbHelper.getRoomDao().queryForId(((Unit) object).getOffice().getId());
-			return dbHelper.getFloorDao().queryForId(room.getFloor().getId());
-		} 
-		else if( object instanceof NavigationPoint) 
+			Unit unit = (Unit) object;
+			Room room = dbHelper.getRoomDao().queryForId(unit.getOffice().getId());
+			Floor floor = dbHelper.getFloorDao().queryForId(room.getFloor().getId()); 
+			return floor;
+		} else if (object instanceof NavigationPoint)
 		{
-			return dbHelper.getFloorDao().queryForId(((NavigationPoint) object).getFloor().getId()); 
+			NavigationPoint point = (NavigationPoint) object;
+			if(point.getFloor() == null) {
+				point = dbHelper.getNavigationPointDao().queryForId(point.getId());
+			}
+			Floor floor = dbHelper.getFloorDao().queryForId(point.getFloor().getId()); 
+			return floor;
 		}
-		else
-		{
-			return null;
-		}
+		return null;
 	}
-	
+
 	private void clearFocusAndHidePromptWindow(
 			SearchAutoCompleteTextView position, InputMethodManager imm)
 	{
-		if(position.hasFocus())
+		if (position.hasFocus())
 		{
 			position.clearFocus();
 			imm.hideSoftInputFromWindow(position.getWindowToken(), 0);
 		}
-		
+
 	}
 
 	public RouteButtonListener(SearchAutoCompleteTextView startPosition,
-			SearchAutoCompleteTextView goalPosition,
-			GoogleMap map, MapOutdoorFragment outdoorMap,
-			PoliGdzieBaseFragment fragment)
+			SearchAutoCompleteTextView goalPosition, GoogleMap map,
+			MapOutdoorFragment outdoorMap, PoliGdzieBaseFragment fragment)
 	{
 		this.startPosition = startPosition;
 		this.goalPosition = goalPosition;
 		this.fragment = fragment;
-		this.dbHelper = new DatabaseHelper(fragment.getActivity(), DATABASE_NAME, null, DATABASE_VERSION);
+		this.dbHelper = new DatabaseHelper(fragment.getActivity(),
+				DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
 }

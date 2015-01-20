@@ -21,6 +21,7 @@ import com.poligdzie.persistence.Room;
 import com.poligdzie.route.IndoorRouteFinder;
 import com.poligdzie.singletons.DataProvider;
 import com.poligdzie.singletons.MapFragmentProvider;
+import com.poligdzie.tasks.PromptDataTask;
 
 public class MapActivity extends PoliGdzieBaseActivity implements
 														OnClickListener
@@ -47,20 +48,9 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		
 		mapProvider = MapFragmentProvider.getInstance();
 
-		DataProvider provider = DataProvider.getInstance();
-		Log.i("poli","map2");
-		
-		try
-		{
-			provider.setBuildings(dbHelper.getBuildingDao().queryForAll());
-			provider.setRooms(dbHelper.getRoomDao().queryForAll());
-			provider.setUnits(dbHelper.getUnitDao().queryForAll());
-			Log.i("poli","map3");
-		} catch (SQLException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		PromptDataTask promptDataTask = new PromptDataTask(this);
+		promptDataTask.execute();
+			
 		
 		
 		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna",OUTDOOR_MAP_TAG);
