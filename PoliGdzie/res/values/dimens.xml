@@ -9,7 +9,7 @@
 	<dimen name="search_text_height">40dp</dimen>
 	
 	<dimen name="info_window_height">30dp</dimen>
-	<dimen name="info_window_image_height">40dp</dimen>
+	<dimen name="info_window_image_height">35dp</dimen>
 	<dimen name="info_window_text_size">15sp</dimen>
 	<dimen name="info_window_button_text_size">10sp</dimen>
 </resources>
