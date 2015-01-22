@@ -42,7 +42,6 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 			int entryFloorNumber, int indoorMode) throws SQLException
 	{
 
-		
 		List<NavigationPoint> routePoints = new ArrayList<NavigationPoint>();
 		IndoorRouteFinder finder = new IndoorRouteFinder(dbHelper);
 		if (startObject instanceof Room && goalObject instanceof Room)
@@ -153,7 +152,7 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 								.getGoogleMapFragment(), mapProvider
 								.getGoogleMapFragment().getViewTag());
 				// TODO: Draw route
-				//TODO zabezpieczyc, zebye nie bylo indeksu poza granicami
+				// TODO zabezpieczyc, zebye nie bylo indeksu poza granicami
 				NavigationPoint startIndoorPoint = entrances.get(1)
 						.getNavigationPoint(); // 2nd building entry
 				if (goalObject instanceof NavigationPoint)
@@ -440,21 +439,27 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 		if (object instanceof Room)
 		{
 			Room room = (Room) object;
-			Floor floor = dbHelper.getFloorDao().queryForId(room.getFloor().getId()); 
+			Floor floor = dbHelper.getFloorDao().queryForId(
+					room.getFloor().getId());
 			return floor;
 		} else if (object instanceof Unit)
 		{
 			Unit unit = (Unit) object;
-			Room room = dbHelper.getRoomDao().queryForId(unit.getOffice().getId());
-			Floor floor = dbHelper.getFloorDao().queryForId(room.getFloor().getId()); 
+			Room room = dbHelper.getRoomDao().queryForId(
+					unit.getOffice().getId());
+			Floor floor = dbHelper.getFloorDao().queryForId(
+					room.getFloor().getId());
 			return floor;
 		} else if (object instanceof NavigationPoint)
 		{
 			NavigationPoint point = (NavigationPoint) object;
-			if(point.getFloor() == null) {
-				point = dbHelper.getNavigationPointDao().queryForId(point.getId());
+			if (point.getFloor() == null)
+			{
+				point = dbHelper.getNavigationPointDao().queryForId(
+						point.getId());
 			}
-			Floor floor = dbHelper.getFloorDao().queryForId(point.getFloor().getId()); 
+			Floor floor = dbHelper.getFloorDao().queryForId(
+					point.getFloor().getId());
 			return floor;
 		}
 		return null;

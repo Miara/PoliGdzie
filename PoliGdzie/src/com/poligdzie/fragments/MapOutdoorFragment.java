@@ -46,10 +46,10 @@ public class MapOutdoorFragment extends PoliGdzieMapFragment implements
 		drawingProvider.setContext(this.getActivity());
 
 		map = drawingProvider.getMapWithRoute(map, dbHelper);
-		Log.i("poli","test4");
+		Log.i("poli", "test4");
 		map.setOnMarkerClickListener(new MarkerOnClickCustomListener(this, map,
 				dbHelper));
-		
+
 		map.setOnCameraChangeListener(new OnCameraChangeCustomListener(this));
 		return rootView;
 	}

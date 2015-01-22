@@ -1,6 +1,6 @@
 package com.poligdzie.json;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -13,7 +13,6 @@ import org.junit.Test;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.poligdzie.activities.MapActivity;
 
 
 public class DirectionsTest {

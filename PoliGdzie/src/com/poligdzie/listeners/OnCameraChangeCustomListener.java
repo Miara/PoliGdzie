@@ -12,16 +12,16 @@ import com.poligdzie.singletons.MapDrawingProvider;
 public class OnCameraChangeCustomListener implements OnCameraChangeListener
 {
 
-	private MapDrawingProvider drawingProvider;
-	private MapOutdoorFragment mapOutdoorFragment;
-	
+	private MapDrawingProvider	drawingProvider;
+	private MapOutdoorFragment	mapOutdoorFragment;
+
 	@Override
 	public void onCameraChange(CameraPosition arg0)
 	{
 		// TODO Auto-generated method stub
 		clearFragments();
 	}
-	
+
 	private void clearFragments()
 	{
 		drawingProvider = MapDrawingProvider.getInstance();

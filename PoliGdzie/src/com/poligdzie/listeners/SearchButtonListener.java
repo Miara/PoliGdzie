@@ -6,7 +6,6 @@ import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
 import com.example.poligdzie.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -38,23 +37,24 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 
 	private SearchAutoCompleteTextView	searchPosition;
 	private PoliGdzieBaseFragment		fragment;
-	private MapFragmentProvider	mapFragmentProvider;
+	private MapFragmentProvider			mapFragmentProvider;
 
 	private void showPlaceOutdoor(Object object)
 	{
-		
+
 		mapFragmentProvider.addGoogleMapFragment();
-		
-		MapOutdoorFragment outdoorMap = (MapOutdoorFragment) mapFragmentProvider.getGoogleMapFragment();
-		GoogleMap map = ((MapFragment) fragment.getActivity().getFragmentManager()
-					.findFragmentById(R.id.map_outdoor_googleMap)).getMap();
-		
-		((PoliGdzieBaseActivity) fragment.getActivity()).switchFragment(R.id.map_container, outdoorMap,
-				OUTDOOR_MAP_TAG);
-		
+
+		MapOutdoorFragment outdoorMap = (MapOutdoorFragment) mapFragmentProvider
+				.getGoogleMapFragment();
+		GoogleMap map = ((MapFragment) fragment.getActivity()
+				.getFragmentManager()
+				.findFragmentById(R.id.map_outdoor_googleMap)).getMap();
+
+		((PoliGdzieBaseActivity) fragment.getActivity()).switchFragment(
+				R.id.map_container, outdoorMap, OUTDOOR_MAP_TAG);
+
 		((MapActivity) fragment.getActivity()).setNavigationArrowsVisibility();
-		
-		
+
 		LatLng pos = getCoords(object);
 
 		MapDrawingProvider provider = MapDrawingProvider.getInstance();
@@ -114,9 +114,9 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 
 	private void showPlaceIndoor(Object object)
 	{
-		
+
 		mapFragmentProvider.addGoogleMapFragment();
-		
+
 		for (Floor f : getFloors(object))
 		{
 			MapIndoorFragment indoorMap = new MapIndoorFragment(
@@ -165,7 +165,7 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 	@Override
 	public void onClick(View v)
 	{
-		
+
 		mapFragmentProvider.clearFragments();
 
 		searchPosition.clearFocus();
@@ -199,17 +199,17 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 					}
 				}
 			}
-		} 
+		}
 	}
-	
+
 	private boolean validateAdapter(SearchAutoCompleteTextView searchPoint)
 	{
-		if(searchPoint.getAdapter().isEmpty())
+		if (searchPoint.getAdapter().isEmpty())
 		{
-			makeToast("Proszê wybraæ miejsce",fragment.getActivity());
+			makeToast("Proszê wybraæ miejsce", fragment.getActivity());
 			return false;
-		}
-		else return true;
+		} else
+			return true;
 	}
 
 	public SearchButtonListener(SearchAutoCompleteTextView searchPosition,

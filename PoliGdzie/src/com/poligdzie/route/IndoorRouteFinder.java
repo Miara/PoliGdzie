@@ -8,7 +8,6 @@ import android.util.Log;
 
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
-import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Floor;
 import com.poligdzie.persistence.NavigationConnection;
 import com.poligdzie.persistence.NavigationPoint;
@@ -43,7 +42,8 @@ public class IndoorRouteFinder implements Constants
 
 	}
 
-	public List<NavigationPoint> findRoute(Room start, Room goal) throws SQLException
+	public List<NavigationPoint> findRoute(Room start, Room goal)
+			throws SQLException
 	{
 		List<NavigationConnection> connList;
 		NavigationPoint first = new NavigationPoint(start.getDoorsX(),
@@ -54,16 +54,21 @@ public class IndoorRouteFinder implements Constants
 				goal.getDoorsY(), goal.getFloor(),
 				NavigationPointTypes.NAVIGATION);
 		last.setId(point_id++);
-//TODO: wywalic error code i sprawdzanie go za kazdym razem - lepiej swignac wyjatkiem
+		// TODO: wywalic error code i sprawdzanie go za kazdym razem - lepiej
+		// swignac wyjatkiem
 		if (init(first, last) != ERROR_CODE)
 		{
-			
-			NavigationConnection goalNavigationConnection = dbHelper.getNavigationConnectionDao().queryForId(goal.getNavigationConnection().getId());
-			NavigationConnection startNavigationConnection = dbHelper.getNavigationConnectionDao().queryForId(start.getNavigationConnection().getId());
-			
+
+			NavigationConnection goalNavigationConnection = dbHelper
+					.getNavigationConnectionDao().queryForId(
+							goal.getNavigationConnection().getId());
+			NavigationConnection startNavigationConnection = dbHelper
+					.getNavigationConnectionDao().queryForId(
+							start.getNavigationConnection().getId());
+
 			goal.setNavigationConnection(goalNavigationConnection);
 			start.setNavigationConnection(startNavigationConnection);
-			
+
 			connList = getNearestPointAndMakeConnection(first,
 					startNavigationConnection);
 			if (connList != null)
@@ -79,7 +84,8 @@ public class IndoorRouteFinder implements Constants
 		}
 	}
 
-	public List<NavigationPoint> findRoute(Room start, NavigationPoint goal) throws SQLException
+	public List<NavigationPoint> findRoute(Room start, NavigationPoint goal)
+			throws SQLException
 	{
 		List<NavigationConnection> connList;
 		NavigationPoint first = new NavigationPoint(start.getDoorsX(),
@@ -99,7 +105,8 @@ public class IndoorRouteFinder implements Constants
 		}
 	}
 
-	public List<NavigationPoint> findRoute(NavigationPoint start, Room goal) throws SQLException
+	public List<NavigationPoint> findRoute(NavigationPoint start, Room goal)
+			throws SQLException
 	{
 		List<NavigationConnection> connList;
 		NavigationPoint last = new NavigationPoint(goal.getDoorsX(),
@@ -169,18 +176,23 @@ public class IndoorRouteFinder implements Constants
 	}
 
 	private List<NavigationConnection> getNearestPointAndMakeConnection(
-			NavigationPoint point, NavigationConnection connection) throws SQLException
+			NavigationPoint point, NavigationConnection connection)
+			throws SQLException
 	{
 		double connX1, connY1, connX2, connY2, pointX, pointY;
 
-		connection = dbHelper.getNavigationConnectionDao().queryForId(connection.getId());
-		
-		NavigationPoint firstPoint = dbHelper.getNavigationPointDao().queryForId(connection.getFirstPoint().getId());
-		NavigationPoint lastPoint = dbHelper.getNavigationPointDao().queryForId(connection.getLastPoint().getId());;
-		
+		connection = dbHelper.getNavigationConnectionDao().queryForId(
+				connection.getId());
+
+		NavigationPoint firstPoint = dbHelper.getNavigationPointDao()
+				.queryForId(connection.getFirstPoint().getId());
+		NavigationPoint lastPoint = dbHelper.getNavigationPointDao()
+				.queryForId(connection.getLastPoint().getId());
+		;
+
 		connection.setFirstPoint(firstPoint);
 		connection.setLastPoint(lastPoint);
-		
+
 		connX1 = firstPoint.getCoordX();
 		connY1 = firstPoint.getCoordY();
 		connX2 = lastPoint.getCoordX();
@@ -218,12 +230,15 @@ public class IndoorRouteFinder implements Constants
 			int pointX, int pointY, NavigationPoint point,
 			NavigationConnection connection) throws SQLException
 	{
-		NavigationPoint first = dbHelper.getNavigationPointDao().queryForId(connection.getFirstPoint().getId());
-		NavigationPoint last = dbHelper.getNavigationPointDao().queryForId(connection.getLastPoint().getId());;
+		NavigationPoint first = dbHelper.getNavigationPointDao().queryForId(
+				connection.getFirstPoint().getId());
+		NavigationPoint last = dbHelper.getNavigationPointDao().queryForId(
+				connection.getLastPoint().getId());
+		;
 
 		connection.setFirstPoint(first);
 		connection.setLastPoint(last);
-		
+
 		int firstX = first.getCoordX();
 		int firstY = first.getCoordY();
 		int lastX = last.getCoordX();
@@ -290,8 +305,6 @@ public class IndoorRouteFinder implements Constants
 			return newConnections;
 		}
 
-		
-		
 		List<NavigationConnection> conns = new ArrayList<NavigationConnection>();
 		NavigationPoint finalPoint = new NavigationPoint(addPointX, addPointY,
 				point.getFloor(), NavigationPointTypes.NAVIGATION);
@@ -474,9 +487,12 @@ public class IndoorRouteFinder implements Constants
 		{
 			first = con.getFirstPoint();
 			last = con.getLastPoint();
-			if(first.getFloor() == null || last.getFloor() == null) {
-				first = dbHelper.getNavigationPointDao().queryForId(con.getFirstPoint().getId());
-				last = dbHelper.getNavigationPointDao().queryForId(con.getLastPoint().getId());
+			if (first.getFloor() == null || last.getFloor() == null)
+			{
+				first = dbHelper.getNavigationPointDao().queryForId(
+						con.getFirstPoint().getId());
+				last = dbHelper.getNavigationPointDao().queryForId(
+						con.getLastPoint().getId());
 			}
 			addPoint(first);
 			addPoint(last);

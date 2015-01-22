@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -33,10 +32,10 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 	private int					posX;
 	private int					posY;
 	private ViewGroup			container;
-	private ImageButton				startButton;
-	private ImageButton				goalButton;
-	private ImageButton				showInfoButton;
-	private ImageButton				showIndoorMapButton;
+	private ImageButton			startButton;
+	private ImageButton			goalButton;
+	private ImageButton			showInfoButton;
+	private ImageButton			showIndoorMapButton;
 	private TextView			nameField;
 	private Marker				marker;
 	private MapIndoorFragment	indoorMap;
@@ -63,7 +62,8 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 		startButton = (ImageButton) rootView
 				.findViewById(R.id.infoWindowStartButton);
 		startButton.setOnClickListener(this);
-		goalButton = (ImageButton) rootView.findViewById(R.id.infoWindowGoalButton);
+		goalButton = (ImageButton) rootView
+				.findViewById(R.id.infoWindowGoalButton);
 		goalButton.setOnClickListener(this);
 		showInfoButton = (ImageButton) rootView
 				.findViewById(R.id.infoWindowInfoButton);
@@ -122,7 +122,7 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 		{
 			mapProvider.clearFragments();
 			mapProvider.addGoogleMapFragment();
-			
+
 			int i = 0;
 			Log.d("POLIGDZIE", currentBuildingOnMarker.getName());
 

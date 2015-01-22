@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
@@ -64,11 +65,12 @@ public abstract class PoliGdzieBaseActivity extends FragmentActivity implements
 		transaction.commit();
 		setLastTag(tag);
 	}
-	
+
 	public void clearFragments()
 	{
 		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+		fragmentManager.popBackStack(null,
+				FragmentManager.POP_BACK_STACK_INCLUSIVE);
 	}
 
 	public String getLastTag()
@@ -83,6 +85,15 @@ public abstract class PoliGdzieBaseActivity extends FragmentActivity implements
 
 	public PoliGdzieBaseActivity()
 	{
+		this.dbHelper = new DatabaseHelper(this, DATABASE_NAME, null,
+				DATABASE_VERSION);
+	}
+
+	@Override
+	protected void onCreate(Bundle arg0)
+	{
+		// TODO Auto-generated method stub
+		super.onCreate(arg0);
 		this.dbHelper = new DatabaseHelper(this, DATABASE_NAME, null,
 				DATABASE_VERSION);
 	}
