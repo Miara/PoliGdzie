@@ -16,6 +16,7 @@ import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.base.PoliGdzieMapFragment;
 import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
+import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.persistence.NavigationPoint;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.route.IndoorRouteFinder;
@@ -61,25 +62,6 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		switchFragment(R.id.map_container, outdoorMap, outdoorMap.getViewTag());
 		Log.i("poli","map5");
 		
-		//ind
-		/*try
-		{
-			Room r1 = dbHelper.getRoomDao().queryBuilder().where().eq("id", 22).queryForFirst();
-			Room r2 = dbHelper.getRoomDao().queryBuilder().where().eq("id", 50).queryForFirst();
-			IndoorRouteFinder test = new IndoorRouteFinder(dbHelper);
-			List<NavigationPoint> list = test.findRoute(r1, r2);
-			String mRoute ="";
-			for(NavigationPoint p : list)
-			{
-				mRoute = mRoute + p.getId() + "-" ;
-			}
-			Log.i("ROUTE",""+mRoute);
-		} catch (SQLException e)
-		{
-			Log.i("ROUTE","FAIL!");
-			e.printStackTrace();
-		}*/
-		//ind
 
 		previous = (Button) findViewById(R.id.previous_map);
 		previous.setOnClickListener(this);

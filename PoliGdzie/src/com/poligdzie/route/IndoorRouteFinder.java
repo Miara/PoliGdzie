@@ -154,6 +154,16 @@ public class IndoorRouteFinder implements Constants
 			connections = dbHelper.getNavigationConnectionDao().queryBuilder()
 					.where().in("navigationPointFirst_id", tempPoints).or()
 					.in("navigationPointLast_id", tempPoints).query();
+			
+			/*for(NavigationConnection con : connections)
+			{
+				echo("ConnectionDB Length:"+con.getLength());
+				echo("ConnectionDB Length1:"+getConnectionLength(con.getFirstPoint(), con.getLastPoint()));
+				NavigationPoint one = dbHelper.getNavigationPointDao().queryForId(con.getFirstPoint().getId());
+				NavigationPoint two = dbHelper.getNavigationPointDao().queryForId(con.getLastPoint().getId());
+				echo("ConnectionDB Length2:"+getConnectionLength(one, two));
+				
+			}*/
 			specialConnections = dbHelper.getSpecialConnectionDao()
 					.queryBuilder().where()
 					.in("specialPointLower_id", tempPoints).or()
@@ -296,31 +306,40 @@ public class IndoorRouteFinder implements Constants
 		NavigationPoint finalPoint = new NavigationPoint(addPointX, addPointY,
 				point.getFloor(), NavigationPointTypes.NAVIGATION);
 		finalPoint.setId(point_id++);
+		
+		echo("To point("+point.getId()+"):"+getConnectionLength(finalPoint, point));
+		echo("To first("+connection.getFirstPoint().getId()+"):"+getConnectionLength(finalPoint, connection.getFirstPoint()));
+		echo("To last("+connection.getLastPoint().getId()+"):"+getConnectionLength(finalPoint, connection.getLastPoint()));
+		
 		conns.add(new NavigationConnection(finalPoint, point,
 				getConnectionLength(finalPoint, point)));
+		
 		conns.add(new NavigationConnection(finalPoint, connection
 				.getFirstPoint(), getConnectionLength(finalPoint,
 				connection.getFirstPoint())));
+		
 		conns.add(new NavigationConnection(finalPoint, connection
 				.getLastPoint(), getConnectionLength(finalPoint,
 				connection.getLastPoint())));
+		
 		return conns;
 	}
 
 	private int getConnectionLength(NavigationPoint p1, NavigationPoint p2)
 	{
-
-		int scale;
 		try
 		{
-			scale = dbHelper.getFloorDao().queryForId(p1.getFloor().getId())
+			//NavigationPoint point = dbHelper.getNavigationPointDao().queryForId(p1.getId());
+			int scale = dbHelper.getFloorDao().queryForId(p1.getFloor().getId())
 					.getPixelsPerMeter();
 			double a = p2.getCoordX() - p1.getCoordX();
 			double b = p2.getCoordY() - p1.getCoordY();
 			double length = Math.sqrt(a * a + b * b) / scale;
 			return (int) length;
-		} catch (SQLException e)
+		} 
+		catch (SQLException e)
 		{
+			Log.e("IndoorRouteFinder","ERROR CONNECTION LENGTH");
 			return 0;
 		}
 	}
@@ -348,6 +367,9 @@ public class IndoorRouteFinder implements Constants
 		int i = 0, min;
 		int start = getIndex(p1);
 		int goal = getIndex(p2);
+		
+		echo("p1:"+p1.getId());
+		echo("p2:"+p2.getId());
 
 		boolean finished = false;
 
@@ -364,6 +386,8 @@ public class IndoorRouteFinder implements Constants
 
 		while (!finished)
 		{
+			echo("--------------------------");
+			echo("ACTUAL:"+points.get(actual).getId());
 			for (i = 0; i < graphSize; i++)
 			{
 				if ((graph[actual][i] > 0)
@@ -372,10 +396,11 @@ public class IndoorRouteFinder implements Constants
 				{
 					best[i] = best[actual] + graph[actual][i];
 					previous[i] = actual;
+					echo("best["+points.get(i).getId()+"]="+best[i]);
 				}
 			}
 			checked[actual] = true;
-			min = Integer.MAX_VALUE;
+			min = INTEGER_MAX_VALUE;
 			for (i = 0; i < graphSize; i++)
 			{
 				if ((best[i] < min) && !checked[i])
@@ -397,19 +422,22 @@ public class IndoorRouteFinder implements Constants
 			}
 
 		}
-
-		while ((actual != start) && finished)
+		if(finished)
 		{
-			currentRoute.add(0, points.get(actual));
-			if (previous[actual] != -1)
+			while (	actual != start)
 			{
-				actual = previous[actual];
-			} else
-			{
-				break;
+				currentRoute.add(0, points.get(actual));
+				if (previous[actual] != -1)
+				{
+					actual = previous[actual];
+				} 
+				else
+				{
+					break;
+				}
 			}
+			if(finished)currentRoute.add(0, points.get(actual));
 		}
-		currentRoute.add(0, points.get(actual));
 
 		return currentRoute;
 
@@ -445,7 +473,7 @@ public class IndoorRouteFinder implements Constants
 		previous = new int[graphSize];
 		for (int i = 0; i < graphSize; i++)
 		{
-			best[i] = Integer.MAX_VALUE;
+			best[i] = INTEGER_MAX_VALUE;
 			previous[i] = -1;
 			checked[i] = false;
 			for (int j = 0; j < graphSize; j++)
@@ -457,12 +485,22 @@ public class IndoorRouteFinder implements Constants
 
 	private void fillGraphWithConnectionLength()
 	{
-		for (NavigationConnection con : connections)
+		NavigationConnection con = null;
+		for (NavigationConnection conn : connections)
 		{
+			try
+			{
+				con = dbHelper.getNavigationConnectionDao().queryForId(conn.getId());
+			} catch (SQLException e)
+			{
+				con = conn;
+			}
+			if(con == null) con = conn;
 			int x = getIndex(con.getFirstPoint());
 			int y = getIndex(con.getLastPoint());
 			graph[x][y] = con.getLength();
 			graph[y][x] = con.getLength();
+			echo("["+x+"]["+y+"]="+con.getLength());
 		}
 	}
 
@@ -480,6 +518,8 @@ public class IndoorRouteFinder implements Constants
 			}
 			addPoint(first);
 			addPoint(last);
+			echo("Conn("+con.getId()+"):"+first.getId()+"->"
+					+last.getId() + "|| Len:"+getConnectionLength(first, last));
 		}
 		return points.size();
 	}
@@ -515,5 +555,9 @@ public class IndoorRouteFinder implements Constants
 		}
 		return -1;
 	}
-
+	
+	private void echo(String s)
+	{
+		Log.i("Poligdzie",s);
+	}
 }

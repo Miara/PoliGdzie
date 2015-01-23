@@ -180,6 +180,7 @@ public class CsvReader implements Constants
 			int length 			  = getNavigationConnectionLength(first, last,number);
 			
 			NavigationConnection  connection = new NavigationConnection(first,last,length);
+			echo("("+first.getId()+"->"+last.getId()+")="+length);
 	    	creator.add(connection);
 		}
 		catch(Exception e)
@@ -225,6 +226,10 @@ public class CsvReader implements Constants
 			int doorsY	  			= toInt(value[9]);
 			NavigationConnection navigationConnection 
 									= getNavigationConnection(Integer.parseInt(value[10]));
+			echo("Conn["+name+"]="+navigationConnection.getId());
+			echo("first["+name+"]="+navigationConnection.getFirstPoint());
+			echo("last["+name+"]="+navigationConnection.getLastPoint());
+			
 			String aliases			= value[11];
 	
 			Room  room = new Room(roomNumber,name,function,floor,
@@ -265,9 +270,8 @@ public class CsvReader implements Constants
 	
 	private NavigationPoint getNavigationPoint(int id) throws SQLException
 	{
-		List<NavigationPoint> points = dbHelper.getNavigationPointDao().
-				queryBuilder().where().eq("id", id).query();
-		return points.get(0);
+		NavigationPoint point = dbHelper.getNavigationPointDao().queryForId(id);
+		return point;
 	}
 	
 	private NavigationConnection getNavigationConnection(int id) throws SQLException
@@ -361,18 +365,28 @@ public class CsvReader implements Constants
 	{
 		if( p1.hasEqualFloor(p2.getFloor()) )
 		{
-			int scale = p1.getFloor().getPixelsPerMeter();
-			double a = p2.getCoordX() - p1.getCoordX();
-			double b = p2.getCoordY() - p1.getCoordY();
-			double length = Math.sqrt(a*a + b*b) / scale;
-			return (int)length;
+			try
+			{
+				int scale = dbHelper.getFloorDao().queryForId(p1.getFloor().getId()).getPixelsPerMeter();
+				if(scale != 0)
+				{
+					double a = p2.getCoordX() - p1.getCoordX();
+					double b = p2.getCoordY() - p1.getCoordY();
+					double length = Math.sqrt(a*a + b*b) / scale;
+					return (int)length;
+				}
+			} 
+			catch (SQLException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		else
-		{
-			Log.e("poligdzie",number+":Polaczenie nawigacyjne dotyczy roznych pieter - blad");
-			// TODO : Dodaæ do pliku z b³êdami
-			return -1;
-		}
+		
+		Log.e("poligdzie",number+":Polaczenie nawigacyjne dotyczy roznych pieter - blad");
+		// TODO : Dodaæ do pliku z b³êdami
+		return -1;
+		
 	}
 	
 	

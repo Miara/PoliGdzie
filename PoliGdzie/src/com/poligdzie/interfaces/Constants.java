@@ -5,7 +5,7 @@ public interface Constants
 
 	// baza danych
 	public String	DATABASE_NAME			= "Poligdzie.db";
-	public int		DATABASE_VERSION		= 53;
+	public int		DATABASE_VERSION		= 63;
 
 	// Ustawienia aplikacji w PreferenceManager
 	public String	START_FIELD_VALUE		= "";
@@ -56,6 +56,8 @@ public interface Constants
 	public int ERROR_CODE = -1;
 	
 	public int NEW_NAVIGATION_POINT_ID = 90000;
+	
+	public int INTEGER_MAX_VALUE = 999999;
 	
 	
 
