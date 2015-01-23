@@ -13,13 +13,10 @@ import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.base.PoliGdzieMapFragment;
 import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
-<<<<<<< HEAD
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.persistence.NavigationPoint;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.route.IndoorRouteFinder;
-=======
->>>>>>> 3516068042f766e8805cb38b910aa213467466df
 import com.poligdzie.singletons.DataProvider;
 import com.poligdzie.singletons.MapFragmentProvider;
 

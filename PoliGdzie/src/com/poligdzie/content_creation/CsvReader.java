@@ -192,7 +192,6 @@ public class CsvReader implements Constants
 		{
 			// id;name;www;type;aliases,building,room
 			String[] value = line.split(";");
-<<<<<<< HEAD
 			
 			NavigationPoint first = getNavigationPoint(Integer.parseInt(value[1])) ;
 			NavigationPoint last  = getNavigationPoint(Integer.parseInt(value[2])) ;
@@ -203,19 +202,6 @@ public class CsvReader implements Constants
 	    	creator.add(connection);
 		}
 		catch(Exception e)
-=======
-
-			NavigationPoint first = getNavigationPoint(Integer
-					.parseInt(value[1]));
-			NavigationPoint last = getNavigationPoint(Integer
-					.parseInt(value[2]));
-			int length = getNavigationConnectionLength(first, last, number);
-
-			NavigationConnection connection = new NavigationConnection(first,
-					last, length);
-			creator.add(connection);
-		} catch (Exception e)
->>>>>>> 3516068042f766e8805cb38b910aa213467466df
 		{
 			Log.e("POLIGDZIE", number
 					+ ":Nie dodano polaczenia nawigacyjnego do bazy");
@@ -304,14 +290,8 @@ public class CsvReader implements Constants
 
 	private NavigationPoint getNavigationPoint(int id) throws SQLException
 	{
-<<<<<<< HEAD
 		NavigationPoint point = dbHelper.getNavigationPointDao().queryForId(id);
 		return point;
-=======
-		List<NavigationPoint> points = dbHelper.getNavigationPointDao()
-				.queryBuilder().where().eq("id", id).query();
-		return points.get(0);
->>>>>>> 3516068042f766e8805cb38b910aa213467466df
 	}
 
 	private NavigationConnection getNavigationConnection(int id)
@@ -426,7 +406,6 @@ public class CsvReader implements Constants
 	{
 		if (p1.hasEqualFloor(p2.getFloor()))
 		{
-<<<<<<< HEAD
 			try
 			{
 				int scale = dbHelper.getFloorDao().queryForId(p1.getFloor().getId()).getPixelsPerMeter();
@@ -443,19 +422,6 @@ public class CsvReader implements Constants
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-=======
-			int scale = p1.getFloor().getPixelsPerMeter();
-			double a = p2.getCoordX() - p1.getCoordX();
-			double b = p2.getCoordY() - p1.getCoordY();
-			double length = Math.sqrt(a * a + b * b) / scale;
-			return (int) length;
-		} else
-		{
-			Log.e("poligdzie", number
-					+ ":Polaczenie nawigacyjne dotyczy roznych pieter - blad");
-			// TODO : Dodaæ do pliku z b³êdami
-			return -1;
->>>>>>> 3516068042f766e8805cb38b910aa213467466df
 		}
 		
 		Log.e("poligdzie",number+":Polaczenie nawigacyjne dotyczy roznych pieter - blad");
