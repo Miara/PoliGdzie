@@ -54,13 +54,15 @@ public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
 		List<Building> bs = provider.getBuildings();
 		for (Building b : bs)
 		{
-			if (currentPrompts < MAX_PROMPTS) {
+			if (currentPrompts < MAX_PROMPTS)
+			{
 				if (b.getName().matches(regex) || b.getAliases().matches(regex))
 				{
 					buildings.add(b);
 					currentPrompts++;
 				}
-			} else {
+			} else
+			{
 				break;
 			}
 		}
@@ -68,29 +70,31 @@ public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
 		List<Room> rs = provider.getRooms();
 		for (Room b : rs)
 		{
-			if (currentPrompts < MAX_PROMPTS) {
+			if (currentPrompts < MAX_PROMPTS)
+			{
 				if (b.getName().matches(regex) || b.getAliases().matches(regex))
 				{
 					rooms.add(b);
 					currentPrompts++;
 				}
-			} else {
+			} else
+			{
 				break;
 			}
 		}
 
-		
-		
 		List<Unit> us = provider.getUnits();
 		for (Unit b : us)
 		{
-			if (currentPrompts < MAX_PROMPTS) {
+			if (currentPrompts < MAX_PROMPTS)
+			{
 				if (b.getName().matches(regex) || b.getAliases().matches(regex))
 				{
 					units.add(b);
 					currentPrompts++;
 				}
-			} else {
+			} else
+			{
 				break;
 			}
 		}

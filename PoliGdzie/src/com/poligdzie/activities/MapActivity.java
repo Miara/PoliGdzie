@@ -1,8 +1,5 @@
 package com.poligdzie.activities;
 
-import java.sql.SQLException;
-import java.util.List;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,13 +13,15 @@ import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.base.PoliGdzieMapFragment;
 import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
+<<<<<<< HEAD
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.persistence.NavigationPoint;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.route.IndoorRouteFinder;
+=======
+>>>>>>> 3516068042f766e8805cb38b910aa213467466df
 import com.poligdzie.singletons.DataProvider;
 import com.poligdzie.singletons.MapFragmentProvider;
-import com.poligdzie.tasks.PromptDataTask;
 
 public class MapActivity extends PoliGdzieBaseActivity implements
 														OnClickListener
@@ -45,23 +44,23 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.map_activity);
 
-		Log.i("poli","map1");
-		
+		Log.i("poli", "map1");
+
 		mapProvider = MapFragmentProvider.getInstance();
 
-		PromptDataTask promptDataTask = new PromptDataTask(this);
-		promptDataTask.execute();
-			
-		
-		
-		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna",OUTDOOR_MAP_TAG);
-		
-		Log.i("poli","map4");
-		
+		DataProvider dataProvider = DataProvider.getInstance();
+		dataProvider.initialize(this, dbHelper);
+
+		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna",
+				OUTDOOR_MAP_TAG);
+
+		Log.i("poli", "map4");
 
 		switchFragment(R.id.map_container, outdoorMap, outdoorMap.getViewTag());
+
 		Log.i("poli","map5");
 		
+
 
 		previous = (Button) findViewById(R.id.previous_map);
 		previous.setOnClickListener(this);
@@ -98,18 +97,18 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		{
 			frag = mapProvider.getPreviousFragment();
 			tag = mapProvider.getPreviousKey();
-			
+
 			switchFragment(R.id.map_container, frag, tag);
 		}
-		
+
 		setNavigationArrowsVisibility();
-		
-		
+
 	}
-	
+
 	public void setNavigationArrowsVisibility()
 	{
-		if (mapProvider.getCurrentFragmentKeyPosition() >= (mapProvider.getFragmentsSize() - 1))
+		if (mapProvider.getCurrentFragmentKeyPosition() >= (mapProvider
+				.getFragmentsSize() - 1))
 			next.setVisibility(View.GONE);
 		else
 			next.setVisibility(View.VISIBLE);
@@ -118,13 +117,13 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 			previous.setVisibility(View.GONE);
 		else
 			previous.setVisibility(View.VISIBLE);
-		
-		currentText.setText(mapProvider.getCurrentFragment().getName());	
+
+		currentText.setText(mapProvider.getCurrentFragment().getName());
 	}
 
 	public MapActivity()
 	{
 		super();
 	}
-// TODO : powstawiac w layoutach contentDescription
+	// TODO : powstawiac w layoutach contentDescription
 }

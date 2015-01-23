@@ -21,9 +21,9 @@ import com.poligdzie.persistence.NavigationPoint;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.SpecialConnection;
 import com.poligdzie.persistence.Unit;
-import com.poligdzie.singletons.DataProvider;
 
-public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
+public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements
+															Constants
 {
 
 	public DatabaseHelper(Context context, String databaseName,
@@ -32,13 +32,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 		super(context, databaseName, factory, databaseVersion);
 		this.context = context;
 	}
-	private Context context;
+
+	private Context								context;
 	private Dao<Building, Integer>				buildingDao				= null;
 	private Dao<Unit, Integer>					unitDao					= null;
 	private Dao<Room, Integer>					roomDao					= null;
 	private Dao<Floor, Integer>					floorDao				= null;
 	private Dao<NavigationPoint, Integer>		navigationPointDao		= null;
-	private Dao<BuildingEntry, Integer>		BuildingEntryDao		= null;
+	private Dao<BuildingEntry, Integer>			BuildingEntryDao		= null;
 	private Dao<NavigationConnection, Integer>	navigationConnectionDao	= null;
 	private Dao<SpecialConnection, Integer>		specialConnectionDao	= null;
 
@@ -48,29 +49,31 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 		try
 		{
 			Log.i("DATABASE", "TABLES");
-			
+
 			TableUtils.createTable(connectionSource, Room.class);
 			TableUtils.createTable(connectionSource, Unit.class);
 			TableUtils.createTable(connectionSource, Building.class);
 			TableUtils.createTable(connectionSource, Floor.class);
 			TableUtils.createTable(connectionSource, NavigationPoint.class);
 			TableUtils.createTable(connectionSource, BuildingEntry.class);
-			TableUtils.createTable(connectionSource, NavigationConnection.class);
+			TableUtils
+					.createTable(connectionSource, NavigationConnection.class);
 			TableUtils.createTable(connectionSource, SpecialConnection.class);
-		
-			
-			CsvReader csvReader = new CsvReader(this,context);
-			csvReader.parseCsvToDatabase("Building.csv",CSV_BUILDING);
+
+			CsvReader csvReader = new CsvReader(this, context);
+			csvReader.parseCsvToDatabase("Building.csv", CSV_BUILDING);
 			csvReader.parseCsvToDatabase("Floor.csv", CSV_FLOOR);
-			csvReader.parseCsvToDatabase("NavigationPoint.csv", CSV_NAVIGATION_POINT);
-			csvReader.parseCsvToDatabase("BuildingEntry.csv", CSV_BUILDING_ENTRY);			
-			csvReader.parseCsvToDatabase("NavigationConnection.csv", CSV_NAVIGATION_CONNECTION);
-			csvReader.parseCsvToDatabase("SpecialConnection.csv", CSV_SPECIAL_CONNECTION);
+			csvReader.parseCsvToDatabase("NavigationPoint.csv",
+					CSV_NAVIGATION_POINT);
+			csvReader.parseCsvToDatabase("BuildingEntry.csv",
+					CSV_BUILDING_ENTRY);
+			csvReader.parseCsvToDatabase("NavigationConnection.csv",
+					CSV_NAVIGATION_CONNECTION);
+			csvReader.parseCsvToDatabase("SpecialConnection.csv",
+					CSV_SPECIAL_CONNECTION);
 			csvReader.parseCsvToDatabase("Room.csv", CSV_ROOM);
 			csvReader.parseCsvToDatabase("Unit.csv", CSV_UNIT);
-			
-			
-		
+
 		} catch (SQLException e)
 		{
 
@@ -91,10 +94,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 			TableUtils.dropTable(connectionSource, Unit.class, false);
 			TableUtils.dropTable(connectionSource, Building.class, false);
 			TableUtils.dropTable(connectionSource, Floor.class, false);
-			TableUtils.dropTable(connectionSource, NavigationPoint.class,false);
-			TableUtils.dropTable(connectionSource, BuildingEntry.class,false);
-			TableUtils.dropTable(connectionSource, NavigationConnection.class,false);
-			TableUtils.dropTable(connectionSource, SpecialConnection.class,false);
+			TableUtils
+					.dropTable(connectionSource, NavigationPoint.class, false);
+			TableUtils.dropTable(connectionSource, BuildingEntry.class, false);
+			TableUtils.dropTable(connectionSource, NavigationConnection.class,
+					false);
+			TableUtils.dropTable(connectionSource, SpecialConnection.class,
+					false);
 			Log.i("DATABASE", "upgrade2");
 			this.onCreate(db, connectionSource);
 		} catch (SQLException e)
@@ -139,10 +145,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 		}
 		return floorDao;
 	}
-	
-	
 
-	public Dao<NavigationPoint, Integer> getNavigationPointDao() throws SQLException
+	public Dao<NavigationPoint, Integer> getNavigationPointDao()
+			throws SQLException
 	{
 		if (navigationPointDao == null)
 		{
@@ -150,8 +155,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 		}
 		return navigationPointDao;
 	}
-	
-	public Dao<BuildingEntry, Integer> getBuildingEntryDao() throws SQLException
+
+	public Dao<BuildingEntry, Integer> getBuildingEntryDao()
+			throws SQLException
 	{
 		if (BuildingEntryDao == null)
 		{
@@ -160,7 +166,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 		return BuildingEntryDao;
 	}
 
-	public Dao<NavigationConnection, Integer> getNavigationConnectionDao() throws SQLException
+	public Dao<NavigationConnection, Integer> getNavigationConnectionDao()
+			throws SQLException
 	{
 		if (navigationConnectionDao == null)
 		{
@@ -169,7 +176,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 		return navigationConnectionDao;
 	}
 
-	public Dao<SpecialConnection, Integer> getSpecialConnectionDao() throws SQLException
+	public Dao<SpecialConnection, Integer> getSpecialConnectionDao()
+			throws SQLException
 	{
 		if (specialConnectionDao == null)
 		{
@@ -187,7 +195,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements Constants
 		roomDao = null;
 		floorDao = null;
 		navigationPointDao = null;
-		BuildingEntryDao = null ;
+		BuildingEntryDao = null;
 		navigationConnectionDao = null;
 		specialConnectionDao = null;
 	}

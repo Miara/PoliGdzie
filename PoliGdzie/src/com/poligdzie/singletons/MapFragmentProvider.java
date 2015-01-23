@@ -27,9 +27,7 @@ public class MapFragmentProvider extends PoliGdzieBaseClass
 																	52.4022703,
 																	16.9495847);
 
-	PoliGdzieMapFragment googleMapFragment;
-	
-	
+	PoliGdzieMapFragment				googleMapFragment;
 
 	protected MapFragmentProvider()
 	{
@@ -50,7 +48,7 @@ public class MapFragmentProvider extends PoliGdzieBaseClass
 
 	public void addFragment(String tag, PoliGdzieMapFragment fragment)
 	{
-		if( fragment instanceof MapOutdoorFragment)
+		if (fragment instanceof MapOutdoorFragment)
 		{
 			this.googleMapFragment = fragment;
 		}
@@ -140,8 +138,7 @@ public class MapFragmentProvider extends PoliGdzieBaseClass
 	{
 		this.currentKey = currentKey;
 	}
-	
-	
+
 	public PoliGdzieMapFragment getGoogleMapFragment()
 	{
 		return googleMapFragment;
@@ -150,7 +147,7 @@ public class MapFragmentProvider extends PoliGdzieBaseClass
 	public void addGoogleMapFragment()
 	{
 		fragments.addFragment(OUTDOOR_MAP_TAG, googleMapFragment);
-		keys.add(OUTDOOR_MAP_TAG);	
+		keys.add(OUTDOOR_MAP_TAG);
 	}
 
 	public void clearFragments()
@@ -158,7 +155,5 @@ public class MapFragmentProvider extends PoliGdzieBaseClass
 		fragments.clear();
 		keys.clear();
 	}
-
-	
 
 }

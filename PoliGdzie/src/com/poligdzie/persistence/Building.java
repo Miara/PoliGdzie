@@ -16,7 +16,7 @@ public class Building extends PoliGdzieBaseClass implements Nameable,
 	@DatabaseField(generatedId = true)
 	private int							id;
 
-	@DatabaseField (index = true)
+	@DatabaseField(index = true)
 	private String						name;
 
 	@DatabaseField
@@ -34,7 +34,7 @@ public class Building extends PoliGdzieBaseClass implements Nameable,
 	@DatabaseField
 	private int							height;
 
-	@DatabaseField (index = true)
+	@DatabaseField(index = true)
 	private String						aliases;
 
 	@DatabaseField

@@ -8,7 +8,7 @@ import com.poligdzie.base.PoliGdzieBaseClass;
 public class SpecialConnection extends PoliGdzieBaseClass
 {
 	@DatabaseField(generatedId = true)
-	private int			id;
+	private int				id;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "specialPointLower_id")
 	private NavigationPoint	lowerFloor;
@@ -16,17 +16,15 @@ public class SpecialConnection extends PoliGdzieBaseClass
 	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "specialPointUpper_id")
 	private NavigationPoint	upperFloor;
 
-
 	public int getId()
 	{
 		return id;
 	}
-	
+
 	public void setId(int id)
 	{
 		this.id = id;
 	}
-
 
 	public NavigationPoint getLowerPoint()
 	{
@@ -48,7 +46,7 @@ public class SpecialConnection extends PoliGdzieBaseClass
 		this.upperFloor = upperFloor;
 	}
 
-	public  SpecialConnection()
+	public SpecialConnection()
 	{
 		// nie wyrzucac !
 	}
