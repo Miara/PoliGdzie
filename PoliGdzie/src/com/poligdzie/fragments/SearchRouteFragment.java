@@ -13,6 +13,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.poligdzie.base.PoliGdzieBaseFragment;
 import com.poligdzie.interfaces.Nameable;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
+import com.poligdzie.listeners.FragmentSwitchListener;
 import com.poligdzie.listeners.RouteButtonListener;
 import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
@@ -30,9 +31,10 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 	private ContextSearchTextWatcher	goalWatcher;
 
 	private BuildingInfoFragment		buildingInfoFragment;
-
+	private Button						switchFragmentButton;
 	private GoogleMap					map;
 	private MapOutdoorFragment			outdoorMap;
+	private SearchPlaceFragment			searchFragment;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,6 +80,11 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 			searchButton.setOnClickListener(new RouteButtonListener(
 					startPosition, goalPosition, map, outdoorMap, this));
 
+		
+
+		switchFragmentButton = (Button) rootView
+				.findViewById(R.id.button_route_switch_fragment);
+		switchFragmentButton.setOnClickListener(new FragmentSwitchListener(this.getActivity()));
 		return rootView;
 	}
 
