@@ -2,71 +2,89 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:visibility="gone" >
 
+    <ImageButton
+            android:id="@+id/button_route_switch_fragment"
+            android:layout_width="30dp"
+            android:layout_height="80dp"
+            android:background="@drawable/vertical_switch"
+            android:contentDescription="S" />
+    
+    <RelativeLayout
+        android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:orientation="horizontal" >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/button_route_switch_fragment"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.1"
-            android:gravity="right"
-            android:text="&lt;" />
-
+        android:layout_toLeftOf="@+id/button_search_trace"
+        android:orientation="vertical" >
+      
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.6"
-            android:orientation="vertical" >
-
-            <LinearLayout style="@style/SearchEdit.Linear" >
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/search_edit_height"
+            android:orientation="horizontal" >
 
                 <ImageView
-                    style="@style/SearchEdit.Image"
-                    android:src="@drawable/z_nogps" />
-
-                <LinearLayout
-                    style="@style/SearchEdit.Linear"
-                    android:weightSum="1.0" >
+                    android:background="#FFFFFF"
+                    android:layout_height="@dimen/search_edit_height"
+                    android:layout_width="@dimen/search_edit_height"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/z_nogps"
+                    android:contentDescription="" />
 
                     <com.poligdzie.widgets.SearchAutoCompleteTextView
                         android:id="@+id/starting_point_text_edit"
-                        style="@style/SearchEdit.Edit"
-                        android:hint="Twoja bieżąca lokalizacja" >
-
+                        android:background="#FFFFFF"
+                        android:completionThreshold="1"
+                        android:layout_height="@dimen/search_edit_height"
+                        android:layout_width="match_parent"
+                        android:hint="Skąd ?" >
                         <requestFocus />
-                    </com.poligdzie.widgets.SearchAutoCompleteTextView>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout style="@style/SearchEdit.Linear" >
+                    </com.poligdzie.widgets.SearchAutoCompleteTextView>                 
+			        
+        </LinearLayout>
+        
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/search_edit_height"
+            android:orientation="horizontal" >
 
                 <ImageView
-                    style="@style/SearchEdit.Image"
-                    android:src="@drawable/do_nogps" />
-
-                <LinearLayout
-                    style="@style/SearchEdit.Linear"
-                    android:weightSum="1.0" >
+                    android:background="#FFFFFF"
+                    android:layout_height="@dimen/search_edit_height"
+                    android:layout_width="@dimen/search_edit_height"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/do_nogps"
+                    android:contentDescription="" />
 
                     <com.poligdzie.widgets.SearchAutoCompleteTextView
                         android:id="@+id/goal_point_text_edit"
-                        style="@style/SearchEdit.Edit" />
-                </LinearLayout>
-            </LinearLayout>
+                        android:background="#FFFFFF"
+                        android:completionThreshold="1"
+                        android:layout_height="@dimen/search_edit_height"
+                        android:layout_width="match_parent"
+                        android:hint="Dokąd ?" >
+                        <requestFocus />
+                    </com.poligdzie.widgets.SearchAutoCompleteTextView>                 
+			        
         </LinearLayout>
-
-        <Button
-            android:id="@+id/button_search_trace"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.3"
-            android:text="Wyznacz trasę" />
+        
     </LinearLayout>
-
-</LinearLayout>
+    
+    
+           
+	<ImageButton
+          android:id="@+id/button_search_trace"
+          android:layout_height="80dp"
+             android:layout_width="80dp"
+          android:background="@drawable/binoculars"
+          android:layout_alignParentRight="true"
+          android:text="Znajdź" />
+	</RelativeLayout>
+        
+ </LinearLayout>       

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.poligdzie.R;
 import com.google.android.gms.maps.GoogleMap;
@@ -17,9 +18,9 @@ import com.poligdzie.widgets.SearchAutoCompleteTextView;
 public class SearchPlaceFragment extends PoliGdzieBaseFragment
 {
 
-	private Button						searchButton;
+	private ImageButton						searchButton;
 	private ContextSearchTextWatcher	searchWatcher;
-	private Button						switchFragmentButton;
+	private ImageButton						switchFragmentButton;
 	private SearchAutoCompleteTextView	searchPosition;
 	private GoogleMap					map;
 	private MapOutdoorFragment			outdoorMap;
@@ -41,11 +42,11 @@ public class SearchPlaceFragment extends PoliGdzieBaseFragment
 
 		
 
-		switchFragmentButton = (Button) rootView
+		switchFragmentButton = (ImageButton) rootView
 				.findViewById(R.id.button_search_switch_fragment);
 		switchFragmentButton.setOnClickListener(new FragmentSwitchListener(this.getActivity()));
 
-		searchButton = (Button) rootView.findViewById(R.id.button_search_place);
+		searchButton = (ImageButton) rootView.findViewById(R.id.button_search_place);
 
 		if (searchButton != null)
 			searchButton.setOnClickListener(new SearchButtonListener(

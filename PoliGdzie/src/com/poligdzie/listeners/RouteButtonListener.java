@@ -41,7 +41,7 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 	private void showIndoorRoute(Object startObject, Object goalObject,
 			int entryFloorNumber, int indoorMode) throws SQLException
 	{
-
+		// TODO: Obd³uga b³êdów : jeœli sciezka jest pusta to ma pokazywac plan pietra punktu startowego
 		List<NavigationPoint> routePoints = new ArrayList<NavigationPoint>();
 		IndoorRouteFinder finder = new IndoorRouteFinder(dbHelper);
 		if (startObject instanceof Room && goalObject instanceof Room)
@@ -153,8 +153,8 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 								.getGoogleMapFragment().getViewTag());
 				// TODO: Draw route
 				// TODO zabezpieczyc, zebye nie bylo indeksu poza granicami
-				NavigationPoint startIndoorPoint = entrances.get(1)
-						.getNavigationPoint(); // 2nd building entry
+				NavigationPoint startIndoorPoint = dbHelper.getNavigationPointDao().
+						queryForId(entrances.get(1).getNavigationPoint().getId()); // 2nd building entry
 				if (goalObject instanceof NavigationPoint)
 				{
 					// TODO: navigation point route (clicked points on bitmap )
@@ -166,8 +166,8 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 				}
 			} else if (goalObject instanceof Building)
 			{
-				NavigationPoint goalIndoorPoint = entrances.get(0)
-						.getNavigationPoint(); // 2nd building entry
+				NavigationPoint goalIndoorPoint = dbHelper.getNavigationPointDao().
+						queryForId(entrances.get(0).getNavigationPoint().getId()); // 2nd building entry
 				if (startObject instanceof NavigationPoint)
 				{
 					// TODO: navigation point route (clicked points on bitmap )

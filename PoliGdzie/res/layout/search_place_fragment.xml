@@ -1,55 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:visibility="visible" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal" >
-
-        <Button
+        <ImageButton
             android:id="@+id/button_search_switch_fragment"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.1"
-            android:gravity="right"
-            android:text="&lt;" />
+            android:layout_width="30dp"
+            android:layout_height="@dimen/search_edit_height"
+            android:background="@drawable/vertical_switch"
+            android:contentDescription="S" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.6"
-            android:orientation="vertical" >
-
-            <LinearLayout style="@style/SearchEdit.Linear" >
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/search_edit_height"
+            android:orientation="horizontal" >
 
                 <ImageView
-                    style="@style/SearchEdit.Image"
-                    android:src="@drawable/lupa" />
-
-                <LinearLayout style="@style/SearchEdit.Linear" >
+                    android:background="#FFFFFF"
+                    android:layout_height="@dimen/search_edit_height"
+                    android:layout_width="@dimen/search_edit_height"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/lupa"
+                    android:contentDescription="" />
+			<RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
 
                     <com.poligdzie.widgets.SearchAutoCompleteTextView
                         android:id="@+id/search_point_text_edit"
-                        style="@style/SearchEdit.Edit"
+                        android:background="#FFFFFF"
+                        android:completionThreshold="1"
+                        android:layout_height="@dimen/search_edit_height"
+                        android:layout_width="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignRight = "@+id/button_search_place"
                         android:hint="Czego szukasz?" >
-
                         <requestFocus />
                     </com.poligdzie.widgets.SearchAutoCompleteTextView>
-                </LinearLayout>
-            </LinearLayout>
+
+                   <!--  <ImageButton
+			            android:id="@+id/delete_search_text"
+			            android:layout_height="20dp"
+		                android:layout_width="20dp"
+		                android:layout_marginTop="10dp"
+		                android:layout_marginRight="10dp"
+			            android:background="@drawable/delete_control"
+			            android:layout_alignRight = "@+id/button_search_place"
+			            android:text="Znajdź" /> -->
+                    
+			        <ImageButton
+			            android:id="@+id/button_search_place"
+			            android:layout_height="@dimen/search_edit_height"
+		                android:layout_width="@dimen/search_edit_height"
+			            android:background="@drawable/binoculars"
+			            android:layout_alignParentRight="true"
+			            android:text="Znajdź" />
+				</RelativeLayout>
         </LinearLayout>
-
-        <Button
-            android:id="@+id/button_search_place"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.3"
-            android:gravity="right"
-            android:text="Znajdź" />
-    </LinearLayout>
-
 </LinearLayout>

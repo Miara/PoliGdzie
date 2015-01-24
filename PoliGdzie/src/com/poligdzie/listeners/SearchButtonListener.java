@@ -1,8 +1,11 @@
 package com.poligdzie.listeners;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
@@ -38,6 +41,7 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 	private SearchAutoCompleteTextView	searchPosition;
 	private PoliGdzieBaseFragment		fragment;
 	private MapFragmentProvider			mapFragmentProvider;
+	private DatabaseHelper 				dbHelper;
 
 	private void showPlaceOutdoor(Object object)
 	{
@@ -80,47 +84,58 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 		}
 	}
 
-	private ForeignCollection<Floor> getFloors(Object object)
+	private List<Floor> getFloors(Object object) throws SQLException
 	{
+		List<Floor> floors ;
 		if (object instanceof Room)
 		{
-			Room room = (Room) object;
-			return room.getBuilding().getFloors();
+			Room room = dbHelper.getRoomDao().queryForId(((Room) object).getId());
+			floors = dbHelper.getFloorDao().queryBuilder().where().
+					eq("building_id", room.getBuilding().getId()).query();
+			return floors;
 		}
 
 		if (object instanceof Unit)
 		{
-			Unit unit = (Unit) object;
-			return unit.getBuilding().getFloors();
+			Unit unit = dbHelper.getUnitDao().queryForId(((Unit) object).getId());
+			floors = dbHelper.getFloorDao().queryBuilder().where().
+					eq("building_id", unit.getBuilding().getId()).query();
+			return floors;
 		}
 		return null;
 	}
 
-	private String getTag(Object object)
+	private String getTag(Object object) throws SQLException
 	{
 		if (object instanceof Room)
 		{
-			Room room = (Room) object;
-			return room.getFloor().getTag();
+			Room room = dbHelper.getRoomDao().queryForId(((Room) object).getId());
+			Floor floor = dbHelper.getFloorDao().queryForId(room.getFloor().getId());
+			return floor.getTag();
 		}
 
 		if (object instanceof Unit)
 		{
-			Unit unit = (Unit) object;
-			return unit.getOffice().getFloor().getTag();
+			Unit unit = dbHelper.getUnitDao().queryForId(((Unit) object).getId());
+			Room room = dbHelper.getRoomDao().queryForId(unit.getOffice().getId());
+			Floor floor = dbHelper.getFloorDao().queryForId(room.getFloor().getId());
+			return floor.getTag();
 		}
 		return null;
 	}
 
 	private void showPlaceIndoor(Object object)
 	{
-
+		try
+		{
 		mapFragmentProvider.addGoogleMapFragment();
 
 		for (Floor f : getFloors(object))
 		{
+			echo("test");
+			echo(f.getTag());
 			MapIndoorFragment indoorMap = new MapIndoorFragment(
-					f.getDrawableId(), f.getName(), f.getTag(), f.getNumber());
+					f.getDrawableId(), f.getName(), f.getTag(), f.getId());
 			if (f.getTag().equals(getTag(object)))
 			{
 				((PoliGdzieBaseActivity) fragment.getActivity())
@@ -132,6 +147,11 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 
 		((OnClickListener) fragment.getActivity()).onClick(fragment
 				.getActivity().findViewById(R.layout.map_activity));
+		}
+		catch(Exception e)
+		{
+			Log.e("Poligdzie","Search Button listener ERROR");
+		}
 	}
 
 	private LatLng getCoords(Object object)
@@ -219,6 +239,8 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 		this.searchPosition = searchPosition;
 		this.fragment = fragment;
 		this.mapFragmentProvider = MapFragmentProvider.getInstance();
+		this.dbHelper = new DatabaseHelper(fragment.getActivity(),
+				DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
 }

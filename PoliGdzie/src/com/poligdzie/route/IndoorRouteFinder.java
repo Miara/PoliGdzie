@@ -42,9 +42,12 @@ public class IndoorRouteFinder implements Constants
 
 	}
 
-	public List<NavigationPoint> findRoute(Room start, Room goal)
+	public List<NavigationPoint> findRoute(Room r1, Room r2)
 			throws SQLException
 	{
+		Room start = dbHelper.getRoomDao().queryForId(r1.getId());
+		Room goal = dbHelper.getRoomDao().queryForId(r2.getId());
+		
 		List<NavigationConnection> connList;
 		NavigationPoint first = new NavigationPoint(start.getDoorsX(),
 				start.getDoorsY(), start.getFloor(),
@@ -65,6 +68,7 @@ public class IndoorRouteFinder implements Constants
 			NavigationConnection startNavigationConnection = dbHelper
 					.getNavigationConnectionDao().queryForId(
 							start.getNavigationConnection().getId());
+			
 
 			goal.setNavigationConnection(goalNavigationConnection);
 			start.setNavigationConnection(startNavigationConnection);
@@ -348,7 +352,15 @@ public class IndoorRouteFinder implements Constants
 			double a = p2.getCoordX() - p1.getCoordX();
 			double b = p2.getCoordY() - p1.getCoordY();
 			double length = Math.sqrt(a * a + b * b) / scale;
-			return (int) length;
+			int len = (int) length;
+			if(len == 0)
+			{
+				return 1;
+			}
+			else
+			{
+				return len;
+			}
 		} 
 		catch (SQLException e)
 		{
@@ -399,8 +411,8 @@ public class IndoorRouteFinder implements Constants
 
 		while (!finished)
 		{
-			echo("--------------------------");
-			echo("ACTUAL:"+points.get(actual).getId());
+			//echo("--------------------------");
+			//echo("ACTUAL:"+points.get(actual).getId());
 			for (i = 0; i < graphSize; i++)
 			{
 				if ((graph[actual][i] > 0)
@@ -428,7 +440,7 @@ public class IndoorRouteFinder implements Constants
 				finished = true;
 				Log.i("poligdzie", "znaleziono punkt goal");
 			} else if (allNodesChecked()
-					|| ((System.currentTimeMillis() - startTime) > 5000))
+					|| ((System.currentTimeMillis() - startTime) > 500))
 			{
 				Log.i("poligdzie", "nie znaleziono punktu goal");
 				break;

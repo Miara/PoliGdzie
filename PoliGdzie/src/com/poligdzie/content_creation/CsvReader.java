@@ -248,9 +248,6 @@ public class CsvReader implements Constants
 			int doorsY	  			= toInt(value[9]);
 			NavigationConnection navigationConnection 
 									= getNavigationConnection(Integer.parseInt(value[10]));
-			echo("Conn["+name+"]="+navigationConnection.getId());
-			echo("first["+name+"]="+navigationConnection.getFirstPoint());
-			echo("last["+name+"]="+navigationConnection.getLastPoint());
 			
 			String aliases			= value[11];
 	
