@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/testowy_layout"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
-        <fragment
-            android:id="@+id/search_place_frag"
-            android:name="com.poligdzie.fragments.SearchPlaceFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <fragment
+		 <fragment
             android:id="@+id/search_route_frag"
             android:name="com.poligdzie.fragments.SearchRouteFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:layout_margin="10dp" />
 		<RelativeLayout
+		    android:id="@+id/fragments_container"
 		    android:layout_width="match_parent"
             android:layout_height="match_parent">
 		     <LinearLayout
@@ -24,12 +20,18 @@
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
 	            android:orientation="vertical" />
+		      <fragment
+	            android:id="@+id/search_place_frag"
+	            android:name="com.poligdzie.fragments.SearchPlaceFragment"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_margin="10dp" />     
 		     <TextView
 		        android:id="@+id/current_map"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:layout_alignParentTop="true"
 		        android:layout_centerInParent="true"
+		        android:layout_below="@+id/search_place_frag"
 		        android:background="#000000"
 		        android:textColor="#FFFFFF" />
 		    <Button
