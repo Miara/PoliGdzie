@@ -1,11 +1,15 @@
 package com.poligdzie.activities;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.poligdzie.R;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -13,10 +17,6 @@ import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.base.PoliGdzieMapFragment;
 import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
-import com.poligdzie.helpers.DatabaseHelper;
-import com.poligdzie.persistence.NavigationPoint;
-import com.poligdzie.persistence.Room;
-import com.poligdzie.route.IndoorRouteFinder;
 import com.poligdzie.singletons.DataProvider;
 import com.poligdzie.singletons.MapFragmentProvider;
 
@@ -41,6 +41,11 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.map_activity);
 
+		if(!isNetworkAvailable()) {
+			Toast t = Toast.makeText(this, "Brak polaczenie z internetosem!", Toast.LENGTH_LONG);
+			t.show();
+		}
+		
 		Log.i("poli", "map1");
 
 		mapProvider = MapFragmentProvider.getInstance();
@@ -118,6 +123,13 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		currentText.setText(mapProvider.getCurrentFragment().getName());
 	}
 
+	private boolean isNetworkAvailable() {
+	    ConnectivityManager connectivityManager 
+	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+	}
+	
 	public MapActivity()
 	{
 		super();

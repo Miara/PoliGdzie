@@ -8,7 +8,7 @@ import com.poligdzie.interfaces.Nameable;
 @DatabaseTable(tableName = "room")
 public class Room extends PoliGdzieBaseClass implements Nameable
 {
-	@DatabaseField(generatedId = true)
+	@DatabaseField(id = true)
 	private int						id;
 
 	@DatabaseField(index = true)

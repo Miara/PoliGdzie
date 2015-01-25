@@ -7,7 +7,7 @@ import com.poligdzie.base.PoliGdzieBaseClass;
 @DatabaseTable(tableName = "specialConnection")
 public class SpecialConnection extends PoliGdzieBaseClass
 {
-	@DatabaseField(generatedId = true)
+	@DatabaseField(id = true)
 	private int				id;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "specialPointLower_id")

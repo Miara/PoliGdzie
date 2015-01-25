@@ -1,5 +1,9 @@
 package com.poligdzie.helpers;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 
 import android.content.Context;
@@ -7,11 +11,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.util.Log;
 
+import com.example.poligdzie.R;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import com.poligdzie.content_creation.CsvReader;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.BuildingEntry;
@@ -50,7 +54,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements
 		{
 			Log.i("DATABASE", "TABLES");
 
-			TableUtils.createTable(connectionSource, Room.class);
+			/*TableUtils.createTable(connectionSource, Room.class);
 			TableUtils.createTable(connectionSource, Unit.class);
 			TableUtils.createTable(connectionSource, Building.class);
 			TableUtils.createTable(connectionSource, Floor.class);
@@ -72,12 +76,33 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements
 			csvReader.parseCsvToDatabase("SpecialConnection.csv",
 					CSV_SPECIAL_CONNECTION);
 			csvReader.parseCsvToDatabase("Room.csv", CSV_ROOM);
-			csvReader.parseCsvToDatabase("Unit.csv", CSV_UNIT);
+			csvReader.parseCsvToDatabase("Unit.csv", CSV_UNIT);*/
+			
+			File currentDb = new File(db.getPath());
+			InputStream newDb = context.getResources().openRawResource(R.raw.poligdzie);
+			if(currentDb.exists()) {
+				currentDb.delete();
+			}
+			
+			
+			
+			currentDb.createNewFile();
+			
+            FileOutputStream dst = new FileOutputStream(currentDb);
+            byte bytes[] = new byte[1024];
+            int len = 0;
+            while((len = newDb.read(bytes)) > 0) {
+            	dst.write(bytes);
+            }
+            dst.close();
+            newDb.close();
+            
+            
 
-		} catch (SQLException e)
+		} catch (IOException e)
 		{
-
-			throw new RuntimeException(e);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}

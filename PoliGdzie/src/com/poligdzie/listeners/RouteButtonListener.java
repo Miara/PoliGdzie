@@ -74,7 +74,6 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 				points.add(routePoint);
 				previousFloor = dbHelper.getFloorDao().queryForId(
 						getFloor(routePoint).getId());
-				;
 				floors.add(previousFloor);
 				continue;
 			}

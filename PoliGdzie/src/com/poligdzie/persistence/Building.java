@@ -13,7 +13,7 @@ import com.poligdzie.interfaces.WithCoordinates;
 public class Building extends PoliGdzieBaseClass implements Nameable,
 												Imageable, WithCoordinates
 {
-	@DatabaseField(generatedId = true)
+	@DatabaseField(id = true)
 	private int							id;
 
 	@DatabaseField(index = true)

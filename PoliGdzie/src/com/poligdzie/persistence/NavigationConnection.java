@@ -7,7 +7,7 @@ import com.poligdzie.base.PoliGdzieBaseClass;
 @DatabaseTable(tableName = "navigationConnection")
 public class NavigationConnection extends PoliGdzieBaseClass
 {
-	@DatabaseField(generatedId = true)
+	@DatabaseField(id = true)
 	private int				id;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "navigationPointFirst_id")
