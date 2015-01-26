@@ -95,14 +95,30 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 		if(v == switchPositionButton)
 		{
 			drawingProvider = MapDrawingProvider.getInstance();
-			Object newStartObj = goalPosition.getAdapter().getItem(0);
-			Object newGoalObj = startPosition.getAdapter().getItem(0);
+			
+			Object newStartObj = null;
+			String newStartName = "";
+			Object newGoalObj = null;
+			String newGoalName = "";
+			
+			if(!goalPosition.getAdapter().isEmpty())
+			{
+				newStartObj = goalPosition.getAdapter().getItem(0);
+				newStartName = ((Nameable)newStartObj).getName();
+			}
+			
+			if(!startPosition.getAdapter().isEmpty())
+			{
+				newGoalObj = startPosition.getAdapter().getItem(0);
+				newGoalName = ((Nameable)newGoalObj).getName();
+			}
 			
 			drawingProvider.setStart(newStartObj);
 			drawingProvider.setGoal(newGoalObj);
 			
-			this.setGoalPosition(((Nameable)newGoalObj).getName());
-			this.setStartPosition(((Nameable)newStartObj).getName());
+			
+			this.setGoalPosition(newGoalName);
+			this.setStartPosition(newStartName);
 		}
 
 		/*
