@@ -39,7 +39,7 @@
        android:layout_width="1dp"
        android:layout_height="80dp" 
        android:layout_toLeftOf="@+id/search_description_right"
-       android:background="@drawable/gradient_white_gray" />
+       android:background="@drawable/gradient_white_gray_vertical" />
     <LinearLayout 
         android:id="@+id/search_description_right"
         android:layout_width="80dp"
@@ -50,7 +50,7 @@
            	android:layout_width="48dp"
 	        android:layout_height="48dp"
 	        android:layout_margin="16dp"
-	        android:background="@drawable/route_icon"/>
+	        android:background="@drawable/route_icon_with_name"/>
     </LinearLayout>
 
 </RelativeLayout>

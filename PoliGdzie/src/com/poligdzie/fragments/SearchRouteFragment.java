@@ -34,6 +34,7 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 	private BuildingInfoFragment		buildingInfoFragment;
 	private ImageButton					switchFragmentButton;
 	private ImageButton					deleteTextButton;
+	private ImageButton					switchPositionButton;
 	private GoogleMap					map;
 	private MapOutdoorFragment			outdoorMap;
 	private SearchPlaceFragment			searchFragment;
@@ -81,18 +82,28 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 		if (searchButton != null)
 			searchButton.setOnClickListener(new RouteButtonListener(
 					startPosition, goalPosition, map, outdoorMap, this));
-
+		switchPositionButton = (ImageButton) rootView.findViewById(R.id.search_route_switch_positions);
+		if (switchPositionButton != null)
+			switchPositionButton.setOnClickListener(this);
 		
-
-		/*switchFragmentButton = (ImageButton) rootView
-				.findViewById(R.id.button_route_switch_fragment);
-		switchFragmentButton.setOnClickListener(new FragmentSwitchListener(this.getActivity()));*/
 		return rootView;
 	}
 
 	@Override
 	public void onClick(View v)
 	{
+		if(v == switchPositionButton)
+		{
+			drawingProvider = MapDrawingProvider.getInstance();
+			Object newStartObj = goalPosition.getAdapter().getItem(0);
+			Object newGoalObj = startPosition.getAdapter().getItem(0);
+			
+			drawingProvider.setStart(newStartObj);
+			drawingProvider.setGoal(newGoalObj);
+			
+			this.setGoalPosition(((Nameable)newGoalObj).getName());
+			this.setStartPosition(((Nameable)newStartObj).getName());
+		}
 
 		/*
 		 * drawingProvider = MapDrawingProvider.getInstance();

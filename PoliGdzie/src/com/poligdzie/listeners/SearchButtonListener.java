@@ -248,7 +248,7 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 						Building building = dbHelper.getBuildingDao().
 									queryForId(((Room)object).getBuilding().getId());
 						
-						details = building.getName() + "," + building.getAddress();
+						details = building.getName() ;
 					} else if (object instanceof Unit)
 					{
 						Unit unit = (Unit) object;
@@ -257,7 +257,7 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 						name = ((Room)object).getName();
 						Building building = dbHelper.getBuildingDao().
 									queryForId(room.getBuilding().getId());
-						details = building.getName() + "," + building.getAddress();
+						details = building.getName() ;
 						
 						if (unit.getOffice() != null)
 						{
