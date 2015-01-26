@@ -5,7 +5,7 @@ public interface Constants
 
 	// baza danych
 	public String	DATABASE_NAME			= "Poligdzie.db";
-	public int		DATABASE_VERSION		= 68;
+	public int		DATABASE_VERSION		= 69;
 
 
 	// Ustawienia aplikacji w PreferenceManager

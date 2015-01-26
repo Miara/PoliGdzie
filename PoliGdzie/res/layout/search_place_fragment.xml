@@ -7,16 +7,16 @@
     android:visibility="visible" >
 	<LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="32dp"
+      android:layout_height="38dp"
       android:orientation="horizontal"
       android:background="#FFFFFF"
       android:layout_margin="1dp" >
 
            <ImageView
                android:background="#FFFFFF"
-               android:layout_height="20dp"
-               android:layout_width="20dp"
-               android:layout_margin="5dp"
+               android:layout_height="24dp"
+               android:layout_width="24dp"
+               android:layout_margin="6dp"
                android:adjustViewBounds="true"
                android:scaleType="fitXY"
                android:src="@drawable/lupa"
@@ -30,7 +30,7 @@
                     android:id="@+id/search_point_text_edit"
                     android:background="#FFFFFF"
                     android:completionThreshold="1"
-                    android:layout_height="30dp"
+                    android:layout_height="36dp"
                     android:layout_width="match_parent"
                     android:layout_alignParentLeft="true"
                     android:layout_toLeftOf = "@+id/button_search_switch_fragment"
@@ -40,20 +40,20 @@
 
 				<ImageButton
 		            android:id="@+id/button_search_switch_fragment"
-		            android:layout_width="20dp"
-		            android:layout_height="20dp"
-		            android:layout_toLeftOf="@+id/button_search_place"
+		            android:layout_width="24dp"
+		            android:layout_height="24dp"
+		            android:layout_toLeftOf="@+id/search_place_delete_text"
 		            android:background="@drawable/route_split"
-		            android:layout_margin="5dp"
+		            android:layout_margin="6dp"
 		            android:contentDescription="S" />
                     
 		        <ImageButton
-		            android:id="@+id/button_search_place"
-		            android:layout_height="20dp"
-	                android:layout_width="20dp"
+		            android:id="@+id/search_place_delete_text"
+		            android:layout_height="24dp"
+	                android:layout_width="24dp"
 		            android:background="@drawable/ex"
 		            android:layout_alignParentRight="true"
-		            android:layout_margin="5dp"
+		            android:layout_margin="6dp"
 		            android:text="Znajdź" />
 				</RelativeLayout>
         </LinearLayout>

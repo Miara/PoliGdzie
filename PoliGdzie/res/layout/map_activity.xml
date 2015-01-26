@@ -12,59 +12,77 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp" />
 		<RelativeLayout
-		    android:id="@+id/fragments_container"
-		    android:layout_width="match_parent"
-            android:layout_height="match_parent">
-		     <LinearLayout
-	            android:id="@+id/map_container"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:orientation="vertical" />
-		      <fragment
-	            android:id="@+id/search_place_frag"
-	            android:name="com.poligdzie.fragments.SearchPlaceFragment"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:layout_margin="10dp" />     
-		     <TextView
-		        android:id="@+id/current_map"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_centerInParent="true"
-		        android:layout_below="@+id/search_place_frag"
-		        android:background="#000000"
-		        android:textColor="#FFFFFF" />
-		    <Button
-		        android:id="@+id/previous_map"
-		        android:layout_width="30dp"
-		        android:layout_height="wrap_content"
-		        android:layout_alignParentLeft="true"
-		        android:layout_centerInParent="true"
-		        android:background="#000000"
-		        android:gravity="center_vertical"
-		        android:text="&lt;"
-		        android:textColor="#FFFFFF" />
-		
-		    <Button
-		        android:id="@+id/next_map"
-		        android:layout_width="30dp"
-		        android:layout_height="wrap_content"
-		        android:layout_alignParentRight="true"
-		        android:layout_centerInParent="true"
-		        android:background="#000000"
-		        android:gravity="center_vertical"
-		        android:text=">"
-		        android:textColor="#FFFFFF" />
-		
-		    <!-- <Button
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignParentBottom="true"
-		        android:layout_centerInParent="true"
-		        android:layout_marginBottom="20dp"
-		        android:background="#000000"
-		        android:text="Tu będzie list view"
-		        android:textColor="#FFFFFF" /> -->
-		</RelativeLayout>
-       
+			    android:id="@+id/fragments_container1"
+			    android:layout_width="match_parent"
+	            android:layout_height="wrap_content">
+			<RelativeLayout
+			    android:id="@+id/fragments_container2"
+			    android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:layout_above="@+id/search_description_frag">
+			     <LinearLayout
+		            android:id="@+id/map_container"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:orientation="vertical" />
+			      <fragment
+		            android:id="@+id/search_place_frag"
+		            android:name="com.poligdzie.fragments.SearchPlaceFragment"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_margin="10dp" />    
+		            <fragment
+		            android:id="@+id/route_details_frag"
+		            android:name="com.poligdzie.fragments.RouteDetailsFragment"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_margin="10dp" />   
+			     <TextView
+			        android:id="@+id/current_map"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_centerInParent="true"
+			        android:layout_below="@+id/search_place_frag"
+			        android:background="#000000"
+			        android:textColor="#FFFFFF" />
+			    <Button
+			        android:id="@+id/previous_map"
+			        android:layout_width="30dp"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentLeft="true"
+			        android:layout_centerInParent="true"
+			        android:background="#000000"
+			        android:gravity="center_vertical"
+			        android:text="&lt;"
+			        android:textColor="#FFFFFF" />
+			
+			    <Button
+			        android:id="@+id/next_map"
+			        android:layout_width="30dp"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentRight="true"
+			        android:layout_centerInParent="true"
+			        android:background="#000000"
+			        android:gravity="center_vertical"
+			        android:text=">"
+			        android:textColor="#FFFFFF" />
+			
+			    <!-- <Button
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentBottom="true"
+			        android:layout_centerInParent="true"
+			        android:layout_marginBottom="20dp"
+			        android:background="#000000"
+			        android:text="Tu będzie list view"
+			        android:textColor="#FFFFFF" /> -->
+			        
+			</RelativeLayout>
+			<fragment
+		            android:id="@+id/search_description_frag"
+		            android:name="com.poligdzie.fragments.SearchDetailsFragment"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_alignParentBottom="true" />  
+	    </RelativeLayout> 
 </LinearLayout>

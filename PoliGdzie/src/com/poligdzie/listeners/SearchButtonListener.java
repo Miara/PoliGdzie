@@ -9,6 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 import com.example.poligdzie.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -24,6 +27,8 @@ import com.poligdzie.base.PoliGdzieBaseFragment;
 import com.poligdzie.callbacks.MarkerAnimationFinishCallback;
 import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
+import com.poligdzie.fragments.SearchDetailsFragment;
+import com.poligdzie.fragments.SearchPlaceFragment;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Floor;
@@ -35,11 +40,11 @@ import com.poligdzie.tasks.AnimationClosureChecker;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
 public class SearchButtonListener extends PoliGdzieBaseClass implements
-															OnClickListener
+															OnItemClickListener
 {
 
 	private SearchAutoCompleteTextView	searchPosition;
-	private PoliGdzieBaseFragment		fragment;
+	private SearchPlaceFragment		fragment;
 	private MapFragmentProvider			mapFragmentProvider;
 	private DatabaseHelper 				dbHelper;
 
@@ -182,45 +187,12 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 		return null;
 	}
 
-	@Override
+/*	@Override
 	public void onClick(View v)
 	{
 
-		mapFragmentProvider.clearFragments();
-
-		searchPosition.clearFocus();
-		InputMethodManager imm = (InputMethodManager) fragment.getActivity()
-				.getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(searchPosition.getWindowToken(), 0);
-
-		if (validateAdapter(searchPosition))
-		{
-			Object object = searchPosition.getAdapter().getItem(0);
-			if (object != null)
-			{
-				if (object instanceof Building)
-				{
-					showPlaceOutdoor(object);
-
-				} else if (object instanceof Room)
-				{
-					showPlaceIndoor(object);
-
-				} else if (object instanceof Unit)
-				{
-					Unit unit = (Unit) object;
-					if (unit.getOffice() != null)
-					{
-						showPlaceIndoor(unit);
-
-					} else
-					{
-						showPlaceOutdoor(unit);
-					}
-				}
-			}
-		}
-	}
+		
+	}*/
 
 	private boolean validateAdapter(SearchAutoCompleteTextView searchPoint)
 	{
@@ -234,13 +206,80 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 
 	public SearchButtonListener(SearchAutoCompleteTextView searchPosition,
 			GoogleMap map, MapOutdoorFragment outdoorMap,
-			PoliGdzieBaseFragment fragment)
+			SearchPlaceFragment fragment)
 	{
 		this.searchPosition = searchPosition;
 		this.fragment = fragment;
 		this.mapFragmentProvider = MapFragmentProvider.getInstance();
 		this.dbHelper = new DatabaseHelper(fragment.getActivity(),
 				DATABASE_NAME, null, DATABASE_VERSION);
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id)
+	{
+		try
+		{
+			mapFragmentProvider.clearFragments();
+	
+			searchPosition.clearFocus();
+			InputMethodManager imm = (InputMethodManager) fragment.getActivity()
+					.getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(searchPosition.getWindowToken(), 0);
+	
+			if (validateAdapter(searchPosition))
+			{
+				Object object = searchPosition.getAdapter().getItem(0);
+				if (object != null)
+				{
+					String name = "";
+					String details = "";
+					if (object instanceof Building)
+					{
+						showPlaceOutdoor(object);
+						name = ((Building)object).getName();
+						details = ((Building)object).getAddress();
+	
+					} else if (object instanceof Room)
+					{
+						showPlaceIndoor(object);
+						name = ((Room)object).getName();
+						Building building = dbHelper.getBuildingDao().
+									queryForId(((Room)object).getBuilding().getId());
+						
+						details = building.getName() + "," + building.getAddress();
+					} else if (object instanceof Unit)
+					{
+						Unit unit = (Unit) object;
+						Room room = dbHelper.getRoomDao().queryForId(((Unit)object).getOffice().getId());
+						
+						name = ((Room)object).getName();
+						Building building = dbHelper.getBuildingDao().
+									queryForId(room.getBuilding().getId());
+						details = building.getName() + "," + building.getAddress();
+						
+						if (unit.getOffice() != null)
+						{
+							showPlaceIndoor(unit);
+	
+						} else
+						{
+							showPlaceOutdoor(unit);
+						}
+					}
+					SearchDetailsFragment descriptionFragment = 
+							fragment.getSearchDescriptionFragment();
+					if(descriptionFragment != null)
+					{
+						descriptionFragment.setTextViews(name,details);
+					}
+				}
+			}
+		} catch (SQLException e)
+		{
+			Log.e("SearchButtonListener","Bledne wykonanie!");
+		} 
 	}
 
 }
