@@ -9,8 +9,7 @@
             android:id="@+id/search_route_frag"
             android:name="com.poligdzie.fragments.SearchRouteFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp" />
+            android:layout_height="match_parent" />
 		<RelativeLayout
 			    android:id="@+id/fragments_container1"
 			    android:layout_width="match_parent"

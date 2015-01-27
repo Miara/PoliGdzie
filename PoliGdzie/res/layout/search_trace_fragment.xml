@@ -7,18 +7,20 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" >
+        android:layout_marginTop="10dp"
+        android:background="#FFFFFF" >
         <ImageView
             android:id="@+id/search_route_from_to"
             android:layout_width="36dp"
 	        android:layout_height="73dp"
 	        android:layout_alignParentLeft="true"
-	        android:layout_toLeftOf="@+id/search_route_edit_texts"
-	        android:background="@drawable/from_to_icon" />
+	        android:background="@drawable/route_description_route_icon" />
 	        <RelativeLayout
 	            android:id="@+id/search_route_edit_texts"
 		        android:layout_width="match_parent"
 		        android:layout_height="73dp"
+		        android:layout_marginLeft="36dp"
+		        android:layout_alignParentLeft="true"
 		        android:layout_toLeftOf="@+id/search_route_switch_positions" >
 	        	 <RelativeLayout
 		            android:id="@+id/search_route_edit_from"
@@ -41,7 +43,7 @@
 			        android:layout_width="match_parent"
 			        android:layout_height="1dp"
 			        android:layout_above="@+id/search_route_edit_to"
-			        android:background="@drawable/gradient_white_gray"/>
+			        android:background="@drawable/gradient_white_gray_horizontal"/>
 	       		<RelativeLayout
 		            android:id="@+id/search_route_edit_to"
 			        android:layout_width="match_parent"
@@ -58,7 +60,7 @@
                     </com.poligdzie.widgets.SearchAutoCompleteTextView> 
 	        	</RelativeLayout>
 	        </RelativeLayout>
-		<ImageView
+		<ImageButton
 		    android:id="@+id/search_route_switch_positions"
             android:layout_width="36dp"
 	        android:layout_height="73dp"
@@ -68,91 +70,11 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@drawable/gradient_white_gray"/>
+        android:background="@drawable/gradient_white_gray_horizontal"/>
     <Button
         android:id="@+id/button_search_trace"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#FFFFFF"
         android:text="Wyznacz trasę"/>
-     <ImageButton
-        android:id="@+id/button_route_switch_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:background="#FFFFFF"
-        android:text="Wyznacz trasę"/>
 </LinearLayout>
-            
-   <!--  <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_toLeftOf="@+id/button_search_trace"
-        android:orientation="vertical" >
-      
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/search_edit_height"
-            android:orientation="horizontal" >
-
-                <ImageView
-                    android:background="#FFFFFF"
-                    android:layout_height="@dimen/search_edit_height"
-                    android:layout_width="@dimen/search_edit_height"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/z_nogps"
-                    android:contentDescription="" />
-
-                    <com.poligdzie.widgets.SearchAutoCompleteTextView
-                        android:id="@+id/starting_point_text_edit"
-                        android:background="#FFFFFF"
-                        android:completionThreshold="1"
-                        android:layout_height="@dimen/search_edit_height"
-                        android:layout_width="match_parent"
-                        android:hint="Skąd ?" >
-                        <requestFocus />
-                    </com.poligdzie.widgets.SearchAutoCompleteTextView>                 
-			        
-        </LinearLayout>
-        
-         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/search_edit_height"
-            android:orientation="horizontal" >
-
-                <ImageView
-                    android:background="#FFFFFF"
-                    android:layout_height="@dimen/search_edit_height"
-                    android:layout_width="@dimen/search_edit_height"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/do_nogps"
-                    android:contentDescription="" />
-
-                    <com.poligdzie.widgets.SearchAutoCompleteTextView
-                        android:id="@+id/goal_point_text_edit"
-                        android:background="#FFFFFF"
-                        android:completionThreshold="1"
-                        android:layout_height="@dimen/search_edit_height"
-                        android:layout_width="match_parent"
-                        android:hint="Dokąd ?" >
-                        <requestFocus />
-                    </com.poligdzie.widgets.SearchAutoCompleteTextView>                 
-			        
-        </LinearLayout>
-        
-    </LinearLayout>
-    
-    
-           
-	<ImageButton
-          android:id="@+id/button_search_trace"
-          android:layout_height="80dp"
-             android:layout_width="80dp"
-          android:background="@drawable/binoculars"
-          android:layout_alignParentRight="true"
-          android:text="Znajdź" />
-	</RelativeLayout>
-        
- </LinearLayout>       
- -->

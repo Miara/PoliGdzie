@@ -5,11 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.poligdzie.R;
 import com.poligdzie.base.PoliGdzieBaseFragment;
+import com.poligdzie.interfaces.Nameable;
+import com.poligdzie.singletons.MapDrawingProvider;
 
 public class RouteDetailsFragment extends PoliGdzieBaseFragment implements OnClickListener
 {
@@ -18,6 +21,7 @@ public class RouteDetailsFragment extends PoliGdzieBaseFragment implements OnCli
 	private TextView					startName;
 	private TextView					goalName;
 	private ImageButton					deleteButton;
+	private Button						backToRouteButton;
 	private SearchRouteFragment			routeFragment;
 	private SearchDetailsFragment		searchDetailFragment;
 	private SearchPlaceFragment	searchPlaceFragment;
@@ -35,6 +39,9 @@ public class RouteDetailsFragment extends PoliGdzieBaseFragment implements OnCli
 		
 		deleteButton = (ImageButton) rootView.findViewById(R.id.route_description_ex_button);
 		deleteButton.setOnClickListener(this);
+		
+		backToRouteButton = (Button) rootView.findViewById(R.id.route_description_back_to_route_button);
+		backToRouteButton.setOnClickListener(this);
 		
 		
 		return rootView;
@@ -65,8 +72,22 @@ public class RouteDetailsFragment extends PoliGdzieBaseFragment implements OnCli
 	public void onClick(View v)
 	{
 		initFragments();
-		this.getView().setVisibility(View.GONE);
-		searchPlaceFragment.resetInput();
+		if(v == deleteButton)
+		{
+			this.getView().setVisibility(View.GONE);
+			searchPlaceFragment.resetInput();
+			
+			drawingProvider = MapDrawingProvider.getInstance();
+			drawingProvider.setGoal(null);
+			drawingProvider.setStart(null);
+			routeFragment.setGoalPosition("");
+			routeFragment.setStartPosition("");
+		}
+		else if( v == backToRouteButton)
+		{
+			routeFragment.getView().setVisibility(View.VISIBLE);
+		}
+		
 		
 		
 	}

@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -156,6 +157,23 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 	public MapActivity()
 	{
 		super();
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+	    if (keyCode == KeyEvent.KEYCODE_BACK) {
+	        if(searchRouteFragment.isVisible())
+	        {
+	        	searchRouteFragment.getView().setVisibility(View.GONE);
+	        	return true;
+	        }
+	        else
+	        {
+	        	this.finish();
+	        }
+	        
+	    }
+	    return super.onKeyDown(keyCode, event);   
 	}
 	// TODO : powstawiac w layoutach contentDescription
 }

@@ -1,50 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="62dp"
+    android:background="#000000" >
+<RelativeLayout 
     android:layout_width="match_parent"
     android:layout_height="60dp"
+    android:layout_margin="1dp"
     android:background="#FFFFFF" >
-    <ImageView
-       		android:id="@+id/route_description_route_icon"
-           	android:layout_width="30dp"
-	        android:layout_height="30dp"
-	        android:layout_marginLeft="5dp"
-	        android:layout_marginRight="5dp"
-	        android:layout_marginTop="15dp"
-	        android:layout_marginBottom="15dp"
-	        android:layout_alignParentLeft="true"
-	        android:layout_toLeftOf="@+id/route_description_relative1"
-	        android:background="@drawable/route_icon"/>
     <RelativeLayout 
       	android:id="@+id/route_description_relative1"
       	android:layout_width="wrap_content"
       	android:layout_height="60dp" 
-      	android:layout_marginLeft="40dp"  
+      	android:layout_alignParentLeft="true"
       	android:layout_toLeftOf="@+id/route_description_ex_button"  	>
-        
-        <TextView 
-            android:id="@+id/main_description"
-            android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:layout_marginLeft="5dp"
-        	android:layout_marginTop="10dp"
-        	android:ellipsize="end"
-			android:maxLines="1"
-			android:scrollHorizontally="true"
-			android:singleLine="true"
-        	android:text="Centrum wykładoweeeeeeeeeeee"/>
-        <TextView 
-            android:id="@+id/detail_description"
-            android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:layout_marginLeft="5dp"
-        	android:textSize="13sp"
-        	android:ellipsize="end"
-			android:maxLines="1"
-			android:scrollHorizontally="true"
-			android:singleLine="true"
-        	android:layout_below="@+id/main_description"
-        	android:text="Piotrowo 3A"/>
-        
+	    <ImageView
+	       		android:id="@+id/route_description_route_icon"
+	           	android:layout_width="30dp"
+		        android:layout_height="30dp"
+		        android:layout_marginLeft="5dp"
+		        android:layout_marginRight="5dp"
+		        android:layout_marginTop="15dp"
+		        android:layout_marginBottom="15dp"
+		        android:layout_alignParentLeft="true"
+		        android:background="@drawable/route_icon"/>
+	   <RelativeLayout 
+	      	android:id="@+id/route_description_relative2"
+	      	android:layout_width="wrap_content"
+	      	android:layout_height="60dp" 
+	      	android:layout_marginLeft="40dp"  
+	      	android:layout_alignParentLeft="true" 	>
+	      	<LinearLayout 
+	      	    android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:layout_marginLeft="5dp"
+	        	android:layout_marginTop="10dp"
+	        	android:layout_alignParentLeft="true"
+	        	android:orientation="vertical">"
+	        	<LinearLayout 
+	        	    android:layout_width="wrap_content"
+	        		android:layout_height="wrap_content"
+	        		android:orientation="horizontal">
+	        	    <TextView 
+	        	    android:layout_width="25dp"
+	        		android:layout_height="wrap_content"
+	        		android:textStyle="bold"
+	        		android:text="Z:"
+	        		android:textSize="12sp"
+	        		android:layout_gravity="center_vertical"
+	        		android:maxLines="1"
+	        		android:singleLine="true"/>
+		      	    <TextView 
+		            android:id="@+id/main_description"
+		            android:layout_width="wrap_content"
+		        	android:layout_height="wrap_content"
+		        	android:ellipsize="end"
+					android:maxLines="1"
+					android:scrollHorizontally="true"
+					android:singleLine="true"/>
+	        	    
+	        	</LinearLayout>
+	        	<LinearLayout 
+	        	    android:layout_width="wrap_content"
+	        		android:layout_height="wrap_content"
+	        		android:orientation="horizontal">
+	        	    <TextView 
+	        	    android:layout_width="25dp"
+	        		android:layout_height="wrap_content"
+	        		android:textStyle="bold"
+	        		android:text="DO:"
+	        		android:textSize="12sp"
+	        		android:layout_gravity="center_vertical"
+	        		android:maxLines="1"
+	        		android:singleLine="true"/>
+		      	    <TextView 
+		            android:id="@+id/detail_description"
+		            android:layout_width="wrap_content"
+		        	android:layout_height="wrap_content"
+		        	android:ellipsize="end"
+					android:maxLines="1"
+					android:scrollHorizontally="true"
+					android:singleLine="true"/>
+	        	    
+	        	</LinearLayout>
+	        	
+	      	</LinearLayout>
+	        
+
+	        
+	    </RelativeLayout>
+	    <Button 
+	        android:id="@+id/route_description_back_to_route_button"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:background="@null"/>
     </RelativeLayout>
     <ImageButton
         	android:id="@+id/route_description_ex_button"
@@ -58,3 +107,4 @@
 	        android:background="@drawable/ex"/>
 
 </RelativeLayout>
+</LinearLayout>
