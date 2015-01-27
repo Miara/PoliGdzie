@@ -1,7 +1,9 @@
 package com.poligdzie.activities;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -14,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.poligdzie.R;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.base.PoliGdzieMapFragment;
@@ -54,10 +58,29 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 
 
 		if(!isNetworkAvailable()) {
-			Toast t = Toast.makeText(this, "Brak polaczenie z internetosem!", Toast.LENGTH_LONG);
-			t.show();
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("Brak po³¹czenia z internetem");
+			builder.setMessage("Twoje urz¹dzenie nie jest pod³¹czone do internetu. Wyœwietlanie oraz wyszukiwanie trasy na zewn¹trz nie bêdzie dzia³aæ. Modu³y pomieszczeñ pracuj¹ normalnie.");
+			builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+			
+			{
+				
+
+			};
+
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					dialog.cancel();
+					
+				}
+			});
+			builder.show();
+	/*		Toast t = Toast.makeText(this, "Brak polaczenie z internetosem!", Toast.LENGTH_LONG);
+			t.show();*/
 		}
 		
+				
 		Log.i("poli", "map1");
 
 
@@ -104,6 +127,35 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		routeDetailsFragment = (RouteDetailsFragment) getFragmentManager().
 		findFragmentById(R.id.route_details_frag);
 		routeDetailsFragment.getView().setVisibility(View.GONE);
+	}
+
+	@Override
+	protected void onResume()
+	{
+		// TODO Auto-generated method stub
+		super.onResume();
+		if(!checkPlayServices()) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("Brak google play services");
+			builder.setMessage("Aby u¿ywaæ aplikacji nale¿y mieæ zainstalowane google play services oraz byæ zalogowanym poprzez konto google");
+			builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+			
+			{
+				
+
+			};
+
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+				 MapActivity.this.finish();
+					
+				}
+			});
+			builder.show();
+
+		}
+
 	}
 
 	@Override
@@ -175,5 +227,27 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 	    }
 	    return super.onKeyDown(keyCode, event);   
 	}
+	
 	// TODO : powstawiac w layoutach contentDescription
+	
+	
+	private boolean checkPlayServices() {
+		  int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+		  if (status != ConnectionResult.SUCCESS) {
+		    if (GooglePlayServicesUtil.isUserRecoverableError(status)) {
+		      showErrorDialog(status);
+		    } else {
+		      Toast.makeText(this, "This device is not supported.", 
+		          Toast.LENGTH_LONG).show();
+		      finish();
+		    }
+		    return false;
+		  }
+		  return true;
+		} 
+
+		void showErrorDialog(int code) {
+		  GooglePlayServicesUtil.getErrorDialog(code, this, 
+		      1001).show();
+		}
 }
