@@ -32,7 +32,7 @@ public class MapDrawingProvider extends PoliGdzieBaseClass
 	private Context						context;
 	private Object						start;
 	private Object						goal;
-	private boolean						drawRoute			= false;
+	private boolean						drawRoute			= true;
 	private GoogleMap					map;
 	private List<Marker>				markers;
 	private FusedLocationProviderApi	api;
@@ -83,6 +83,16 @@ public class MapDrawingProvider extends PoliGdzieBaseClass
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_PIOTROWO, 16));
 		// addMarkers();
 		return map;
+	}
+
+	public GoogleMap getMap()
+	{
+		return map;
+	}
+
+	public void setMap(GoogleMap map)
+	{
+		this.map = map;
 	}
 
 	public void drawRoute()

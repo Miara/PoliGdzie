@@ -1,20 +1,25 @@
 package com.poligdzie.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.poligdzie.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.poligdzie.base.PoliGdzieBaseFragment;
 import com.poligdzie.interfaces.Nameable;
+import com.poligdzie.interfaces.WithCoordinates;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
-import com.poligdzie.listeners.FragmentSwitchListener;
 import com.poligdzie.listeners.RouteButtonListener;
 import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
@@ -121,40 +126,8 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 			this.setStartPosition(newStartName);
 		}
 
-		/*
-		 * drawingProvider = MapDrawingProvider.getInstance();
-		 * 
-		 * if (v == searchButton) { if (startPosition.getText().length() != 0)
-		 * drawingProvider.setStart(startPosition.getAdapter().getItem(0));
-		 * 
-		 * if (goalPosition.getText().length() != 0)
-		 * drawingProvider.setGoal(goalPosition.getAdapter().getItem(0));
-		 * 
-		 * goalPosition.clearFocus(); startPosition.clearFocus();
-		 * 
-		 * InputMethodManager imm = (InputMethodManager) this.getActivity()
-		 * .getSystemService(Context.INPUT_METHOD_SERVICE);
-		 * 
-		 * imm.hideSoftInputFromWindow(startPosition.getWindowToken(), 0);
-		 * 
-		 * imm.hideSoftInputFromWindow(goalPosition.getWindowToken(), 0);
-		 * 
-		 * buildingInfoFragment = (BuildingInfoFragment) this.getActivity()
-		 * .getFragmentManager() .findFragmentById(R.id.window_info_container);
-		 * 
-		 * this.getActivity().getFragmentManager().beginTransaction()
-		 * .remove(buildingInfoFragment).commit(); GoogleMap map =
-		 * ((MapFragment) this.getActivity() .getFragmentManager()
-		 * .findFragmentById(R.id.map_outdoor_googleMap)).getMap(); LatLng zoom
-		 * = new LatLng( ((WithCoordinates)
-		 * drawingProvider.getStart()).getCoordX(), ((WithCoordinates)
-		 * drawingProvider.getStart()).getCoordY());
-		 * map.animateCamera(CameraUpdateFactory.newLatLngZoom(zoom, 17));
-		 * 
-		 * drawingProvider.setDrawRoute(true);
-		 * 
-		 * drawingProvider.drawRoute(); }
-		 */
+		
+		   
 
 	}
 

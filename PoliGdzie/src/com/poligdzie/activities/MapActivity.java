@@ -119,6 +119,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		searchRouteFragment = (SearchRouteFragment) getFragmentManager().
 				findFragmentById(R.id.search_route_frag);
 		searchRouteFragment.getView().setVisibility(View.GONE);
+	
 		
 		searchDetailsFragment = (SearchDetailsFragment) getFragmentManager().
 		findFragmentById(R.id.search_description_frag);
@@ -128,7 +129,8 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		findFragmentById(R.id.route_details_frag);
 		routeDetailsFragment.getView().setVisibility(View.GONE);
 	}
-
+//TODO: refaktoryzacja w chuj!
+	
 	@Override
 	protected void onResume()
 	{
@@ -230,7 +232,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 	
 	// TODO : powstawiac w layoutach contentDescription
 	
-	
+	//TODO: refaktor
 	private boolean checkPlayServices() {
 		  int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
 		  if (status != ConnectionResult.SUCCESS) {

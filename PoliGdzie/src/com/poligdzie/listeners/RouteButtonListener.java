@@ -11,7 +11,10 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 
 import com.example.poligdzie.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.base.PoliGdzieBaseClass;
@@ -20,9 +23,9 @@ import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
 import com.poligdzie.fragments.RouteDetailsFragment;
 import com.poligdzie.fragments.SearchDetailsFragment;
-import com.poligdzie.fragments.SearchPlaceFragment;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Nameable;
+import com.poligdzie.interfaces.WithCoordinates;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.BuildingEntry;
 import com.poligdzie.persistence.Floor;
@@ -31,6 +34,7 @@ import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.SpecialConnection;
 import com.poligdzie.persistence.Unit;
 import com.poligdzie.route.IndoorRouteFinder;
+import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.singletons.MapFragmentProvider;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
@@ -41,11 +45,13 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 	private PoliGdzieBaseFragment		fragment;
 	private SearchAutoCompleteTextView	startPosition;
 	private SearchAutoCompleteTextView	goalPosition;
+	private GoogleMap					map;
 
 	private void showIndoorRoute(Object startObject, Object goalObject,
 			int entryFloorNumber, int indoorMode) throws SQLException
 	{
-		// TODO: Obd³uga b³êdów : jeœli sciezka jest pusta to ma pokazywac plan pietra punktu startowego
+		// TODO: Obd³uga b³êdów : jeœli sciezka jest pusta to ma pokazywac plan
+		// pietra punktu startowego
 		List<NavigationPoint> routePoints = new ArrayList<NavigationPoint>();
 		IndoorRouteFinder finder = new IndoorRouteFinder(dbHelper);
 		if (startObject instanceof Room && goalObject instanceof Room)
@@ -145,6 +151,14 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 								.getGoogleMapFragment(), mapProvider
 								.getGoogleMapFragment().getViewTag());
 				// TODO: Draw route
+				
+				MapDrawingProvider provider = MapDrawingProvider.getInstance();
+				
+				provider.setStart(startObject);
+				provider.setGoal(goalObject);
+				provider.drawRoute();
+				
+								
 
 			} else if (startObject instanceof Building)
 			{
@@ -265,15 +279,17 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 				if (validateRouteObjects(startObject, goalObject))
 				{
 					showGeneralRoute(startObject, goalObject);
-					SearchDetailsFragment searchDetailsFrag =  (SearchDetailsFragment) fragment.getActivity()
-							.getFragmentManager().findFragmentById(R.id.search_description_frag);
-					RouteDetailsFragment routeDetailsFrag =  (RouteDetailsFragment) fragment.getActivity()
-							.getFragmentManager().findFragmentById(R.id.route_details_frag);
+					SearchDetailsFragment searchDetailsFrag = (SearchDetailsFragment) fragment
+							.getActivity().getFragmentManager()
+							.findFragmentById(R.id.search_description_frag);
+					RouteDetailsFragment routeDetailsFrag = (RouteDetailsFragment) fragment
+							.getActivity().getFragmentManager()
+							.findFragmentById(R.id.route_details_frag);
 					searchDetailsFrag.getView().setVisibility(View.GONE);
 					routeDetailsFrag.setTextViews(
-							((Nameable)startObject).getName(),
-							((Nameable)goalObject).getName());
-					
+							((Nameable) startObject).getName(),
+							((Nameable) goalObject).getName());
+
 				}
 			}
 
@@ -282,7 +298,7 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 			// TODO Auto-generated catch block
 			Log.e("poligdzie", "ERROR RouteButtonlistener");
 		}
-		
+
 	}
 
 	private Object ifUnitChangeToRoom(Object item)
@@ -496,6 +512,7 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 		this.startPosition = startPosition;
 		this.goalPosition = goalPosition;
 		this.fragment = fragment;
+		this.map = map;
 		this.dbHelper = new DatabaseHelper(fragment.getActivity(),
 				DATABASE_NAME, null, DATABASE_VERSION);
 	}

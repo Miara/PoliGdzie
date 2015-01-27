@@ -3,13 +3,18 @@ package com.poligdzie.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.Surface;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -51,9 +56,31 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 		this.container = container;
 		LayoutParams params = (LayoutParams) container.getLayoutParams();
 
-		params.leftMargin = MARGIN_LEFT;
-		params.topMargin = MARGIN_TOP;
+		WindowManager wm = (WindowManager) this.getActivity().getSystemService(
+				Context.WINDOW_SERVICE);
+		Display display = wm.getDefaultDisplay();
 
+		Point size = new Point();
+//TODO: refaktor, wywalic magic numbers
+//TODO: ustawic dobrze pozycje okienka
+		display.getSize(size);
+		if (display.getRotation() == Surface.ROTATION_0
+				|| display.getRotation() == Surface.ROTATION_180)
+		{
+			params.leftMargin = (int) (posX - 0.05 * size.x);
+			params.topMargin = (int) (posY - 0.2 * size.y);
+		}
+
+		if (display.getRotation() == Surface.ROTATION_90
+				|| display.getRotation() == Surface.ROTATION_270)
+		{
+			params.leftMargin = (int) (posX - 0.1 * size.x);
+			params.topMargin = (int) (posY - 0.12 * size.y);
+		}
+
+//		params.leftMargin = posX - 20;
+//		params.topMargin = posY - 20;
+//		
 		container.setLayoutParams(params);
 
 		View rootView = inflater.inflate(R.layout.window_marker_click,
