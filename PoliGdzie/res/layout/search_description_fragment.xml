@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="#FFFFFF" >
+    <RelativeLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_toLeftOf="@+id/search_description_gradient"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical">
+        <TextView 
+            android:id="@+id/main_description"
+            android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_marginLeft="15dp"
+        	android:layout_marginTop="15dp"
+        	android:ellipsize="end"
+			android:maxLines="1"
+			android:scrollHorizontally="true"
+			android:singleLine="true"
+        	android:textSize="20sp"
+        	android:textStyle="bold"/>
+        <TextView 
+            android:id="@+id/detail_description"
+            android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_marginLeft="15dp"
+        	android:textSize="13sp"
+        	android:ellipsize="end"
+			android:maxLines="1"
+			android:scrollHorizontally="true"
+			android:singleLine="true"
+        	android:layout_below="@+id/main_description"/>
+        
+    </RelativeLayout>
+    <ImageView 
+       android:id="@+id/search_description_gradient"
+       android:layout_width="1dp"
+       android:layout_height="80dp" 
+       android:layout_toLeftOf="@+id/search_description_right"
+       android:background="@drawable/gradient_white_gray" />
+    <LinearLayout 
+        android:id="@+id/search_description_right"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentRight="true">
+        <ImageButton 
+            android:id="@+id/search_description_route_button"
+           	android:layout_width="48dp"
+	        android:layout_height="48dp"
+	        android:layout_margin="16dp"
+	        android:background="@drawable/route_icon"/>
+    </LinearLayout>
+
+</RelativeLayout>

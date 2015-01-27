@@ -18,7 +18,11 @@ import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.base.PoliGdzieBaseFragment;
 import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
+import com.poligdzie.fragments.RouteDetailsFragment;
+import com.poligdzie.fragments.SearchDetailsFragment;
+import com.poligdzie.fragments.SearchPlaceFragment;
 import com.poligdzie.helpers.DatabaseHelper;
+import com.poligdzie.interfaces.Nameable;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.BuildingEntry;
 import com.poligdzie.persistence.Floor;
@@ -261,6 +265,15 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 				if (validateRouteObjects(startObject, goalObject))
 				{
 					showGeneralRoute(startObject, goalObject);
+					SearchDetailsFragment searchDetailsFrag =  (SearchDetailsFragment) fragment.getActivity()
+							.getFragmentManager().findFragmentById(R.id.search_description_frag);
+					RouteDetailsFragment routeDetailsFrag =  (RouteDetailsFragment) fragment.getActivity()
+							.getFragmentManager().findFragmentById(R.id.route_details_frag);
+					searchDetailsFrag.getView().setVisibility(View.GONE);
+					routeDetailsFrag.setTextViews(
+							((Nameable)startObject).getName(),
+							((Nameable)goalObject).getName());
+					
 				}
 			}
 
@@ -269,6 +282,7 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 			// TODO Auto-generated catch block
 			Log.e("poligdzie", "ERROR RouteButtonlistener");
 		}
+		
 	}
 
 	private Object ifUnitChangeToRoom(Object item)

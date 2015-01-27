@@ -1,8 +1,12 @@
 package com.poligdzie.activities;
 
+<<<<<<< HEAD
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+=======
+import android.opengl.Visibility;
+>>>>>>> 2d8a4db86667dbf9108419a24f2dceeef44d648e
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +20,19 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.base.PoliGdzieMapFragment;
 import com.poligdzie.fragments.MapIndoorFragment;
+<<<<<<< HEAD
 import com.poligdzie.fragments.MapOutdoorFragment;
+=======
+import com.poligdzie.fragments.MapOutdoorFragment;
+import com.poligdzie.fragments.RouteDetailsFragment;
+import com.poligdzie.fragments.SearchDetailsFragment;
+import com.poligdzie.fragments.SearchPlaceFragment;
+import com.poligdzie.fragments.SearchRouteFragment;
+import com.poligdzie.helpers.DatabaseHelper;
+import com.poligdzie.persistence.NavigationPoint;
+import com.poligdzie.persistence.Room;
+import com.poligdzie.route.IndoorRouteFinder;
+>>>>>>> 2d8a4db86667dbf9108419a24f2dceeef44d648e
 import com.poligdzie.singletons.DataProvider;
 import com.poligdzie.singletons.MapFragmentProvider;
 
@@ -34,6 +50,11 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 
 	private MapOutdoorFragment	outdoorMap;
 	private MapIndoorFragment	indoorMap;
+	
+	private SearchPlaceFragment	searchPlaceFragment;
+	private SearchRouteFragment	searchRouteFragment;
+	private SearchDetailsFragment	searchDetailsFragment;
+	private RouteDetailsFragment	routeDetailsFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -41,12 +62,15 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.map_activity);
 
+<<<<<<< HEAD
 		if(!isNetworkAvailable()) {
 			Toast t = Toast.makeText(this, "Brak polaczenie z internetosem!", Toast.LENGTH_LONG);
 			t.show();
 		}
 		
 		Log.i("poli", "map1");
+=======
+>>>>>>> 2d8a4db86667dbf9108419a24f2dceeef44d648e
 
 		mapProvider = MapFragmentProvider.getInstance();
 
@@ -56,12 +80,8 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna",
 				OUTDOOR_MAP_TAG);
 
-		Log.i("poli", "map4");
 
 		switchFragment(R.id.map_container, outdoorMap, outdoorMap.getViewTag());
-
-		Log.i("poli","map5");
-		
 
 
 		previous = (Button) findViewById(R.id.previous_map);
@@ -79,7 +99,22 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		currentText = (TextView) findViewById(R.id.current_map);
 
 		currentText.setText(mapProvider.getCurrentFragment().getName());
-
+		
+		searchPlaceFragment =  (SearchPlaceFragment) getFragmentManager().
+				findFragmentById(R.id.search_place_frag);
+		searchPlaceFragment.getView().setVisibility(View.VISIBLE);
+		
+		searchRouteFragment = (SearchRouteFragment) getFragmentManager().
+				findFragmentById(R.id.search_route_frag);
+		searchRouteFragment.getView().setVisibility(View.GONE);
+		
+		searchDetailsFragment = (SearchDetailsFragment) getFragmentManager().
+		findFragmentById(R.id.search_description_frag);
+		searchDetailsFragment.getView().setVisibility(View.GONE);
+		
+		routeDetailsFragment = (RouteDetailsFragment) getFragmentManager().
+		findFragmentById(R.id.route_details_frag);
+		routeDetailsFragment.getView().setVisibility(View.GONE);
 	}
 
 	@Override
