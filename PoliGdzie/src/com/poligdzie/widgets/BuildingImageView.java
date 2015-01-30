@@ -52,6 +52,13 @@ public class BuildingImageView extends ImageView implements Constants
 	List<Line>						lines				= new ArrayList<Line>();
 
 	private List<Line>				routeLines;
+	
+	CustomBitmapPoint		startPoint = null;
+	CustomBitmapPoint		goalPoint = null;
+
+	private int	bitmapHeight;
+
+	private int	bitmapWidth;
 
 	public BuildingImageView(Context context)
 	{
@@ -86,9 +93,6 @@ public class BuildingImageView extends ImageView implements Constants
 		float x2 = line.stopX;
 		float y2 = line.stopY;
 
-		int bitmapWidth = bitmap.getWidth();
-		int bitmapHeight = bitmap.getHeight();
-
 		float startX = x1 * bitmapWidth / originalWidth + mPosX;
 		float startY = y1 * bitmapHeight / originalHeight + mPosY;
 		float stopX = x2 * bitmapWidth / originalWidth + mPosX;
@@ -116,9 +120,11 @@ public class BuildingImageView extends ImageView implements Constants
 
 	public void setImageBitmap(Bitmap bmp)
 	{
-		bitmap = bmp;
-		mScaleFactor = 1.0f;
-		mPosX = mPosY = 0f;
+		this.bitmap = bmp;
+		this.bitmapHeight = bitmap.getHeight();
+		this.bitmapWidth = bitmap.getWidth();
+		this.mScaleFactor = 1.0f;
+		this.mPosX = mPosY = 0f;
 
 	}
 
@@ -210,6 +216,20 @@ public class BuildingImageView extends ImageView implements Constants
 		{
 			canvas.drawLine(l.startX, l.startY, l.stopX, l.stopY, redPaint);
 		}
+		
+		if(startPoint != null)
+		{
+			float startX = (startPoint.x  - startPoint.bmp.getWidth()/2) * bitmapWidth / originalWidth + mPosX;
+			float startY = (startPoint.y - startPoint.bmp.getHeight()/2) * bitmapHeight / originalHeight + mPosY;
+			canvas.drawBitmap(startPoint.bmp, startX, startY, null);
+		}
+		if(goalPoint != null)
+		{
+			float startX = (goalPoint.x - goalPoint.bmp.getWidth()/2) * bitmapWidth / originalWidth + mPosX;
+			float startY = (goalPoint.y- goalPoint.bmp.getHeight()/2) * bitmapHeight / originalHeight + mPosY;
+			canvas.drawBitmap(goalPoint.bmp, startX, startY, null);
+		}
+		
 
 		canvas.restore(); // clear translation/scaling
 	}
@@ -439,4 +459,48 @@ public class BuildingImageView extends ImageView implements Constants
 		this.originalHeight = originalHeight;
 	}
 
+	private class CustomBitmapPoint
+	{
+		float x;
+		float y;
+		Bitmap bmp;
+		
+		public CustomBitmapPoint(float x,float y, Bitmap b)
+		{
+			this.x=x;
+			this.y=y;
+			this.bmp = b;
+		}
+	}
+
+	public void setStartCustomPoint(Bitmap bmp)
+	{
+		if(!routeLines.isEmpty())
+		{
+			float x = routeLines.get(0).startX;
+			float y = routeLines.get(0).startY;
+			this.startPoint = new CustomBitmapPoint(x, y, bmp);
+			
+			this.mPosX = x - viewWidth/2;
+			if(mPosX < 0 ) mPosX = 0;
+			
+			this.mPosY = y - viewHeight/2;
+			if(mPosY < 0 ) mPosX = 0;
+			
+			this.mScaleFactor = 3.0f;
+			this.invalidate();
+		}
+		
+	}
+	public void setGoalCustomPoint(Bitmap bmp)
+	{
+		if(!routeLines.isEmpty())
+		{
+			int size = routeLines.size();
+			float x = routeLines.get(size-1).stopX;
+			float y = routeLines.get(size-1).stopY;
+			this.goalPoint = new CustomBitmapPoint(x, y, bmp);
+		}	
+	}
+	
 }

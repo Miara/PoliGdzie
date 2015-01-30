@@ -61,6 +61,11 @@ public interface Constants
 	
 	public int INTEGER_MAX_VALUE = 999999;
 	
+	public int POINT_TYPE_ENTRY = 0;
+	public int POINT_TYPE_SPECIAL = 1;
+	public int POINT_TYPE_START = 2;
+	public int POINT_TYPE_GOAL = 3;
+	
 
 
 }
