@@ -32,6 +32,10 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 	private List<Line>			routeLines	= new ArrayList<Line>();
 	private NavigationPointTypes	startPointType = null;
 	private NavigationPointTypes	goalPointType = null;
+	
+	private int searchX;
+	private int searchY;
+	private boolean routeMode = false;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,37 +73,49 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 		buildingImage = (BuildingImageView) inflater
 				.findViewById(R.id.imageview_floor_scheme);
 		buildingImage.setBitmap(bitmap);
+		echo("TEST8");
 		try
 		{
 			Floor floor = dbHelper.getFloorDao().queryForId(floorId);
-			if (routeLines.size() > 0)
-			{
-				buildingImage.setLines(routeLines);
-				if(startPointType != null && goalPointType != null)
-				{
-					if(startPointType == NavigationPointTypes.ENTRY)
-						bmp = BitmapFactory.decodeResource(getResources(), R.drawable.entry_icon);
-					else if(startPointType == NavigationPointTypes.SPECIAL)
-						bmp = BitmapFactory.decodeResource(getResources(), R.drawable.stairs_icon);
-					else
-						bmp = BitmapFactory.decodeResource(getResources(), R.drawable.z_nogps);
-					if(bmp != null) buildingImage.setStartCustomPoint(bmp);
-					
-					if(goalPointType == NavigationPointTypes.ENTRY)
-						bmp = BitmapFactory.decodeResource(getResources(), R.drawable.entry_icon);
-					else if(goalPointType == NavigationPointTypes.SPECIAL)
-						bmp = BitmapFactory.decodeResource(getResources(), R.drawable.stairs_icon);
-					else
-						bmp = BitmapFactory.decodeResource(getResources(), R.drawable.do_nogps);
-					if(bmp != null)	buildingImage.setGoalCustomPoint(bmp);
-				}
-			}
-			
 			buildingImage.setOriginalWidth(floor.getWidth());
 			buildingImage.setOriginalHeight(floor.getHeight());
+			if(!routeMode)
+			{
+				echo("TEST9");
+				buildingImage.setSearchCustomPoint(this.searchX,this.searchY);
+			}
+			else
+			{
+				echo("TEST10");
+				
+					
+				if (routeLines.size() > 0)
+				{
+					buildingImage.setLines(routeLines);
+					if(startPointType != null && goalPointType != null)
+					{
+						if(startPointType == NavigationPointTypes.ENTRY)
+							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.entry_icon);
+						else if(startPointType == NavigationPointTypes.SPECIAL)
+							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.stairs_icon);
+						else
+							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.from_icon);
+						if(bmp != null) buildingImage.setStartCustomPoint(bmp);
+						
+						if(goalPointType == NavigationPointTypes.ENTRY)
+							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.entry_icon);
+						else if(goalPointType == NavigationPointTypes.SPECIAL)
+							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.stairs_icon);
+						else
+							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.to_icon);
+						if(bmp != null)	buildingImage.setGoalCustomPoint(bmp);
+					}
+				}
+				
+			}
 		} catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
+			Log.e("MAP INDOOR FRAG","Error creating view");
 			e.printStackTrace();
 		}
 	}
@@ -124,6 +140,19 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 	{
 		super(drawableId, name, viewTag);
 		this.floorId = floorId;
+	}
+	
+	public MapIndoorFragment(String drawableId, String name, String viewTag,
+			int floorId, int searchX, int searchY)
+	{
+		super(drawableId, name, viewTag);
+		echo("TEST5");
+		this.floorId = floorId;
+		
+		echo("TEST6");
+		this.searchX= (int) searchX;
+		this.searchY= (int) searchY;
+		this.routeMode = false;
 	}
 
 	public MapIndoorFragment(String drawableId, String name, String viewTag,
@@ -161,6 +190,12 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 			}
 			
 		}
+		this.routeMode = true;
+	}
+	
+	private void echo(String s)
+	{
+		Log.i("poligdzie",s);
 	}
 
 }

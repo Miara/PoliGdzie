@@ -35,13 +35,28 @@ public class BitmapWorkerTask extends AsyncTask<Integer, Void, Bitmap>
 	{
 		Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
 		data = params[0];
-		BitmapFactory.Options options = new BitmapFactory.Options();
-		options.inSampleSize = 1;
-		options.inDither = false;
-		options.inPurgeable = true;
-		Log.i("t", "1");
-		Bitmap bitmap = BitmapFactory.decodeResource(resources, data, options);
-		Log.i("t", "2");
+		boolean done=false;
+		int inSampleSize = 1;
+		Bitmap bitmap = null;
+		while(!done)
+		{
+			try
+			{
+				BitmapFactory.Options options = new BitmapFactory.Options();
+				options.inSampleSize = inSampleSize;
+				options.inDither = false;
+				options.inPurgeable = true;
+				Log.i("BitmapWorker", "1st step");
+				bitmap = BitmapFactory.decodeResource(resources, data, options);
+				Log.i("BitmapWorker", "2nd step");
+				done = true;
+			}
+			catch(OutOfMemoryError e)
+			{
+				Log.e("ERROR","Out of memory exception");
+				inSampleSize *= 2;
+			}
+		}
 		return bitmap;
 	}
 

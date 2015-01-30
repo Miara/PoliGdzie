@@ -55,10 +55,18 @@ public class BuildingImageView extends ImageView implements Constants
 	
 	CustomBitmapPoint		startPoint = null;
 	CustomBitmapPoint		goalPoint = null;
+	
+	private boolean 	routeMode = false;
 
 	private int	bitmapHeight;
 
 	private int	bitmapWidth;
+	
+	private float					firstScale		= 0.44f;
+
+	private float					firstX;
+	private float					firstY;
+	private boolean 				firstView=false;
 
 	public BuildingImageView(Context context)
 	{
@@ -86,103 +94,54 @@ public class BuildingImageView extends ImageView implements Constants
 
 	}
 
-	private void addLine(Line line)
-	{
-		float x1 = line.startX;
-		float y1 = line.startY;
-		float x2 = line.stopX;
-		float y2 = line.stopY;
-
-		float startX = x1 * bitmapWidth / originalWidth + mPosX;
-		float startY = y1 * bitmapHeight / originalHeight + mPosY;
-		float stopX = x2 * bitmapWidth / originalWidth + mPosX;
-		float stopY = y2 * bitmapHeight / originalHeight + mPosY;
-
-		lines.add(new Line(startX, startY, stopX, stopY));
-
-	}
-
-	public void setBitmap(Bitmap bmp)
-	{
-		setImageBitmap(bmp);
-	}
-
-	public void setLines(List<Line> routeLines)
-	{
-		if (routeLines == null)
-		{
-			this.routeLines = new ArrayList<Line>();
-		} else
-		{
-			this.routeLines = routeLines;
-		}
-	}
-
-	public void setImageBitmap(Bitmap bmp)
-	{
-		this.bitmap = bmp;
-		this.bitmapHeight = bitmap.getHeight();
-		this.bitmapWidth = bitmap.getWidth();
-		this.mScaleFactor = 1.0f;
-		this.mPosX = mPosY = 0f;
-
-	}
-
-	public Bitmap getImageBitmap()
-	{
-		return bitmap;
-	}
-
-	public Bitmap getBitmap()
-	{
-		return getImageBitmap();
-	}
-
-	public void setImageDrawable(Drawable drawable)
-	{
-		setImageBitmap(((BitmapDrawable) drawable).getBitmap());
-	}
-
-	public BitmapDrawable getImageDrawable()
-	{
-		BitmapDrawable bd = new BitmapDrawable(getContext().getResources(),
-				bitmap);
-		return bd;
-	}
-
-	public BitmapDrawable getDrawable()
-	{
-		return getImageDrawable();
-	}
+	
 
 	public void onDraw(Canvas canvas)
 	{
+		if(firstView)
+		{
+			SetPosAndScale();
+			firstView=false;
+		}
+		Log.i("SCALE","t1:"+mScaleFactor);
 		if (bitmap == null)
 		{
 			super.onDraw(canvas);
 			return;
 		}
-
+		
+		
+	    //Log.i("SCALE","t2:"+mScaleFactor);
 		mScaleFactor = Math.max(mScaleFactor, minScaleFactor);
-
+		//Log.i("SCALE","t3:"+mScaleFactor);
 		canvasHeight = canvas.getHeight();
 		canvasWidth = canvas.getWidth();
-		// Log.d(TAG, "canvas density: " + canvas.getDensity() +
-		// " bitmap density: " + bitmap.getDensity());
-		// Log.d(TAG, "mScaleFactor: " + mScaleFactor);
-
+		//Log.i("POSX1","X"+mPosX);
+		//Log.i("POSY1","Y"+mPosY);
+		
+		
 		canvas.save();
 		int minX, maxX, minY, maxY;
 		maxX = (int) (((viewWidth / mScaleFactor) - bitmap.getWidth()) / 2);
 		minX = 0;
-		// How far can we move the image vertically without having a gap between
-		// image and frame?
+
 		maxY = (int) (((viewHeight / mScaleFactor) - bitmap.getHeight()) / 2);
 		minY = 0;
-		Log.d(TAG, "minX: " + maxX + " maxX: " + minX + " minY: " + maxY
-				+ " maxY: " + minY);
-		// Do not go beyond the boundaries of the image
 
+		/*echo("------------------------");
+		echo("BITMAP WIDTH:"+bitmap.getWidth());
+		echo("BITMAP HEIGHT:"+bitmap.getHeight());
+		
+		echo("VIEW WIDTH:"+viewWidth);
+		echo("VIEW HEIGHT:"+viewHeight);
+		
+		echo("MAXX:"+maxX);
+		echo("MAXY:"+maxY);
+		echo("------------------------");
+		
+		Log.i("POSX1","X"+mPosX);
+		Log.i("POSY1","Y"+mPosY);*/
+		
 		if (mPosX > minX)
 			mPosX = minX;
 		if (mPosX < maxX)
@@ -192,7 +151,11 @@ public class BuildingImageView extends ImageView implements Constants
 			mPosY = minY;
 		if (mPosY < maxY)
 			mPosY = maxY;
-
+		
+		//Log.i("POS2","X"+mPosX);
+		//Log.i("POSY2","Y"+mPosY);
+		
+		//Log.i("SCALE","SCALE:"+mScaleFactor);
 		canvas.scale(mScaleFactor, mScaleFactor);
 		canvas.translate(mPosX, mPosY);
 
@@ -202,32 +165,36 @@ public class BuildingImageView extends ImageView implements Constants
 		Paint redPaint = new Paint();
 		redPaint.setColor(Color.RED);
 		redPaint.setStrokeWidth(5);
-
-		if (routeLines != null && !routeLines.isEmpty())
-		{
-			lines.clear();
-			for (Line l : routeLines)
-			{
-				addLine(l);
-			}
-		}
-
-		for (Line l : lines)
-		{
-			canvas.drawLine(l.startX, l.startY, l.stopX, l.stopY, redPaint);
-		}
+		//TODO: przeniesc warunek is empty nizej pod nulla
 		
-		if(startPoint != null)
+		
+		if(routeMode)
 		{
-			float startX = (startPoint.x  - startPoint.bmp.getWidth()/2) * bitmapWidth / originalWidth + mPosX;
-			float startY = (startPoint.y - startPoint.bmp.getHeight()/2) * bitmapHeight / originalHeight + mPosY;
-			canvas.drawBitmap(startPoint.bmp, startX, startY, null);
-		}
-		if(goalPoint != null)
-		{
-			float startX = (goalPoint.x - goalPoint.bmp.getWidth()/2) * bitmapWidth / originalWidth + mPosX;
-			float startY = (goalPoint.y- goalPoint.bmp.getHeight()/2) * bitmapHeight / originalHeight + mPosY;
-			canvas.drawBitmap(goalPoint.bmp, startX, startY, null);
+			if (routeLines != null && !routeLines.isEmpty())
+			{
+				lines.clear();
+				for (Line l : routeLines)
+				{
+					addLine(l);
+				}
+			}
+
+			for (Line l : lines)
+			{
+				canvas.drawLine(l.startX, l.startY, l.stopX, l.stopY, redPaint);
+			}
+			if(startPoint.bmp != null)
+			{
+				float startX = (startPoint.x  - startPoint.bmp.getWidth()/2) * bitmapWidth / originalWidth + mPosX;
+				float startY = (startPoint.y - startPoint.bmp.getHeight()/2) * bitmapHeight / originalHeight + mPosY;
+				canvas.drawBitmap(startPoint.bmp, startX, startY, null);
+			}
+			if(goalPoint.bmp != null)
+			{
+				float startX = (goalPoint.x - goalPoint.bmp.getWidth()/2) * bitmapWidth / originalWidth + mPosX;
+				float startY = (goalPoint.y- goalPoint.bmp.getHeight()/2) * bitmapHeight / originalHeight + mPosY;
+				canvas.drawBitmap(goalPoint.bmp, startX, startY, null);
+			}
 		}
 		
 
@@ -463,7 +430,7 @@ public class BuildingImageView extends ImageView implements Constants
 	{
 		float x;
 		float y;
-		Bitmap bmp;
+		Bitmap bmp = null;
 		
 		public CustomBitmapPoint(float x,float y, Bitmap b)
 		{
@@ -473,6 +440,15 @@ public class BuildingImageView extends ImageView implements Constants
 		}
 	}
 
+	public void setSearchCustomPoint(int x, int y)
+	{
+		echo("XXXX"+x);
+		echo("XXXX"+y);
+		this.startPoint = new CustomBitmapPoint(x, y, null);
+		this.firstView = true;
+		this.routeMode = false;
+	}
+	
 	public void setStartCustomPoint(Bitmap bmp)
 	{
 		if(!routeLines.isEmpty())
@@ -481,17 +457,12 @@ public class BuildingImageView extends ImageView implements Constants
 			float y = routeLines.get(0).startY;
 			this.startPoint = new CustomBitmapPoint(x, y, bmp);
 			
-			this.mPosX = x - viewWidth/2;
-			if(mPosX < 0 ) mPosX = 0;
-			
-			this.mPosY = y - viewHeight/2;
-			if(mPosY < 0 ) mPosX = 0;
-			
-			this.mScaleFactor = 3.0f;
-			this.invalidate();
+			this.firstView = true;
 		}
+		this.routeMode = true;
 		
 	}
+	
 	public void setGoalCustomPoint(Bitmap bmp)
 	{
 		if(!routeLines.isEmpty())
@@ -501,6 +472,100 @@ public class BuildingImageView extends ImageView implements Constants
 			float y = routeLines.get(size-1).stopY;
 			this.goalPoint = new CustomBitmapPoint(x, y, bmp);
 		}	
+		this.routeMode = true;
+	}
+	
+	private void SetPosAndScale()
+	{
+		//TODO: zrobiæ skalê przybli¿ania jako dynamiczn¹ do wymiarów ekranu
+		this.mScaleFactor = 0.55f;
+		
+		this.mPosX = startPoint.x * bitmapWidth / originalWidth ;
+		this.mPosX = (this.mPosX - viewWidth)*mScaleFactor*(-1);
+		
+		this.mPosY = startPoint.y * bitmapHeight / originalHeight;
+		this.mPosY = (this.mPosY - viewHeight)*mScaleFactor*(-1);
+		
+		Log.i("mPosX:","X:"+mPosX);
+		Log.i("mPosY:","Y:"+mPosY);
+		Log.i("SCALE","SET:"+mScaleFactor);
+		
+		this.invalidate();
+	}
+	
+	private void addLine(Line line)
+	{
+		float x1 = line.startX;
+		float y1 = line.startY;
+		float x2 = line.stopX;
+		float y2 = line.stopY;
+
+		float startX = x1 * bitmapWidth / originalWidth + mPosX;
+		float startY = y1 * bitmapHeight / originalHeight + mPosY;
+		float stopX = x2 * bitmapWidth / originalWidth + mPosX;
+		float stopY = y2 * bitmapHeight / originalHeight + mPosY;
+
+		lines.add(new Line(startX, startY, stopX, stopY));
+
+	}
+
+	public void setBitmap(Bitmap bmp)
+	{
+		setImageBitmap(bmp);
+	}
+
+	public void setLines(List<Line> routeLines)
+	{
+		if (routeLines == null)
+		{
+			this.routeLines = new ArrayList<Line>();
+		} else
+		{
+			this.routeLines = routeLines;
+		}
+	}
+
+	public void setImageBitmap(Bitmap bmp)
+	{
+		this.bitmap = bmp;
+		this.bitmapHeight = bitmap.getHeight();
+		this.bitmapWidth = bitmap.getWidth();
+		this.mScaleFactor = 1.0f;
+		this.mPosX = mPosY = 0f;
+
+	}
+
+	public Bitmap getImageBitmap()
+	{
+		return bitmap;
+	}
+
+	public Bitmap getBitmap()
+	{
+		return getImageBitmap();
+	}
+
+	public void setImageDrawable(Drawable drawable)
+	{
+		setImageBitmap(((BitmapDrawable) drawable).getBitmap());
+	}
+
+	public BitmapDrawable getImageDrawable()
+	{
+		BitmapDrawable bd = new BitmapDrawable(getContext().getResources(),
+				bitmap);
+		return bd;
+	}
+
+	public BitmapDrawable getDrawable()
+	{
+		return getImageDrawable();
+	}
+	
+	
+	private void echo(String s)
+	{
+		Log.i("Poligdzie",s);
 	}
 	
 }

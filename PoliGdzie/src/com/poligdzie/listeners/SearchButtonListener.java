@@ -30,6 +30,7 @@ import com.poligdzie.fragments.MapOutdoorFragment;
 import com.poligdzie.fragments.SearchDetailsFragment;
 import com.poligdzie.fragments.SearchPlaceFragment;
 import com.poligdzie.helpers.DatabaseHelper;
+import com.poligdzie.interfaces.WithCoordinates;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Floor;
 import com.poligdzie.persistence.Room;
@@ -139,13 +140,25 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 		{
 			echo("test");
 			echo(f.getTag());
-			MapIndoorFragment indoorMap = new MapIndoorFragment(
-					f.getDrawableId(), f.getName(), f.getTag(), f.getId());
 			if (f.getTag().equals(getTag(object)))
 			{
+				echo("TEST");
+				Room room = dbHelper.getRoomDao().queryForId(((Room)object).getId());
+				int x = room.getCoordX();
+				int y = room.getCoordY();
+				echo("TEST2");
+				MapIndoorFragment indoorMap = new MapIndoorFragment(
+						f.getDrawableId(), f.getName(), f.getTag(), f.getId(),x,y);
 				((PoliGdzieBaseActivity) fragment.getActivity())
 						.switchFragment(R.id.map_container, indoorMap,
 								indoorMap.getViewTag());
+				echo("TEST3");
+			}
+			else
+			{
+				echo("TEST4");
+				MapIndoorFragment indoorMap = new MapIndoorFragment(
+						f.getDrawableId(), f.getName(), f.getTag(), f.getId());
 			}
 
 		}
@@ -186,13 +199,6 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 		}
 		return null;
 	}
-
-/*	@Override
-	public void onClick(View v)
-	{
-
-		
-	}*/
 
 	private boolean validateAdapter(SearchAutoCompleteTextView searchPoint)
 	{

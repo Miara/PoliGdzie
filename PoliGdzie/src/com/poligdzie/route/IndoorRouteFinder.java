@@ -427,7 +427,7 @@ public class IndoorRouteFinder implements Constants
 				{
 					best[i] = best[actual] + graph[actual][i];
 					previous[i] = actual;
-					echo("best["+points.get(i).getId()+"]="+best[i]);
+					//echo("best["+points.get(i).getId()+"]="+best[i]);
 				}
 			}
 			checked[actual] = true;
@@ -531,7 +531,7 @@ public class IndoorRouteFinder implements Constants
 			int y = getIndex(con.getLastPoint());
 			graph[x][y] = con.getLength();
 			graph[y][x] = con.getLength();
-			echo("["+x+"]["+y+"]="+con.getLength());
+			//echo("["+x+"]["+y+"]="+con.getLength());
 		}
 	}
 
