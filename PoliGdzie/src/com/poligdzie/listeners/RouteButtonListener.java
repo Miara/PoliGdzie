@@ -145,21 +145,24 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 			if (startObject instanceof Building
 					&& goalObject instanceof Building)
 			{
-				mapProvider.addGoogleMapFragment();
+				
+			//	mapProvider.addGoogleMapFragment();
 				((PoliGdzieBaseActivity) fragment.getActivity())
 						.switchFragment(R.id.map_container, mapProvider
 								.getGoogleMapFragment(), mapProvider
 								.getGoogleMapFragment().getViewTag());
 				// TODO: Draw route
 				
+				GoogleMap map = ((MapFragment) fragment.getActivity() .getFragmentManager().findFragmentById(R.id.map_outdoor_googleMap)).getMap();
+				
 				MapDrawingProvider provider = MapDrawingProvider.getInstance();
 				
 				provider.setStart(startObject);
 				provider.setGoal(goalObject);
 				provider.setDrawRoute(true);
-				provider.drawRoute();
+				provider.drawRoute(map);
 				
-								
+					
 
 			} else if (startObject instanceof Building)
 			{
@@ -463,6 +466,9 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 		}
 	}
 
+	
+	
+	
 	private Floor getFloor(Object object) throws SQLException
 	{
 

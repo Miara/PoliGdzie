@@ -1,5 +1,7 @@
 package com.poligdzie.fragments;
 
+import java.sql.SQLException;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,12 +46,14 @@ public class MapOutdoorFragment extends PoliGdzieMapFragment implements
 
 		drawingProvider = MapDrawingProvider.getInstance();
 		drawingProvider.setContext(this.getActivity());
-       
+    
 		map = drawingProvider.getMapWithRoute(map, dbHelper);
 		map.setOnMarkerClickListener(new MarkerOnClickCustomListener(this, map,
 				dbHelper));
 
 		map.setOnCameraChangeListener(new OnCameraChangeCustomListener(this));
+		
+		
 		return rootView;
 	}
 
