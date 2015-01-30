@@ -65,8 +65,7 @@ public class MapDrawingProvider extends PoliGdzieBaseClass
 		if (drawRoute && url != null)
 		{
 			Log.i("Poli","in draw route");
-			DownloadDirectionsTask downloadTask = new DownloadDirectionsTask(
-					map, options);
+			DownloadDirectionsTask downloadTask = new DownloadDirectionsTask(map);
 			downloadTask.execute(url);
 		}
 	}
@@ -96,7 +95,7 @@ public class MapDrawingProvider extends PoliGdzieBaseClass
 		this.map = map;
 	}
 
-	public void drawRoute()
+	public void drawRoute(GoogleMap map)
 	{
 		map.clear();
 		this.drawOnMap(map);
@@ -151,8 +150,8 @@ public class MapDrawingProvider extends PoliGdzieBaseClass
 			return null;
 		}
 
-		String waypoints = "waypoints=optimize:true|" + startCoords.get("X")
-				+ "," + startCoords.get("Y") + "|" + "|" + goalCoords.get("X")
+		String waypoints = "origin=" + startCoords.get("X")
+				+ "," + startCoords.get("Y") + "" + "&destination=" + goalCoords.get("X")
 				+ "," + goalCoords.get("Y");
 
 		String sensor = "sensor=false";
@@ -160,8 +159,10 @@ public class MapDrawingProvider extends PoliGdzieBaseClass
 		String params = waypoints + "&" + sensor + "&" + mode;
 		String output = "json";
 		String url = "https://maps.googleapis.com/maps/api/directions/"
-				+ output + "?" + params;
+				+ output + "?" + params;// + "&KEY=AIzaSyDaH9Hu9g289RG5v9Md2inQtYSkgruI17U";
 
+		
+		
 		Log.i("POLIGDZIE", url);
 		return url;
 	}

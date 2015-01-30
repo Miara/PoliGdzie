@@ -11,39 +11,40 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.json.Directions;
 
-public class DownloadDirectionsTask extends AsyncTask<String, Void, String>
+public class DownloadDirectionsTask extends AsyncTask<String, Void, PolylineOptions>
 {
 
-	public GoogleMap		map;
-	public PolylineOptions	options;
+	private GoogleMap		map;
+	
 
-	public DownloadDirectionsTask(GoogleMap map, PolylineOptions options)
+	public DownloadDirectionsTask(GoogleMap map)
 	{
 		this.map = map;
-		this.options = options;
 	}
 
 	@Override
-	protected String doInBackground(String... url)
+	protected PolylineOptions doInBackground(String... url)
 	{
 
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(
 				DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
+		PolylineOptions	options = null; 
 		try
 		{
-
+			
 			Directions directions = mapper.readValue(new URL(url[0]),
 					Directions.class);
-
+			
 			options = new PolylineOptions();
 			options = directions.generatePolylineFromDirections(options);
+			
 
 		} catch (JsonParseException e)
 		{
@@ -57,15 +58,19 @@ public class DownloadDirectionsTask extends AsyncTask<String, Void, String>
 		} catch (IOException e)
 		{
 			e.printStackTrace();
+			Log.e("POLIGDZIE", "NAPEWNO KURWA TEN WYJATEK?");
 		}
-		return "Not sure what should I return";
+		return options;
 	}
 
 	@Override
-	protected void onPostExecute(String result)
+	protected void onPostExecute(PolylineOptions options)
 	{
-		super.onPostExecute(result);
+		super.onPostExecute(options);
 
+		if(options == null) {
+			Log.d("POLIGDZIE", "CHUUUUUJ");
+		}
 		if (options == null)
 			options = new PolylineOptions();
 		options.color(Color.RED);
