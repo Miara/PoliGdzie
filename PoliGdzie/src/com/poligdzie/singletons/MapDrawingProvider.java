@@ -64,6 +64,7 @@ public class MapDrawingProvider extends PoliGdzieBaseClass
 		String url = getMapsApiDirectionsUrl(map);
 		if (drawRoute && url != null)
 		{
+			Log.i("Poli","in draw route");
 			DownloadDirectionsTask downloadTask = new DownloadDirectionsTask(
 					map, options);
 			downloadTask.execute(url);

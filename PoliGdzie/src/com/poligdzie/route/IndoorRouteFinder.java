@@ -49,19 +49,22 @@ public class IndoorRouteFinder implements Constants
 		Room goal = dbHelper.getRoomDao().queryForId(r2.getId());
 		
 		List<NavigationConnection> connList;
+		
 		NavigationPoint first = new NavigationPoint(start.getDoorsX(),
 				start.getDoorsY(), start.getFloor(),
 				NavigationPointTypes.NAVIGATION);
 		first.setId(point_id++);
+		
 		NavigationPoint last = new NavigationPoint(goal.getDoorsX(),
 				goal.getDoorsY(), goal.getFloor(),
 				NavigationPointTypes.NAVIGATION);
 		last.setId(point_id++);
+		
 		// TODO: wywalic error code i sprawdzanie go za kazdym razem - lepiej
 		// swignac wyjatkiem
 		if (init(first, last) != ERROR_CODE)
 		{
-
+			echo("test5");
 			NavigationConnection goalNavigationConnection = dbHelper
 					.getNavigationConnectionDao().queryForId(
 							goal.getNavigationConnection().getId());
@@ -96,13 +99,14 @@ public class IndoorRouteFinder implements Constants
 				start.getDoorsY(), start.getFloor(),
 				NavigationPointTypes.NAVIGATION);
 		first.setId(point_id++);
-		if (init(first, goal) != ERROR_CODE)
+		NavigationPoint last = dbHelper.getNavigationPointDao().queryForId(goal.getId());
+		if (init(first, last) != ERROR_CODE)
 		{
 			connList = getNearestPointAndMakeConnection(first,
 					start.getNavigationConnection());
 			if (connList != null)
 				connections.addAll(connList);
-			return findRouteBetweenPoints(first, goal);
+			return findRouteBetweenPoints(first, last);
 		} else
 		{
 			return null;
@@ -113,17 +117,18 @@ public class IndoorRouteFinder implements Constants
 			throws SQLException
 	{
 		List<NavigationConnection> connList;
+		NavigationPoint first = dbHelper.getNavigationPointDao().queryForId(start.getId());
 		NavigationPoint last = new NavigationPoint(goal.getDoorsX(),
 				goal.getDoorsY(), goal.getFloor(),
 				NavigationPointTypes.NAVIGATION);
 		last.setId(point_id++);
-		if (init(start, last) != ERROR_CODE)
+		if (init(first, last) != ERROR_CODE)
 		{
 			connList = getNearestPointAndMakeConnection(last,
 					goal.getNavigationConnection());
 			if (connList != null)
 				connections.addAll(connList);
-			return findRouteBetweenPoints(start, last);
+			return findRouteBetweenPoints(first, last);
 		} else
 		{
 			return null;
@@ -151,6 +156,7 @@ public class IndoorRouteFinder implements Constants
 			startBuildingId = dbHelper.getFloorDao()
 					.queryForId(startPoint.getFloor().getId()).getBuilding()
 					.getId();
+			echo("P"+goalPoint.getFloor().getId());
 			goalBuildingId = dbHelper.getFloorDao()
 					.queryForId(goalPoint.getFloor().getId()).getBuilding()
 					.getId();

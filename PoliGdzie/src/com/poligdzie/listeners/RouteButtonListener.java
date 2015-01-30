@@ -156,6 +156,7 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 				
 				provider.setStart(startObject);
 				provider.setGoal(goalObject);
+				provider.setDrawRoute(true);
 				provider.drawRoute();
 				
 								
