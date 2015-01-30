@@ -142,6 +142,15 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 			List<BuildingEntry> entrances = new ArrayList<BuildingEntry>();
 			entrances = getEntrancesBetweenBuildings(getBuilding(startObject)
 					.getId(), getBuilding(goalObject).getId());
+			
+			MapDrawingProvider drawingProvider = MapDrawingProvider.getInstance();
+			map = ((MapFragment) fragment.getActivity() 
+					.getFragmentManager().findFragmentById(R.id.map_outdoor_googleMap)).getMap();
+			drawingProvider.setStart(entrances.get(0));
+			drawingProvider.setGoal(entrances.get(1));
+			drawingProvider.setDrawRoute(true);
+			drawingProvider.drawRoute(map);
+			
 			if (startObject instanceof Building
 					&& goalObject instanceof Building)
 			{
@@ -152,17 +161,7 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 								.getGoogleMapFragment(), mapProvider
 								.getGoogleMapFragment().getViewTag());
 				// TODO: Draw route
-				
-				GoogleMap map = ((MapFragment) fragment.getActivity() .getFragmentManager().findFragmentById(R.id.map_outdoor_googleMap)).getMap();
-				
-				MapDrawingProvider provider = MapDrawingProvider.getInstance();
-				
-				provider.setStart(startObject);
-				provider.setGoal(goalObject);
-				provider.setDrawRoute(true);
-				provider.drawRoute(map);
-				
-					
+	
 
 			} else if (startObject instanceof Building)
 			{
@@ -172,6 +171,8 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 						.switchFragment(R.id.map_container, mapProvider
 								.getGoogleMapFragment(), mapProvider
 								.getGoogleMapFragment().getViewTag());
+				
+				
 				// TODO: Draw route
 				// TODO zabezpieczyc, zebye nie bylo indeksu poza granicami
 				NavigationPoint startIndoorPoint = dbHelper.getNavigationPointDao().

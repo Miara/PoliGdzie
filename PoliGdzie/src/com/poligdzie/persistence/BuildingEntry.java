@@ -3,18 +3,19 @@ package com.poligdzie.persistence;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 import com.poligdzie.base.PoliGdzieBaseClass;
+import com.poligdzie.interfaces.WithCoordinates;
 
 @DatabaseTable(tableName = "buildingEntry")
-public class BuildingEntry extends PoliGdzieBaseClass
+public class BuildingEntry extends PoliGdzieBaseClass implements WithCoordinates
 {
 	@DatabaseField(id = true)
 	private int				id;
 
 	@DatabaseField
-	private int				coordX;
+	private double				coordX;
 
 	@DatabaseField
-	private int				coordY;
+	private double				coordY;
 
 	@DatabaseField(foreign = true, foreignAutoRefresh = false, columnName = "building_id")
 	private Building		building;
@@ -32,7 +33,7 @@ public class BuildingEntry extends PoliGdzieBaseClass
 		this.id = id;
 	}
 
-	public int getCoordX()
+	public double getCoordX()
 	{
 		return coordX;
 	}
@@ -42,7 +43,7 @@ public class BuildingEntry extends PoliGdzieBaseClass
 		this.coordX = coordX;
 	}
 
-	public int getCoordY()
+	public double getCoordY()
 	{
 		return coordY;
 	}

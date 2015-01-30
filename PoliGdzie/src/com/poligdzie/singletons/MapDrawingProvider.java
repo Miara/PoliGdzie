@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.persistence.Building;
+import com.poligdzie.persistence.BuildingEntry;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 import com.poligdzie.tasks.DownloadDirectionsTask;
@@ -121,6 +122,12 @@ public class MapDrawingProvider extends PoliGdzieBaseClass
 		{
 			result.put("X", ((Room) object).getBuilding().getCoordX());
 			result.put("Y", ((Room) object).getBuilding().getCoordY());
+		}
+		
+		if (object instanceof BuildingEntry)
+		{
+			result.put("X", ((BuildingEntry) object).getCoordX());
+			result.put("Y", ((BuildingEntry) object).getCoordY());
 		}
 
 		return result;
