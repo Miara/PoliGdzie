@@ -27,6 +27,10 @@ public class MapActivityTest extends ActivityInstrumentationTestCase2<MapActivit
 		solo = new Solo(getInstrumentation(),getActivity());
 	}
 
+	
+	//test sprawdza, czy uda siê znaleŸæ dane pomieszczenie i czy aplikacja skieruje u¿ytkownika do odpowiedniego budynku
+	//TODO: szukanie budynkow, jednostek oraz sprawdzanie numeru pietra
+	
 	@MediumTest
 	public void testSearching() {
 		searchFor("8", "Sala 8", "Sala 8", "Centrum");
@@ -34,6 +38,7 @@ public class MapActivityTest extends ActivityInstrumentationTestCase2<MapActivit
 		searchFor("fresh", "freshmarket", "freshmarket", "Centrum");
 		searchFor("2.7", "laboratorium 2.7.2", "laboratorium 2.7.2", "Biblioteka");
 		searchFor("1.6", "laboratorium 1.6.18", "laboratorium 1.6.18", "Biblioteka");
+		searchFor("00", "Sala 001A", "Sala 001A", "Chemicznej");
 	}
 
 	@Override
