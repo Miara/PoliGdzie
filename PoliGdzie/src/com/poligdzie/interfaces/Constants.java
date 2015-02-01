@@ -2,11 +2,12 @@ package com.poligdzie.interfaces;
 
 public interface Constants
 {
-
+//TODO zastapic klasa z publicznym statycznymi polami
+	
 	// baza danych
 	public String	DATABASE_NAME			= "Poligdzie.db";
 
-	public int		DATABASE_VERSION		= 71;
+	public int		DATABASE_VERSION		= 72;
 
 	// Ustawienia aplikacji w PreferenceManager
 	public String	START_FIELD_VALUE			= "";

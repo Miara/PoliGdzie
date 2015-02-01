@@ -54,18 +54,13 @@ public class MapActivityTest extends ActivityInstrumentationTestCase2<MapActivit
 		solo.clearEditText(vSearchEditText);
 		solo.enterText(vSearchEditText, typed);
 	
-		
-		
 		solo.waitForText(autocomplete);
 		solo.clickOnText(autocomplete);
 
-		
-		
 		solo.waitForFragmentById(R.id.search_description_frag);
 		
 		//sleep potrzebny na wstrzykniêcie wartoœci
 		solo.sleep(10000);
-		
         
 		TextView mainDesc = (TextView) solo.getView(R.id.search_main_description);
 		assertEquals(mainDescription, mainDesc.getText().toString());
