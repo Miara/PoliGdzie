@@ -84,7 +84,6 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 				
 		Log.i("poli", "map1");
 
-
 		mapProvider = MapFragmentProvider.getInstance();
 
 		DataProvider dataProvider = DataProvider.getInstance();

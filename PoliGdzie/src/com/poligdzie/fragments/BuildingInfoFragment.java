@@ -70,8 +70,10 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 		DisplayMetrics dm = new DisplayMetrics();
 		getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);		
 
-		float density = getResources().getDisplayMetrics().densityDpi;
-		density = 100/density;
+		float densityX = getResources().getDisplayMetrics().xdpi;
+		float densityY = getResources().getDisplayMetrics().ydpi;
+		densityX = 100/densityX;
+		densityY = 100/densityY;
 
 		
 		//140,70 to szerokosc i wysokosc layoutu do info fragmentu 
@@ -84,15 +86,16 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 		Log.i("Poligdzie","height:"+mapHeight);
 		Log.i("Poligdzie","width:"+width);
 		Log.i("Poligdzie","height:"+height);
-		Log.i("poli","density:"+density);
+		Log.i("poli","density:"+densityX);
+		Log.i("poli","density:"+densityY);
 		
 
 //TODO: refaktor, wywalic magic numbers
 //TODO: ustawic dobrze pozycje okienka
 			
-			int leftMargin = (int) ((0.5 * mapWidth -width)*density) ;
+			int leftMargin = (int) ((0.5 * mapWidth -width)*densityX) ;
 			if(leftMargin < 0) leftMargin = 0;
-			int topMargin = (int) ((0.5 * mapHeight -height)*density) ;
+			int topMargin = (int) ((0.5 * mapHeight -height)*densityY) ;
 			if(topMargin < 0) topMargin = 0;
 		
 			params.leftMargin = leftMargin;
