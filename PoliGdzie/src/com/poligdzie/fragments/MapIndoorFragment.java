@@ -78,13 +78,13 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 		try
 		{
 			Floor floor = dbHelper.getFloorDao().queryForId(floorId);
-			int radius = ROUTE_SCALE_RADIUS * floor.getPixelsPerMeter();
+			
 			buildingImage.setOriginalWidth(floor.getWidth());
 			buildingImage.setOriginalHeight(floor.getHeight());
 			if(!routeMode)
 			{
 				echo("TEST9");
-				buildingImage.setSearchCustomPoint(this.searchX,this.searchY,radius);
+				buildingImage.setSearchCustomPoint(this.searchX,this.searchY,this.radius);
 			}
 			else
 			{
@@ -102,6 +102,7 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.stairs_icon);
 						else
 							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.from_icon);
+						int radius = ROUTE_SCALE_RADIUS * floor.getPixelsPerMeter();
 						if(bmp != null) buildingImage.setStartCustomPoint(bmp,radius);
 						
 						if(goalPointType == NavigationPointTypes.ENTRY)

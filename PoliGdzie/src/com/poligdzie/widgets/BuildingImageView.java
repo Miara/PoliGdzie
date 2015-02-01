@@ -419,6 +419,7 @@ public class BuildingImageView extends ImageView implements Constants
 	{
 		echo("XXXX"+x);
 		echo("XXXX"+y);
+		echo("Radius"+radius);
 		this.startPoint = new CustomBitmapPoint(x, y, null);
 		this.firstView = true;
 		this.routeMode = false;
@@ -455,15 +456,19 @@ public class BuildingImageView extends ImageView implements Constants
 	private void SetPosAndScale()
 	{
 		//TODO: zrobiæ skalê przybli¿ania jako dynamiczn¹ do wymiarów ekranu
-		//this.mScaleFactor = this.radius / originalWidth;
-		//this.mScaleFactor = Math.max(mScaleFactor, minScaleFactor);
+		//this.mScaleFactor = 2*this.radius / originalWidth;
+		//echo("mscale:"+radius);
+		//echo("mscale:"+originalWidth);
+		//echo("mscale:"+mScaleFactor);
+		//this.mScaleFactor = Math.max(mScaleFactor, maxScaleFactor);
+		//echo("mscale:"+mScaleFactor);
 		//this.radius ...
 		this.mScaleFactor = 0.55f;
 		
-		this.mPosX = (startPoint.x )* bitmapWidth / originalWidth  ;
+		this.mPosX = (startPoint.x - this.radius)* bitmapWidth / originalWidth  ;
 		this.mPosX = (this.mPosX - viewWidth)*mScaleFactor*(-1);
 		
-		this.mPosY = (startPoint.y ) * bitmapHeight / originalHeight ;
+		this.mPosY = (startPoint.y- this.radius ) * bitmapHeight / originalHeight ;
 		this.mPosY = (this.mPosY - viewHeight)*mScaleFactor*(-1);
 		
 		Log.i("mPosX:","X:"+mPosX);

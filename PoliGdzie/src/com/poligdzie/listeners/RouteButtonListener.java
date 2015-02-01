@@ -155,12 +155,11 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 					&& goalObject instanceof Building)
 			{
 				
-			//	mapProvider.addGoogleMapFragment();
+				mapProvider.addGoogleMapFragment();
 				((PoliGdzieBaseActivity) fragment.getActivity())
 						.switchFragment(R.id.map_container, mapProvider
 								.getGoogleMapFragment(), mapProvider
 								.getGoogleMapFragment().getViewTag());
-				// TODO: Draw route
 	
 
 			} else if (startObject instanceof Building)
@@ -173,7 +172,6 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 								.getGoogleMapFragment().getViewTag());
 				
 				
-				// TODO: Draw route
 				// TODO zabezpieczyc, zebye nie bylo indeksu poza granicami
 				NavigationPoint startIndoorPoint = dbHelper.getNavigationPointDao().
 						queryForId(entrances.get(1).getNavigationPoint().getId()); // 2nd building entry
@@ -201,7 +199,6 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 				}
 
 				mapProvider.addGoogleMapFragment();
-				// TODO: Draw route
 			} else
 			{
 				if (startObject instanceof Room)

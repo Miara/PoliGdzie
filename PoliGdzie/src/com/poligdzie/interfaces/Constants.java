@@ -66,7 +66,7 @@ public interface Constants
 	public int POINT_TYPE_START = 2;
 	public int POINT_TYPE_GOAL = 3;
 	
-	public int ROUTE_SCALE_RADIUS = 20;
+	public int ROUTE_SCALE_RADIUS = 10;
 	
 
 
