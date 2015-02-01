@@ -67,6 +67,10 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 		if (goalPosition == null)
 			Log.i("poligdzie", "test2");
 
+		
+		startPosition.clearFocus();
+		goalPosition.clearFocus();
+		
 		MapDrawingProvider provider = MapDrawingProvider.getInstance();
 
 		if (provider.getStart() != null)
@@ -105,7 +109,7 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 			String newStartName = "";
 			Object newGoalObj = null;
 			String newGoalName = "";
-			
+			//TODO: poprawic switcha przy pustych znakach
 			if(!goalPosition.getAdapter().isEmpty())
 			{
 				newStartObj = goalPosition.getAdapter().getItem(0);

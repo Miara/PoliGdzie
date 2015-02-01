@@ -146,9 +146,10 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 				Room room = dbHelper.getRoomDao().queryForId(((Room)object).getId());
 				int x = room.getCoordX();
 				int y = room.getCoordY();
+				int radius = room.getRadius()*2;
 				echo("TEST2");
 				MapIndoorFragment indoorMap = new MapIndoorFragment(
-						f.getDrawableId(), f.getName(), f.getTag(), f.getId(),x,y);
+						f.getDrawableId(), f.getName(), f.getTag(), f.getId(),x,y,radius);
 				((PoliGdzieBaseActivity) fragment.getActivity())
 						.switchFragment(R.id.map_container, indoorMap,
 								indoorMap.getViewTag());

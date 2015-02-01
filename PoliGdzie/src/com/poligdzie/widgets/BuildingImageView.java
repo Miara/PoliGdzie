@@ -38,7 +38,7 @@ public class BuildingImageView extends ImageView implements Constants
 
 	private ScaleGestureDetector	mScaleDetector;
 	private float					mScaleFactor		= 1.f;
-	private float					minScaleFactor;
+	private float					maxScaleFactor;
 
 	private float					mPosX;
 	private float					mPosY;
@@ -68,6 +68,11 @@ public class BuildingImageView extends ImageView implements Constants
 	private float					firstY;
 	private boolean 				firstView=false;
 
+	private int	radius;
+
+	
+	//TODO: zrefaktoryzowac klase, jest zbyt duza !!!
+	
 	public BuildingImageView(Context context)
 	{
 		super(context);
@@ -101,7 +106,7 @@ public class BuildingImageView extends ImageView implements Constants
 			SetPosAndScale();
 			firstView=false;
 		}
-		Log.i("SCALE","t1:"+mScaleFactor);
+		//Log.i("SCALE","t1:"+mScaleFactor);
 		if (bitmap == null)
 		{
 			super.onDraw(canvas);
@@ -110,7 +115,7 @@ public class BuildingImageView extends ImageView implements Constants
 		
 		
 	    //Log.i("SCALE","t2:"+mScaleFactor);
-		mScaleFactor = Math.max(mScaleFactor, minScaleFactor);
+		mScaleFactor = Math.max(mScaleFactor, maxScaleFactor);
 		//Log.i("SCALE","t3:"+mScaleFactor);
 		canvasHeight = canvas.getHeight();
 		canvasWidth = canvas.getWidth();
@@ -273,6 +278,7 @@ public class BuildingImageView extends ImageView implements Constants
 					if (duration <= DOUBLE_CLICK_DURATION)
 					{
 						mScaleFactor *= VIEW_ZOOM_IN;
+						mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
 						invalidate();
 					}
 					clickCount = 0;
@@ -357,9 +363,9 @@ public class BuildingImageView extends ImageView implements Constants
 					/ (float) bitmap.getWidth();
 			float minYScaleFactor = (float) viewHeight
 					/ (float) bitmap.getHeight();
-			minScaleFactor = Math.max(minXScaleFactor, minYScaleFactor);
+			maxScaleFactor = Math.max(minXScaleFactor, minYScaleFactor);
 
-			mScaleFactor = minScaleFactor;
+			mScaleFactor = maxScaleFactor;
 			mPosX = mPosY = 0;
 
 		}
@@ -409,22 +415,24 @@ public class BuildingImageView extends ImageView implements Constants
 		}
 	}
 
-	public void setSearchCustomPoint(int x, int y)
+	public void setSearchCustomPoint(int x, int y,int radius)
 	{
 		echo("XXXX"+x);
 		echo("XXXX"+y);
 		this.startPoint = new CustomBitmapPoint(x, y, null);
 		this.firstView = true;
 		this.routeMode = false;
+		this.radius = radius;
 	}
 	
-	public void setStartCustomPoint(Bitmap bmp)
+	public void setStartCustomPoint(Bitmap bmp, int radius)
 	{
 		if(!routeLines.isEmpty())
 		{
 			float x = routeLines.get(0).startX;
 			float y = routeLines.get(0).startY;
 			this.startPoint = new CustomBitmapPoint(x, y, bmp);
+			this.radius = radius;
 			
 			this.firstView = true;
 		}
@@ -447,12 +455,15 @@ public class BuildingImageView extends ImageView implements Constants
 	private void SetPosAndScale()
 	{
 		//TODO: zrobiæ skalê przybli¿ania jako dynamiczn¹ do wymiarów ekranu
+		//this.mScaleFactor = this.radius / originalWidth;
+		//this.mScaleFactor = Math.max(mScaleFactor, minScaleFactor);
+		//this.radius ...
 		this.mScaleFactor = 0.55f;
 		
-		this.mPosX = startPoint.x * bitmapWidth / originalWidth ;
+		this.mPosX = (startPoint.x )* bitmapWidth / originalWidth  ;
 		this.mPosX = (this.mPosX - viewWidth)*mScaleFactor*(-1);
 		
-		this.mPosY = startPoint.y * bitmapHeight / originalHeight;
+		this.mPosY = (startPoint.y ) * bitmapHeight / originalHeight ;
 		this.mPosY = (this.mPosY - viewHeight)*mScaleFactor*(-1);
 		
 		Log.i("mPosX:","X:"+mPosX);

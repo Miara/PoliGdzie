@@ -36,6 +36,7 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 	private int searchX;
 	private int searchY;
 	private boolean routeMode = false;
+	private int	radius;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,12 +78,13 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 		try
 		{
 			Floor floor = dbHelper.getFloorDao().queryForId(floorId);
+			int radius = ROUTE_SCALE_RADIUS * floor.getPixelsPerMeter();
 			buildingImage.setOriginalWidth(floor.getWidth());
 			buildingImage.setOriginalHeight(floor.getHeight());
 			if(!routeMode)
 			{
 				echo("TEST9");
-				buildingImage.setSearchCustomPoint(this.searchX,this.searchY);
+				buildingImage.setSearchCustomPoint(this.searchX,this.searchY,radius);
 			}
 			else
 			{
@@ -100,7 +102,7 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.stairs_icon);
 						else
 							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.from_icon);
-						if(bmp != null) buildingImage.setStartCustomPoint(bmp);
+						if(bmp != null) buildingImage.setStartCustomPoint(bmp,radius);
 						
 						if(goalPointType == NavigationPointTypes.ENTRY)
 							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.entry_icon);
@@ -143,7 +145,7 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 	}
 	
 	public MapIndoorFragment(String drawableId, String name, String viewTag,
-			int floorId, int searchX, int searchY)
+			int floorId, int searchX, int searchY,int radius)
 	{
 		super(drawableId, name, viewTag);
 		echo("TEST5");
@@ -152,7 +154,9 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 		echo("TEST6");
 		this.searchX= (int) searchX;
 		this.searchY= (int) searchY;
+		this.radius = radius;
 		this.routeMode = false;
+		
 	}
 
 	public MapIndoorFragment(String drawableId, String name, String viewTag,

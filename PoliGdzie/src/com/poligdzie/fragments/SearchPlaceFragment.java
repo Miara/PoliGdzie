@@ -52,6 +52,8 @@ public class SearchPlaceFragment extends PoliGdzieBaseFragment implements OnClic
 		searchPosition.setOnItemClickListener(new SearchButtonListener(
 					searchPosition, map, outdoorMap, this));
 
+		searchPosition.clearFocus();
+		
 		switchFragmentButton = (ImageButton) rootView
 				.findViewById(R.id.button_search_switch_fragment);
 		switchFragmentButton.setOnClickListener(this);
