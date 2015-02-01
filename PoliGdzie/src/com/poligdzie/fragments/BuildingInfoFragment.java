@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 
 import com.example.poligdzie.R;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.poligdzie.activities.BuildingInfoActivity;
 import com.poligdzie.base.PoliGdzieBaseActivity;
@@ -47,6 +49,11 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 	private Building			currentBuildingOnMarker;
 	private SearchRouteFragment	searchRouteFragment;
 	private SearchPlaceFragment	searchPlaceFragment;
+	private LatLngBounds	mapBounds;
+	private double	markerX;
+	private double	markerY;
+	private int mapWidth;
+	private int mapHeight;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,37 +61,48 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
 		this.container = container;
-		LayoutParams params = (LayoutParams) container.getLayoutParams();
-
-		WindowManager wm = (WindowManager) this.getActivity().getSystemService(
-				Context.WINDOW_SERVICE);
-		Display display = wm.getDefaultDisplay();
-
-		Point size = new Point();
-//TODO: refaktor, wywalic magic numbers
-//TODO: ustawic dobrze pozycje okienka
-		display.getSize(size);
-		if (display.getRotation() == Surface.ROTATION_0
-				|| display.getRotation() == Surface.ROTATION_180)
-		{
-			params.leftMargin = (int) (posX - 0.05 * size.x);
-			params.topMargin = (int) (posY - 0.2 * size.y);
-		}
-
-		if (display.getRotation() == Surface.ROTATION_90
-				|| display.getRotation() == Surface.ROTATION_270)
-		{
-			params.leftMargin = (int) (posX - 0.1 * size.x);
-			params.topMargin = (int) (posY - 0.12 * size.y);
-		}
-
-//		params.leftMargin = posX - 20;
-//		params.topMargin = posY - 20;
-//		
-		container.setLayoutParams(params);
-
+		
 		View rootView = inflater.inflate(R.layout.window_marker_click,
 				container, false);
+		
+		LayoutParams params = (LayoutParams) container.getLayoutParams();
+
+		DisplayMetrics dm = new DisplayMetrics();
+		getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);		
+
+		float density = getResources().getDisplayMetrics().densityDpi;
+		density = 100/density;
+
+		
+		//140,70 to szerokosc i wysokosc layoutu do info fragmentu 
+		//TODO: wyznaczaæ to dynamicznie
+		int width = 140; 
+		int height = 70;
+		
+
+		Log.i("Poligdzie","width:"+mapWidth);
+		Log.i("Poligdzie","height:"+mapHeight);
+		Log.i("Poligdzie","width:"+width);
+		Log.i("Poligdzie","height:"+height);
+		Log.i("poli","density:"+density);
+		
+
+//TODO: refaktor, wywalic magic numbers
+//TODO: ustawic dobrze pozycje okienka
+			
+			int leftMargin = (int) ((0.5 * mapWidth -width)*density) ;
+			if(leftMargin < 0) leftMargin = 0;
+			int topMargin = (int) ((0.5 * mapHeight -height)*density) ;
+			if(topMargin < 0) topMargin = 0;
+		
+			params.leftMargin = leftMargin;
+			params.topMargin = topMargin;
+			
+
+	
+		container.setLayoutParams(params);
+
+		
 
 		startButton = (ImageButton) rootView
 				.findViewById(R.id.infoWindowStartButton);
@@ -183,12 +201,14 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 		}
 	}
 
-	public BuildingInfoFragment(int posX, int posY, Marker marker,
+	public BuildingInfoFragment(int posX, int posY, int width, int height, Marker marker,
 			DatabaseHelper dbHelper)
 	{
 
 		this.posX = posX;
 		this.posY = posY;
+		this.mapWidth = width;
+		this.mapHeight = height;
 		this.marker = marker;
 
 		LatLng coords = new LatLng(0.0, 0.0);
@@ -207,6 +227,8 @@ public class BuildingInfoFragment extends PoliGdzieBaseFragment implements
 		}
 
 		currentBuildingOnMarker = buildings.get(0);
+		this.markerX = currentBuildingOnMarker.getCoordX();
+		this.markerY = currentBuildingOnMarker.getCoordY();
 	}
 
 }

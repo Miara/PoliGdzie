@@ -94,8 +94,6 @@ public class BuildingImageView extends ImageView implements Constants
 
 	}
 
-	
-
 	public void onDraw(Canvas canvas)
 	{
 		if(firstView)
@@ -371,39 +369,10 @@ public class BuildingImageView extends ImageView implements Constants
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
 	{
 
-		int desiredWidth = 200;
-		int desiredHeight = 400;
-
-		int widthMode = MeasureSpec.getMode(widthMeasureSpec);
 		int widthSize = MeasureSpec.getSize(widthMeasureSpec);
-		int heightMode = MeasureSpec.getMode(heightMeasureSpec);
 		int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
-		int width;
-		int height;
-
-		if (widthMode == MeasureSpec.EXACTLY)
-		{
-			width = widthSize;
-		} else if (widthMode == MeasureSpec.AT_MOST)
-		{
-			width = Math.min(desiredWidth, widthSize);
-		} else
-		{
-			width = desiredWidth;
-		}
-
-		if (heightMode == MeasureSpec.EXACTLY)
-		{
-			height = heightSize;
-		} else if (heightMode == MeasureSpec.AT_MOST)
-		{
-			height = Math.min(desiredHeight, heightSize);
-		} else
-		{
-			height = desiredHeight;
-		}
-		setMeasuredDimension(width, height);
+		setMeasuredDimension(widthSize, heightSize);
 	}
 
 	public int getOriginalWidth()
@@ -562,7 +531,7 @@ public class BuildingImageView extends ImageView implements Constants
 		return getImageDrawable();
 	}
 	
-	
+
 	private void echo(String s)
 	{
 		Log.i("Poligdzie",s);

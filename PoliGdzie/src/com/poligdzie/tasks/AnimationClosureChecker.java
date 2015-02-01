@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import com.example.poligdzie.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.Projection;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.poligdzie.callbacks.MarkerAnimationFinishCallback;
 import com.poligdzie.fragments.BuildingInfoFragment;
@@ -37,8 +38,11 @@ public class AnimationClosureChecker extends AsyncTask<String, Void, String>
 		Projection projection = map.getProjection();
 		Point point = projection.toScreenLocation(marker.getPosition());
 
+		int mapWidth = mapOutdoorFragment.getView().getWidth();
+		int mapHeight = mapOutdoorFragment.getView().getHeight();
+		
 		BuildingInfoFragment buildingInfoFragment = new BuildingInfoFragment(
-				point.x, point.y, marker, dbHelper);
+				point.x, point.y, mapWidth, mapHeight, marker, dbHelper);
 
 		FragmentTransaction transaction = mapOutdoorFragment
 				.getFragmentManager().beginTransaction();

@@ -27,7 +27,7 @@ import com.poligdzie.widgets.SearchAutoCompleteTextView;
 public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 																OnClickListener
 {
-
+//TODO : przy wpisaniu "!" w wyszukiwaniu trasy wyskakuje b³¹d
 	private Button						searchButton;
 
 	private SearchAutoCompleteTextView	startPosition;
