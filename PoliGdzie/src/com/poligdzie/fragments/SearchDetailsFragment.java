@@ -35,8 +35,8 @@ public class SearchDetailsFragment extends PoliGdzieBaseFragment implements OnCl
 		View rootView = inflater.inflate(R.layout.search_description_fragment,
 				container, false);
 
-		this.name = (TextView) rootView.findViewById(R.id.main_description);
-		this.details = (TextView) rootView.findViewById(R.id.detail_description);
+		this.name = (TextView) rootView.findViewById(R.id.search_main_description);
+		this.details = (TextView) rootView.findViewById(R.id.search_detail_description);
 		
 		routeButton = (ImageButton) rootView.findViewById(R.id.search_description_route_button);
 		routeButton.setOnClickListener(this);

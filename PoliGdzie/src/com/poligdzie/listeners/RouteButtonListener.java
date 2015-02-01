@@ -239,6 +239,8 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 		List<BuildingEntry> goalEntrances = dbHelper.getBuildingEntryDao()
 				.queryBuilder().where().eq("building_id", goalBuildingId)
 				.query();
+		
+
 		double a, b, tmpLength;
 		double length = Integer.MAX_VALUE;
 
@@ -257,6 +259,7 @@ public class RouteButtonListener extends PoliGdzieBaseClass implements
 				}
 			}
 		}
+		
 		return resultEntrances;
 	}
 

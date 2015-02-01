@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="libs/ormlite-core-4.48.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="lib" path="libs/robotium-solo-5.2.1.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

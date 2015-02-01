@@ -54,6 +54,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		this.onResume();
 		setContentView(R.layout.map_activity);
 
 
