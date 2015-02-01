@@ -58,7 +58,6 @@ public class DownloadDirectionsTask extends AsyncTask<String, Void, PolylineOpti
 		} catch (IOException e)
 		{
 			e.printStackTrace();
-			Log.e("POLIGDZIE", "NAPEWNO KURWA TEN WYJATEK?");
 		}
 		return options;
 	}
@@ -68,11 +67,9 @@ public class DownloadDirectionsTask extends AsyncTask<String, Void, PolylineOpti
 	{
 		super.onPostExecute(options);
 
-		if(options == null) {
-			Log.d("POLIGDZIE", "CHUUUUUJ");
-		}
 		if (options == null)
 			options = new PolylineOptions();
+		
 		options.color(Color.RED);
 		options.width(10);
 		map.addPolyline(options);

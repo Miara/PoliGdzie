@@ -127,7 +127,7 @@ public class SearchPlaceFragment extends PoliGdzieBaseFragment implements OnClic
 
 	public SearchDetailsFragment getSearchDescriptionFragment() 
 	{
-		if(searchDescriptionFragment ==null)
+		if(searchDescriptionFragment == null)
 		{
 			try
 			{

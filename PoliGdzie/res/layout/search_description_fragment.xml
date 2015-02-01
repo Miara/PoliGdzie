@@ -12,7 +12,7 @@
         android:background="#FFFFFF"
         android:orientation="vertical">
         <TextView 
-            android:id="@+id/main_description"
+            android:id="@+id/search_main_description"
             android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:layout_marginLeft="15dp"
@@ -24,7 +24,7 @@
         	android:textSize="20sp"
         	android:textStyle="bold"/>
         <TextView 
-            android:id="@+id/detail_description"
+            android:id="@+id/search_detail_description"
             android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:layout_marginLeft="15dp"
@@ -33,7 +33,7 @@
 			android:maxLines="1"
 			android:scrollHorizontally="true"
 			android:singleLine="true"
-        	android:layout_below="@+id/main_description"/>
+        	android:layout_below="@+id/search_main_description"/>
         
     </RelativeLayout>
     <ImageView 
