@@ -1,38 +1,38 @@
-id;number;name;function;floor;coordX;coordY;radius;doorsX;doorsY;navigationPointConnection;aliases
-1;1;Sala 1;LECTURE;1;1711;2649;130;1501;2372;3;cw 1, 1 cw, centrum wyk�adowe sala 1, centrum wyk�adowe 1
-2;2;Sala 2;LECTURE;1;2117;2322;130;1895;2061;3;cw 2, 2 cw, centrum wyk�adowe sala 2, centrum wyk�adowe 2
-3;3;Sala 3;LECTURE;1;2515;2014;130;2284;1742;6;cw 3, 3 cw,centrum wyk�adowe sala 3, centrum wyk�adowe 3
-4;4;Sala 4;LECTURE;1;1352;1302;150;1837;1704;3;cw 4, 4 cw, centrum wyk�adowe sala 4, centrum wyk�adowe 4
-5;5;Sala 5;LECTURE;1;475;782;120;580;934;13;cw 5, 5 cw, centrum wyk�adowe sala 5, centrum wyk�adowe 5
-6;6;Sala 6;LECTURE;1;846;500;120;970;624;13;cw 6, 6 cw, centrum wyk�adowe sala 6, centrum wyk�adowe 6
-7;7;Sala 7;LECTURE;2;1112;1951;130;1011;1811;26;cw 7, 7 cw, centrum wyk�adowe sala 7, centrum wyk�adowe 7
-8;8;Sala 8;LECTURE;2;1398;1727;130;1285;1591;26;cw 8, 8 cw, centrum wyk�adowe sala 8, centrum wyk�adowe 8
-9;9;Sala 9;LECTURE;2;1678;1502;130;1567;1362;28;cw 9, 9 cw, centrum wyk�adowe sala 9, centrum wyk�adowe 9
-10;10;Sala 10;LECTURE;2;756;1341;140;578;1484;30;cw 10, 10 cw, centrum wyk�adowe sala 10, centrum wyk�adowe 10
-11;11;Sala 11;LECTURE;2;499;1046;140;341;1182;30;cw 11, 11 cw, centrum wyk�adowe sala 11, centrum wyk�adowe 11
-12;12;Sala 12;LECTURE;2;220;611;130;295;722;37;cw 12, 12 cw, centrum wyk�adowe sala 12, centrum wyk�adowe 12
-13;13;Sala 13;LECTURE;2;496;390;130;567;498;37;cw 13, 13 cw, centrum wyk�adowe sala 13, centrum wyk�adowe 13
-14;42;Laboratorium 42;LABORATORY;1;2048;3303;40;2083;3182;5;cw 44, 42 cw, centrum wyk�adowe sala 42, centrum wyk�adowe 42
-15;43;Laboratorium 43;LABORATORY;1;2205;3133;50;2048;2987;5;cw 43, 43 cw, centrum wyk�adowe sala 43, centrum wyk�adowe 43
-16;44;Laboratorium 44;LABORATORY;1;2353;3015;50;2237;2832;5;cw 44, 44 cw, centrum wyk�adowe sala 44, centrum wyk�adowe 44
-17;45;Laboratorium 45;LABORATORY;1;2483;2843;75;2381;2717;5;cw 45, 45 cw, centrum wyk�adowe sala 45, centrum wyk�adowe 45
-18;142;Laboratorium 142;LABORATORY;2;1336;2365;40;1339;2289;24;cw 142, 142 cw, centrum wyk�adowe sala 142, centrum wyk�adowe 142
-19;143;Laboratorium 143;LABORATORY;2;1425;2256;50;1320;2150;24;cw 143, 143 cw, centrum wyk�adowe sala 143, centrum wyk�adowe 143
-20;144;Laboratorium 144;LABORATORY;2;1535;2166;50;1453;2043;24;cw 144, 144 cw, centrum wyk�adowe sala 144, centrum wyk�adowe 144
-21;145;Laboratorium 145;LABORATORY;2;1642;2026;75;1533;1961;24;cw 145, 145 cw, centrum wyk�adowe sala 145, centrum wyk�adowe 145
-22;;freshmarket;GASTRONOMIC;1;2771;1555;150;2528;1511;6;freshmarket, bufet, sto��wka
+﻿id;number;name;function;floor;coordX;coordY;radius;doorsX;doorsY;navigationPointConnection;aliases
+1;1;Sala 1;LECTURE;1;1711;2649;130;1501;2372;3;cw 1, 1 cw, centrum wykładowe sala 1, centrum wykładowe 1
+2;2;Sala 2;LECTURE;1;2117;2322;130;1895;2061;3;cw 2, 2 cw, centrum wykładowe sala 2, centrum wykładowe 2
+3;3;Sala 3;LECTURE;1;2515;2014;130;2284;1742;6;cw 3, 3 cw,centrum wykładowe sala 3, centrum wykładowe 3
+4;4;Sala 4;LECTURE;1;1352;1302;150;1837;1704;3;cw 4, 4 cw, centrum wykładowe sala 4, centrum wykładowe 4
+5;5;Sala 5;LECTURE;1;475;782;120;580;934;13;cw 5, 5 cw, centrum wykładowe sala 5, centrum wykładowe 5
+6;6;Sala 6;LECTURE;1;846;500;120;970;624;13;cw 6, 6 cw, centrum wykładowe sala 6, centrum wykładowe 6
+7;7;Sala 7;LECTURE;2;1112;1951;130;1011;1811;26;cw 7, 7 cw, centrum wykładowe sala 7, centrum wykładowe 7
+8;8;Sala 8;LECTURE;2;1398;1727;130;1285;1591;26;cw 8, 8 cw, centrum wykładowe sala 8, centrum wykładowe 8
+9;9;Sala 9;LECTURE;2;1678;1502;130;1567;1362;28;cw 9, 9 cw, centrum wykładowe sala 9, centrum wykładowe 9
+10;10;Sala 10;LECTURE;2;756;1341;140;578;1484;30;cw 10, 10 cw, centrum wykładowe sala 10, centrum wykładowe 10
+11;11;Sala 11;LECTURE;2;499;1046;140;341;1182;30;cw 11, 11 cw, centrum wykładowe sala 11, centrum wykładowe 11
+12;12;Sala 12;LECTURE;2;220;611;130;295;722;37;cw 12, 12 cw, centrum wykładowe sala 12, centrum wykładowe 12
+13;13;Sala 13;LECTURE;2;496;390;130;567;498;37;cw 13, 13 cw, centrum wykładowe sala 13, centrum wykładowe 13
+14;42;Laboratorium 42;LABORATORY;1;2048;3303;40;2083;3182;5;cw 44, 42 cw, centrum wykładowe sala 42, centrum wykładowe 42
+15;43;Laboratorium 43;LABORATORY;1;2205;3133;50;2048;2987;5;cw 43, 43 cw, centrum wykładowe sala 43, centrum wykładowe 43
+16;44;Laboratorium 44;LABORATORY;1;2353;3015;50;2237;2832;5;cw 44, 44 cw, centrum wykładowe sala 44, centrum wykładowe 44
+17;45;Laboratorium 45;LABORATORY;1;2483;2843;75;2381;2717;5;cw 45, 45 cw, centrum wykładowe sala 45, centrum wykładowe 45
+18;142;Laboratorium 142;LABORATORY;2;1336;2365;40;1339;2289;24;cw 142, 142 cw, centrum wykładowe sala 142, centrum wykładowe 142
+19;143;Laboratorium 143;LABORATORY;2;1425;2256;50;1320;2150;24;cw 143, 143 cw, centrum wykładowe sala 143, centrum wykładowe 143
+20;144;Laboratorium 144;LABORATORY;2;1535;2166;50;1453;2043;24;cw 144, 144 cw, centrum wykładowe sala 144, centrum wykładowe 144
+21;145;Laboratorium 145;LABORATORY;2;1642;2026;75;1533;1961;24;cw 145, 145 cw, centrum wykładowe sala 145, centrum wykładowe 145
+22;;freshmarket;GASTRONOMIC;1;2771;1555;150;2528;1511;6;freshmarket, bufet, stołówka
 23;;rozdzielnia elektryczna;TECH;1;1979;3232;50;2028;3140;5;rozdzielnia elektryczna
 24;;rozdzielnia elektryczna;TECH;1;1918;3166;40;2034;3154;5;rozdzielnia elektryczna
 25;;serwerownia;TECH;1;1596;3322;50;1648;3261;2;serwerownia
-26;;toaleta m�ska;RESTROOM;1;1169;2922;80;1269;1882;2;toaleta m�ska, wc m�skie, �azienka m�ska
-27;;toaleta damska;RESTROOM;1;1377;3203;80;1391;3031;2;toaleta damska, wc damskie, �azienka damska
-28;;toaleta damska;RESTROOM;1;1491;548;20;1420;585;16;toaleta damska, wc damskie, �azienka damska
-29;;toaleta dla niepe�nosprawnych;RESTROOM;1;1546;608;20;1492;679;16;toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych
+26;;toaleta męska;RESTROOM;1;1169;2922;80;1269;1882;2;toaleta męska, wc męskie, łazienka męska
+27;;toaleta damska;RESTROOM;1;1377;3203;80;1391;3031;2;toaleta damska, wc damskie, łazienka damska
+28;;toaleta damska;RESTROOM;1;1491;548;20;1420;585;16;toaleta damska, wc damskie, łazienka damska
+29;;toaleta dla niepełnosprawnych;RESTROOM;1;1546;608;20;1492;679;16;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych
 30;;automat;GASTRONOMIC;1;1575;2848;30;1575;2848;2;automat z jedzeniem, 
-31;;toaleta m�ska;RESTROOM;2;676;2078;80;778;2077;25;toaleta m�skia, wc m�skie, �azienka m�ska
-32;;toaleta damska;RESTROOM;2;849;2304;80;859;2128;25;toaleta damska, wc damskie, �azienka damska
-33;;toaleta m�ska;RESTROOM;2;934;450;20;882;475;40;toaleta m�ska, wc m�skie, �azienka m�ska
-34;;toaleta dla niepe�nosprawnych;RESTROOM;2;971;492;20;933;535;40;toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych
+31;;toaleta męska;RESTROOM;2;676;2078;80;778;2077;25;toaleta męskia, wc męskie, łazienka męska
+32;;toaleta damska;RESTROOM;2;849;2304;80;859;2128;25;toaleta damska, wc damskie, łazienka damska
+33;;toaleta męska;RESTROOM;2;934;450;20;882;475;40;toaleta męska, wc męskie, łazienka męska
+34;;toaleta dla niepełnosprawnych;RESTROOM;2;971;492;20;933;535;40;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych
 35;2.6.2;laboratorium 2.6.2;STAFF;13;673;256;25;615;289;53;bt 2.6.2, 2.6.2 bt, biblioteka techniczna sala 2.6.2, biblioteka techniczna 2.6.2
 36;2.6.3;laboratorium 2.6.3;STAFF;13;91;248;30;95;293;55;bt 2.6.3, 2.6.3 bt, biblioteka techniczna sala 2.6.3, biblioteka techniczna 2.6.3
 37;2.6.4;laboratorium 2.6.4;STAFF;13;169;248;30;195;293;55;bt 2.6.4, 2.6.4 bt, biblioteka techniczna sala 2.6.4, biblioteka techniczna 2.6.4
@@ -58,8 +58,8 @@ id;number;name;function;floor;coordX;coordY;radius;doorsX;doorsY;navigationPoint
 57;2.7.14;laboratorium 2.7.14;LABORATORY;13;791;1222;35;847;1222;47;bt 2.7.14, 2.7.14 bt, biblioteka techniczna sala 2.7.14, biblioteka techniczna 2.7.14
 58;2.7.15;laboratorium 2.7.15;LABORATORY;13;682;1222;35;624;1222;50;bt 2.7.15, 2.7.15 bt, biblioteka techniczna sala 2.7.15, biblioteka techniczna 2.7.15
 59;2.7.16;laboratorium 2.7.16;LABORATORY;13;526;1222;35;575;1222;50;bt 2.7.16, 2.7.16 bt, biblioteka techniczna sala 2.7.16, biblioteka techniczna 2.7.16
-60;;toaleta damska;RESTROOM;13;599;1482;30;682;1442;47;toaleta damska, wc damskie, �azienka damska
-61;;toaleta m�ska;RESTROOM;13;599;1384;30;682;1394;47;toaleta m�ska, wc m�skie, �azienka m�ska
+60;;toaleta damska;RESTROOM;13;599;1482;30;682;1442;47;toaleta damska, wc damskie, łazienka damska
+61;;toaleta męska;RESTROOM;13;599;1384;30;682;1394;47;toaleta męska, wc męskie, łazienka męska
 62;1.6.16;laboratorium 1.6.16;LABORATORY;12;1793;661;50;1709;599;64;bt 1.6.16, 1.6.16 bt, biblioteka techniczna sala 1.6.16, biblioteka techniczna 1.6.16
 63;1.6.18;laboratorium 1.6.18;LABORATORY;12;1432;661;50;1513;598;64;bt 1.6.18, 1.6.18 bt, biblioteka techniczna sala 1.6.18, biblioteka techniczna 1.6.18
 64;1.6.19;laboratorium 1.6.19;LABORATORY;12;1142;452;45;1205;408;65;bt 1.6.19, 1.6.19 bt, biblioteka techniczna sala 1.6.19, biblioteka techniczna 1.6.19
@@ -74,11 +74,11 @@ id;number;name;function;floor;coordX;coordY;radius;doorsX;doorsY;navigationPoint
 73;126;sala 126;LECTURE;12;1332;1423;70;1332;1541;60;bt 126, 126 bt, biblioteka techniczna sala 126, biblioteka techniczna 126
 74;127;sala 127;LECTURE;12;1179;1223;80;1027;1229;66;bt 127, 127 bt, biblioteka techniczna sala 127, biblioteka techniczna 127
 75;128;sala 128;LECTURE;12;1120;1011;80;1027;1019;66;bt 128, 128 bt, biblioteka techniczna sala 128, biblioteka techniczna 128
-76;;toaleta damska;RESTROOM;12;1308;487;50;1254;471;65;toaleta damska, wc damskie, �azienka damska
-77;;toaleta m�ska;RESTROOM;12;1471;487;50;1533;470;64;toaleta m�ska, wc m�skie, �azienka m�ska
-78;;toaleta damska;RESTROOM;12;707;1789;50;864;1743;66;toaleta damska, wc damskie, �azienka damska
-79;;toaleta m�ska;RESTROOM;12;695;1680;50;863;1678;66;toaleta m�ska, wc m�skie, �azienka m�ska
-80;;toaleta dla niepe�nosprawnych;RESTROOM;12;808;1714;30;839;1714;66;toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych
+76;;toaleta damska;RESTROOM;12;1308;487;50;1254;471;65;toaleta damska, wc damskie, łazienka damska
+77;;toaleta męska;RESTROOM;12;1471;487;50;1533;470;64;toaleta męska, wc męskie, łazienka męska
+78;;toaleta damska;RESTROOM;12;707;1789;50;864;1743;66;toaleta damska, wc damskie, łazienka damska
+79;;toaleta męska;RESTROOM;12;695;1680;50;863;1678;66;toaleta męska, wc męskie, łazienka męska
+80;;toaleta dla niepełnosprawnych;RESTROOM;12;808;1714;30;839;1714;66;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych
 81;51;sala 051;LECTURE;11;1109;226;100;982;329;76;bt 051, 051 bt, biblioteka techniczna sala 051, biblioteka techniczna 051
 82;53;sala 053;LECTURE;11;1627;323;190;1825;481;70;bt 053, 053 bt, biblioteka techniczna sala 053, biblioteka techniczna 053
 83;21;sala 021;LECTURE;11;1425;1623;90;1351;1536;73;bt 021, 021 bt, biblioteka techniczna sala 021, biblioteka techniczna 021
@@ -90,12 +90,12 @@ id;number;name;function;floor;coordX;coordY;radius;doorsX;doorsY;navigationPoint
 89;28;sala 028;LECTURE;11;1279;1349;65;1277;1455;73;bt 028, 028 bt, biblioteka techniczna sala 028, biblioteka techniczna 028
 90;29;sala 029;LECTURE;11;1132;1165;75;1000;1169;75;bt 029, 029 bt, biblioteka techniczna sala 029, biblioteka techniczna 029
 91;210;sala 0210;LECTURE;11;1084;975;75;1000;975;75;bt 0210, 0210 bt, biblioteka techniczna sala 0210, biblioteka techniczna 0210
-92;;toaleta damska;RESTROOM;11;1844;787;30;1868;828;70;toaleta damska, wc damskie, �azienka damska
-93;;toaleta m�ska;RESTROOM;11;1898;944;30;1903;890;70;toaleta m�ska, wc m�skie, �azienka m�ska
-94;;toaleta dla niepe�nosprawnych;RESTROOM;11;1826;858;20;1855;861;70;toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych
-95;;toaleta damska;RESTROOM;11;718;1682;35;853;1643;75;toaleta damska, wc damskie, �azienka damska
-96;;toaleta m�ska;RESTROOM;11;718;1565;35;853;1583;75;toaleta m�ska, wc m�skie, �azienka m�ska
-97;;toaleta dla niepe�nosprawnych;RESTROOM;11;800;1615;20;826;1614;75;toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych
+92;;toaleta damska;RESTROOM;11;1844;787;30;1868;828;70;toaleta damska, wc damskie, łazienka damska
+93;;toaleta męska;RESTROOM;11;1898;944;30;1903;890;70;toaleta męska, wc męskie, łazienka męska
+94;;toaleta dla niepełnosprawnych;RESTROOM;11;1826;858;20;1855;861;70;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych
+95;;toaleta damska;RESTROOM;11;718;1682;35;853;1643;75;toaleta damska, wc damskie, łazienka damska
+96;;toaleta męska;RESTROOM;11;718;1565;35;853;1583;75;toaleta męska, wc męskie, łazienka męska
+97;;toaleta dla niepełnosprawnych;RESTROOM;11;800;1615;20;826;1614;75;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych
 98;1;Sala1TEst;LECTURE;14;1214;2069;50;1195;1955;81;Sala 1 TCh
 99;2;Sala2Test;LECTURE;14;1451;1848;30;1379;1792;82;Sala 2 Tch
 100;3;Sala3TEst;LECTURE;14;1789;1178;100;1425;1235;83;Sala 3 TCh

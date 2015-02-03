@@ -27,25 +27,22 @@ public class BuildingImageView extends ImageView implements Constants
 	private Bitmap					bitmap;
 	private float					viewHeight;
 	private float					viewWidth;
-	float							canvasWidth, canvasHeight;
 
 	private int						originalWidth		= 0;
 	private int						originalHeight		= 0;
 
 	long							startTime, stopTime;
 	int								clickCount;
-	private long					duration;
 
 	private ScaleGestureDetector	mScaleDetector;
 	private float					mScaleFactor		= 1.f;
-	private float					maxScaleFactor;
+	private float					minScaleFactor;
 
 	private float					mPosX;
 	private float					mPosY;
 
 	private float					mLastTouchX, mLastTouchY;
 
-	private boolean					firstDraw			= true;
 
 	private boolean					panEnabled			= true;
 	private boolean					zoomEnabled			= true;
@@ -62,10 +59,6 @@ public class BuildingImageView extends ImageView implements Constants
 
 	private int	bitmapWidth;
 	
-	private float					firstScale		= 0.44f;
-
-	private float					firstX;
-	private float					firstY;
 	private boolean 				firstView=false;
 
 	private int	radius;
@@ -106,44 +99,27 @@ public class BuildingImageView extends ImageView implements Constants
 			SetPosAndScale();
 			firstView=false;
 		}
-		//Log.i("SCALE","t1:"+mScaleFactor);
 		if (bitmap == null)
 		{
 			super.onDraw(canvas);
 			return;
 		}
 		
-		
-	    //Log.i("SCALE","t2:"+mScaleFactor);
-		mScaleFactor = Math.max(mScaleFactor, maxScaleFactor);
-		//Log.i("SCALE","t3:"+mScaleFactor);
-		canvasHeight = canvas.getHeight();
-		canvasWidth = canvas.getWidth();
-		//Log.i("POSX1","X"+mPosX);
-		//Log.i("POSY1","Y"+mPosY);
-		
+	
+		mScaleFactor = Math.max(mScaleFactor, minScaleFactor);
+		Log.i("SCALE","t3:"+mScaleFactor);		
 		
 		canvas.save();
 		int minX, maxX, minY, maxY;
 		maxX = (int) (((viewWidth / mScaleFactor) - bitmap.getWidth()) / 2);
+		echo("maxX:"+maxX);
+		echo("divide;:"+(viewWidth / mScaleFactor));
+		echo("bitmap:"+bitmap.getWidth());
+		echo("maxX:"+maxX);
 		minX = 0;
 
 		maxY = (int) (((viewHeight / mScaleFactor) - bitmap.getHeight()) / 2);
 		minY = 0;
-
-		/*echo("------------------------");
-		echo("BITMAP WIDTH:"+bitmap.getWidth());
-		echo("BITMAP HEIGHT:"+bitmap.getHeight());
-		
-		echo("VIEW WIDTH:"+viewWidth);
-		echo("VIEW HEIGHT:"+viewHeight);
-		
-		echo("MAXX:"+maxX);
-		echo("MAXY:"+maxY);
-		echo("------------------------");
-		
-		Log.i("POSX1","X"+mPosX);
-		Log.i("POSY1","Y"+mPosY);*/
 		
 		if (mPosX > minX)
 			mPosX = minX;
@@ -154,11 +130,7 @@ public class BuildingImageView extends ImageView implements Constants
 			mPosY = minY;
 		if (mPosY < maxY)
 			mPosY = maxY;
-		
-		//Log.i("POS2","X"+mPosX);
-		//Log.i("POSY2","Y"+mPosY);
-		
-		//Log.i("SCALE","SCALE:"+mScaleFactor);
+
 		canvas.scale(mScaleFactor, mScaleFactor);
 		canvas.translate(mPosX, mPosY);
 
@@ -168,17 +140,19 @@ public class BuildingImageView extends ImageView implements Constants
 		Paint redPaint = new Paint();
 		redPaint.setColor(Color.RED);
 		redPaint.setStrokeWidth(5);
-		//TODO: przeniesc warunek is empty nizej pod nulla
 		
 		
 		if(routeMode)
 		{
-			if (routeLines != null && !routeLines.isEmpty())
+			if (routeLines != null)
 			{
-				lines.clear();
-				for (Line l : routeLines)
+				if(!routeLines.isEmpty())
 				{
-					addLine(l);
+					lines.clear();
+					for (Line l : routeLines)
+					{
+						addLine(l);
+					}
 				}
 			}
 
@@ -298,8 +272,16 @@ public class BuildingImageView extends ImageView implements Constants
 				final int pointerIndex = (ev.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
 				final int pointerId = ev.getPointerId(pointerIndex);
 				if (pointerId == mActivePointerId)
-				{// TODO: zmienic skladnie
-					final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
+				{
+					final int newPointerIndex;
+					if(pointerIndex == 0)
+					{
+						newPointerIndex = 1;
+					}
+					else
+					{
+						newPointerIndex = 0;
+					}
 					mLastTouchX = ev.getX(newPointerIndex);
 					mLastTouchY = ev.getY(newPointerIndex);
 					mActivePointerId = ev.getPointerId(newPointerIndex);
@@ -319,37 +301,13 @@ public class BuildingImageView extends ImageView implements Constants
 		public boolean onScale(ScaleGestureDetector detector)
 		{
 			mScaleFactor *= detector.getScaleFactor();
-			// Don't let the object get too small or too large.
 			mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
-			// Log.d(TAG, "detector scale factor: " + detector.getScaleFactor()
-			// + " mscalefactor: " + mScaleFactor);
-
 			invalidate();
 			return true;
 		}
 	}
 
-	// TODO: wyrzucic kontrole zooma i pana
-	public boolean isPanEnabled()
-	{
-		return panEnabled;
-	}
-
-	public void setPanEnabled(boolean panEnabled)
-	{
-		this.panEnabled = panEnabled;
-	}
-
-	public boolean isZoomEnabled()
-	{
-		return zoomEnabled;
-	}
-
-	public void setZoomEnabled(boolean zoomEnabled)
-	{
-		this.zoomEnabled = zoomEnabled;
-	}
-
+	
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh)
 	{
@@ -363,9 +321,9 @@ public class BuildingImageView extends ImageView implements Constants
 					/ (float) bitmap.getWidth();
 			float minYScaleFactor = (float) viewHeight
 					/ (float) bitmap.getHeight();
-			maxScaleFactor = Math.max(minXScaleFactor, minYScaleFactor);
+			minScaleFactor = Math.max(minXScaleFactor, minYScaleFactor);
 
-			mScaleFactor = maxScaleFactor;
+			mScaleFactor = minScaleFactor;
 			mPosX = mPosY = 0;
 
 		}
@@ -455,27 +413,15 @@ public class BuildingImageView extends ImageView implements Constants
 	
 	private void SetPosAndScale()
 	{
-		//TODO: zrobiæ skalê przybli¿ania jako dynamiczn¹ do wymiarów ekranu
-		//this.mScaleFactor = 2*this.radius / originalWidth;
-		//echo("mscale:"+radius);
-		//echo("mscale:"+originalWidth);
-		//echo("mscale:"+mScaleFactor);
-		//this.mScaleFactor = Math.max(mScaleFactor, maxScaleFactor);
-		//echo("mscale:"+mScaleFactor);
-		//this.radius ...
-		this.mScaleFactor = 0.55f;
+		this.radius*=1.5;
+		this.mScaleFactor = (float) viewHeight/ (float) (this.radius);
 		
-		this.mPosX = (startPoint.x - this.radius)* bitmapWidth / originalWidth  ;
-		this.mPosX = (this.mPosX - viewWidth)*mScaleFactor*(-1);
+		this.mPosX = (float)((startPoint.x - this.radius)* bitmapWidth) / originalWidth  ;
+		this.mPosX = (this.mPosX )/(-2);
 		
-		this.mPosY = (startPoint.y- this.radius ) * bitmapHeight / originalHeight ;
-		this.mPosY = (this.mPosY - viewHeight)*mScaleFactor*(-1);
+		this.mPosY = (float)((startPoint.y- this.radius ) * bitmapHeight) / originalHeight ;
+		this.mPosY = (this.mPosY )/(-2);
 		
-		Log.i("mPosX:","X:"+mPosX);
-		Log.i("mPosY:","Y:"+mPosY);
-		Log.i("SCALE","SET:"+mScaleFactor);
-		
-		this.invalidate();
 	}
 	
 	private void addLine(Line line)
