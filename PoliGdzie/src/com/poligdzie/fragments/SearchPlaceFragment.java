@@ -16,8 +16,8 @@ import com.example.poligdzie.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.poligdzie.base.PoliGdzieBaseFragment;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
-import com.poligdzie.listeners.FragmentSwitchListener;
-import com.poligdzie.listeners.SearchButtonListener;
+import com.poligdzie.listeners.OnFragmentSwitchListener;
+import com.poligdzie.listeners.OnSearchButtonListener;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
 public class SearchPlaceFragment extends PoliGdzieBaseFragment implements OnClickListener
@@ -49,7 +49,7 @@ public class SearchPlaceFragment extends PoliGdzieBaseFragment implements OnClic
 		searchWatcher = new ContextSearchTextWatcher(searchPosition,
 				this.getActivity());
 		searchPosition.addTextChangedListener(searchWatcher);
-		searchPosition.setOnItemClickListener(new SearchButtonListener(
+		searchPosition.setOnItemClickListener(new OnSearchButtonListener(
 					searchPosition, map, outdoorMap, this));
 
 		searchPosition.clearFocus();

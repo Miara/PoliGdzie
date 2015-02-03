@@ -8,8 +8,8 @@ import android.view.View.OnClickListener;
 import com.example.poligdzie.R;
 import com.poligdzie.fragments.SearchPlaceFragment;
 import com.poligdzie.fragments.SearchRouteFragment;
-
-public class FragmentSwitchListener implements OnClickListener
+//TODO: czy ta klasa jest uzywana?
+public class OnFragmentSwitchListener implements OnClickListener
 {
 
 	private SearchPlaceFragment	searchPlaceFragment;
@@ -46,7 +46,7 @@ public class FragmentSwitchListener implements OnClickListener
 
 	}
 
-	public FragmentSwitchListener(Activity activity)
+	public OnFragmentSwitchListener(Activity activity)
 	{
 		this.activity = activity;
 	}

@@ -14,7 +14,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.base.PoliGdzieMapFragment;
-import com.poligdzie.listeners.MarkerOnClickCustomListener;
+import com.poligdzie.listeners.OnMarkerClickCustomListener;
 import com.poligdzie.listeners.OnCameraChangeCustomListener;
 import com.poligdzie.singletons.MapDrawingProvider;
 
@@ -48,7 +48,7 @@ public class MapOutdoorFragment extends PoliGdzieMapFragment implements
 		drawingProvider.setContext(this.getActivity());
     
 		map = drawingProvider.getMapWithRoute(map, dbHelper);
-		map.setOnMarkerClickListener(new MarkerOnClickCustomListener(this, map,
+		map.setOnMarkerClickListener(new OnMarkerClickCustomListener(this, map,
 				dbHelper));
 
 		map.setOnCameraChangeListener(new OnCameraChangeCustomListener(this));
