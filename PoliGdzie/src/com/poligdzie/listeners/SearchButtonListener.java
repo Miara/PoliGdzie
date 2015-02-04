@@ -279,7 +279,7 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 							fragment.getSearchDescriptionFragment();
 					if(descriptionFragment != null)
 					{
-						descriptionFragment.setTextViews(name,details);
+						descriptionFragment.setTextViews(name,details,searchPosition.getAdapter().getItem(0));
 					}
 				}
 			}

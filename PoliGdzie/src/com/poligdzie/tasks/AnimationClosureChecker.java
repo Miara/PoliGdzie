@@ -1,18 +1,21 @@
 package com.poligdzie.tasks;
 
+import java.util.List;
+
 import android.app.FragmentTransaction;
 import android.graphics.Point;
 import android.os.AsyncTask;
+import android.util.Log;
 
-import com.example.poligdzie.R;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.Projection;
-import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.poligdzie.activities.MapActivity;
 import com.poligdzie.callbacks.MarkerAnimationFinishCallback;
-import com.poligdzie.fragments.BuildingInfoFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
+import com.poligdzie.fragments.SearchDetailsFragment;
 import com.poligdzie.helpers.DatabaseHelper;
+import com.poligdzie.persistence.Building;
 
 public class AnimationClosureChecker extends AsyncTask<String, Void, String>
 {
@@ -34,23 +37,30 @@ public class AnimationClosureChecker extends AsyncTask<String, Void, String>
 	@Override
 	protected void onPostExecute(String result)
 	{
-
-		Projection projection = map.getProjection();
-		Point point = projection.toScreenLocation(marker.getPosition());
-
-		int mapWidth = mapOutdoorFragment.getView().getWidth();
-		int mapHeight = mapOutdoorFragment.getView().getHeight();
+		try
+		{
+	
+		LatLng coords = marker.getPosition();
 		
-		BuildingInfoFragment buildingInfoFragment = new BuildingInfoFragment(
-				point.x, point.y, mapWidth, mapHeight, marker, dbHelper);
-
-		FragmentTransaction transaction = mapOutdoorFragment
-				.getFragmentManager().beginTransaction();
-
-		transaction.add(R.id.window_info_container, buildingInfoFragment,
-				marker.getId());
-
-		transaction.commit();
+			List<Building> buildings =dbHelper.getBuildingDao().queryBuilder().where()
+					.eq("coordX", coords.latitude).and()
+					.eq("coordY", coords.longitude).query();
+			
+			if(!buildings.isEmpty())
+			{
+				Building building = buildings.get(0);
+				SearchDetailsFragment searchFrag 
+					= ((MapActivity) mapOutdoorFragment.getActivity()).getSearchDetailsFragment();
+		
+				searchFrag.setTextViews(building.getName(), building.getAddress(), building);
+			}
+		
+			
+			
+		} catch (java.sql.SQLException e)
+		{
+			Log.e("ERROR","AnimationClosureChecker SQLException");
+		}		
 	}
 
 	public AnimationClosureChecker(MarkerAnimationFinishCallback callback,

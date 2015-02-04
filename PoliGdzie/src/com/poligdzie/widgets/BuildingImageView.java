@@ -307,7 +307,7 @@ public class BuildingImageView extends ImageView implements Constants
 		}
 	}
 
-	
+	// TODO: niech zmiana ekranu nie rysuje wszystkiego do nowa // zachowa translacje i skalowanie
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh)
 	{

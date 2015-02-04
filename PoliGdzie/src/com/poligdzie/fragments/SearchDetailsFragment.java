@@ -13,6 +13,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.poligdzie.base.PoliGdzieBaseFragment;
 import com.poligdzie.interfaces.Nameable;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
+import com.poligdzie.persistence.Building;
 import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
@@ -22,9 +23,13 @@ public class SearchDetailsFragment extends PoliGdzieBaseFragment implements OnCl
 	private MapOutdoorFragment			outdoorMap;
 	private TextView					name;
 	private TextView					details;
-	private ImageButton					routeButton;
+	private ImageButton					fromButton;
+	private ImageButton					toButton;
+	private ImageButton					infoButton;
+	private ImageButton					insideButton;
 	private SearchRouteFragment			routeFragment;
 	private SearchPlaceFragment	searchPlaceFragment;
+	private Object	object;
 	
 
 	@Override
@@ -38,8 +43,14 @@ public class SearchDetailsFragment extends PoliGdzieBaseFragment implements OnCl
 		this.name = (TextView) rootView.findViewById(R.id.search_main_description);
 		this.details = (TextView) rootView.findViewById(R.id.search_detail_description);
 		
-		routeButton = (ImageButton) rootView.findViewById(R.id.search_description_route_button);
-		routeButton.setOnClickListener(this);
+		fromButton = (ImageButton) rootView.findViewById(R.id.search_description_route_from_button);
+		fromButton.setOnClickListener(this);
+		toButton = (ImageButton) rootView.findViewById(R.id.search_description_route_to_button);
+		toButton.setOnClickListener(this);
+		infoButton = (ImageButton) rootView.findViewById(R.id.search_description_route_info_button);
+		infoButton.setOnClickListener(this);
+		insideButton = (ImageButton) rootView.findViewById(R.id.search_description_route_inside_button);
+		insideButton.setOnClickListener(this);
 		
 		return rootView;
 	}
@@ -54,11 +65,22 @@ public class SearchDetailsFragment extends PoliGdzieBaseFragment implements OnCl
 		super();
 	}
 
-	public void setTextViews(String name, String details)
+	public void setTextViews(String name, String details, Object obj)
 	{
 		this.name.setText(name);
 		this.details.setText(details);
 		this.getView().setVisibility(View.VISIBLE);
+		this.object = obj;
+		if(object instanceof Building)
+		{
+			infoButton.setVisibility(View.VISIBLE);
+			insideButton.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			infoButton.setVisibility(View.GONE);
+			insideButton.setVisibility(View.GONE);
+		}
 	}
 
 	@Override
@@ -80,10 +102,12 @@ public class SearchDetailsFragment extends PoliGdzieBaseFragment implements OnCl
 
 		routeFragment.getView().setVisibility(View.VISIBLE);
 
-		Object obj = searchPlaceFragment.getSearchPosition().getAdapter().getItem(0);
-		
-		drawingProvider.setGoal(obj);
-		routeFragment.setGoalPosition(((Nameable) obj).getName());
+		//Object obj = searchPlaceFragment.getSearchPosition().getAdapter().getItem(0);
+		if(this.object != null)
+		{
+			drawingProvider.setGoal(this.object);
+			routeFragment.setGoalPosition(((Nameable) this.object).getName());
+		}
 
 		
 	}

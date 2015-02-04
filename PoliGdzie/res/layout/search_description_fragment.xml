@@ -47,15 +47,50 @@
         android:id="@+id/search_description_right"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="1dp"
+		android:layout_marginTop="1dp"
         android:background="#FFFFFF"
-        android:layout_alignParentRight="true">
-        <ImageButton 
-            android:id="@+id/search_description_route_button"
-           	android:layout_width="48dp"
-	        android:layout_height="48dp"
-	        android:layout_margin="16dp"
-	        android:background="@drawable/route_icon_with_name"/>
+        android:layout_alignParentRight="true"
+        android:gravity="center">
+        <LinearLayout 
+            android:id="@+id/search_description_route_layout"
+        	android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:orientation="vertical"
+	        android:layout_margin="6dp">
+	        <ImageButton 
+	            android:id="@+id/search_description_route_from_button"
+	           	android:layout_width="31dp"
+		        android:layout_height="31dp"
+		        android:layout_marginBottom="6dp"
+		        android:background="@drawable/from_icon"/>
+	        <ImageButton 
+	            android:id="@+id/search_description_route_to_button"
+	           	android:layout_width="31dp"
+		        android:layout_height="31dp"
+		        android:background="@drawable/to_icon"/>
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:id="@+id/search_description_info_layout"
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:orientation="vertical"
+	        android:layout_marginTop="6dp"
+	        android:layout_marginBottom="6dp"
+	        android:layout_marginRight="6dp">
+	        <ImageButton 
+	            android:id="@+id/search_description_route_info_button"
+	           	android:layout_width="31dp"
+		        android:layout_height="31dp"
+		        android:layout_marginBottom="6dp"
+		        android:background="@drawable/building_info_info"/>
+	        <ImageButton 
+	            android:id="@+id/search_description_route_inside_button"
+	           	android:layout_width="31dp"
+		        android:layout_height="31dp"
+		        android:background="@drawable/building_info_plan"/>
+        </LinearLayout>
+        
     </LinearLayout>
 
 </RelativeLayout>

@@ -134,7 +134,6 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 	@Override
 	protected void onResume()
 	{
-		// TODO Auto-generated method stub
 		super.onResume();
 		if(!checkPlayServices()) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -252,4 +251,26 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		  GooglePlayServicesUtil.getErrorDialog(code, this, 
 		      1001).show();
 		}
+
+		public SearchPlaceFragment getSearchPlaceFragment()
+		{
+			return searchPlaceFragment;
+		}
+
+		public SearchRouteFragment getSearchRouteFragment()
+		{
+			return searchRouteFragment;
+		}
+
+		public SearchDetailsFragment getSearchDetailsFragment()
+		{
+			return searchDetailsFragment;
+		}
+
+		public RouteDetailsFragment getRouteDetailsFragment()
+		{
+			return routeDetailsFragment;
+		}
+		
+		
 }
