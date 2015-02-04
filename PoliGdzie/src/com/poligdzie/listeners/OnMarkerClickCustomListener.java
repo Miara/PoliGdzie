@@ -15,7 +15,7 @@ import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.tasks.AnimationClosureChecker;
 
-public class MarkerOnClickCustomListener extends PoliGdzieBaseClass implements
+public class OnMarkerClickCustomListener extends PoliGdzieBaseClass implements
 																	OnMarkerClickListener
 {
 
@@ -24,7 +24,7 @@ public class MarkerOnClickCustomListener extends PoliGdzieBaseClass implements
 	private GoogleMap				map;
 	private MapDrawingProvider		drawingProvider;
 
-	public MarkerOnClickCustomListener(MapOutdoorFragment fragment,
+	public OnMarkerClickCustomListener(MapOutdoorFragment fragment,
 			GoogleMap map, DatabaseHelper dbHelper)
 	{
 		this.mapOutdoorFragment = fragment;

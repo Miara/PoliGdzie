@@ -20,7 +20,7 @@ import com.poligdzie.base.PoliGdzieBaseFragment;
 import com.poligdzie.interfaces.Nameable;
 import com.poligdzie.interfaces.WithCoordinates;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
-import com.poligdzie.listeners.RouteButtonListener;
+import com.poligdzie.listeners.OnRouteButtonListener;
 import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
@@ -89,7 +89,7 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 
 		searchButton = (Button) rootView.findViewById(R.id.button_search_trace);
 		if (searchButton != null)
-			searchButton.setOnClickListener(new RouteButtonListener(
+			searchButton.setOnClickListener(new OnRouteButtonListener(
 					startPosition, goalPosition, map, outdoorMap, this));
 		switchPositionButton = (ImageButton) rootView.findViewById(R.id.search_route_switch_positions);
 		if (switchPositionButton != null)

@@ -40,7 +40,7 @@ import com.poligdzie.singletons.MapFragmentProvider;
 import com.poligdzie.tasks.AnimationClosureChecker;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
-public class SearchButtonListener extends PoliGdzieBaseClass implements
+public class OnSearchButtonListener extends PoliGdzieBaseClass implements
 															OnItemClickListener
 {
 
@@ -211,7 +211,7 @@ public class SearchButtonListener extends PoliGdzieBaseClass implements
 			return true;
 	}
 
-	public SearchButtonListener(SearchAutoCompleteTextView searchPosition,
+	public OnSearchButtonListener(SearchAutoCompleteTextView searchPosition,
 			GoogleMap map, MapOutdoorFragment outdoorMap,
 			SearchPlaceFragment fragment)
 	{
