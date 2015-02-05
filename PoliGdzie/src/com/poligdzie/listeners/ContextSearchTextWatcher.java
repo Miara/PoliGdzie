@@ -123,6 +123,7 @@ public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
 	{
 
 	}
+	
 
 	public ContextSearchTextWatcher(AutoCompleteTextView input, Context context)
 	{

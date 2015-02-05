@@ -37,8 +37,8 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 	private ContextSearchTextWatcher	goalWatcher;
 
 	private BuildingInfoFragment		buildingInfoFragment;
-	private ImageButton					switchFragmentButton;
-	private ImageButton					deleteTextButton;
+	private ImageButton					startDeleteButton;
+	private ImageButton					goalDeleteButton;
 	private ImageButton					switchPositionButton;
 	private GoogleMap					map;
 	private MapOutdoorFragment			outdoorMap;
@@ -95,39 +95,89 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 		if (switchPositionButton != null)
 			switchPositionButton.setOnClickListener(this);
 		
+		startDeleteButton = (ImageButton) rootView.findViewById(R.id.search_route_start_ex_button);
+		if (startDeleteButton != null)
+			startDeleteButton.setOnClickListener(this);
+		
+		goalDeleteButton = (ImageButton) rootView.findViewById(R.id.search_route_goal_ex_button);
+		if (goalDeleteButton != null)
+			goalDeleteButton.setOnClickListener(this);
+		
 		return rootView;
 	}
 
 	@Override
 	public void onClick(View v)
 	{
+		
+		drawingProvider = MapDrawingProvider.getInstance();
+		
 		if(v == switchPositionButton)
 		{
-			drawingProvider = MapDrawingProvider.getInstance();
+			
 			
 			Object newStartObj = null;
-			String newStartName = "";
 			Object newGoalObj = null;
+			String newStartName = "";
 			String newGoalName = "";
-			//TODO: poprawic switcha przy pustych znakach
-			if(!goalPosition.getAdapter().isEmpty())
+			
+			//TODO: poprawic switcha przy pustych znakach	
+			
+			if(startPosition.getAdapter() != null)
 			{
-				newStartObj = goalPosition.getAdapter().getItem(0);
-				newStartName = ((Nameable)newStartObj).getName();
+				if(!startPosition.getAdapter().isEmpty())
+				{
+					newGoalObj = startPosition.getAdapter().getItem(0);
+					newGoalName = ((Nameable)newGoalObj).getName();
+				}
 			}
 			
-			if(!startPosition.getAdapter().isEmpty())
+			
+			if(goalPosition.getAdapter() != null)
 			{
-				newGoalObj = startPosition.getAdapter().getItem(0);
-				newGoalName = ((Nameable)newGoalObj).getName();
+				if(!goalPosition.getAdapter().isEmpty())
+				{
+					newStartObj = goalPosition.getAdapter().getItem(0);
+					newStartName = ((Nameable)newStartObj).getName();
+					
+				}
 			}
 			
-			drawingProvider.setStart(newStartObj);
-			drawingProvider.setGoal(newGoalObj);
+			if(newStartObj == null)
+			{
+				startPosition.setText("");
+				startPosition.setAdapter(null);
+			}
+			else
+			{
+				drawingProvider.setStart(newStartObj);
+				this.setStartPosition(((Nameable)newStartObj).getName());
+			}
 			
+			if(newGoalObj == null)
+			{
+				goalPosition.setText("");
+				goalPosition.setAdapter(null);
+			}
+			else
+			{
+				drawingProvider.setGoal(newGoalObj);
+				this.setGoalPosition(((Nameable)newGoalObj).getName());
+			}
 			
-			this.setGoalPosition(newGoalName);
-			this.setStartPosition(newStartName);
+	
+		}
+		
+		if(v == startDeleteButton)
+		{
+			this.setStartPosition("");
+			startPosition.setAdapter(null);
+		}
+		
+		if(v == goalDeleteButton)
+		{
+			this.setGoalPosition("");
+			goalPosition.setAdapter(null);
 		}
 
 		

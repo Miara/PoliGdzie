@@ -34,9 +34,21 @@
                         android:completionThreshold="1"
                         android:layout_height="36dp"
                         android:layout_width="match_parent"
-                        android:hint="Skąd ?" >
+                        android:layout_alignParentLeft="true"
+                        android:layout_toLeftOf="@+id/search_route_start_ex_button"
+                        android:hint="Skąd ?"
+                        android:singleLine="true" >
                         <requestFocus />
                     </com.poligdzie.widgets.SearchAutoCompleteTextView> 
+                    
+	        		<ImageButton
+			            android:id="@+id/search_route_start_ex_button"
+			            android:layout_width="24dp"
+			            android:layout_height="24dp"
+			            android:layout_alignParentRight="true"
+			            android:background="@drawable/ex"
+			            android:layout_margin="6dp"
+			            android:contentDescription="S" />
 	        	</RelativeLayout>
 	        	<ImageView
 	        	    android:id="@+id/gradient_between_from_and_to"
@@ -55,9 +67,21 @@
                         android:completionThreshold="1"
                         android:layout_height="36dp"
                         android:layout_width="match_parent"
-                        android:hint="Dokąd ?" >
+                        android:layout_alignParentLeft="true"
+                        android:layout_toLeftOf="@+id/search_route_goal_ex_button"
+                        android:hint="Dokąd ?"
+                        android:singleLine="true"  >
                         <requestFocus />
-                    </com.poligdzie.widgets.SearchAutoCompleteTextView> 
+                    </com.poligdzie.widgets.SearchAutoCompleteTextView>
+                    <ImageButton
+			            android:id="@+id/search_route_goal_ex_button"
+			            android:layout_width="24dp"
+			            android:layout_height="24dp"
+			            android:layout_alignParentRight="true"
+			            android:background="@drawable/ex"
+			            android:layout_margin="6dp"
+			            android:contentDescription="S" />
+                     
 	        	</RelativeLayout>
 	        </RelativeLayout>
 		<ImageButton
