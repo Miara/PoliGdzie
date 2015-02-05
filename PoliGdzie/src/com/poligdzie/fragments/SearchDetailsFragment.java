@@ -1,6 +1,7 @@
 package com.poligdzie.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,10 +11,12 @@ import android.widget.TextView;
 
 import com.example.poligdzie.R;
 import com.google.android.gms.maps.GoogleMap;
+import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.base.PoliGdzieBaseFragment;
 import com.poligdzie.interfaces.Nameable;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
 import com.poligdzie.persistence.Building;
+import com.poligdzie.persistence.Floor;
 import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
@@ -97,17 +100,59 @@ public class SearchDetailsFragment extends PoliGdzieBaseFragment implements OnCl
 			searchPlaceFragment = (SearchPlaceFragment) this.getActivity()
 					.getFragmentManager().findFragmentById(R.id.search_place_frag);
 		}
-
+		
 		drawingProvider = MapDrawingProvider.getInstance();
-
-		routeFragment.getView().setVisibility(View.VISIBLE);
-
-		//Object obj = searchPlaceFragment.getSearchPosition().getAdapter().getItem(0);
-		if(this.object != null)
+		
+		if( v == fromButton)
 		{
-			drawingProvider.setGoal(this.object);
-			routeFragment.setGoalPosition(((Nameable) this.object).getName());
+			routeFragment.getView().setVisibility(View.VISIBLE);
+			if(this.object != null)
+			{
+				drawingProvider.setStart(this.object);
+				routeFragment.setStartPosition(((Nameable) this.object).getName());
+			}
 		}
+		else if( v == toButton)
+		{
+			routeFragment.getView().setVisibility(View.VISIBLE);
+			if(this.object != null)
+			{
+				drawingProvider.setGoal(this.object);
+				routeFragment.setGoalPosition(((Nameable) this.object).getName());
+			}
+		}
+		else if( v == infoButton)
+		{
+			
+		}
+		else if( v == insideButton)
+		{
+
+				mapProvider.clearFragments();
+				mapProvider.addGoogleMapFragment();
+
+				int i = 0;
+				Building building = (Building)object;
+				MapIndoorFragment indoorMap;
+				for (Floor f : building.getFloors())
+				{
+					Log.d("POLIGDZIE", f.getName());
+					indoorMap = new MapIndoorFragment(f.getDrawableId(),
+							f.getName(), f.getTag(), f.getId());
+					if (i == 0)
+					{
+						((PoliGdzieBaseActivity) this.getActivity())
+								.switchFragment(R.id.map_container, indoorMap,
+										indoorMap.getViewTag());
+					}
+					i++;
+				}
+
+				((OnClickListener) this.getActivity()).onClick(this.getActivity()
+						.findViewById(R.layout.map_activity));
+		}
+
+		
 
 		
 	}

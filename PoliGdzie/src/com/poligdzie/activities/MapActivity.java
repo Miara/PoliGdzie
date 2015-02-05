@@ -49,7 +49,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 	private SearchRouteFragment	searchRouteFragment;
 	private SearchDetailsFragment	searchDetailsFragment;
 	private RouteDetailsFragment	routeDetailsFragment;
-
+	// TODO: przy pierwszym odpaleniu apki po instalacji nie ma danych przy wyszukiwaniu, przy kolejnych sas
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
