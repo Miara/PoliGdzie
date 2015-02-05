@@ -44,17 +44,29 @@ public class DataProvider extends PoliGdzieBaseClass
 
 		try
 		{
-			long start = System.nanoTime();
-			this.setBuildings(dbHelper.getBuildingDao().queryForAll());
-			float time = (float) (System.nanoTime() - start) / 1000000000;
-			Log.d("POLIGDZIE", "Czas wykonania - budynki: " + time);
-			start = System.nanoTime();
-			this.setRooms(dbHelper.getRoomDao().queryForAll());
-			time = (float) (System.nanoTime() - start) / 1000000000;
-			Log.d("POLIGDZIE", "Czas wykonania - pomieszczenia: " + time);
+			long start = 0;
+			float time = 0;
+			while (this.getBuildings().size() == 0)
+			{
+				start = System.nanoTime();
+				this.setBuildings(dbHelper.getBuildingDao().queryForAll());
+				time = (float) (System.nanoTime() - start) / 1000000000;
+				Log.d("POLIGDZIE", "Wczytano " + this.getBuildings().size() + " budynkow");
+				Log.d("POLIGDZIE", "Czas wykonania - budynki: " + time);
+			}
+			while (this.getRooms().size() == 0)
+			{
+				start = System.nanoTime();
+				this.setRooms(dbHelper.getRoomDao().queryForAll());
+				time = (float) (System.nanoTime() - start) / 1000000000;
+				Log.d("POLIGDZIE", "Wczytano " + this.getRooms().size() + " pomieszczen");
+				Log.d("POLIGDZIE", "Czas wykonania - pomieszczenia: " + time);
+			}
+
 			this.setUnits(dbHelper.getUnitDao().queryForAll());
 			start = System.nanoTime();
 			time = (float) (System.nanoTime() - start) / 1000000000;
+			Log.d("POLIGDZIE", "Wczytano " + this.getUnits().size() + " unitow");
 			Log.d("POLIGDZIE", "Czas wykonania - unity: " + time);
 
 		} catch (SQLException e)

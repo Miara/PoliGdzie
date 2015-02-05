@@ -1,0 +1,6 @@
+﻿id;name;address;coordX;coordY;width;height;aliases;imageResource;markerImageResource
+1;Centrum Wykładowe;ul. Piotrowo 2, 60-965, Poznań ;52.404091;16.949686;150;2;CW;cw_ic;cw_marker
+2;Elektryk;ul. Piotrowo 3a, 60-965, Poznań ;52.401972;16.951360;70;10;el,elektryk;we_ic;el_marker
+3;Budowa maszyn;ul. Piotrowo 3, 60-965, Poznań ;52.402357;16.950573;70;10;bm;bm_ic;bm_marker
+4;Biblioteka Techniczna;ul. Piotrowo 2, 60-965, Poznań ;52.403447;16.949182;90;100;BT;bt_ic;bt_marker
+5;Wydział Technologii Chemicznej;ul. Bedrychowo 4, 60-965, Poznań ;52.404995;16.950661;100;120;TCh;tch_ic;tch_marker

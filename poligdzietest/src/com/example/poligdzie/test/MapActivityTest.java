@@ -4,11 +4,11 @@ import org.junit.Before;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.MediumTest;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.poligdzie.R;
 import com.poligdzie.activities.MapActivity;
+import com.poligdzie.widgets.SearchAutoCompleteTextView;
 import com.robotium.solo.Solo;
 
 public class MapActivityTest extends ActivityInstrumentationTestCase2<MapActivity>{
@@ -39,6 +39,9 @@ public class MapActivityTest extends ActivityInstrumentationTestCase2<MapActivit
 		searchFor("2.7", "laboratorium 2.7.2", "laboratorium 2.7.2", "Biblioteka");
 		searchFor("1.6", "laboratorium 1.6.18", "laboratorium 1.6.18", "Biblioteka");
 		searchFor("00", "Sala 001A", "Sala 001A", "Chemicznej");
+		searchFor("ce", "Centrum Wyk³adowe", "Centrum Wyk³adowe", "ul. Piotrowo 2, 60-965 Poznañ");
+		searchFor("bt", "Biblioteka Techniczna", "Biblioteka Techniczna", "ul. Piotrowo 2, 60-965 Poznañ");
+		searchFor("chemi", "Wydzia³ Technologii Chemicznej", "Wydzia³ Technologii Chemicznej", "ul. Berdychowo 4, 60-965 Poznañ");
 	}
 
 	@Override
@@ -50,7 +53,9 @@ public class MapActivityTest extends ActivityInstrumentationTestCase2<MapActivit
 
 	
 	public void searchFor(String typed, String autocomplete, String mainDescription, String detailDescription) {
-		EditText vSearchEditText= (EditText) solo.getView(R.id.search_point_text_edit);
+		solo.sleep(1000);
+		
+		SearchAutoCompleteTextView vSearchEditText= (SearchAutoCompleteTextView) solo.getView(R.id.search_point_text_edit);
 		solo.clearEditText(vSearchEditText);
 		solo.enterText(vSearchEditText, typed);
 	
@@ -60,7 +65,7 @@ public class MapActivityTest extends ActivityInstrumentationTestCase2<MapActivit
 		solo.waitForFragmentById(R.id.search_description_frag);
 		
 		//sleep potrzebny na wstrzykniêcie wartoœci
-		solo.sleep(10000);
+		solo.sleep(1000);
         
 		TextView mainDesc = (TextView) solo.getView(R.id.search_main_description);
 		assertEquals(mainDescription, mainDesc.getText().toString());
