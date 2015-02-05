@@ -383,7 +383,6 @@ public class IndoorRouteFinder implements Constants
 			graphSize = generatePointList();
 		} catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		prepareGraph();

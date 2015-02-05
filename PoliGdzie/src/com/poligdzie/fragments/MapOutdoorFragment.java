@@ -15,7 +15,6 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.base.PoliGdzieMapFragment;
 import com.poligdzie.listeners.OnMarkerClickCustomListener;
-import com.poligdzie.listeners.OnCameraChangeCustomListener;
 import com.poligdzie.singletons.MapDrawingProvider;
 
 public class MapOutdoorFragment extends PoliGdzieMapFragment implements
@@ -51,7 +50,6 @@ public class MapOutdoorFragment extends PoliGdzieMapFragment implements
 		map.setOnMarkerClickListener(new OnMarkerClickCustomListener(this, map,
 				dbHelper));
 
-		map.setOnCameraChangeListener(new OnCameraChangeCustomListener(this));
 		
 		
 		return rootView;

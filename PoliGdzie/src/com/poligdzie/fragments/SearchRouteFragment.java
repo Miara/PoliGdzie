@@ -36,7 +36,6 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 	private ContextSearchTextWatcher	startWatcher;
 	private ContextSearchTextWatcher	goalWatcher;
 
-	private BuildingInfoFragment		buildingInfoFragment;
 	private ImageButton					startDeleteButton;
 	private ImageButton					goalDeleteButton;
 	private ImageButton					switchPositionButton;
@@ -121,7 +120,6 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 			String newStartName = "";
 			String newGoalName = "";
 			
-			//TODO: poprawic switcha przy pustych znakach	
 			
 			if(startPosition.getAdapter() != null)
 			{

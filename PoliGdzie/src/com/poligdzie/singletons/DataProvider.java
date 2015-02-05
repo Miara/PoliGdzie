@@ -71,7 +71,6 @@ public class DataProvider extends PoliGdzieBaseClass
 
 		} catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

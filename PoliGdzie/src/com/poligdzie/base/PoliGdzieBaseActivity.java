@@ -92,7 +92,6 @@ public abstract class PoliGdzieBaseActivity extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle arg0)
 	{
-		// TODO Auto-generated method stub
 		super.onCreate(arg0);
 		this.dbHelper = new DatabaseHelper(this, DATABASE_NAME, null,
 				DATABASE_VERSION);

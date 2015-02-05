@@ -229,7 +229,6 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 	    return super.onKeyDown(keyCode, event);   
 	}
 	
-	// TODO : powstawiac w layoutach contentDescription
 	
 	//TODO: refaktor
 	private boolean checkPlayServices() {

@@ -26,7 +26,6 @@ import com.poligdzie.widgets.BuildingImageView;
 public class MapIndoorFragment extends PoliGdzieMapFragment implements
 															OnClickListener
 {
-//TODO : mapy sie nie laduja, gdy na przyklad szukamy 8 cw, to parter sie nie laduje dobrze
 	private BuildingImageView	buildingImage;
 	private int					floorId;
 	private List<Line>			routeLines	= new ArrayList<Line>();

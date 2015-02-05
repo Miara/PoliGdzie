@@ -76,7 +76,6 @@ public class AutocompleteCustomAdapter extends ArrayAdapter implements
 						unit.getBuilding().getId());
 			} catch (SQLException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			desc.setText("Jednostka organizacyjna");
@@ -94,7 +93,6 @@ public class AutocompleteCustomAdapter extends ArrayAdapter implements
 						room.getBuilding().getId());
 			} catch (SQLException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			desc.setText("Pomieszczenie");

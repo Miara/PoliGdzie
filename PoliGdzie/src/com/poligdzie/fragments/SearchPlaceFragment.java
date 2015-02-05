@@ -16,7 +16,6 @@ import com.example.poligdzie.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.poligdzie.base.PoliGdzieBaseFragment;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
-import com.poligdzie.listeners.OnFragmentSwitchListener;
 import com.poligdzie.listeners.OnPickFromAutocompleteListener;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
