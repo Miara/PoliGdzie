@@ -1,0 +1,316 @@
+﻿id;number;name;function;floor;coordX;coordY;radius;doorsX;doorsY;navigationPointConnection;aliases
+1;1;Sala 1;LECTURE;1;1711;2649;130;1501;2372;3;cw 1, 1 cw, centrum wykładowe sala 1, centrum wykładowe 1;1
+2;2;Sala 2;LECTURE;1;2117;2322;130;1895;2061;3;cw 2, 2 cw, centrum wykładowe sala 2, centrum wykładowe 2;1
+3;3;Sala 3;LECTURE;1;2515;2014;130;2284;1742;6;cw 3, 3 cw,centrum wykładowe sala 3, centrum wykładowe 3;1
+4;4;Sala 4;LECTURE;1;1352;1302;150;1837;1704;3;cw 4, 4 cw, centrum wykładowe sala 4, centrum wykładowe 4;1
+5;5;Sala 5;LECTURE;1;475;782;120;580;934;13;cw 5, 5 cw, centrum wykładowe sala 5, centrum wykładowe 5;1
+6;6;Sala 6;LECTURE;1;846;500;120;970;624;13;cw 6, 6 cw, centrum wykładowe sala 6, centrum wykładowe 6;1
+7;7;Sala 7;LECTURE;2;1112;1951;130;1011;1811;26;cw 7, 7 cw, centrum wykładowe sala 7, centrum wykładowe 7;1
+8;8;Sala 8;LECTURE;2;1398;1727;130;1285;1591;26;cw 8, 8 cw, centrum wykładowe sala 8, centrum wykładowe 8;1
+9;9;Sala 9;LECTURE;2;1678;1502;130;1567;1362;28;cw 9, 9 cw, centrum wykładowe sala 9, centrum wykładowe 9;1
+10;10;Sala 10;LECTURE;2;756;1341;140;578;1484;30;cw 10, 10 cw, centrum wykładowe sala 10, centrum wykładowe 10;1
+11;11;Sala 11;LECTURE;2;499;1046;140;341;1182;30;cw 11, 11 cw, centrum wykładowe sala 11, centrum wykładowe 11;1
+12;12;Sala 12;LECTURE;2;220;611;130;295;722;37;cw 12, 12 cw, centrum wykładowe sala 12, centrum wykładowe 12;1
+13;13;Sala 13;LECTURE;2;496;390;130;567;498;37;cw 13, 13 cw, centrum wykładowe sala 13, centrum wykładowe 13;1
+14;42;Laboratorium 42;LABORATORY;1;2048;3303;40;2083;3182;5;cw 44, 42 cw, centrum wykładowe sala 42, centrum wykładowe 42;1
+15;43;Laboratorium 43;LABORATORY;1;2205;3133;50;2048;2987;5;cw 43, 43 cw, centrum wykładowe sala 43, centrum wykładowe 43;1
+16;44;Laboratorium 44;LABORATORY;1;2353;3015;50;2237;2832;5;cw 44, 44 cw, centrum wykładowe sala 44, centrum wykładowe 44;1
+17;45;Laboratorium 45;LABORATORY;1;2483;2843;75;2381;2717;5;cw 45, 45 cw, centrum wykładowe sala 45, centrum wykładowe 45;1
+18;142;Laboratorium 142;LABORATORY;2;1336;2365;40;1339;2289;24;cw 142, 142 cw, centrum wykładowe sala 142, centrum wykładowe 142;1
+19;143;Laboratorium 143;LABORATORY;2;1425;2256;50;1320;2150;24;cw 143, 143 cw, centrum wykładowe sala 143, centrum wykładowe 143;1
+20;144;Laboratorium 144;LABORATORY;2;1535;2166;50;1453;2043;24;cw 144, 144 cw, centrum wykładowe sala 144, centrum wykładowe 144;1
+21;145;Laboratorium 145;LABORATORY;2;1642;2026;75;1533;1961;24;cw 145, 145 cw, centrum wykładowe sala 145, centrum wykładowe 145;1
+22;;freshmarket;GASTRONOMIC;1;2771;1555;150;2528;1511;6;freshmarket, bufet, stołówka;1
+23;;rozdzielnia elektryczna;TECH;1;1979;3232;50;2028;3140;5;rozdzielnia elektryczna;1
+24;;rozdzielnia elektryczna;TECH;1;1918;3166;40;2034;3154;5;rozdzielnia elektryczna;1
+25;;serwerownia;TECH;1;1596;3322;50;1648;3261;2;serwerownia;1
+26;;toaleta męska;RESTROOM;1;1169;2922;80;1269;1882;2;toaleta męska, wc męskie, łazienka męska;1
+27;;toaleta damska;RESTROOM;1;1377;3203;80;1391;3031;2;toaleta damska, wc damskie, łazienka damska;1
+28;;toaleta damska;RESTROOM;1;1491;548;20;1420;585;16;toaleta damska, wc damskie, łazienka damska;1
+29;;toaleta dla niepełnosprawnych;RESTROOM;1;1546;608;20;1492;679;16;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;1
+30;;automat;GASTRONOMIC;1;1575;2848;30;1575;2848;2;automat z jedzeniem, ;1
+31;;toaleta męska;RESTROOM;2;676;2078;80;778;2077;25;toaleta męskia, wc męskie, łazienka męska;1
+32;;toaleta damska;RESTROOM;2;849;2304;80;859;2128;25;toaleta damska, wc damskie, łazienka damska;1
+33;;toaleta męska;RESTROOM;2;934;450;20;882;475;40;toaleta męska, wc męskie, łazienka męska;1
+34;;toaleta dla niepełnosprawnych;RESTROOM;2;971;492;20;933;535;40;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;1
+35;2.6.2;laboratorium 2.6.2;STAFF;13;673;256;25;615;289;53;bt 2.6.2, 2.6.2 bt, biblioteka techniczna sala 2.6.2, biblioteka techniczna 2.6.2;4
+36;2.6.3;laboratorium 2.6.3;STAFF;13;91;248;30;95;293;55;bt 2.6.3, 2.6.3 bt, biblioteka techniczna sala 2.6.3, biblioteka techniczna 2.6.3;4
+37;2.6.4;laboratorium 2.6.4;STAFF;13;169;248;30;195;293;55;bt 2.6.4, 2.6.4 bt, biblioteka techniczna sala 2.6.4, biblioteka techniczna 2.6.4;4
+38;2.6.5;laboratorium 2.6.5;STAFF;13;243;248;30;219;293;54;bt 2.6.5, 2.6.5 bt, biblioteka techniczna sala 2.6.5, biblioteka techniczna 2.6.5;4
+39;2.6.6;laboratorium 2.6.6;STAFF;13;315;248;30;315;293;54;bt 2.6.6, 2.6.6 bt, biblioteka techniczna sala 2.6.6, biblioteka techniczna 2.6.6;4
+40;2.6.7;laboratorium 2.6.7;STAFF;13;391;248;30;391;293;54;bt 2.6.7, 2.6.7 bt, biblioteka techniczna sala 2.6.7, biblioteka techniczna 2.6.7;4
+41;2.6.8;laboratorium 2.6.8;STAFF;13;461;248;30;489;293;54;bt 2.6.8, 2.6.8 bt, biblioteka techniczna sala 2.6.8, biblioteka techniczna 2.6.8;4
+42;2.6.9;laboratorium 2.6.9;STAFF;13;544;248;30;514;293;54;bt 2.6.9, 2.6.9 bt, biblioteka techniczna sala 2.6.9, biblioteka techniczna 2.6.9;4
+43;2.6.10;laboratorium 2.6.10;LABORATORY;13;106;397;50;174;404;56;bt 2.6.10, 2.6.10 bt, biblioteka techniczna sala 2.6.10, biblioteka techniczna 2.6.10;4
+44;2.6.11;laboratorium 2.6.11;LABORATORY;13;113;484;25;175;474;56;bt 2.6.11, 2.6.11 bt, biblioteka techniczna sala 2.6.11, biblioteka techniczna 2.6.11;4
+45;2.6.12;laboratorium 2.6.12;LABORATORY;13;358;430;80;476;430;53;bt 2.6.12, 2.6.12 bt, biblioteka techniczna sala 2.6.12, biblioteka techniczna 2.6.12;4
+46;2.6.18;laboratorium 2.6.18;LABORATORY;13;524;1005;35;576;995;51;bt 2.6.18, 2.6.18 bt, biblioteka techniczna sala 2.6.18, biblioteka techniczna 2.6.18;4
+47;2.6.19;laboratorium 2.6.19;LABORATORY;13;673;767;40;675;711;52;bt 2.6.19, 2.6.19 bt, biblioteka techniczna sala 2.6.19, biblioteka techniczna 2.6.19;4
+48;2.6.20;laboratorium 2.6.20;LABORATORY;13;780;794;40;826;754;49;bt 2.6.20, 2.6.20 bt, biblioteka techniczna sala 2.6.20, biblioteka techniczna 2.6.20;4
+49;2.6.21;laboratorium 2.6.21;LABORATORY;13;780;970;40;847;970;49;bt 2.6.21, 2.6.21 bt, biblioteka techniczna sala 2.6.21, biblioteka techniczna 2.6.21;4
+50;2.6.22;laboratorium 2.6.22;LABORATORY;13;954;963;30;900;970;49;bt 2.6.22, 2.6.22 bt, biblioteka techniczna sala 2.6.22, biblioteka techniczna 2.6.22;4
+51;2.7.2;laboratorium 2.7.2;LABORATORY;13;964;1451;30;901;1472;47;bt 2.7.2, 2.7.2 bt, biblioteka techniczna sala 2.7.2, biblioteka techniczna 2.7.2;4
+52;2.7.3;laboratorium 2.7.3;LABORATORY;13;776;1367;30;846;1349;46;bt 2.7.3, 2.7.3 bt, biblioteka techniczna sala 2.7.3, biblioteka techniczna 2.7.3;4
+53;2.7.5;laboratorium 2.7.5;LABORATORY;13;670;1630;50;670;1561;46;bt 2.7.5, 2.7.5 bt, biblioteka techniczna sala 2.7.5, biblioteka techniczna 2.7.5;4
+54;2.7.6;laboratorium 2.7.6;LABORATORY;13;526;1629;60;536;1561;46;bt 2.7.6, 2.7.6 bt, biblioteka techniczna sala 2.7.6, biblioteka techniczna 2.7.6;4
+55;2.7.8;laboratorium 2.7.8;LABORATORY;13;415;1454;50;465;1511;46;bt 2.7.8, 2.7.8 bt, biblioteka techniczna sala 2.7.8, biblioteka techniczna 2.7.8;4
+56;2.7.13;laboratorium 2.7.13;LABORATORY;13;1025;1218;120;901;1190;47;bt 2.7.13, 2.7.13 bt, biblioteka techniczna sala 2.7.13, biblioteka techniczna 2.7.13;4
+57;2.7.14;laboratorium 2.7.14;LABORATORY;13;791;1222;35;847;1222;47;bt 2.7.14, 2.7.14 bt, biblioteka techniczna sala 2.7.14, biblioteka techniczna 2.7.14;4
+58;2.7.15;laboratorium 2.7.15;LABORATORY;13;682;1222;35;624;1222;50;bt 2.7.15, 2.7.15 bt, biblioteka techniczna sala 2.7.15, biblioteka techniczna 2.7.15;4
+59;2.7.16;laboratorium 2.7.16;LABORATORY;13;526;1222;35;575;1222;50;bt 2.7.16, 2.7.16 bt, biblioteka techniczna sala 2.7.16, biblioteka techniczna 2.7.16;4
+60;;toaleta damska;RESTROOM;13;599;1482;30;682;1442;47;toaleta damska, wc damskie, łazienka damska;4
+61;;toaleta męska;RESTROOM;13;599;1384;30;682;1394;47;toaleta męska, wc męskie, łazienka męska;4
+62;1.6.16;laboratorium 1.6.16;LABORATORY;12;1793;661;50;1709;599;64;bt 1.6.16, 1.6.16 bt, biblioteka techniczna sala 1.6.16, biblioteka techniczna 1.6.16;4
+63;1.6.18;laboratorium 1.6.18;LABORATORY;12;1432;661;50;1513;598;64;bt 1.6.18, 1.6.18 bt, biblioteka techniczna sala 1.6.18, biblioteka techniczna 1.6.18;4
+64;1.6.19;laboratorium 1.6.19;LABORATORY;12;1142;452;45;1205;408;65;bt 1.6.19, 1.6.19 bt, biblioteka techniczna sala 1.6.19, biblioteka techniczna 1.6.19;4
+65;1.6.20;laboratorium 1.6.20;LABORATORY;12;1117;305;60;1205;318;78;bt 1.6.20, 1.6.20 bt, biblioteka techniczna sala 1.6.20, biblioteka techniczna 1.6.20;4
+66;1.6.21;laboratorium 1.6.21;LABORATORY;12;1346;305;60;1351;380;68;bt 1.6.21, 1.6.21 bt, biblioteka techniczna sala 1.6.21, biblioteka techniczna 1.6.21;4
+67;1.6.22;laboratorium 1.6.22;LABORATORY;12;1531;305;60;1550;380;68;bt 1.6.22, 1.6.22 bt, biblioteka techniczna sala 1.6.22, biblioteka techniczna 1.6.22;4
+68;1.6.23;laboratorium 1.6.23;LABORATORY;12;1722;305;60;1747;380;68;bt 1.6.23, 1.6.23 bt, biblioteka techniczna sala 1.6.23, biblioteka techniczna 1.6.23;4
+69;108;sala 108;LECTURE;12;900;1989;25;878;1895;79;bt 108, 108 bt, biblioteka techniczna sala 108, biblioteka techniczna 108;4
+70;122;sala 122;LECTURE;12;1652;1594;120;1587;1496;60;bt 122, 122 bt, biblioteka techniczna sala 122, biblioteka techniczna 122;4
+71;123;sala 123;LECTURE;12;1409;1842;120;1334;1778;60;bt 123, 123 bt, biblioteka techniczna sala 123, biblioteka techniczna 123;4
+72;125;sala 125;LECTURE;12;1134;1450;90;1027;1453;66;bt 125, 125 bt, biblioteka techniczna sala 125, biblioteka techniczna 125;4
+73;126;sala 126;LECTURE;12;1332;1423;70;1332;1541;60;bt 126, 126 bt, biblioteka techniczna sala 126, biblioteka techniczna 126;4
+74;127;sala 127;LECTURE;12;1179;1223;80;1027;1229;66;bt 127, 127 bt, biblioteka techniczna sala 127, biblioteka techniczna 127;4
+75;128;sala 128;LECTURE;12;1120;1011;80;1027;1019;66;bt 128, 128 bt, biblioteka techniczna sala 128, biblioteka techniczna 128;4
+76;;toaleta damska;RESTROOM;12;1308;487;50;1254;471;65;toaleta damska, wc damskie, łazienka damska;4
+77;;toaleta męska;RESTROOM;12;1471;487;50;1533;470;64;toaleta męska, wc męskie, łazienka męska;4
+78;;toaleta damska;RESTROOM;12;707;1789;50;864;1743;66;toaleta damska, wc damskie, łazienka damska;4
+79;;toaleta męska;RESTROOM;12;695;1680;50;863;1678;66;toaleta męska, wc męskie, łazienka męska;4
+80;;toaleta dla niepełnosprawnych;RESTROOM;12;808;1714;30;839;1714;66;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;4
+81;51;sala 051;LECTURE;11;1109;226;100;982;329;76;bt 051, 051 bt, biblioteka techniczna sala 051, biblioteka techniczna 051;4
+82;53;sala 053;LECTURE;11;1627;323;190;1825;481;70;bt 053, 053 bt, biblioteka techniczna sala 053, biblioteka techniczna 053;4
+83;21;sala 021;LECTURE;11;1425;1623;90;1351;1536;73;bt 021, 021 bt, biblioteka techniczna sala 021, biblioteka techniczna 021;4
+84;22;sala 022;LECTURE;11;1295;1794;50;1205;1734;73;bt 022, 022 bt, biblioteka techniczna sala 022, biblioteka techniczna 022;4
+85;23;sala 023;LECTURE;11;797;1857;70;775;1779;77;bt 023, 023 bt, biblioteka techniczna sala 023, biblioteka techniczna 023;4
+86;24;sala 024;LECTURE;11;617;1857;40;665;1779;77;bt 024, 024 bt, biblioteka techniczna sala 024, biblioteka techniczna 024;4
+87;25;sala 025;LECTURE;11;446;1857;70;446;1779;77;bt 025, 025 bt, biblioteka techniczna sala 025, biblioteka techniczna 025;4
+88;27;sala 027;LECTURE;11;1102;1375;80;1000;1379;75;bt 027, 027 bt, biblioteka techniczna sala 027, biblioteka techniczna 027;4
+89;28;sala 028;LECTURE;11;1279;1349;65;1277;1455;73;bt 028, 028 bt, biblioteka techniczna sala 028, biblioteka techniczna 028;4
+90;29;sala 029;LECTURE;11;1132;1165;75;1000;1169;75;bt 029, 029 bt, biblioteka techniczna sala 029, biblioteka techniczna 029;4
+91;210;sala 0210;LECTURE;11;1084;975;75;1000;975;75;bt 0210, 0210 bt, biblioteka techniczna sala 0210, biblioteka techniczna 0210;4
+92;;toaleta damska;RESTROOM;11;1844;787;30;1868;828;70;toaleta damska, wc damskie, łazienka damska;4
+93;;toaleta męska;RESTROOM;11;1898;944;30;1903;890;70;toaleta męska, wc męskie, łazienka męska;4
+94;;toaleta dla niepełnosprawnych;RESTROOM;11;1826;858;20;1855;861;70;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;4
+95;;toaleta damska;RESTROOM;11;718;1682;35;853;1643;75;toaleta damska, wc damskie, łazienka damska;4
+96;;toaleta męska;RESTROOM;11;718;1565;35;853;1583;75;toaleta męska, wc męskie, łazienka męska;4
+97;;toaleta dla niepełnosprawnych;RESTROOM;11;800;1615;20;826;1614;75;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;4
+98;001A;Sala 001A;LABORATORY;14;1213;2064;60;1131;1964;110;TCh 001A, 001A TCh, technologia chemiczna 001A, technologia chemiczna 001A;5
+99;002A;Sala 002A;LABORATORY;14;1391;2038;60;1459;1896;116;TCh 002A, 002A TCh, technologia chemiczna 002A, technologia chemiczna 002A;5
+100;003A;Sala 003A;LABORATORY;14;1601;2052;60;1621;1896;116;TCh 003A, 003A TCh, technologia chemiczna 003A, technologia chemiczna 003A;5
+101;004A;Sala 004A;LABORATORY;14;1755;2052;20;1755;1896;116;TCh 004A, 004A TCh, technologia chemiczna 004A, technologia chemiczna 004A;5
+102;005A;Sala 005A;LABORATORY;14;2017;2052;60;2077;1896;116;TCh 005A, 005A TCh, technologia chemiczna 005A, technologia chemiczna 005A;5
+103;006A;Sala 006A;LABORATORY;14;2165;2052;20;2165;1896;116;TCh 006A, 006A TCh, technologia chemiczna 006A, technologia chemiczna 006A;5
+104;007A;Sala 007A;LABORATORY;14;2273;2052;20;2273;1896;116;TCh 007A, 007A TCh, technologia chemiczna 007A, technologia chemiczna 007A;5
+105;008A;Sala 008A;LABORATORY;14;2371;2052;20;2371;1896;116;TCh 008A, 008A TCh, technologia chemiczna 008A, technologia chemiczna 008A;5
+106;009A;Sala 009A;LABORATORY;14;2459;2052;20;2459;1896;116;TCh 009A, 009A TCh, technologia chemiczna 009A, technologia chemiczna 009A;5
+107;010A;Sala 010A;LABORATORY;14;2585;2002;30;2536;1952;116;TCh 010A, 010A TCh, technologia chemiczna 010A, technologia chemiczna 010A;5
+108;011A;Sala 011A;STAFF;14;1489;1746;20;1489;1820;116;TCh 011A, 011A TCh, technologia chemiczna 011A, technologia chemiczna 011A;5
+109;012A;Sala 012A;STAFF;14;2353;1746;20;2353;1820;116;TCh 012A, 012A TCh, technologia chemiczna 012A, technologia chemiczna 012A;5
+110;013A;Sala 013A;STAFF;14;2273;1746;20;2273;1820;116;TCh 013A, 013A TCh, technologia chemiczna 013A, technologia chemiczna 013A;5
+111;014A;Sala 014A;STAFF;14;2167;1746;20;2167;1820;116;TCh 014A, 014A TCh, technologia chemiczna 014A, technologia chemiczna 014A;5
+112;015A;Sala 015A;STAFF;14;2067;1746;20;2067;1820;116;TCh 015A, 015A TCh, technologia chemiczna 015A, technologia chemiczna 015A;5
+113;016A;Sala 016A;STAFF;14;1953;1746;20;1953;1820;116;TCh 016A, 016A TCh, technologia chemiczna 016A, technologia chemiczna 016A;5
+114;017A;Sala 017A;STAFF;14;1853;1746;20;1853;1820;116;TCh 017A, 017A TCh, technologia chemiczna 017A, technologia chemiczna 017A;5
+115;018A;Sala 018A;STAFF;14;1687;1746;40;1751;1820;116;TCh 018A, 018A TCh, technologia chemiczna 018A, technologia chemiczna 018A;5
+116;001B;Sala 001B;LABORATORY;14;583;609;50;679;515;117;TCh 001B, 001B TCh, technologia chemiczna 001B, technologia chemiczna 001B;5
+117;002B;Sala 002B;LABORATORY;14;779;329;50;843;451;117;TCh 002B, 002B TCh, technologia chemiczna 002B, technologia chemiczna 002B;5
+118;003B;Sala 003B;LABORATORY;14;943;312;30;981;451;117;TCh 003B, 003B TCh, technologia chemiczna 003B, technologia chemiczna 003B;5
+119;004B;Sala 004B;LABORATORY;14;1317;315;50;1274;451;118;TCh 004B, 004B TCh, technologia chemiczna 004B, technologia chemiczna 004B;5
+120;005B;Sala 005B;LABORATORY;14;1505;315;60;1469;451;118;TCh 005B, 005B TCh, technologia chemiczna 005B, technologia chemiczna 005B;5
+121;006B;Sala 006B;STAFF;14;1653;315;20;1671;451;118;TCh 006B, 006B TCh, technologia chemiczna 006B, technologia chemiczna 006B;5
+122;007B;Sala 007B;STAFF;14;1803;315;20;1881;451;118;TCh 007B, 007B TCh, technologia chemiczna 007B, technologia chemiczna 007B;5
+123;008B;Sala 008B;STAFF;14;1963;315;20;2083;451;118;TCh 008B, 008B TCh, technologia chemiczna 008B, technologia chemiczna 008B;5
+124;009B;Sala 009B;STAFF;14;2065;315;20;2083;451;118;TCh 009B, 009B TCh, technologia chemiczna 009B, technologia chemiczna 009B;5
+125;010B;Sala 010B;STAFF;14;2169;315;20;2147;451;118;TCh 010B, 010B TCh, technologia chemiczna 010B, technologia chemiczna 010B;5
+126;011B;Sala 011B;STAFF;14;1311;315;40;2361;451;118;TCh 011B, 011B TCh, technologia chemiczna 011B, technologia chemiczna 011B;5
+127;012B;Sala 012B;STAFF;14;2371;597;20;2355;527;118;TCh 012B, 012B TCh, technologia chemiczna 012B, technologia chemiczna 012B;5
+128;013B;Sala 013B;STAFF;14;2229;597;40;2147;527;118;TCh 013B, 013B TCh, technologia chemiczna 013B, technologia chemiczna 013B;5
+129;014B;Sala 014B;STAFF;14;1987;597;50;1943;527;118;TCh 014B, 014B TCh, technologia chemiczna 014B, technologia chemiczna 014B;5
+130;015B;Sala 015B;STAFF;14;1861;597;20;1881;527;118;TCh 015B, 015B TCh, technologia chemiczna 015B, technologia chemiczna 015B;5
+131;016B;Sala 016B;STAFF;14;1755;597;20;1737;527;118;TCh 016B, 016B TCh, technologia chemiczna 016B, technologia chemiczna 016B;5
+132;017B;Sala 017B;STAFF;14;1655;597;20;1669;527;118;TCh 017B, 017B TCh, technologia chemiczna 017B, technologia chemiczna 017B;5
+133;018B;Sala 018B;STAFF;14;1541;597;20;1541;527;118;TCh 018B, 018B TCh, technologia chemiczna 018B, technologia chemiczna 018B;5
+134;019B;Sala 019B;LIBRARY;14;1395;597;40;1343;527;118;TCh 019B, 019B TCh, technologia chemiczna 019B, technologia chemiczna 019B;5
+135;;toaleta damska;RESTROOM;14;1229;1919;20;1183;1846;109;toaleta damska, wc damskie, łazienka damska;5
+136;;toaleta męska;RESTROOM;14;1235;1837;20;1163;1845;109;toaleta męska, wc męskie, łazienka męska;5
+137;;toaleta damska;RESTROOM;14;795;593;20;897;669;114;toaleta damska, wc damskie, łazienka damska;5
+138;;toaleta męska;RESTROOM;14;1029;589;20;897;669;114;toaleta męska, wc męskie, łazienka męska;5
+139;;toaleta dla niepełnosprawnych;RESTROOM;14;913;577;20;897;669;114;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;5
+140;;Hala technologiczna;LECTURE;14;1759;1179;200;1423;1233;112;TCh hala techniczna, hala techniczna TCh, technologia chemiczna hala techniczna, hala techniczna technologia chemiczna;5
+141;101A;Sala 101A;LABORATORY;15;737;1806;40;737;1886;123;TCh 101A, 101A TCh, technologia chemiczna 101A, 101A technologia chemiczna;5
+142;102A;Sala 102A;LABORATORY;15;621;1806;40;621;1886;123;TCh 102A, 102A TCh, technologia chemiczna 102A, 102A technologia chemiczna;5
+143;103A;Sala 103A;LABORATORY;15;525;1806;40;540;1886;123;TCh 103A, 103A TCh, technologia chemiczna 103A, 103A technologia chemiczna;5
+144;104A;Sala 104A;LABORATORY;15;413;1806;40;397;1886;123;TCh 104A, 104A TCh, technologia chemiczna 104A, 104A technologia chemiczna;5
+145;105A;Sala 105A;LABORATORY;15;269;1806;50;337;1886;123;TCh 105A, 105A TCh, technologia chemiczna 105A, 105A technologia chemiczna;5
+146;106A;Sala 106A;LABORATORY;15;249;1938;30;305;1902;123;TCh 106A, 106A TCh, technologia chemiczna 106A, 106A technologia chemiczna;5
+147;107A;Sala 107A;LABORATORY;15;361;2146;100;377;1990;123;TCh 107A, 107A TCh, technologia chemiczna 107A, 107A technologia chemiczna;5
+148;108A;Sala 108A;LABORATORY;15;717;2150;70;801;2018;123;TCh 108A, 108A TCh, technologia chemiczna 108A, 108A technologia chemiczna;5
+149;109A;Sala 109A;LABORATORY;15;1052;2142;100;1065;2018;119;TCh 109A, 109A TCh, technologia chemiczna 109A, 109A technologia chemiczna;5
+150;110A;Sala 110A;LABORATORY;15;1325;2114;80;1405;1970;122;TCh 110A, 110A TCh, technologia chemiczna 110A, 110A technologia chemiczna;5
+151;111A;Sala 111A;LABORATORY;15;1781;2114;80;1845;1970;122;TCh 111A, 111A TCh, technologia chemiczna 111A, 111A technologia chemiczna;5
+152;112A;Sala 112A;LABORATORY;15;1941;2114;20;1845;1970;122;TCh 112A, 112A TCh, technologia chemiczna 112A, 112A technologia chemiczna;5
+153;113A;Sala 113A;LABORATORY;15;2109;2114;80;2065;1970;122;TCh 113A, 113A TCh, technologia chemiczna 113A, 113A technologia chemiczna;5
+154;114A;Sala 114A;LABORATORY;15;2317;2114;80;2281;1970;122;TCh 114A, 114A TCh, technologia chemiczna 114A, 114A technologia chemiczna;5
+155;115A;Sala 115A;LABORATORY;15;2473;2114;80;2493;1970;122;TCh 115A, 115A TCh, technologia chemiczna 115A, 115A technologia chemiczna;5
+156;116A;Sala 116A;LABORATORY;15;2593;2170;20;2541;2130;122;TCh 116A, 116A TCh, technologia chemiczna 116A, 116A technologia chemiczna;5
+157;117A;Sala 117A;LABORATORY;15;2625;2058;20;2569;2054;122;TCh 117A, 117A TCh, technologia chemiczna 117A, 117A technologia chemiczna;5
+158;118A;Sala 118A;LABORATORY;15;2501;1806;20;2479;1886;122;TCh 118A, 118A TCh, technologia chemiczna 118A, 118A technologia chemiczna;5
+159;119A;Sala 119A;LABORATORY;15;2373;1806;20;2361;1886;122;TCh 119A, 119A TCh, technologia chemiczna 119A, 119A technologia chemiczna;5
+160;120A;Sala 120A;LABORATORY;15;2269;1806;20;2285;1886;122;TCh 120A, 120A TCh, technologia chemiczna 120A, 120A technologia chemiczna;5
+161;121A;Sala 121A;LABORATORY;15;2157;1806;20;2145;1886;122;TCh 121A, 121A TCh, technologia chemiczna 121A, 121A technologia chemiczna;5
+162;122A;Sala 122A;LABORATORY;15;2045;1806;20;2061;1886;122;TCh 122A, 122A TCh, technologia chemiczna 122A, 122A technologia chemiczna;5
+163;123A;Sala 123A;LABORATORY;15;1933;1806;20;1929;1886;122;TCh 123A, 123A TCh, technologia chemiczna 123A, 123A technologia chemiczna;5
+164;124A;Sala 124A;LABORATORY;15;1837;1806;20;1845;1886;122;TCh 124A, 124A TCh, technologia chemiczna 124A, 124A technologia chemiczna;5
+165;125A;Sala 125A;LABORATORY;15;1741;1806;20;1737;1886;122;TCh 125A, 125A TCh, technologia chemiczna 125A, 125A technologia chemiczna;5
+166;T101;Sala T101;LABORATORY;15;1577;1806;40;1665;1886;122;TCh T101, T101 TCh, technologia chemiczna T101, T101 technologia chemiczna;5
+167;T102;Sala T102;LABORATORY;15;1573;2114;80;1405;1970;122;TCh T102, T102 TCh, technologia chemiczna T102, T102 technologia chemiczna;5
+168;101C;Sala 101C;LECTURE;15;897;1358;50;1069;1374;125;TCh 101C, 101C TCh, technologia chemiczna 101C, 101C technologia chemiczna;5
+169;102C;Sala 102C;LECTURE;15;877;1046;60;1089;1078;125;TCh 102C, 102C TCh, technologia chemiczna 102C, 102C technologia chemiczna;5
+170;103C;Sala 103C;LECTURE;15;1085;1542;40;1045;1610;119;TCh 103C, 103C TCh, technologia chemiczna 103C, 103C technologia chemiczna;5
+171;104C;Sala 104C;LECTURE;15;837;1582;40;937;1626;119;TCh 104C, 104C TCh, technologia chemiczna 104C, 104C technologia chemiczna;5
+172;105C;Sala 105C;LECTURE;15;925;818;40;877;766;126;TCh 105C, 105C TCh, technologia chemiczna 105C, 105C technologia chemiczna;5
+173;106C;Sala 106C;LECTURE;15;737;850;40;765;766;126;TCh 106C, 106C TCh, technologia chemiczna 106C, 106C technologia chemiczna;5
+174;101B;Sala 101B;LABORATORY;15;501;596;70;605;526;128;TCh 101B, 101B TCh, technologia chemiczna 101B, 101B technologia chemiczna;5
+175;102B;Sala 102B;LABORATORY;15;621;274;40;613;418;128;TCh 102B, 102B TCh, technologia chemiczna 102B, 102B technologia chemiczna;5
+176;103B;Sala 103B;LABORATORY;15;849;274;80;801;418;128;TCh 103B, 103B TCh, technologia chemiczna 103B, 103B technologia chemiczna;5
+177;104B;Sala 104B;LABORATORY;15;1109;274;80;1205;418;128;TCh 104B, 104B TCh, technologia chemiczna 104B, 104B technologia chemiczna;5
+178;105B;Sala 105B;LABORATORY;15;1321;274;80;1417;418;129;TCh 105B, 105B TCh, technologia chemiczna 105B, 105B technologia chemiczna;5
+179;106B;Sala 106B;LABORATORY;15;1569;274;80;1637;418;129;TCh 106B, 106B TCh, technologia chemiczna 106B, 106B technologia chemiczna;5
+180;107B;Sala 107B;LABORATORY;15;1725;274;20;1705;418;129;TCh 107B, 107B TCh, technologia chemiczna 107B, 107B technologia chemiczna;5
+181;108B;Sala 108B;LABORATORY;15;1833;274;20;1853;418;129;TCh 108B, 108B TCh, technologia chemiczna 108B, 108B technologia chemiczna;5
+182;109B;Sala 109B;LABORATORY;15;1989;274;60;1925;418;129;TCh 109B, 109B TCh, technologia chemiczna 109B, 109B technologia chemiczna;5
+183;110B;Sala 110B;LABORATORY;15;2209;274;60;2145;418;129;TCh 110B, 110B TCh, technologia chemiczna 110B, 110B technologia chemiczna;5
+184;111B;Sala 111B;LABORATORY;15;241;274;60;2361;418;129;TCh 111B, 111B TCh, technologia chemiczna 111B, 111B technologia chemiczna;5
+185;112B;Sala 112B;LABORATORY;15;2357;594;20;2357;526;129;TCh 112B, 112B TCh, technologia chemiczna 112B, 112B technologia chemiczna;5
+186;113B;Sala 113B;LABORATORY;15;2257;594;20;2293;526;129;TCh 113B, 113B TCh, technologia chemiczna 113B, 113B technologia chemiczna;5
+187;114B;Sala 114B;LABORATORY;15;2165;594;20;2145;526;129;TCh 114B, 114B TCh, technologia chemiczna 114B, 114B technologia chemiczna;5
+188;115B;Sala 115B;LABORATORY;15;2057;594;20;2069;526;129;TCh 115B, 115B TCh, technologia chemiczna 115B, 115B technologia chemiczna;5
+189;116B;Sala 116B;LABORATORY;15;1941;594;20;1925;526;129;TCh 116B, 116B TCh, technologia chemiczna 116B, 116B technologia chemiczna;5
+190;117B;Sala 117B;LABORATORY;15;1821;594;20;1845;526;129;TCh 117B, 117B TCh, technologia chemiczna 117B, 117B technologia chemiczna;5
+191;118B;Sala 118B;LABORATORY;15;1721;594;20;1705;526;129;TCh 118B, 118B TCh, technologia chemiczna 118B, 118B technologia chemiczna;5
+192;119B;Sala 119B;LABORATORY;15;1617;594;20;1629;526;129;TCh 119B, 119B TCh, technologia chemiczna 119B, 119B technologia chemiczna;5
+193;120B;Sala 120B;LABORATORY;15;1501;594;20;1481;526;129;TCh 120B, 120B TCh, technologia chemiczna 120B, 120B technologia chemiczna;5
+194;T103;Sala T103;LABORATORY;15;1321;594;60;1273;526;129;TCh T103, T103 TCh, technologia chemiczna T103, T103 technologia chemiczna;5
+195;;toaleta damska;RESTROOM;15;1176;1986;20;1093;1904;121;toaleta damska, wc damskie, łazienka damska;5
+196;;toaleta męska;RESTROOM;15;1171;1901;20;1093;1904;121;toaleta męska, wc męskie, łazienka męska;5
+197;;toaleta damska;RESTROOM;15;717;570;20;809;622;126;toaleta damska, wc damskie, łazienka damska;5
+198;;toaleta męska;RESTROOM;15;817;570;20;809;622;126;toaleta męska, wc męskie, łazienka męska;5
+199;;toaleta dla niepełnosprawnych;RESTROOM;15;933;590;20;809;622;126;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;5
+200;201A;Sala 201A;LABORATORY;16;753;1816;50;753;1888;137;TCh 201A, 201A TCh, technologia chemiczna 201A, 201A technologia chemiczna;5
+201;202A;Sala 202A;LABORATORY;16;641;1816;40;641;1888;137;TCh 202A, 202A TCh, technologia chemiczna 202A, 202A technologia chemiczna;5
+202;203A;Sala 203A;LABORATORY;16;541;1816;40;557;1888;137;TCh 203A, 203A TCh, technologia chemiczna 203A, 203A technologia chemiczna;5
+203;204A;Sala 204A;LABORATORY;16;433;1816;40;409;1888;137;TCh 204A, 204A TCh, technologia chemiczna 204A, 204A technologia chemiczna;5
+204;205A;Sala 205A;LABORATORY;16;281;1816;50;349;1888;137;TCh 205A, 205A TCh, technologia chemiczna 205A, 205A technologia chemiczna;5
+205;206A;Sala 206A;LABORATORY;16;253;1936;30;329;1912;137;TCh 206A, 206A TCh, technologia chemiczna 206A, 206A technologia chemiczna;5
+206;207A;Sala 207A;LABORATORY;16;277;2140;70;345;1904;137;TCh 207A, 207A TCh, technologia chemiczna 207A, 207A technologia chemiczna;5
+207;208A;Sala 208A;LABORATORY;16;485;2140;70;389;2000;137;TCh 208A, 208A TCh, technologia chemiczna 208A, 208A technologia chemiczna;5
+208;209A;Sala 209A;LABORATORY;16;737;2166;70;841;2016;137;TCh 209A, 209A TCh, technologia chemiczna 209A, 209A technologia chemiczna;5
+209;210A;Sala 210A;LABORATORY;16;965;2166;40;997;2016;130;TCh 210A, 210A TCh, technologia chemiczna 210A, 210A technologia chemiczna;5
+210;211A;Sala 211A;LABORATORY;16;1157;2166;70;1085;2016;130;TCh 211A, 211A TCh, technologia chemiczna 211A, 211A technologia chemiczna;5
+211;212A;Sala 212A;LABORATORY;16;1365;2120;60;1613;1970;134;TCh 212A, 212A TCh, technologia chemiczna 212A, 212A technologia chemiczna;5
+212;213A;Sala 213A;LABORATORY;16;1821;2120;70;1745;1970;134;TCh 213A, 213A TCh, technologia chemiczna 213A, 213A technologia chemiczna;5
+213;214A;Sala 214A;LABORATORY;16;2217;2120;80;2105;1970;134;TCh 214A, 214A TCh, technologia chemiczna 214A, 214A technologia chemiczna;5
+214;215A;Sala 215A;LABORATORY;16;2465;2120;60;2545;1970;134;TCh 215A, 215A TCh, technologia chemiczna 215A, 215A technologia chemiczna;5
+215;216A;Sala 216A;LABORATORY;16;2653;2152;40;2601;2096;138;TCh 216A, 216A TCh, technologia chemiczna 216A, 216A technologia chemiczna;5
+216;217A;Sala 217A;LABORATORY;16;2685;2044;20;2629;2056;138;TCh 217A, 217A TCh, technologia chemiczna 217A, 217A technologia chemiczna;5
+217;218A;Sala 218A;LABORATORY;16;2561;1800;30;2545;1880;134;TCh 218A, 218A TCh, technologia chemiczna 218A, 218A technologia chemiczna;5
+218;219A;Sala 219A;LABORATORY;16;1433;1800;30;2417;1880;134;TCh 219A, 219A TCh, technologia chemiczna 219A, 219A technologia chemiczna;5
+219;220A;Sala 220A;LABORATORY;16;2325;1800;30;2341;1880;134;TCh 220A, 220A TCh, technologia chemiczna 220A, 220A technologia chemiczna;5
+220;221A;Sala 221A;LABORATORY;16;2221;1800;30;2193;1880;134;TCh 221A, 221A TCh, technologia chemiczna 221A, 221A technologia chemiczna;5
+221;222A;Sala 222A;LABORATORY;16;2081;1800;30;2117;1880;134;TCh 222A, 222A TCh, technologia chemiczna 222A, 222A technologia chemiczna;5
+222;223A;Sala 223A;LABORATORY;16;1973;1800;30;1973;1880;134;TCh 223A, 223A TCh, technologia chemiczna 223A, 223A technologia chemiczna;5
+223;224A;Sala 224A;LABORATORY;16;1869;1800;30;1893;1880;134;TCh 224A, 224A TCh, technologia chemiczna 224A, 224A technologia chemiczna;5
+224;T201;Sala T201;LABORATORY;16;1613;2120;60;1613;1970;134;TCh T201, T201 TCh, technologia chemiczna T201, T201 technologia chemiczna;5
+225;T202;Sala T202;LABORATORY;16;1773;1800;20;1757;1880;134;TCh T202, T202 TCh, technologia chemiczna T202, T202 technologia chemiczna;5
+226;T203;Sala T203;LABORATORY;16;1613;1800;40;1697;1880;134;TCh T203, T203 TCh, technologia chemiczna T203, T203 technologia chemiczna;5
+227;201B;Sala 201B;LABORATORY;16;513;561;70;621;489;139;TCh 201B, 201B TCh, technologia chemiczna 201B, 201B technologia chemiczna;5
+228;202B;Sala 202B;LABORATORY;16;601;189;20;629;389;139;TCh 202B, 202B TCh, technologia chemiczna 202B, 202B technologia chemiczna;5
+229;205B;Sala 205B;LABORATORY;16;857;270;30;773;390;139;TCh 205B, 205B TCh, technologia chemiczna 205B, 205B technologia chemiczna;5
+230;206B;Sala 206B;LABORATORY;16;989;270;30;989;390;139;TCh 206B, 206B TCh, technologia chemiczna 206B, 206B technologia chemiczna;5
+231;207B;Sala 207B;LABORATORY;16;1145;270;70;1145;390;139;TCh 207B, 207B TCh, technologia chemiczna 207B, 207B technologia chemiczna;5
+232;208B;Sala 208B;LABORATORY;16;1361;270;70;1449;390;140;TCh 208B, 208B TCh, technologia chemiczna 208B, 208B technologia chemiczna;5
+233;209B;Sala 209B;LABORATORY;16;1609;270;70;1669;390;140;TCh 209B, 209B TCh, technologia chemiczna 209B, 209B technologia chemiczna;5
+234;210B;Sala 210B;LABORATORY;16;1825;270;70;1897;390;140;TCh 210B, 210B TCh, technologia chemiczna 210B, 210B technologia chemiczna;5
+235;211B;Sala 211B;LABORATORY;16;2033;270;70;2109;390;140;TCh 211B, 211B TCh, technologia chemiczna 211B, 211B technologia chemiczna;5
+236;212B;Sala 212B;LABORATORY;16;2329;270;100;2197;390;140;TCh 212B, 212B TCh, technologia chemiczna 212B, 212B technologia chemiczna;5
+237;213B;Sala 213B;LABORATORY;16;2421;560;40;2421;490;140;TCh 213B, 213B TCh, technologia chemiczna 213B, 213B technologia chemiczna;5
+238;214B;Sala 214B;LABORATORY;16;2317;560;20;2337;490;140;TCh 214B, 214B TCh, technologia chemiczna 214B, 214B technologia chemiczna;5
+239;215B;Sala 215B;LABORATORY;16;2200;560;20;2190;490;140;TCh 215B, 215B TCh, technologia chemiczna 215B, 215B technologia chemiczna;5
+240;216B;Sala 216B;LABORATORY;16;2105;560;20;2117;490;140;TCh 216B, 216B TCh, technologia chemiczna 216B, 216B technologia chemiczna;5
+241;217B;Sala 217B;LABORATORY;16;1989;560;20;1969;490;140;TCh 217B, 217B TCh, technologia chemiczna 217B, 217B technologia chemiczna;5
+242;218B;Sala 218B;LABORATORY;16;1877;560;20;1851;490;140;TCh 218B, 218B TCh, technologia chemiczna 218B, 218B technologia chemiczna;5
+243;219B;Sala 219B;LABORATORY;16;1773;560;20;1745;490;140;TCh 219B, 219B TCh, technologia chemiczna 219B, 219B technologia chemiczna;5
+244;220B;Sala 220B;LABORATORY;16;1657;560;20;1690;490;140;TCh 220B, 220B TCh, technologia chemiczna 220B, 220B technologia chemiczna;5
+245;T205;Sala T205;LABORATORY;16;1369;560;20;1313;490;140;TCh T205, T205 TCh, technologia chemiczna T205, T205 technologia chemiczna;5
+246;T206;Sala T206;LABORATORY;16;1537;560;20;1525;490;140;TCh T206, T206 TCh, technologia chemiczna T206, T206 technologia chemiczna;5
+247;201C;Sala 201C;LECTURE;16;937;1440;90;957;1608;132;TCh 201C, 201C TCh, technologia chemiczna 201C, 201C technologia chemiczna;5
+248;T204;Sala T204;LECTURE;16;901;1916;90;865;780;132;TCh T204, T204 TCh, technologia chemiczna T204, T204 technologia chemiczna;5
+249;;świetlica;LECTURE;16;1509;1224;90;1405;1242;132;świetlica;5
+250;;toaleta damska;RESTROOM;16;1189;1992;20;1121;1904;133;toaleta damska, wc damskie, łazienka damska;5
+251;;toaleta męska;RESTROOM;16;1205;1900;20;1121;1904;133;toaleta męska, wc męskie, łazienka męska;5
+252;;toaleta damska;RESTROOM;16;725;560;20;829;636;135;toaleta damska, wc damskie, łazienka damska;5
+253;;toaleta męska;RESTROOM;16;849;544;20;829;636;135;toaleta męska, wc męskie, łazienka męska;5
+254;;toaleta dla niepełnosprawnych;RESTROOM;16;957;566;20;829;636;135;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;5
+255;301A;Sala 301A;LABORATORY;17;793;1800;40;793;1860;148;TCh 301A, 301A TCh, technologia chemiczna 301A, 301A technologia chemiczna;5
+256;302A;Sala 302A;LABORATORY;17;689;1800;30;689;1860;148;TCh 302A, 302A TCh, technologia chemiczna 302A, 302A technologia chemiczna;5
+257;303A;Sala 303A;LABORATORY;17;585;1800;30;605;1860;148;TCh 303A, 303A TCh, technologia chemiczna 303A, 303A technologia chemiczna;5
+258;304A;Sala 304A;LABORATORY;17;490;1800;30;465;1860;148;TCh 304A, 304A TCh, technologia chemiczna 304A, 304A technologia chemiczna;5
+259;305A;Sala 305A;LABORATORY;17;337;1800;50;400;1860;148;TCh 305A, 305A TCh, technologia chemiczna 305A, 305A technologia chemiczna;5
+260;306A;Sala 306A;LABORATORY;17;313;1924;30;389;1888;148;TCh 306A, 306A TCh, technologia chemiczna 306A, 306A technologia chemiczna;5
+261;307A;Sala 307A;LABORATORY;17;33;2104;60;409;1976;148;TCh 307A, 307A TCh, technologia chemiczna 307A, 307A technologia chemiczna;5
+262;308A;Sala 308A;LABORATORY;17;540;2104;60;457;1976;148;TCh 308A, 308A TCh, technologia chemiczna 308A, 308A technologia chemiczna;5
+263;309A;Sala 309A;LABORATORY;17;789;210;60;870;1990;148;TCh 309A, 309A TCh, technologia chemiczna 309A, 309A technologia chemiczna;5
+264;310A;Sala 310A;LABORATORY;17;890;2104;30;1020;1990;148;TCh 310A, 310A TCh, technologia chemiczna 310A, 310A technologia chemiczna;5
+265;311A;Sala 311A;LABORATORY;17;1165;2104;40;1100;1990;141;TCh 311A, 311A TCh, technologia chemiczna 311A, 311A technologia chemiczna;5
+266;312A;Sala 312A;LABORATORY;17;1445;1960;60;1365;2070;145;TCh 312A, 312A TCh, technologia chemiczna 312A, 312A technologia chemiczna;5
+267;313A;Sala 313A;LABORATORY;17;1790;1960;60;1725;2070;145;TCh 313A, 313A TCh, technologia chemiczna 313A, 313A technologia chemiczna;5
+268;314A;Sala 314A;LABORATORY;17;1990;1960;60;2070;2070;145;TCh 314A, 314A TCh, technologia chemiczna 314A, 314A technologia chemiczna;5
+269;315A;Sala 315A;LABORATORY;17;2200;1960;60;2270;2070;145;TCh 315A, 315A TCh, technologia chemiczna 315A, 315A technologia chemiczna;5
+270;316A;Sala 316A;LABORATORY;17;2350;1960;20;2270;2070;145;TCh 316A, 316A TCh, technologia chemiczna 316A, 316A technologia chemiczna;5
+271;317A;Sala 317A;LABORATORY;17;2450;1960;20;2450;2070;145;TCh 317A, 317A TCh, technologia chemiczna 317A, 317A technologia chemiczna;5
+272;318A;Sala 318A;LABORATORY;17;2569;2176;20;2520;2120;149;TCh 318A, 318A TCh, technologia chemiczna 318A, 318A technologia chemiczna;5
+273;319A;Sala 319A;LABORATORY;17;2593;2052;20;2541;2084;149;TCh 319A, 319A TCh, technologia chemiczna 319A, 319A technologia chemiczna;5
+274;320A;Sala 320A;LABORATORY;17;2490;1790;20;2480;1860;145;TCh 320A, 320A TCh, technologia chemiczna 320A, 320A technologia chemiczna;5
+275;321A;Sala 321A;LABORATORY;17;2370;1790;20;2350;1860;145;TCh 321A, 321A TCh, technologia chemiczna 321A, 321A technologia chemiczna;5
+276;322A;Sala 322A;LABORATORY;17;2270;1790;20;2280;1860;145;TCh 322A, 322A TCh, technologia chemiczna 322A, 322A technologia chemiczna;5
+277;323A;Sala 323A;LABORATORY;17;2160;1790;20;2150;1860;145;TCh 323A, 323A TCh, technologia chemiczna 323A, 323A technologia chemiczna;5
+278;324A;Sala 324A;LABORATORY;17;2040;1790;20;2040;1860;145;TCh 324A, 324A TCh, technologia chemiczna 324A, 324A technologia chemiczna;5
+279;325A;Sala 325A;LABORATORY;17;1930;1790;20;1930;1860;145;TCh 325A, 325A TCh, technologia chemiczna 325A, 325A technologia chemiczna;5
+280;326A;Sala 326A;LABORATORY;17;1850;1790;20;1850;1860;145;TCh 326A, 326A TCh, technologia chemiczna 326A, 326A technologia chemiczna;5
+281;327A;Sala 327A;LABORATORY;17;1760;1790;20;1730;1860;145;TCh 327A, 327A TCh, technologia chemiczna 327A, 327A technologia chemiczna;5
+282;T301;Sala T301;LABORATORY;17;1605;1790;40;1685;1860;145;TCh T301, T301 TCh, technologia chemiczna T301, T301 technologia chemiczna;5
+283;T302;Sala T302;LABORATORY;17;1590;1960;60;1590;2090;145;TCh T302, T302 TCh, technologia chemiczna T302, T302 technologia chemiczna;5
+284;301C;Sala 301C;LECTURE;17;925;1500;40;980;1520;141;TCh 301C, 301C TCh, technologia chemiczna 301C, 301C technologia chemiczna;5
+285;302C;Sala 302C;LECTURE;17;1113;1488;50;1080;1580;141;TCh 302C, 302C TCh, technologia chemiczna 302C, 302C technologia chemiczna;5
+286;303C;Sala 303C;LECTURE;17;945;1360;30;1117;1377;143;TCh 303C, 303C TCh, technologia chemiczna 303C, 303C technologia chemiczna;5
+287;304C;Sala 304C;LECTURE;17;865;1080;50;970;1065;143;TCh 304C, 304C TCh, technologia chemiczna 304C, 304C technologia chemiczna;5
+288;305C;Sala 305C;LECTURE;17;981;1892;50;917;816;146;TCh 305C, 305C TCh, technologia chemiczna 305C, 305C technologia chemiczna;5
+289;306C;Sala 306C;LECTURE;17;825;930;50;833;836;146;TCh 306C, 306C TCh, technologia chemiczna 306C, 306C technologia chemiczna;5
+290;301B;Sala 301B;LABORATORY;17;569;645;70;670;565;150;TCh 301B, 301B TCh, technologia chemiczna 301B, 301B technologia chemiczna;5
+291;302B;Sala 302B;LABORATORY;17;700;380;20;680;470;150;TCh 302B, 302B TCh, technologia chemiczna 302B, 302B technologia chemiczna;5
+292;303B;Sala 303B;LABORATORY;17;800;340;50;815;470;150;TCh 303B, 303B TCh, technologia chemiczna 303B, 303B technologia chemiczna;5
+293;304B;Sala 304B;LABORATORY;17;950;340;50;1030;470;150;TCh 304B, 304B TCh, technologia chemiczna 304B, 304B technologia chemiczna;5
+294;305B;Sala 305B;LABORATORY;17;1170;340;50;1170;470;150;TCh 305B, 305B TCh, technologia chemiczna 305B, 305B technologia chemiczna;5
+295;306B;Sala 306B;LABORATORY;17;1360;340;50;1360;470;151;TCh 306B, 306B TCh, technologia chemiczna 306B, 306B technologia chemiczna;5
+296;307B;Sala 307B;LABORATORY;17;1600;340;50;1640;470;151;TCh 307B, 307B TCh, technologia chemiczna 307B, 307B technologia chemiczna;5
+297;308B;Sala 308B;LABORATORY;17;1790;340;50;1860;470;151;TCh 308B, 308B TCh, technologia chemiczna 308B, 308B technologia chemiczna;5
+298;309B;Sala 309B;LABORATORY;17;1990;340;50;1940;470;151;TCh 309B, 309B TCh, technologia chemiczna 309B, 309B technologia chemiczna;5
+299;310B;Sala 310B;LABORATORY;17;2270;340;70;2350;470;151;TCh 310B, 310B TCh, technologia chemiczna 310B, 310B technologia chemiczna;5
+300;311B;Sala 311B;LABORATORY;17;1360;630;20;2360;565;151;TCh 311B, 311B TCh, technologia chemiczna 311B, 311B technologia chemiczna;5
+301;312B;Sala 312B;LABORATORY;17;2260;630;20;2280;565;151;TCh 312B, 312B TCh, technologia chemiczna 312B, 312B technologia chemiczna;5
+302;313B;Sala 313B;LABORATORY;17;2160;630;20;2140;565;151;TCh 313B, 313B TCh, technologia chemiczna 313B, 313B technologia chemiczna;5
+303;314B;Sala 314B;LABORATORY;17;2070;630;20;2050;565;151;TCh 314B, 314B TCh, technologia chemiczna 314B, 314B technologia chemiczna;5
+304;315B;Sala 315B;LABORATORY;17;1930;630;20;1950;565;151;TCh 315B, 315B TCh, technologia chemiczna 315B, 315B technologia chemiczna;5
+305;316B;Sala 316B;LABORATORY;17;1840;630;20;1840;565;151;TCh 316B, 316B TCh, technologia chemiczna 316B, 316B technologia chemiczna;5
+306;317B;Sala 317B;LABORATORY;17;1750;630;20;1720;565;151;TCh 317B, 317B TCh, technologia chemiczna 317B, 317B technologia chemiczna;5
+307;318B;Sala 318B;LABORATORY;17;1630;630;20;1650;565;151;TCh 318B, 318B TCh, technologia chemiczna 318B, 318B technologia chemiczna;5
+308;319B;Sala 319B;LABORATORY;17;1530;630;20;1510;565;151;TCh 319B, 319B TCh, technologia chemiczna 319B, 319B technologia chemiczna;5
+309;T304;Sala T304;LABORATORY;17;1360;630;40;1320;565;151;TCh T304, T304 TCh, technologia chemiczna T304, T304 technologia chemiczna;5
+310;;toaleta damska;RESTROOM;17;1213;1876;20;1129;1884;144;toaleta damska, wc damskie, łazienka damska;5
+311;;toaleta męska;RESTROOM;17;1197;1964;20;1129;1884;144;toaleta męska, wc męskie, łazienka męska;5
+312;;toaleta damska;RESTROOM;17;773;616;20;865;700;146;toaleta damska, wc damskie, łazienka damska;5
+313;;toaleta męska;RESTROOM;17;881;616;20;865;700;146;toaleta męska, wc męskie, łazienka męska;5
+314;;toaleta dla niepełnosprawnych;RESTROOM;17;989;616;20;865;700;146;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;5
+315;T303;Sala T303;LECTURE;17;877;1236;40;993;1744;143;TCh T303, T303 TCh, technologia chemiczna T303, T303 technologia chemiczna;5

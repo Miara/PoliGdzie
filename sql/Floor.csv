@@ -1,0 +1,23 @@
+﻿id;name;building;floorNumber;width;height;scheme;tag;pixelsPerMeter
+1;Centrum wykładowe - parter;1;0;3404;3508;cw_parter;cw0p;42
+2;Centrum wykładowe - pierwsze piętro;1;1;2250;2550;cw_1_pietro;cw1p;29
+3;Budynek elektryczny - parter;2;0;0;0;elektryk_parter;el0p;0
+4;Budynek elektryczny - pierwsze piętro;2;1;0;0;elektryk_pietro;el1p;0
+5;Budowa maszyn - parter;3;0;0;0;bm_p;bm0p;0
+6;Budowa maszyn - pierwsze piętro;3;1;0;0;bm_1;bm1p;0
+7;Budowa maszyn - drugie piętro;3;2;0;0;bm_2;bm2p;0
+8;Budowa maszyn - trzecie piętro;3;3;0;0;bm_3;bm3p;0
+9;Budowa maszyn - czwarte piętro;3;4;0;0;bm_4;bm4p;0
+10;Budowa maszyn - piąte piętro;3;5;0;0;bm_5;bm5p;0
+11;Biblioteka techniczna - parter;4;0;2249;2008;bt_parter;bt0p;24
+12;Biblioteka techniczna - pierwsze piętro;4;1;2279;2148;bt_1_pietro;bt1p;26
+13;Biblioteka techniczna - drugie piętro;4;2;1879;1768;bt_2_pietro;bt2p;20
+14;Chemia - parter;5;0;2908;2479;tch_parter;tch0p;27
+15;Chemia - pierwsze piętro;5;1;2908;2479;tch_1_pietro;tch1p;27
+16;Chemia - drugie piętro;5;2;2908;2479;tch_2_pietro;tch2p;27
+17;Chemia - trzecie piętro;5;3;2908;2479;tch_3_pietro;tch3p;27
+18;Centrum Mechatroniki, Biomechaniki i Nanoinzynierii - piętro 0;6;0;3508;1829;nano_0;nano0p;27
+19;Centrum Mechatroniki, Biomechaniki i Nanoinzynierii - piętro 1;6;1;3508;1679;nano_1;nano1p;27
+20;Centrum Mechatroniki, Biomechaniki i Nanoinzynierii - piętro 2;6;2;3508;1379;nano_2;nano2p;27
+21;Centrum Mechatroniki, Biomechaniki i Nanoinzynierii - piętro 3;6;3;3508;1149;nano_3;nano3p;27
+22;Centrum Mechatroniki, Biomechaniki i Nanoinzynierii - piętro 4;6;4;3508;1229;nano_4;nano4p;27

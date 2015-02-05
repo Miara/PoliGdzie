@@ -1,0 +1,18 @@
+CREATE TABLE `floor` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` VARCHAR, `building_id` INTEGER, `number` INTEGER, `width` INTEGER , `height` INTEGER , `drawableId` VARCHAR, `tag` VARCHAR, `pixelsPerMeter` INTEGER);
+INSERT INTO "floor" VALUES(1,'Centrum wyk³adowe - parter',1,0,3404,3508,'cw_parter','cw0p',42);
+INSERT INTO "floor" VALUES(2,'Centrum wyk³adowe - pierwsze piêtro',1,1,2250,2550,'cw_1_pietro','cw1p',29);
+INSERT INTO "floor" VALUES(3,'Budynek elektryczny - parter',2,0,0,0,'elektryk_parter','el0p',0);
+INSERT INTO "floor" VALUES(4,'Budynek elektryczny - pierwsze piêtro',2,1,0,0,'elektryk_pietro','el1p',0);
+INSERT INTO "floor" VALUES(5,'Budowa maszyn - parter',3,0,0,0,'bm_p','bm0p',0);
+INSERT INTO "floor" VALUES(6,'Budowa maszyn - pierwsze piêtro',3,1,0,0,'bm_1','bm1p',0);
+INSERT INTO "floor" VALUES(7,'Budowa maszyn - drugie piêtro',3,2,0,0,'bm_2','bm2p',0);
+INSERT INTO "floor" VALUES(8,'Budowa maszyn - trzecie piêtro',3,3,0,0,'bm_3','bm3p',0);
+INSERT INTO "floor" VALUES(9,'Budowa maszyn - czwarte piêtro',3,4,0,0,'bm_4','bm4p',0);
+INSERT INTO "floor" VALUES(10,'Budowa maszyn - pi¹te piêtro',3,5,0,0,'bm_5','bm5p',0);
+INSERT INTO "floor" VALUES(11,'Biblioteka techniczna - parter',4,0,2249,2008,'bt_parter','bt0p',0);
+INSERT INTO "floor" VALUES(12,'Biblioteka techniczna - pierwsze piêtro',4,1,2279,2148,'bt_1_pietro','bt1p',0);
+INSERT INTO "floor" VALUES(13,'Biblioteka techniczna - drugie piêtro',4,2,1879,1768,'bt_2_pietro','bt2p',0);
+INSERT INTO "floor" VALUES(14,'Wydzia³ Technologii Chemicznej - parter',5,0,2908,2479,'tch_parter','tch0p',0);
+INSERT INTO "floor" VALUES(15,'Wydzia³ Technologii Chemicznej - pierwsze piêtro',5,1,2908,2479,'tch_1_pietro','tch1p',0);
+INSERT INTO "floor" VALUES(16,'Wydzia³ Technologii Chemicznej - drugie piêtro',5,2,2908,2479,'tch_2_pietro','tch2p',0);
+INSERT INTO "floor" VALUES(17,'Wydzia³ Technologii Chemicznej - trzecie piêtro',5,3,2908,2479,'tch_3_pietro','tch3p',0);
