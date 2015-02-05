@@ -155,12 +155,10 @@ public class OnRouteButtonListener extends PoliGdzieBaseClass implements
 					&& goalObject instanceof Building)
 			{
 				
-			//	mapProvider.addGoogleMapFragment();
 				((PoliGdzieBaseActivity) fragment.getActivity())
 						.switchFragment(R.id.map_container, mapProvider
 								.getGoogleMapFragment(), mapProvider
 								.getGoogleMapFragment().getViewTag());
-				// TODO: Draw route
 	
 
 			} else if (startObject instanceof Building)
@@ -173,14 +171,10 @@ public class OnRouteButtonListener extends PoliGdzieBaseClass implements
 								.getGoogleMapFragment().getViewTag());
 				
 				
-				// TODO: Draw route
 				// TODO zabezpieczyc, zebye nie bylo indeksu poza granicami
 				NavigationPoint startIndoorPoint = dbHelper.getNavigationPointDao().
-						queryForId(entrances.get(1).getNavigationPoint().getId()); // 2nd building entry
-				if (goalObject instanceof NavigationPoint)
-				{
-					// TODO: navigation point route (clicked points on bitmap )
-				} else if (goalObject instanceof Room)
+						queryForId(entrances.get(1).getNavigationPoint().getId());
+				if (goalObject instanceof Room)
 				{
 					showIndoorRoute(startIndoorPoint, goalObject,
 							getFloor(startIndoorPoint).getNumber(),
@@ -190,10 +184,7 @@ public class OnRouteButtonListener extends PoliGdzieBaseClass implements
 			{
 				NavigationPoint goalIndoorPoint = dbHelper.getNavigationPointDao().
 						queryForId(entrances.get(0).getNavigationPoint().getId()); // 2nd building entry
-				if (startObject instanceof NavigationPoint)
-				{
-					// TODO: navigation point route (clicked points on bitmap )
-				} else if (startObject instanceof Room)
+				if (startObject instanceof Room)
 				{
 					showIndoorRoute(startObject, goalIndoorPoint,
 							getFloor(startObject).getNumber(),
@@ -201,7 +192,6 @@ public class OnRouteButtonListener extends PoliGdzieBaseClass implements
 				}
 
 				mapProvider.addGoogleMapFragment();
-				// TODO: Draw route
 			} else
 			{
 				if (startObject instanceof Room)
@@ -209,7 +199,7 @@ public class OnRouteButtonListener extends PoliGdzieBaseClass implements
 					NavigationPoint exit = entrances.get(0)
 							.getNavigationPoint();
 					mainFloorNumber = getFloor(exit).getNumber();
-					// TODO: showGeneralRoute
+					
 					showIndoorRoute(startObject, exit, mainFloorNumber,
 							INDOOR_MODE_FIRST);
 					mapProvider.addGoogleMapFragment();
@@ -224,7 +214,6 @@ public class OnRouteButtonListener extends PoliGdzieBaseClass implements
 							INDOOR_MODE_LAST);
 				}
 
-				// TODO : cases when start and goal are NavigationPoints
 			}
 		}
 	}
@@ -303,7 +292,6 @@ public class OnRouteButtonListener extends PoliGdzieBaseClass implements
 
 		} catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
 			Log.e("poligdzie", "ERROR RouteButtonlistener");
 		}
 
@@ -324,7 +312,12 @@ public class OnRouteButtonListener extends PoliGdzieBaseClass implements
 	private boolean validateAdapters(SearchAutoCompleteTextView start,
 			SearchAutoCompleteTextView goal)
 	{
-
+		if(start.getAdapter() == null || goal.getAdapter() == null)
+		{
+			makeToast("Proszê uzupe³niæ pola wyszukiwania",
+					fragment.getActivity());
+			return false;
+		}
 		if (start.getAdapter().isEmpty() && goal.getAdapter().isEmpty())
 		{
 			makeToast("Proszê uzupe³niæ pola wyszukiwania",
@@ -366,7 +359,6 @@ public class OnRouteButtonListener extends PoliGdzieBaseClass implements
 			building2 = getBuilding(goalObject);
 		} catch (SQLException e1)
 		{
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 

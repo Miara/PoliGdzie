@@ -35,7 +35,7 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 	
 	private int searchX;
 	private int searchY;
-	private boolean routeMode = false;
+	private int routeMode = INDOOR_PROCESS_TYPE_VIEW;
 	private int	radius;
 
 	@Override
@@ -74,52 +74,52 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 		buildingImage = (BuildingImageView) inflater
 				.findViewById(R.id.imageview_floor_scheme);
 		buildingImage.setBitmap(bitmap);
-		echo("TEST8");
-		try
+		if(routeMode != INDOOR_PROCESS_TYPE_VIEW) 
 		{
-			Floor floor = dbHelper.getFloorDao().queryForId(floorId);
-			
-			buildingImage.setOriginalWidth(floor.getWidth());
-			buildingImage.setOriginalHeight(floor.getHeight());
-			if(!routeMode)
+			try
 			{
-				echo("TEST9");
-				buildingImage.setSearchCustomPoint(this.searchX,this.searchY,this.radius);
-			}
-			else
-			{
-				echo("TEST10");
+				Floor floor = dbHelper.getFloorDao().queryForId(floorId);
 				
-					
-				if (routeLines.size() > 0)
+				buildingImage.setOriginalWidth(floor.getWidth());
+				buildingImage.setOriginalHeight(floor.getHeight());
+				if(routeMode == INDOOR_PROCESS_TYPE_SEARCH)
 				{
-					buildingImage.setLines(routeLines);
-					if(startPointType != null && goalPointType != null)
-					{
-						if(startPointType == NavigationPointTypes.ENTRY)
-							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.entry_icon);
-						else if(startPointType == NavigationPointTypes.SPECIAL)
-							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.stairs_icon);
-						else
-							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.from_icon);
-						int radius = ROUTE_SCALE_RADIUS * floor.getPixelsPerMeter();
-						if(bmp != null) buildingImage.setStartCustomPoint(bmp,radius);
-						
-						if(goalPointType == NavigationPointTypes.ENTRY)
-							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.entry_icon);
-						else if(goalPointType == NavigationPointTypes.SPECIAL)
-							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.stairs_icon);
-						else
-							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.to_icon);
-						if(bmp != null)	buildingImage.setGoalCustomPoint(bmp);
-					}
+					buildingImage.setSearchCustomPoint(this.searchX,this.searchY,this.radius);
 				}
-				
+				else if(routeMode == INDOOR_PROCESS_TYPE_ROUTE)
+				{
+					
+						
+					if (routeLines.size() > 0)
+					{
+						buildingImage.setLines(routeLines);
+						if(startPointType != null && goalPointType != null)
+						{
+							if(startPointType == NavigationPointTypes.ENTRY)
+								bmp = BitmapFactory.decodeResource(getResources(), R.drawable.entry_icon);
+							else if(startPointType == NavigationPointTypes.SPECIAL)
+								bmp = BitmapFactory.decodeResource(getResources(), R.drawable.stairs_icon);
+							else
+								bmp = BitmapFactory.decodeResource(getResources(), R.drawable.from_icon);
+							int radius = ROUTE_SCALE_RADIUS * floor.getPixelsPerMeter();
+							if(bmp != null) buildingImage.setStartCustomPoint(bmp,radius);
+							
+							if(goalPointType == NavigationPointTypes.ENTRY)
+								bmp = BitmapFactory.decodeResource(getResources(), R.drawable.entry_icon);
+							else if(goalPointType == NavigationPointTypes.SPECIAL)
+								bmp = BitmapFactory.decodeResource(getResources(), R.drawable.stairs_icon);
+							else
+								bmp = BitmapFactory.decodeResource(getResources(), R.drawable.to_icon);
+							if(bmp != null)	buildingImage.setGoalCustomPoint(bmp);
+						}
+					}
+					
+				}
+			} catch (SQLException e)
+			{
+				Log.e("MAP INDOOR FRAG","Error creating view");
+				e.printStackTrace();
 			}
-		} catch (SQLException e)
-		{
-			Log.e("MAP INDOOR FRAG","Error creating view");
-			e.printStackTrace();
 		}
 	}
 
@@ -149,14 +149,12 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 			int floorId, int searchX, int searchY,int radius)
 	{
 		super(drawableId, name, viewTag);
-		echo("TEST5");
 		this.floorId = floorId;
 		
-		echo("TEST6");
 		this.searchX= (int) searchX;
 		this.searchY= (int) searchY;
 		this.radius = radius;
-		this.routeMode = false;
+		this.routeMode = INDOOR_PROCESS_TYPE_SEARCH;
 		
 	}
 
@@ -195,7 +193,7 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 			}
 			
 		}
-		this.routeMode = true;
+		this.routeMode = INDOOR_PROCESS_TYPE_ROUTE;
 	}
 	
 	private void echo(String s)

@@ -70,6 +70,10 @@ public interface Constants
 	
 	public int ROUTE_SCALE_RADIUS = 10;
 	
+	public int INDOOR_PROCESS_TYPE_SEARCH = 0;
+	public int INDOOR_PROCESS_TYPE_ROUTE = 1;
+	public int INDOOR_PROCESS_TYPE_VIEW = 2;
+	
 
 
 }
