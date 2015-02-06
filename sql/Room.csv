@@ -1,546 +1,546 @@
-﻿id;number;name;function;floor;coordX;coordY;radius;doorsX;doorsY;navigationPointConnection;aliases
-1;1;Sala 1;LECTURE;1;1711;2649;130;1501;2372;3;cw 1, 1 cw, centrum wykładowe sala 1, centrum wykładowe 1;1
-2;2;Sala 2;LECTURE;1;2117;2322;130;1895;2061;3;cw 2, 2 cw, centrum wykładowe sala 2, centrum wykładowe 2;1
-3;3;Sala 3;LECTURE;1;2515;2014;130;2284;1742;6;cw 3, 3 cw,centrum wykładowe sala 3, centrum wykładowe 3;1
-4;4;Sala 4;LECTURE;1;1352;1302;150;1837;1704;3;cw 4, 4 cw, centrum wykładowe sala 4, centrum wykładowe 4;1
-5;5;Sala 5;LECTURE;1;475;782;120;580;934;13;cw 5, 5 cw, centrum wykładowe sala 5, centrum wykładowe 5;1
-6;6;Sala 6;LECTURE;1;846;500;120;970;624;13;cw 6, 6 cw, centrum wykładowe sala 6, centrum wykładowe 6;1
-7;7;Sala 7;LECTURE;2;1112;1951;130;1011;1811;26;cw 7, 7 cw, centrum wykładowe sala 7, centrum wykładowe 7;1
-8;8;Sala 8;LECTURE;2;1398;1727;130;1285;1591;26;cw 8, 8 cw, centrum wykładowe sala 8, centrum wykładowe 8;1
-9;9;Sala 9;LECTURE;2;1678;1502;130;1567;1362;28;cw 9, 9 cw, centrum wykładowe sala 9, centrum wykładowe 9;1
-10;10;Sala 10;LECTURE;2;756;1341;140;578;1484;30;cw 10, 10 cw, centrum wykładowe sala 10, centrum wykładowe 10;1
-11;11;Sala 11;LECTURE;2;499;1046;140;341;1182;30;cw 11, 11 cw, centrum wykładowe sala 11, centrum wykładowe 11;1
-12;12;Sala 12;LECTURE;2;220;611;130;295;722;37;cw 12, 12 cw, centrum wykładowe sala 12, centrum wykładowe 12;1
-13;13;Sala 13;LECTURE;2;496;390;130;567;498;37;cw 13, 13 cw, centrum wykładowe sala 13, centrum wykładowe 13;1
-14;42;Laboratorium 42;LABORATORY;1;2048;3303;40;2083;3182;5;cw 44, 42 cw, centrum wykładowe sala 42, centrum wykładowe 42;1
-15;43;Laboratorium 43;LABORATORY;1;2205;3133;50;2048;2987;5;cw 43, 43 cw, centrum wykładowe sala 43, centrum wykładowe 43;1
-16;44;Laboratorium 44;LABORATORY;1;2353;3015;50;2237;2832;5;cw 44, 44 cw, centrum wykładowe sala 44, centrum wykładowe 44;1
-17;45;Laboratorium 45;LABORATORY;1;2483;2843;75;2381;2717;5;cw 45, 45 cw, centrum wykładowe sala 45, centrum wykładowe 45;1
-18;142;Laboratorium 142;LABORATORY;2;1336;2365;40;1339;2289;24;cw 142, 142 cw, centrum wykładowe sala 142, centrum wykładowe 142;1
-19;143;Laboratorium 143;LABORATORY;2;1425;2256;50;1320;2150;24;cw 143, 143 cw, centrum wykładowe sala 143, centrum wykładowe 143;1
-20;144;Laboratorium 144;LABORATORY;2;1535;2166;50;1453;2043;24;cw 144, 144 cw, centrum wykładowe sala 144, centrum wykładowe 144;1
-21;145;Laboratorium 145;LABORATORY;2;1642;2026;75;1533;1961;24;cw 145, 145 cw, centrum wykładowe sala 145, centrum wykładowe 145;1
-22;;freshmarket;GASTRONOMIC;1;2771;1555;150;2528;1511;6;freshmarket, bufet, stołówka;1
-23;;rozdzielnia elektryczna;TECH;1;1979;3232;50;2028;3140;5;rozdzielnia elektryczna;1
-24;;rozdzielnia elektryczna;TECH;1;1918;3166;40;2034;3154;5;rozdzielnia elektryczna;1
-25;;serwerownia;TECH;1;1596;3322;50;1648;3261;2;serwerownia;1
-26;;toaleta męska;RESTROOM;1;1169;2922;80;1269;1882;2;toaleta męska, wc męskie, łazienka męska;1
-27;;toaleta damska;RESTROOM;1;1377;3203;80;1391;3031;2;toaleta damska, wc damskie, łazienka damska;1
-28;;toaleta damska;RESTROOM;1;1491;548;20;1420;585;16;toaleta damska, wc damskie, łazienka damska;1
-29;;toaleta dla niepełnosprawnych;RESTROOM;1;1546;608;20;1492;679;16;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;1
-30;;automat;GASTRONOMIC;1;1575;2848;30;1575;2848;2;automat z jedzeniem, ;1
-31;;toaleta męska;RESTROOM;2;676;2078;80;778;2077;25;toaleta męskia, wc męskie, łazienka męska;1
-32;;toaleta damska;RESTROOM;2;849;2304;80;859;2128;25;toaleta damska, wc damskie, łazienka damska;1
-33;;toaleta męska;RESTROOM;2;934;450;20;882;475;40;toaleta męska, wc męskie, łazienka męska;1
-34;;toaleta dla niepełnosprawnych;RESTROOM;2;971;492;20;933;535;40;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;1
-35;2.6.2;laboratorium 2.6.2;STAFF;13;673;256;25;615;289;53;bt 2.6.2, 2.6.2 bt, biblioteka techniczna sala 2.6.2, biblioteka techniczna 2.6.2;4
-36;2.6.3;laboratorium 2.6.3;STAFF;13;91;248;30;95;293;55;bt 2.6.3, 2.6.3 bt, biblioteka techniczna sala 2.6.3, biblioteka techniczna 2.6.3;4
-37;2.6.4;laboratorium 2.6.4;STAFF;13;169;248;30;195;293;55;bt 2.6.4, 2.6.4 bt, biblioteka techniczna sala 2.6.4, biblioteka techniczna 2.6.4;4
-38;2.6.5;laboratorium 2.6.5;STAFF;13;243;248;30;219;293;54;bt 2.6.5, 2.6.5 bt, biblioteka techniczna sala 2.6.5, biblioteka techniczna 2.6.5;4
-39;2.6.6;laboratorium 2.6.6;STAFF;13;315;248;30;315;293;54;bt 2.6.6, 2.6.6 bt, biblioteka techniczna sala 2.6.6, biblioteka techniczna 2.6.6;4
-40;2.6.7;laboratorium 2.6.7;STAFF;13;391;248;30;391;293;54;bt 2.6.7, 2.6.7 bt, biblioteka techniczna sala 2.6.7, biblioteka techniczna 2.6.7;4
-41;2.6.8;laboratorium 2.6.8;STAFF;13;461;248;30;489;293;54;bt 2.6.8, 2.6.8 bt, biblioteka techniczna sala 2.6.8, biblioteka techniczna 2.6.8;4
-42;2.6.9;laboratorium 2.6.9;STAFF;13;544;248;30;514;293;54;bt 2.6.9, 2.6.9 bt, biblioteka techniczna sala 2.6.9, biblioteka techniczna 2.6.9;4
-43;2.6.10;laboratorium 2.6.10;LABORATORY;13;106;397;50;174;404;56;bt 2.6.10, 2.6.10 bt, biblioteka techniczna sala 2.6.10, biblioteka techniczna 2.6.10;4
-44;2.6.11;laboratorium 2.6.11;LABORATORY;13;113;484;25;175;474;56;bt 2.6.11, 2.6.11 bt, biblioteka techniczna sala 2.6.11, biblioteka techniczna 2.6.11;4
-45;2.6.12;laboratorium 2.6.12;LABORATORY;13;358;430;80;476;430;53;bt 2.6.12, 2.6.12 bt, biblioteka techniczna sala 2.6.12, biblioteka techniczna 2.6.12;4
-46;2.6.18;laboratorium 2.6.18;LABORATORY;13;524;1005;35;576;995;51;bt 2.6.18, 2.6.18 bt, biblioteka techniczna sala 2.6.18, biblioteka techniczna 2.6.18;4
-47;2.6.19;laboratorium 2.6.19;LABORATORY;13;673;767;40;675;711;52;bt 2.6.19, 2.6.19 bt, biblioteka techniczna sala 2.6.19, biblioteka techniczna 2.6.19;4
-48;2.6.20;laboratorium 2.6.20;LABORATORY;13;780;794;40;826;754;49;bt 2.6.20, 2.6.20 bt, biblioteka techniczna sala 2.6.20, biblioteka techniczna 2.6.20;4
-49;2.6.21;laboratorium 2.6.21;LABORATORY;13;780;970;40;847;970;49;bt 2.6.21, 2.6.21 bt, biblioteka techniczna sala 2.6.21, biblioteka techniczna 2.6.21;4
-50;2.6.22;laboratorium 2.6.22;LABORATORY;13;954;963;30;900;970;49;bt 2.6.22, 2.6.22 bt, biblioteka techniczna sala 2.6.22, biblioteka techniczna 2.6.22;4
-51;2.7.2;laboratorium 2.7.2;LABORATORY;13;964;1451;30;901;1472;47;bt 2.7.2, 2.7.2 bt, biblioteka techniczna sala 2.7.2, biblioteka techniczna 2.7.2;4
-52;2.7.3;laboratorium 2.7.3;LABORATORY;13;776;1367;30;846;1349;46;bt 2.7.3, 2.7.3 bt, biblioteka techniczna sala 2.7.3, biblioteka techniczna 2.7.3;4
-53;2.7.5;laboratorium 2.7.5;LABORATORY;13;670;1630;50;670;1561;46;bt 2.7.5, 2.7.5 bt, biblioteka techniczna sala 2.7.5, biblioteka techniczna 2.7.5;4
-54;2.7.6;laboratorium 2.7.6;LABORATORY;13;526;1629;60;536;1561;46;bt 2.7.6, 2.7.6 bt, biblioteka techniczna sala 2.7.6, biblioteka techniczna 2.7.6;4
-55;2.7.8;laboratorium 2.7.8;LABORATORY;13;415;1454;50;465;1511;46;bt 2.7.8, 2.7.8 bt, biblioteka techniczna sala 2.7.8, biblioteka techniczna 2.7.8;4
-56;2.7.13;laboratorium 2.7.13;LABORATORY;13;1025;1218;120;901;1190;47;bt 2.7.13, 2.7.13 bt, biblioteka techniczna sala 2.7.13, biblioteka techniczna 2.7.13;4
-57;2.7.14;laboratorium 2.7.14;LABORATORY;13;791;1222;35;847;1222;47;bt 2.7.14, 2.7.14 bt, biblioteka techniczna sala 2.7.14, biblioteka techniczna 2.7.14;4
-58;2.7.15;laboratorium 2.7.15;LABORATORY;13;682;1222;35;624;1222;50;bt 2.7.15, 2.7.15 bt, biblioteka techniczna sala 2.7.15, biblioteka techniczna 2.7.15;4
-59;2.7.16;laboratorium 2.7.16;LABORATORY;13;526;1222;35;575;1222;50;bt 2.7.16, 2.7.16 bt, biblioteka techniczna sala 2.7.16, biblioteka techniczna 2.7.16;4
-60;;toaleta damska;RESTROOM;13;599;1482;30;682;1442;47;toaleta damska, wc damskie, łazienka damska;4
-61;;toaleta męska;RESTROOM;13;599;1384;30;682;1394;47;toaleta męska, wc męskie, łazienka męska;4
-62;1.6.16;laboratorium 1.6.16;LABORATORY;12;1793;661;50;1709;599;64;bt 1.6.16, 1.6.16 bt, biblioteka techniczna sala 1.6.16, biblioteka techniczna 1.6.16;4
-63;1.6.18;laboratorium 1.6.18;LABORATORY;12;1432;661;50;1513;598;64;bt 1.6.18, 1.6.18 bt, biblioteka techniczna sala 1.6.18, biblioteka techniczna 1.6.18;4
-64;1.6.19;laboratorium 1.6.19;LABORATORY;12;1142;452;45;1205;408;65;bt 1.6.19, 1.6.19 bt, biblioteka techniczna sala 1.6.19, biblioteka techniczna 1.6.19;4
-65;1.6.20;laboratorium 1.6.20;LABORATORY;12;1117;305;60;1205;318;78;bt 1.6.20, 1.6.20 bt, biblioteka techniczna sala 1.6.20, biblioteka techniczna 1.6.20;4
-66;1.6.21;laboratorium 1.6.21;LABORATORY;12;1346;305;60;1351;380;68;bt 1.6.21, 1.6.21 bt, biblioteka techniczna sala 1.6.21, biblioteka techniczna 1.6.21;4
-67;1.6.22;laboratorium 1.6.22;LABORATORY;12;1531;305;60;1550;380;68;bt 1.6.22, 1.6.22 bt, biblioteka techniczna sala 1.6.22, biblioteka techniczna 1.6.22;4
-68;1.6.23;laboratorium 1.6.23;LABORATORY;12;1722;305;60;1747;380;68;bt 1.6.23, 1.6.23 bt, biblioteka techniczna sala 1.6.23, biblioteka techniczna 1.6.23;4
-69;108;sala 108;LECTURE;12;900;1989;25;878;1895;79;bt 108, 108 bt, biblioteka techniczna sala 108, biblioteka techniczna 108;4
-70;122;sala 122;LECTURE;12;1652;1594;120;1587;1496;60;bt 122, 122 bt, biblioteka techniczna sala 122, biblioteka techniczna 122;4
-71;123;sala 123;LECTURE;12;1409;1842;120;1334;1778;60;bt 123, 123 bt, biblioteka techniczna sala 123, biblioteka techniczna 123;4
-72;125;sala 125;LECTURE;12;1134;1450;90;1027;1453;66;bt 125, 125 bt, biblioteka techniczna sala 125, biblioteka techniczna 125;4
-73;126;sala 126;LECTURE;12;1332;1423;70;1332;1541;60;bt 126, 126 bt, biblioteka techniczna sala 126, biblioteka techniczna 126;4
-74;127;sala 127;LECTURE;12;1179;1223;80;1027;1229;66;bt 127, 127 bt, biblioteka techniczna sala 127, biblioteka techniczna 127;4
-75;128;sala 128;LECTURE;12;1120;1011;80;1027;1019;66;bt 128, 128 bt, biblioteka techniczna sala 128, biblioteka techniczna 128;4
-76;;toaleta damska;RESTROOM;12;1308;487;50;1254;471;65;toaleta damska, wc damskie, łazienka damska;4
-77;;toaleta męska;RESTROOM;12;1471;487;50;1533;470;64;toaleta męska, wc męskie, łazienka męska;4
-78;;toaleta damska;RESTROOM;12;707;1789;50;864;1743;66;toaleta damska, wc damskie, łazienka damska;4
-79;;toaleta męska;RESTROOM;12;695;1680;50;863;1678;66;toaleta męska, wc męskie, łazienka męska;4
-80;;toaleta dla niepełnosprawnych;RESTROOM;12;808;1714;30;839;1714;66;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;4
-81;51;sala 051;LECTURE;11;1109;226;100;982;329;76;bt 051, 051 bt, biblioteka techniczna sala 051, biblioteka techniczna 051;4
-82;53;sala 053;LECTURE;11;1627;323;190;1825;481;70;bt 053, 053 bt, biblioteka techniczna sala 053, biblioteka techniczna 053;4
-83;21;sala 021;LECTURE;11;1425;1623;90;1351;1536;73;bt 021, 021 bt, biblioteka techniczna sala 021, biblioteka techniczna 021;4
-84;22;sala 022;LECTURE;11;1295;1794;50;1205;1734;73;bt 022, 022 bt, biblioteka techniczna sala 022, biblioteka techniczna 022;4
-85;23;sala 023;LECTURE;11;797;1857;70;775;1779;77;bt 023, 023 bt, biblioteka techniczna sala 023, biblioteka techniczna 023;4
-86;24;sala 024;LECTURE;11;617;1857;40;665;1779;77;bt 024, 024 bt, biblioteka techniczna sala 024, biblioteka techniczna 024;4
-87;25;sala 025;LECTURE;11;446;1857;70;446;1779;77;bt 025, 025 bt, biblioteka techniczna sala 025, biblioteka techniczna 025;4
-88;27;sala 027;LECTURE;11;1102;1375;80;1000;1379;75;bt 027, 027 bt, biblioteka techniczna sala 027, biblioteka techniczna 027;4
-89;28;sala 028;LECTURE;11;1279;1349;65;1277;1455;73;bt 028, 028 bt, biblioteka techniczna sala 028, biblioteka techniczna 028;4
-90;29;sala 029;LECTURE;11;1132;1165;75;1000;1169;75;bt 029, 029 bt, biblioteka techniczna sala 029, biblioteka techniczna 029;4
-91;210;sala 0210;LECTURE;11;1084;975;75;1000;975;75;bt 0210, 0210 bt, biblioteka techniczna sala 0210, biblioteka techniczna 0210;4
-92;;toaleta damska;RESTROOM;11;1844;787;30;1868;828;70;toaleta damska, wc damskie, łazienka damska;4
-93;;toaleta męska;RESTROOM;11;1898;944;30;1903;890;70;toaleta męska, wc męskie, łazienka męska;4
-94;;toaleta dla niepełnosprawnych;RESTROOM;11;1826;858;20;1855;861;70;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;4
-95;;toaleta damska;RESTROOM;11;718;1682;35;853;1643;75;toaleta damska, wc damskie, łazienka damska;4
-96;;toaleta męska;RESTROOM;11;718;1565;35;853;1583;75;toaleta męska, wc męskie, łazienka męska;4
-97;;toaleta dla niepełnosprawnych;RESTROOM;11;800;1615;20;826;1614;75;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;4
-98;001A;Sala 001A;LABORATORY;14;1213;2064;60;1131;1964;110;TCh 001A, 001A TCh, technologia chemiczna 001A, technologia chemiczna 001A;5
-99;002A;Sala 002A;LABORATORY;14;1391;2038;60;1459;1896;116;TCh 002A, 002A TCh, technologia chemiczna 002A, technologia chemiczna 002A;5
-100;003A;Sala 003A;LABORATORY;14;1601;2052;60;1621;1896;116;TCh 003A, 003A TCh, technologia chemiczna 003A, technologia chemiczna 003A;5
-101;004A;Sala 004A;LABORATORY;14;1755;2052;20;1755;1896;116;TCh 004A, 004A TCh, technologia chemiczna 004A, technologia chemiczna 004A;5
-102;005A;Sala 005A;LABORATORY;14;2017;2052;60;2077;1896;116;TCh 005A, 005A TCh, technologia chemiczna 005A, technologia chemiczna 005A;5
-103;006A;Sala 006A;LABORATORY;14;2165;2052;20;2165;1896;116;TCh 006A, 006A TCh, technologia chemiczna 006A, technologia chemiczna 006A;5
-104;007A;Sala 007A;LABORATORY;14;2273;2052;20;2273;1896;116;TCh 007A, 007A TCh, technologia chemiczna 007A, technologia chemiczna 007A;5
-105;008A;Sala 008A;LABORATORY;14;2371;2052;20;2371;1896;116;TCh 008A, 008A TCh, technologia chemiczna 008A, technologia chemiczna 008A;5
-106;009A;Sala 009A;LABORATORY;14;2459;2052;20;2459;1896;116;TCh 009A, 009A TCh, technologia chemiczna 009A, technologia chemiczna 009A;5
-107;010A;Sala 010A;LABORATORY;14;2585;2002;30;2536;1952;116;TCh 010A, 010A TCh, technologia chemiczna 010A, technologia chemiczna 010A;5
-108;011A;Sala 011A;STAFF;14;1489;1746;20;1489;1820;116;TCh 011A, 011A TCh, technologia chemiczna 011A, technologia chemiczna 011A;5
-109;012A;Sala 012A;STAFF;14;2353;1746;20;2353;1820;116;TCh 012A, 012A TCh, technologia chemiczna 012A, technologia chemiczna 012A;5
-110;013A;Sala 013A;STAFF;14;2273;1746;20;2273;1820;116;TCh 013A, 013A TCh, technologia chemiczna 013A, technologia chemiczna 013A;5
-111;014A;Sala 014A;STAFF;14;2167;1746;20;2167;1820;116;TCh 014A, 014A TCh, technologia chemiczna 014A, technologia chemiczna 014A;5
-112;015A;Sala 015A;STAFF;14;2067;1746;20;2067;1820;116;TCh 015A, 015A TCh, technologia chemiczna 015A, technologia chemiczna 015A;5
-113;016A;Sala 016A;STAFF;14;1953;1746;20;1953;1820;116;TCh 016A, 016A TCh, technologia chemiczna 016A, technologia chemiczna 016A;5
-114;017A;Sala 017A;STAFF;14;1853;1746;20;1853;1820;116;TCh 017A, 017A TCh, technologia chemiczna 017A, technologia chemiczna 017A;5
-115;018A;Sala 018A;STAFF;14;1687;1746;40;1751;1820;116;TCh 018A, 018A TCh, technologia chemiczna 018A, technologia chemiczna 018A;5
-116;001B;Sala 001B;LABORATORY;14;583;609;50;679;515;117;TCh 001B, 001B TCh, technologia chemiczna 001B, technologia chemiczna 001B;5
-117;002B;Sala 002B;LABORATORY;14;779;329;50;843;451;117;TCh 002B, 002B TCh, technologia chemiczna 002B, technologia chemiczna 002B;5
-118;003B;Sala 003B;LABORATORY;14;943;312;30;981;451;117;TCh 003B, 003B TCh, technologia chemiczna 003B, technologia chemiczna 003B;5
-119;004B;Sala 004B;LABORATORY;14;1317;315;50;1274;451;118;TCh 004B, 004B TCh, technologia chemiczna 004B, technologia chemiczna 004B;5
-120;005B;Sala 005B;LABORATORY;14;1505;315;60;1469;451;118;TCh 005B, 005B TCh, technologia chemiczna 005B, technologia chemiczna 005B;5
-121;006B;Sala 006B;STAFF;14;1653;315;20;1671;451;118;TCh 006B, 006B TCh, technologia chemiczna 006B, technologia chemiczna 006B;5
-122;007B;Sala 007B;STAFF;14;1803;315;20;1881;451;118;TCh 007B, 007B TCh, technologia chemiczna 007B, technologia chemiczna 007B;5
-123;008B;Sala 008B;STAFF;14;1963;315;20;2083;451;118;TCh 008B, 008B TCh, technologia chemiczna 008B, technologia chemiczna 008B;5
-124;009B;Sala 009B;STAFF;14;2065;315;20;2083;451;118;TCh 009B, 009B TCh, technologia chemiczna 009B, technologia chemiczna 009B;5
-125;010B;Sala 010B;STAFF;14;2169;315;20;2147;451;118;TCh 010B, 010B TCh, technologia chemiczna 010B, technologia chemiczna 010B;5
-126;011B;Sala 011B;STAFF;14;1311;315;40;2361;451;118;TCh 011B, 011B TCh, technologia chemiczna 011B, technologia chemiczna 011B;5
-127;012B;Sala 012B;STAFF;14;2371;597;20;2355;527;118;TCh 012B, 012B TCh, technologia chemiczna 012B, technologia chemiczna 012B;5
-128;013B;Sala 013B;STAFF;14;2229;597;40;2147;527;118;TCh 013B, 013B TCh, technologia chemiczna 013B, technologia chemiczna 013B;5
-129;014B;Sala 014B;STAFF;14;1987;597;50;1943;527;118;TCh 014B, 014B TCh, technologia chemiczna 014B, technologia chemiczna 014B;5
-130;015B;Sala 015B;STAFF;14;1861;597;20;1881;527;118;TCh 015B, 015B TCh, technologia chemiczna 015B, technologia chemiczna 015B;5
-131;016B;Sala 016B;STAFF;14;1755;597;20;1737;527;118;TCh 016B, 016B TCh, technologia chemiczna 016B, technologia chemiczna 016B;5
-132;017B;Sala 017B;STAFF;14;1655;597;20;1669;527;118;TCh 017B, 017B TCh, technologia chemiczna 017B, technologia chemiczna 017B;5
-133;018B;Sala 018B;STAFF;14;1541;597;20;1541;527;118;TCh 018B, 018B TCh, technologia chemiczna 018B, technologia chemiczna 018B;5
-134;019B;Sala 019B;LIBRARY;14;1395;597;40;1343;527;118;TCh 019B, 019B TCh, technologia chemiczna 019B, technologia chemiczna 019B;5
-135;;toaleta damska;RESTROOM;14;1229;1919;20;1183;1846;109;toaleta damska, wc damskie, łazienka damska;5
-136;;toaleta męska;RESTROOM;14;1235;1837;20;1163;1845;109;toaleta męska, wc męskie, łazienka męska;5
-137;;toaleta damska;RESTROOM;14;795;593;20;897;669;114;toaleta damska, wc damskie, łazienka damska;5
-138;;toaleta męska;RESTROOM;14;1029;589;20;897;669;114;toaleta męska, wc męskie, łazienka męska;5
-139;;toaleta dla niepełnosprawnych;RESTROOM;14;913;577;20;897;669;114;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;5
-140;;Hala technologiczna;LECTURE;14;1759;1179;200;1423;1233;112;TCh hala techniczna, hala techniczna TCh, technologia chemiczna hala techniczna, hala techniczna technologia chemiczna;5
-141;101A;Sala 101A;LABORATORY;15;737;1806;40;737;1886;123;TCh 101A, 101A TCh, technologia chemiczna 101A, 101A technologia chemiczna;5
-142;102A;Sala 102A;LABORATORY;15;621;1806;40;621;1886;123;TCh 102A, 102A TCh, technologia chemiczna 102A, 102A technologia chemiczna;5
-143;103A;Sala 103A;LABORATORY;15;525;1806;40;540;1886;123;TCh 103A, 103A TCh, technologia chemiczna 103A, 103A technologia chemiczna;5
-144;104A;Sala 104A;LABORATORY;15;413;1806;40;397;1886;123;TCh 104A, 104A TCh, technologia chemiczna 104A, 104A technologia chemiczna;5
-145;105A;Sala 105A;LABORATORY;15;269;1806;50;337;1886;123;TCh 105A, 105A TCh, technologia chemiczna 105A, 105A technologia chemiczna;5
-146;106A;Sala 106A;LABORATORY;15;249;1938;30;305;1902;123;TCh 106A, 106A TCh, technologia chemiczna 106A, 106A technologia chemiczna;5
-147;107A;Sala 107A;LABORATORY;15;361;2146;100;377;1990;123;TCh 107A, 107A TCh, technologia chemiczna 107A, 107A technologia chemiczna;5
-148;108A;Sala 108A;LABORATORY;15;717;2150;70;801;2018;123;TCh 108A, 108A TCh, technologia chemiczna 108A, 108A technologia chemiczna;5
-149;109A;Sala 109A;LABORATORY;15;1052;2142;100;1065;2018;119;TCh 109A, 109A TCh, technologia chemiczna 109A, 109A technologia chemiczna;5
-150;110A;Sala 110A;LABORATORY;15;1325;2114;80;1405;1970;122;TCh 110A, 110A TCh, technologia chemiczna 110A, 110A technologia chemiczna;5
-151;111A;Sala 111A;LABORATORY;15;1781;2114;80;1845;1970;122;TCh 111A, 111A TCh, technologia chemiczna 111A, 111A technologia chemiczna;5
-152;112A;Sala 112A;LABORATORY;15;1941;2114;20;1845;1970;122;TCh 112A, 112A TCh, technologia chemiczna 112A, 112A technologia chemiczna;5
-153;113A;Sala 113A;LABORATORY;15;2109;2114;80;2065;1970;122;TCh 113A, 113A TCh, technologia chemiczna 113A, 113A technologia chemiczna;5
-154;114A;Sala 114A;LABORATORY;15;2317;2114;80;2281;1970;122;TCh 114A, 114A TCh, technologia chemiczna 114A, 114A technologia chemiczna;5
-155;115A;Sala 115A;LABORATORY;15;2473;2114;80;2493;1970;122;TCh 115A, 115A TCh, technologia chemiczna 115A, 115A technologia chemiczna;5
-156;116A;Sala 116A;LABORATORY;15;2593;2170;20;2541;2130;122;TCh 116A, 116A TCh, technologia chemiczna 116A, 116A technologia chemiczna;5
-157;117A;Sala 117A;LABORATORY;15;2625;2058;20;2569;2054;122;TCh 117A, 117A TCh, technologia chemiczna 117A, 117A technologia chemiczna;5
-158;118A;Sala 118A;LABORATORY;15;2501;1806;20;2479;1886;122;TCh 118A, 118A TCh, technologia chemiczna 118A, 118A technologia chemiczna;5
-159;119A;Sala 119A;LABORATORY;15;2373;1806;20;2361;1886;122;TCh 119A, 119A TCh, technologia chemiczna 119A, 119A technologia chemiczna;5
-160;120A;Sala 120A;LABORATORY;15;2269;1806;20;2285;1886;122;TCh 120A, 120A TCh, technologia chemiczna 120A, 120A technologia chemiczna;5
-161;121A;Sala 121A;LABORATORY;15;2157;1806;20;2145;1886;122;TCh 121A, 121A TCh, technologia chemiczna 121A, 121A technologia chemiczna;5
-162;122A;Sala 122A;LABORATORY;15;2045;1806;20;2061;1886;122;TCh 122A, 122A TCh, technologia chemiczna 122A, 122A technologia chemiczna;5
-163;123A;Sala 123A;LABORATORY;15;1933;1806;20;1929;1886;122;TCh 123A, 123A TCh, technologia chemiczna 123A, 123A technologia chemiczna;5
-164;124A;Sala 124A;LABORATORY;15;1837;1806;20;1845;1886;122;TCh 124A, 124A TCh, technologia chemiczna 124A, 124A technologia chemiczna;5
-165;125A;Sala 125A;LABORATORY;15;1741;1806;20;1737;1886;122;TCh 125A, 125A TCh, technologia chemiczna 125A, 125A technologia chemiczna;5
-166;T101;Sala T101;LABORATORY;15;1577;1806;40;1665;1886;122;TCh T101, T101 TCh, technologia chemiczna T101, T101 technologia chemiczna;5
-167;T102;Sala T102;LABORATORY;15;1573;2114;80;1405;1970;122;TCh T102, T102 TCh, technologia chemiczna T102, T102 technologia chemiczna;5
-168;101C;Sala 101C;LECTURE;15;897;1358;50;1069;1374;125;TCh 101C, 101C TCh, technologia chemiczna 101C, 101C technologia chemiczna;5
-169;102C;Sala 102C;LECTURE;15;877;1046;60;1089;1078;125;TCh 102C, 102C TCh, technologia chemiczna 102C, 102C technologia chemiczna;5
-170;103C;Sala 103C;LECTURE;15;1085;1542;40;1045;1610;119;TCh 103C, 103C TCh, technologia chemiczna 103C, 103C technologia chemiczna;5
-171;104C;Sala 104C;LECTURE;15;837;1582;40;937;1626;119;TCh 104C, 104C TCh, technologia chemiczna 104C, 104C technologia chemiczna;5
-172;105C;Sala 105C;LECTURE;15;925;818;40;877;766;126;TCh 105C, 105C TCh, technologia chemiczna 105C, 105C technologia chemiczna;5
-173;106C;Sala 106C;LECTURE;15;737;850;40;765;766;126;TCh 106C, 106C TCh, technologia chemiczna 106C, 106C technologia chemiczna;5
-174;101B;Sala 101B;LABORATORY;15;501;596;70;605;526;128;TCh 101B, 101B TCh, technologia chemiczna 101B, 101B technologia chemiczna;5
-175;102B;Sala 102B;LABORATORY;15;621;274;40;613;418;128;TCh 102B, 102B TCh, technologia chemiczna 102B, 102B technologia chemiczna;5
-176;103B;Sala 103B;LABORATORY;15;849;274;80;801;418;128;TCh 103B, 103B TCh, technologia chemiczna 103B, 103B technologia chemiczna;5
-177;104B;Sala 104B;LABORATORY;15;1109;274;80;1205;418;128;TCh 104B, 104B TCh, technologia chemiczna 104B, 104B technologia chemiczna;5
-178;105B;Sala 105B;LABORATORY;15;1321;274;80;1417;418;129;TCh 105B, 105B TCh, technologia chemiczna 105B, 105B technologia chemiczna;5
-179;106B;Sala 106B;LABORATORY;15;1569;274;80;1637;418;129;TCh 106B, 106B TCh, technologia chemiczna 106B, 106B technologia chemiczna;5
-180;107B;Sala 107B;LABORATORY;15;1725;274;20;1705;418;129;TCh 107B, 107B TCh, technologia chemiczna 107B, 107B technologia chemiczna;5
-181;108B;Sala 108B;LABORATORY;15;1833;274;20;1853;418;129;TCh 108B, 108B TCh, technologia chemiczna 108B, 108B technologia chemiczna;5
-182;109B;Sala 109B;LABORATORY;15;1989;274;60;1925;418;129;TCh 109B, 109B TCh, technologia chemiczna 109B, 109B technologia chemiczna;5
-183;110B;Sala 110B;LABORATORY;15;2209;274;60;2145;418;129;TCh 110B, 110B TCh, technologia chemiczna 110B, 110B technologia chemiczna;5
-184;111B;Sala 111B;LABORATORY;15;241;274;60;2361;418;129;TCh 111B, 111B TCh, technologia chemiczna 111B, 111B technologia chemiczna;5
-185;112B;Sala 112B;LABORATORY;15;2357;594;20;2357;526;129;TCh 112B, 112B TCh, technologia chemiczna 112B, 112B technologia chemiczna;5
-186;113B;Sala 113B;LABORATORY;15;2257;594;20;2293;526;129;TCh 113B, 113B TCh, technologia chemiczna 113B, 113B technologia chemiczna;5
-187;114B;Sala 114B;LABORATORY;15;2165;594;20;2145;526;129;TCh 114B, 114B TCh, technologia chemiczna 114B, 114B technologia chemiczna;5
-188;115B;Sala 115B;LABORATORY;15;2057;594;20;2069;526;129;TCh 115B, 115B TCh, technologia chemiczna 115B, 115B technologia chemiczna;5
-189;116B;Sala 116B;LABORATORY;15;1941;594;20;1925;526;129;TCh 116B, 116B TCh, technologia chemiczna 116B, 116B technologia chemiczna;5
-190;117B;Sala 117B;LABORATORY;15;1821;594;20;1845;526;129;TCh 117B, 117B TCh, technologia chemiczna 117B, 117B technologia chemiczna;5
-191;118B;Sala 118B;LABORATORY;15;1721;594;20;1705;526;129;TCh 118B, 118B TCh, technologia chemiczna 118B, 118B technologia chemiczna;5
-192;119B;Sala 119B;LABORATORY;15;1617;594;20;1629;526;129;TCh 119B, 119B TCh, technologia chemiczna 119B, 119B technologia chemiczna;5
-193;120B;Sala 120B;LABORATORY;15;1501;594;20;1481;526;129;TCh 120B, 120B TCh, technologia chemiczna 120B, 120B technologia chemiczna;5
-194;T103;Sala T103;LABORATORY;15;1321;594;60;1273;526;129;TCh T103, T103 TCh, technologia chemiczna T103, T103 technologia chemiczna;5
-195;;toaleta damska;RESTROOM;15;1176;1986;20;1093;1904;121;toaleta damska, wc damskie, łazienka damska;5
-196;;toaleta męska;RESTROOM;15;1171;1901;20;1093;1904;121;toaleta męska, wc męskie, łazienka męska;5
-197;;toaleta damska;RESTROOM;15;717;570;20;809;622;126;toaleta damska, wc damskie, łazienka damska;5
-198;;toaleta męska;RESTROOM;15;817;570;20;809;622;126;toaleta męska, wc męskie, łazienka męska;5
-199;;toaleta dla niepełnosprawnych;RESTROOM;15;933;590;20;809;622;126;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;5
-200;201A;Sala 201A;LABORATORY;16;753;1816;50;753;1888;137;TCh 201A, 201A TCh, technologia chemiczna 201A, 201A technologia chemiczna;5
-201;202A;Sala 202A;LABORATORY;16;641;1816;40;641;1888;137;TCh 202A, 202A TCh, technologia chemiczna 202A, 202A technologia chemiczna;5
-202;203A;Sala 203A;LABORATORY;16;541;1816;40;557;1888;137;TCh 203A, 203A TCh, technologia chemiczna 203A, 203A technologia chemiczna;5
-203;204A;Sala 204A;LABORATORY;16;433;1816;40;409;1888;137;TCh 204A, 204A TCh, technologia chemiczna 204A, 204A technologia chemiczna;5
-204;205A;Sala 205A;LABORATORY;16;281;1816;50;349;1888;137;TCh 205A, 205A TCh, technologia chemiczna 205A, 205A technologia chemiczna;5
-205;206A;Sala 206A;LABORATORY;16;253;1936;30;329;1912;137;TCh 206A, 206A TCh, technologia chemiczna 206A, 206A technologia chemiczna;5
-206;207A;Sala 207A;LABORATORY;16;277;2140;70;345;1904;137;TCh 207A, 207A TCh, technologia chemiczna 207A, 207A technologia chemiczna;5
-207;208A;Sala 208A;LABORATORY;16;485;2140;70;389;2000;137;TCh 208A, 208A TCh, technologia chemiczna 208A, 208A technologia chemiczna;5
-208;209A;Sala 209A;LABORATORY;16;737;2166;70;841;2016;137;TCh 209A, 209A TCh, technologia chemiczna 209A, 209A technologia chemiczna;5
-209;210A;Sala 210A;LABORATORY;16;965;2166;40;997;2016;130;TCh 210A, 210A TCh, technologia chemiczna 210A, 210A technologia chemiczna;5
-210;211A;Sala 211A;LABORATORY;16;1157;2166;70;1085;2016;130;TCh 211A, 211A TCh, technologia chemiczna 211A, 211A technologia chemiczna;5
-211;212A;Sala 212A;LABORATORY;16;1365;2120;60;1613;1970;134;TCh 212A, 212A TCh, technologia chemiczna 212A, 212A technologia chemiczna;5
-212;213A;Sala 213A;LABORATORY;16;1821;2120;70;1745;1970;134;TCh 213A, 213A TCh, technologia chemiczna 213A, 213A technologia chemiczna;5
-213;214A;Sala 214A;LABORATORY;16;2217;2120;80;2105;1970;134;TCh 214A, 214A TCh, technologia chemiczna 214A, 214A technologia chemiczna;5
-214;215A;Sala 215A;LABORATORY;16;2465;2120;60;2545;1970;134;TCh 215A, 215A TCh, technologia chemiczna 215A, 215A technologia chemiczna;5
-215;216A;Sala 216A;LABORATORY;16;2653;2152;40;2601;2096;138;TCh 216A, 216A TCh, technologia chemiczna 216A, 216A technologia chemiczna;5
-216;217A;Sala 217A;LABORATORY;16;2685;2044;20;2629;2056;138;TCh 217A, 217A TCh, technologia chemiczna 217A, 217A technologia chemiczna;5
-217;218A;Sala 218A;LABORATORY;16;2561;1800;30;2545;1880;134;TCh 218A, 218A TCh, technologia chemiczna 218A, 218A technologia chemiczna;5
-218;219A;Sala 219A;LABORATORY;16;1433;1800;30;2417;1880;134;TCh 219A, 219A TCh, technologia chemiczna 219A, 219A technologia chemiczna;5
-219;220A;Sala 220A;LABORATORY;16;2325;1800;30;2341;1880;134;TCh 220A, 220A TCh, technologia chemiczna 220A, 220A technologia chemiczna;5
-220;221A;Sala 221A;LABORATORY;16;2221;1800;30;2193;1880;134;TCh 221A, 221A TCh, technologia chemiczna 221A, 221A technologia chemiczna;5
-221;222A;Sala 222A;LABORATORY;16;2081;1800;30;2117;1880;134;TCh 222A, 222A TCh, technologia chemiczna 222A, 222A technologia chemiczna;5
-222;223A;Sala 223A;LABORATORY;16;1973;1800;30;1973;1880;134;TCh 223A, 223A TCh, technologia chemiczna 223A, 223A technologia chemiczna;5
-223;224A;Sala 224A;LABORATORY;16;1869;1800;30;1893;1880;134;TCh 224A, 224A TCh, technologia chemiczna 224A, 224A technologia chemiczna;5
-224;T201;Sala T201;LABORATORY;16;1613;2120;60;1613;1970;134;TCh T201, T201 TCh, technologia chemiczna T201, T201 technologia chemiczna;5
-225;T202;Sala T202;LABORATORY;16;1773;1800;20;1757;1880;134;TCh T202, T202 TCh, technologia chemiczna T202, T202 technologia chemiczna;5
-226;T203;Sala T203;LABORATORY;16;1613;1800;40;1697;1880;134;TCh T203, T203 TCh, technologia chemiczna T203, T203 technologia chemiczna;5
-227;201B;Sala 201B;LABORATORY;16;513;561;70;621;489;139;TCh 201B, 201B TCh, technologia chemiczna 201B, 201B technologia chemiczna;5
-228;202B;Sala 202B;LABORATORY;16;601;189;20;629;389;139;TCh 202B, 202B TCh, technologia chemiczna 202B, 202B technologia chemiczna;5
-229;205B;Sala 205B;LABORATORY;16;857;270;30;773;390;139;TCh 205B, 205B TCh, technologia chemiczna 205B, 205B technologia chemiczna;5
-230;206B;Sala 206B;LABORATORY;16;989;270;30;989;390;139;TCh 206B, 206B TCh, technologia chemiczna 206B, 206B technologia chemiczna;5
-231;207B;Sala 207B;LABORATORY;16;1145;270;70;1145;390;139;TCh 207B, 207B TCh, technologia chemiczna 207B, 207B technologia chemiczna;5
-232;208B;Sala 208B;LABORATORY;16;1361;270;70;1449;390;140;TCh 208B, 208B TCh, technologia chemiczna 208B, 208B technologia chemiczna;5
-233;209B;Sala 209B;LABORATORY;16;1609;270;70;1669;390;140;TCh 209B, 209B TCh, technologia chemiczna 209B, 209B technologia chemiczna;5
-234;210B;Sala 210B;LABORATORY;16;1825;270;70;1897;390;140;TCh 210B, 210B TCh, technologia chemiczna 210B, 210B technologia chemiczna;5
-235;211B;Sala 211B;LABORATORY;16;2033;270;70;2109;390;140;TCh 211B, 211B TCh, technologia chemiczna 211B, 211B technologia chemiczna;5
-236;212B;Sala 212B;LABORATORY;16;2329;270;100;2197;390;140;TCh 212B, 212B TCh, technologia chemiczna 212B, 212B technologia chemiczna;5
-237;213B;Sala 213B;LABORATORY;16;2421;560;40;2421;490;140;TCh 213B, 213B TCh, technologia chemiczna 213B, 213B technologia chemiczna;5
-238;214B;Sala 214B;LABORATORY;16;2317;560;20;2337;490;140;TCh 214B, 214B TCh, technologia chemiczna 214B, 214B technologia chemiczna;5
-239;215B;Sala 215B;LABORATORY;16;2200;560;20;2190;490;140;TCh 215B, 215B TCh, technologia chemiczna 215B, 215B technologia chemiczna;5
-240;216B;Sala 216B;LABORATORY;16;2105;560;20;2117;490;140;TCh 216B, 216B TCh, technologia chemiczna 216B, 216B technologia chemiczna;5
-241;217B;Sala 217B;LABORATORY;16;1989;560;20;1969;490;140;TCh 217B, 217B TCh, technologia chemiczna 217B, 217B technologia chemiczna;5
-242;218B;Sala 218B;LABORATORY;16;1877;560;20;1851;490;140;TCh 218B, 218B TCh, technologia chemiczna 218B, 218B technologia chemiczna;5
-243;219B;Sala 219B;LABORATORY;16;1773;560;20;1745;490;140;TCh 219B, 219B TCh, technologia chemiczna 219B, 219B technologia chemiczna;5
-244;220B;Sala 220B;LABORATORY;16;1657;560;20;1690;490;140;TCh 220B, 220B TCh, technologia chemiczna 220B, 220B technologia chemiczna;5
-245;T205;Sala T205;LABORATORY;16;1369;560;20;1313;490;140;TCh T205, T205 TCh, technologia chemiczna T205, T205 technologia chemiczna;5
-246;T206;Sala T206;LABORATORY;16;1537;560;20;1525;490;140;TCh T206, T206 TCh, technologia chemiczna T206, T206 technologia chemiczna;5
-247;201C;Sala 201C;LECTURE;16;937;1440;90;957;1608;132;TCh 201C, 201C TCh, technologia chemiczna 201C, 201C technologia chemiczna;5
-248;T204;Sala T204;LECTURE;16;901;1916;90;865;780;132;TCh T204, T204 TCh, technologia chemiczna T204, T204 technologia chemiczna;5
-249;;świetlica;LECTURE;16;1509;1224;90;1405;1242;132;świetlica;5
-250;;toaleta damska;RESTROOM;16;1189;1992;20;1121;1904;133;toaleta damska, wc damskie, łazienka damska;5
-251;;toaleta męska;RESTROOM;16;1205;1900;20;1121;1904;133;toaleta męska, wc męskie, łazienka męska;5
-252;;toaleta damska;RESTROOM;16;725;560;20;829;636;135;toaleta damska, wc damskie, łazienka damska;5
-253;;toaleta męska;RESTROOM;16;849;544;20;829;636;135;toaleta męska, wc męskie, łazienka męska;5
-254;;toaleta dla niepełnosprawnych;RESTROOM;16;957;566;20;829;636;135;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;5
-255;301A;Sala 301A;LABORATORY;17;793;1800;40;793;1860;148;TCh 301A, 301A TCh, technologia chemiczna 301A, 301A technologia chemiczna;5
-256;302A;Sala 302A;LABORATORY;17;689;1800;30;689;1860;148;TCh 302A, 302A TCh, technologia chemiczna 302A, 302A technologia chemiczna;5
-257;303A;Sala 303A;LABORATORY;17;585;1800;30;605;1860;148;TCh 303A, 303A TCh, technologia chemiczna 303A, 303A technologia chemiczna;5
-258;304A;Sala 304A;LABORATORY;17;490;1800;30;465;1860;148;TCh 304A, 304A TCh, technologia chemiczna 304A, 304A technologia chemiczna;5
-259;305A;Sala 305A;LABORATORY;17;337;1800;50;400;1860;148;TCh 305A, 305A TCh, technologia chemiczna 305A, 305A technologia chemiczna;5
-260;306A;Sala 306A;LABORATORY;17;313;1924;30;389;1888;148;TCh 306A, 306A TCh, technologia chemiczna 306A, 306A technologia chemiczna;5
-261;307A;Sala 307A;LABORATORY;17;33;2104;60;409;1976;148;TCh 307A, 307A TCh, technologia chemiczna 307A, 307A technologia chemiczna;5
-262;308A;Sala 308A;LABORATORY;17;540;2104;60;457;1976;148;TCh 308A, 308A TCh, technologia chemiczna 308A, 308A technologia chemiczna;5
-263;309A;Sala 309A;LABORATORY;17;789;210;60;870;1990;148;TCh 309A, 309A TCh, technologia chemiczna 309A, 309A technologia chemiczna;5
-264;310A;Sala 310A;LABORATORY;17;890;2104;30;1020;1990;148;TCh 310A, 310A TCh, technologia chemiczna 310A, 310A technologia chemiczna;5
-265;311A;Sala 311A;LABORATORY;17;1165;2104;40;1100;1990;141;TCh 311A, 311A TCh, technologia chemiczna 311A, 311A technologia chemiczna;5
-266;312A;Sala 312A;LABORATORY;17;1445;1960;60;1365;2070;145;TCh 312A, 312A TCh, technologia chemiczna 312A, 312A technologia chemiczna;5
-267;313A;Sala 313A;LABORATORY;17;1790;1960;60;1725;2070;145;TCh 313A, 313A TCh, technologia chemiczna 313A, 313A technologia chemiczna;5
-268;314A;Sala 314A;LABORATORY;17;1990;1960;60;2070;2070;145;TCh 314A, 314A TCh, technologia chemiczna 314A, 314A technologia chemiczna;5
-269;315A;Sala 315A;LABORATORY;17;2200;1960;60;2270;2070;145;TCh 315A, 315A TCh, technologia chemiczna 315A, 315A technologia chemiczna;5
-270;316A;Sala 316A;LABORATORY;17;2350;1960;20;2270;2070;145;TCh 316A, 316A TCh, technologia chemiczna 316A, 316A technologia chemiczna;5
-271;317A;Sala 317A;LABORATORY;17;2450;1960;20;2450;2070;145;TCh 317A, 317A TCh, technologia chemiczna 317A, 317A technologia chemiczna;5
-272;318A;Sala 318A;LABORATORY;17;2569;2176;20;2520;2120;149;TCh 318A, 318A TCh, technologia chemiczna 318A, 318A technologia chemiczna;5
-273;319A;Sala 319A;LABORATORY;17;2593;2052;20;2541;2084;149;TCh 319A, 319A TCh, technologia chemiczna 319A, 319A technologia chemiczna;5
-274;320A;Sala 320A;LABORATORY;17;2490;1790;20;2480;1860;145;TCh 320A, 320A TCh, technologia chemiczna 320A, 320A technologia chemiczna;5
-275;321A;Sala 321A;LABORATORY;17;2370;1790;20;2350;1860;145;TCh 321A, 321A TCh, technologia chemiczna 321A, 321A technologia chemiczna;5
-276;322A;Sala 322A;LABORATORY;17;2270;1790;20;2280;1860;145;TCh 322A, 322A TCh, technologia chemiczna 322A, 322A technologia chemiczna;5
-277;323A;Sala 323A;LABORATORY;17;2160;1790;20;2150;1860;145;TCh 323A, 323A TCh, technologia chemiczna 323A, 323A technologia chemiczna;5
-278;324A;Sala 324A;LABORATORY;17;2040;1790;20;2040;1860;145;TCh 324A, 324A TCh, technologia chemiczna 324A, 324A technologia chemiczna;5
-279;325A;Sala 325A;LABORATORY;17;1930;1790;20;1930;1860;145;TCh 325A, 325A TCh, technologia chemiczna 325A, 325A technologia chemiczna;5
-280;326A;Sala 326A;LABORATORY;17;1850;1790;20;1850;1860;145;TCh 326A, 326A TCh, technologia chemiczna 326A, 326A technologia chemiczna;5
-281;327A;Sala 327A;LABORATORY;17;1760;1790;20;1730;1860;145;TCh 327A, 327A TCh, technologia chemiczna 327A, 327A technologia chemiczna;5
-282;T301;Sala T301;LABORATORY;17;1605;1790;40;1685;1860;145;TCh T301, T301 TCh, technologia chemiczna T301, T301 technologia chemiczna;5
-283;T302;Sala T302;LABORATORY;17;1590;1960;60;1590;2090;145;TCh T302, T302 TCh, technologia chemiczna T302, T302 technologia chemiczna;5
-284;301C;Sala 301C;LECTURE;17;925;1500;40;980;1520;141;TCh 301C, 301C TCh, technologia chemiczna 301C, 301C technologia chemiczna;5
-285;302C;Sala 302C;LECTURE;17;1113;1488;50;1080;1580;141;TCh 302C, 302C TCh, technologia chemiczna 302C, 302C technologia chemiczna;5
-286;303C;Sala 303C;LECTURE;17;945;1360;30;1117;1377;143;TCh 303C, 303C TCh, technologia chemiczna 303C, 303C technologia chemiczna;5
-287;304C;Sala 304C;LECTURE;17;865;1080;50;970;1065;143;TCh 304C, 304C TCh, technologia chemiczna 304C, 304C technologia chemiczna;5
-288;305C;Sala 305C;LECTURE;17;981;1892;50;917;816;146;TCh 305C, 305C TCh, technologia chemiczna 305C, 305C technologia chemiczna;5
-289;306C;Sala 306C;LECTURE;17;825;930;50;833;836;146;TCh 306C, 306C TCh, technologia chemiczna 306C, 306C technologia chemiczna;5
-290;301B;Sala 301B;LABORATORY;17;569;645;70;670;565;150;TCh 301B, 301B TCh, technologia chemiczna 301B, 301B technologia chemiczna;5
-291;302B;Sala 302B;LABORATORY;17;700;380;20;680;470;150;TCh 302B, 302B TCh, technologia chemiczna 302B, 302B technologia chemiczna;5
-292;303B;Sala 303B;LABORATORY;17;800;340;50;815;470;150;TCh 303B, 303B TCh, technologia chemiczna 303B, 303B technologia chemiczna;5
-293;304B;Sala 304B;LABORATORY;17;950;340;50;1030;470;150;TCh 304B, 304B TCh, technologia chemiczna 304B, 304B technologia chemiczna;5
-294;305B;Sala 305B;LABORATORY;17;1170;340;50;1170;470;150;TCh 305B, 305B TCh, technologia chemiczna 305B, 305B technologia chemiczna;5
-295;306B;Sala 306B;LABORATORY;17;1360;340;50;1360;470;151;TCh 306B, 306B TCh, technologia chemiczna 306B, 306B technologia chemiczna;5
-296;307B;Sala 307B;LABORATORY;17;1600;340;50;1640;470;151;TCh 307B, 307B TCh, technologia chemiczna 307B, 307B technologia chemiczna;5
-297;308B;Sala 308B;LABORATORY;17;1790;340;50;1860;470;151;TCh 308B, 308B TCh, technologia chemiczna 308B, 308B technologia chemiczna;5
-298;309B;Sala 309B;LABORATORY;17;1990;340;50;1940;470;151;TCh 309B, 309B TCh, technologia chemiczna 309B, 309B technologia chemiczna;5
-299;310B;Sala 310B;LABORATORY;17;2270;340;70;2350;470;151;TCh 310B, 310B TCh, technologia chemiczna 310B, 310B technologia chemiczna;5
-300;311B;Sala 311B;LABORATORY;17;1360;630;20;2360;565;151;TCh 311B, 311B TCh, technologia chemiczna 311B, 311B technologia chemiczna;5
-301;312B;Sala 312B;LABORATORY;17;2260;630;20;2280;565;151;TCh 312B, 312B TCh, technologia chemiczna 312B, 312B technologia chemiczna;5
-302;313B;Sala 313B;LABORATORY;17;2160;630;20;2140;565;151;TCh 313B, 313B TCh, technologia chemiczna 313B, 313B technologia chemiczna;5
-303;314B;Sala 314B;LABORATORY;17;2070;630;20;2050;565;151;TCh 314B, 314B TCh, technologia chemiczna 314B, 314B technologia chemiczna;5
-304;315B;Sala 315B;LABORATORY;17;1930;630;20;1950;565;151;TCh 315B, 315B TCh, technologia chemiczna 315B, 315B technologia chemiczna;5
-305;316B;Sala 316B;LABORATORY;17;1840;630;20;1840;565;151;TCh 316B, 316B TCh, technologia chemiczna 316B, 316B technologia chemiczna;5
-306;317B;Sala 317B;LABORATORY;17;1750;630;20;1720;565;151;TCh 317B, 317B TCh, technologia chemiczna 317B, 317B technologia chemiczna;5
-307;318B;Sala 318B;LABORATORY;17;1630;630;20;1650;565;151;TCh 318B, 318B TCh, technologia chemiczna 318B, 318B technologia chemiczna;5
-308;319B;Sala 319B;LABORATORY;17;1530;630;20;1510;565;151;TCh 319B, 319B TCh, technologia chemiczna 319B, 319B technologia chemiczna;5
-309;T304;Sala T304;LABORATORY;17;1360;630;40;1320;565;151;TCh T304, T304 TCh, technologia chemiczna T304, T304 technologia chemiczna;5
-310;;toaleta damska;RESTROOM;17;1213;1876;20;1129;1884;144;toaleta damska, wc damskie, łazienka damska;5
-311;;toaleta męska;RESTROOM;17;1197;1964;20;1129;1884;144;toaleta męska, wc męskie, łazienka męska;5
-312;;toaleta damska;RESTROOM;17;773;616;20;865;700;146;toaleta damska, wc damskie, łazienka damska;5
-313;;toaleta męska;RESTROOM;17;881;616;20;865;700;146;toaleta męska, wc męskie, łazienka męska;5
-314;;toaleta dla niepełnosprawnych;RESTROOM;17;989;616;20;865;700;146;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;5
-315;T303;Sala T303;LECTURE;17;877;1236;40;993;1744;143;TCh T303, T303 TCh, technologia chemiczna T303, T303 technologia chemiczna;5
-316;1;Sala 001;LABORATORY;0;1610;830;45;1628;878;198;1 NBM, NBM 1, nanoinżynieria 1, biomechanika 1, mechatronika 1;6
-317;2;Sala 002;LABORATORY;0;1460;830;45;1508;878;198;2 NBM, NBM 2, nanoinżynieria 2, biomechanika 2, mechatronika 2;6
-318;3;Sala 003;LABORATORY;0;1296;830;45;1338;878;198;3 NBM, NBM 3, nanoinżynieria 3, biomechanika 3, mechatronika 3;6
-319;4;Sala 004;LABORATORY;0;1151;830;45;1077;852;185;4 NBM, NBM 4, nanoinżynieria 4, biomechanika 4, mechatronika 4;6
-320;5;Sala 005;LABORATORY;0;1450;595;80;1138;470;180;5 NBM, NBM 5, nanoinżynieria 5, biomechanika 5, mechatronika 5;6
-321;6;Sala 006;LABORATORY;0;931;475;45;1031;505;180;6 NBM, NBM 6, nanoinżynieria 6, biomechanika 6, mechatronika 6;6
-322;7;Sala 007;LABORATORY;0;875;617;50;973;652;180;7 NBM, NBM 7, nanoinżynieria 7, biomechanika 7, mechatronika 7;6
-323;8;Sala 008;LABORATORY;0;889;866;40;954;873;182;8 NBM, NBM 8, nanoinżynieria 8, biomechanika 8, mechatronika 8;6
-324;9;Sala 009;LABORATORY;0;633;883;85;835;950;184;9 NBM, NBM 9, nanoinżynieria 9, biomechanika 9, mechatronika 9;6
-325;10;Sala 010;LABORATORY;0;724;1165;75;835;1195;184;10 NBM, NBM 10, nanoinżynieria 10, biomechanika 10, mechatronika 10;6
-326;11;Sala 011;LABORATORY;0;770;1370;110;900;1250;184;11 NBM, NBM 11, nanoinżynieria 11, biomechanika 11, mechatronika 11;6
-327;12;Sala 012;STAFF;0;1490;1070;70;1375;1070;197;12 NBM, NBM 12, nanoinżynieria 12, biomechanika 12, mechatronika 12;6
-328;13;Sala 013;LABORATORY;0;1520;1230;75;1375;1230;197;13 NBM, NBM 13, nanoinżynieria 13, biomechanika 13, mechatronika 13;6
-329;14;Sala 014;LABORATORY;0;1210;1270;85;1315;1277;197;14 NBM, NBM 14, nanoinżynieria 14, biomechanika 14, mechatronika 14;6
-330;15;Sala 015;LABORATORY;0;1478;1471;90;1586;1366;196;15 NBM, NBM 15, nanoinżynieria 15, biomechanika 15, mechatronika 15;6
-331;16;Sala 016;LABORATORY;0;1683;1471;35;1728;1410;196;16 NBM, NBM 16, nanoinżynieria 16, biomechanika 16, mechatronika 16;6
-332;17;Sala 017;LABORATORY;0;1853;1424;50;1794;1410;196;17 NBM, NBM 17, nanoinżynieria 17, biomechanika 17, mechatronika 17;6
-333;18;Sala 018;STAFF;0;2018;1473;90;2043;1366;195;18 NBM, NBM 18, nanoinżynieria 18, biomechanika 18, mechatronika 18;6
-334;19;Sala 019;LABORATORY;0;2578;1353;140;2530;1205;193;19 NBM, NBM 19, nanoinżynieria 19, biomechanika 19, mechatronika 19;6
-335;20;Sala 020;LABORATORY;0;2134;1240;60;2141;1313;195;20 NBM, NBM 20, nanoinżynieria 20, biomechanika 20, mechatronika 20;6
-336;21;Sala 021;STAFF;0;2164;1070;50;2227;1105;192;21 NBM, NBM 21, nanoinżynieria 21, biomechanika 21, mechatronika 21;6
-337;22;Sala 022;LABORATORY;0;2050;826;40;2027;878;188;22 NBM, NBM 22, nanoinżynieria 22, biomechanika 22, mechatronika 22;6
-338;23;Sala 023;LABORATORY;0;2066;733;35;2225;767;190;23 NBM, NBM 23, nanoinżynieria 23, biomechanika 23, mechatronika 23;6
-339;24;Sala 024;LABORATORY;0;2029;605;35;2076;623;190;24 NBM, NBM 24, nanoinżynieria 24, biomechanika 24, mechatronika 24;6
-340;26;Sala 026;LABORATORY;0;2335;833;35;2291;808;190;26 NBM, NBM 26, nanoinżynieria 26, biomechanika 26, mechatronika 26;6
-341;28;Sala 028;LABORATORY;0;2533;810;50;2533;878;191;28 NBM, NBM 28, nanoinżynieria 28, biomechanika 28, mechatronika 28;6
-342;29;Sala 029;STAFF;0;2735;832;55;2715;894;191;29 NBM, NBM 29, nanoinżynieria 29, biomechanika 29, mechatronika 29;6
-343;30;Sala 030;STAFF;0;2852;832;55;2831;894;191;30 NBM, NBM 30, nanoinżynieria 30, biomechanika 30, mechatronika 30;6
-344;31;Sala 031;STAFF;0;3027;834;55;2934;894;191;31 NBM, NBM 31, nanoinżynieria 31, biomechanika 31, mechatronika 31;6
-345;33;Sala 033;TECH;0;2799;995;40;2724;950;191;33 NBM, NBM 33, nanoinżynieria 33, biomechanika 33, mechatronika 33;6
-346;34;Sala 034;LABORATORY;0;2883;1093;50;2959;950;191;34 NBM, NBM 34, nanoinżynieria 34, biomechanika 34, mechatronika 34;6
-347;35;Sala 035;LABORATORY;0;3055;1310;90;2856;1182;193;35 NBM, NBM 35, nanoinżynieria 35, biomechanika 35, mechatronika 35;6
-348;0T5;Pomieszczenie techniczne 0T5;TECH;0;2580;1050;90;2620;1160;193;0T5 NBM, NBM 0T5, nanoinżynieria 0T5, biomechanika 0T5, mechatronika 0T5;6
-349;0T4;Pomieszczenie techniczne 0T4;TECH;0;2017;1072;70;2053;992;188;0T4 NBM, NBM 0T4, nanoinżynieria 0T4, biomechanika 0T4, mechatronika 0T4;6
-350;0T3;Pomieszczenie techniczne 0T3;TECH;0;1722;1287;20;1686;1314;196;0T3 NBM, NBM 0T3, nanoinżynieria 0T3, biomechanika 0T3, mechatronika 0T3;6
-351;0T2;Pomieszczenie techniczne 0T2;TECH;0;1975;1235;55;1977;1314;195;0T2 NBM, NBM 0T2, nanoinżynieria 0T2, biomechanika 0T2, mechatronika 0T2;6
-352;0T1;Pomieszczenie techniczne 0T1;TECH;0;1035;1134;30;948;1175;184;0T1 NBM, NBM 0T1, nanoinżynieria 0T1, biomechanika 0T1, mechatronika 0T1;6
-353;;toaleta damska;RESTROOM;0;1725;1047;45;1730;992;188;toaleta damska, wc damskie, łazienka damska;6
-354;;toaleta męska;RESTROOM;0;1883;1047;25;1874;992;188;toaleta męska, wc męskie, łazienka męska;6
-355;;toaleta dla niepełnosprawnych;RESTROOM;0;1823;1022;20;1828;992;188;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;6
-356;101;Sala 101;LECTURE;1;2060;1100;130;1946;947;208;101 NBM, NBM 101, nanoinżynieria 101, biomechanika 101, mechatronika 101;6
-357;102;Sala 102;LECTURE;1;1515;1100;130;1618;947;222;102 NBM, NBM 102, nanoinżynieria 102, biomechanika 102, mechatronika 102;6
-358;1P2;Pomieszczenie porządkowe 1P2;TECH;1;2083;622;45;2041;703;206;1P2 NBM, NBM 1P2, nanoinżynieria 1P2, biomechanika 1P2, mechatronika 1P2;6
-359;1T4;Pomieszczenie techniczne 1T4;TECH;1;2003;587;35;1972;676;206;1T4 NBM, NBM 1T4, nanoinżynieria 1T4, biomechanika 1T4, mechatronika 1T4;6
-360;1T5;Pomieszczenie techniczne 1T5;TECH;1;1907;556;55;1885;640;206;1T5 NBM, NBM 1T5, nanoinżynieria 1T5, biomechanika 1T5, mechatronika 1T5;6
-361;1T6;Pomieszczenie techniczne 1T6;TECH;1;1803;514;55;1774;597;206;1T6 NBM, NBM 1T6, nanoinżynieria 1T6, biomechanika 1T6, mechatronika 1T6;6
-362;103;Sala 103;LECTURE;1;1668;460;90;1690;563;206;103 NBM, NBM 103, nanoinżynieria 103, biomechanika 103, mechatronika 103;6
-363;104;Sala 104;LECTURE;1;1506;391;90;1528;498;206;104 NBM, NBM 104, nanoinżynieria 104, biomechanika 104, mechatronika 104;6
-364;105;Sala 105;LECTURE;1;1350;330;60;1354;429;205;105 NBM, NBM 105, nanoinżynieria 105, biomechanika 105, mechatronika 105;6
-365;106;Sala 106;LECTURE;1;1190;263;90;1218;374;205;106 NBM, NBM 106, nanoinżynieria 106, biomechanika 106, mechatronika 106;6
-366;107;Sala 107;LECTURE;1;1008;223;75;1074;342;205;107 NBM, NBM 107, nanoinżynieria 107, biomechanika 107, mechatronika 107;6
-367;108;Sala 108;LECTURE;1;941;404;70;1024;463;231;108 NBM, NBM 108, nanoinżynieria 108, biomechanika 108, mechatronika 108;6
-368;109;Sala 109;LECTURE;1;883;549;65;959;629;231;109 NBM, NBM 109, nanoinżynieria 109, biomechanika 109, mechatronika 109;6
-369;110;Sala 110;LECTURE;1;831;681;45;928;709;231;110 NBM, NBM 110, nanoinżynieria 110, biomechanika 110, mechatronika 110;6
-370;111;Sala 111;LECTURE;1;1409;623;90;1453;536;206;111 NBM, NBM 111, nanoinżynieria 111, biomechanika 111, mechatronika 111;6
-371;112;Sala 112;LECTURE;1;1200;580;75;1150;500;231;112 NBM, NBM 112, nanoinżynieria 112, biomechanika 112, mechatronika 112;6
-372;113;Sala 113;LECTURE;1;1122;681;45;1030;677;231;113 NBM, NBM 113, nanoinżynieria 113, biomechanika 113, mechatronika 113;6
-373;1S2;Sklep;GASTRONOMIC;1;1634;676;35;1678;686;206;1S2 NBM, NBM 1S2, nanoinżynieria 1S2, biomechanika 1S2, mechatronika 1S2;6
-374;;szatnia;TECH;1;2279;671;50;2312;732;210;szatnia NBM, NBM szatnia;6
-375;114;Sala 114;LABORATORY;1;734;1030;70;857;1070;219;114 NBM, NBM 114, nanoinżynieria 114, biomechanika 114, mechatronika 114;6
-376;115;Sala 115;LABORATORY;1;666;1165;50;750;1220;218;115 NBM, NBM 115, nanoinżynieria 115, biomechanika 115, mechatronika 115;6
-377;116;Sala 116;STAFF;1;560;1245;30;602;1242;218;116 NBM, NBM 116, nanoinżynieria 116, biomechanika 116, mechatronika 116;6
-378;117;Sala 117;STAFF;1;535;1353;50;600;1310;218;117 NBM, NBM 117, nanoinżynieria 117, biomechanika 117, mechatronika 117;6
-379;118;Sala 118;STAFF;1;657;1374;35;677;1263;218;118 NBM, NBM 118, nanoinżynieria 118, biomechanika 118, mechatronika 118;6
-380;119;Sala 119;STAFF;1;755;1350;45;733;1263;218;119 NBM, NBM 119, nanoinżynieria 119, biomechanika 119, mechatronika 119;6
-381;120;Sala 120;STAFF;1;857;1350;45;880;1263;218;120 NBM, NBM 120, nanoinżynieria 120, biomechanika 120, mechatronika 120;6
-382;121;Sala 121;STAFF;1;965;1351;45;987;1263;217;121 NBM, NBM 121, nanoinżynieria 121, biomechanika 121, mechatronika 121;6
-383;122;Sala 122;STAFF;1;1066;1359;40;1084;1263;217;122 NBM, NBM 122, nanoinżynieria 122, biomechanika 122, mechatronika 122;6
-384;123;Sala 123;LABORATORY;1;1200;1372;75;1200;1263;217;123 NBM, NBM 123, nanoinżynieria 123, biomechanika 123, mechatronika 123;6
-385;124;Sala 124;LABORATORY;1;1391;1416;80;1325;1320;214;124 NBM, NBM 124, nanoinżynieria 124, biomechanika 124, mechatronika 124;6
-386;125;Sala 125;LABORATORY;1;1611;1416;80;1588;1320;214;125 NBM, NBM 125, nanoinżynieria 125, biomechanika 125, mechatronika 125;6
-387;126;Sala 126;LABORATORY;1;1994;1416;80;2017;1320;212;126 NBM, NBM 126, nanoinżynieria 126, biomechanika 126, mechatronika 126;6
-388;127;Sala 127;LABORATORY;1;2190;1416;80;2180;1320;212;127 NBM, NBM 127, nanoinżynieria 127, biomechanika 127, mechatronika 127;6
-389;128;Sala 128;LABORATORY;1;2378;1416;80;2389;1320;212;128 NBM, NBM 128, nanoinżynieria 128, biomechanika 128, mechatronika 128;6
-390;129;Sala 129;STAFF;1;2516;1416;45;2516;1320;212;129 NBM, NBM 129, nanoinżynieria 129, biomechanika 129, mechatronika 129;6
-391;130;Sala 130;STAFF;1;2613;1416;35;2598;1320;212;130 NBM, NBM 130, nanoinżynieria 130, biomechanika 130, mechatronika 130;6
-392;131;Sala 131;STAFF;1;2709;1416;40;2696;1320;212;131 NBM, NBM 131, nanoinżynieria 131, biomechanika 131, mechatronika 131;6
-393;132;Sala 132;LABORATORY;1;2857;1342;75;2738;1297;211;132 NBM, NBM 132, nanoinżynieria 132, biomechanika 132, mechatronika 132;6
-394;133;Sala 133;LABORATORY;1;2879;1181;75;2738;1197;211;133 NBM, NBM 133, nanoinżynieria 133, biomechanika 133, mechatronika 133;6
-395;134;Sala 134;LABORATORY;1;2892;1024;50;2738;1036;211;134 NBM, NBM 134, nanoinżynieria 134, biomechanika 134, mechatronika 134;6
-396;135;Sala 135;LABORATORY;1;2579;1024;70;2657;1010;211;135 NBM, NBM 135, nanoinżynieria 135, biomechanika 135, mechatronika 135;6
-397;136;Sala 136;LABORATORY;1;2556;1194;70;2657;1198;211;136 NBM, NBM 136, nanoinżynieria 136, biomechanika 136, mechatronika 136;6
-398;1T1;Pomieszczenie techniczne 1T1;TECH;1;1026;1139;70;940;1178;219;1T1 NBM, NBM 1T1, nanoinżynieria 1T1, biomechanika 1T1, mechatronika 1T1;6
-399;1T2;Pomieszczenie techniczne 1T2;TECH;1;2374;1189;65;2274;1207;212;1T2 NBM, NBM 1T2, nanoinżynieria 1T2, biomechanika 1T2, mechatronika 1T2;6
-400;1T3;Pomieszczenie techniczne 1T3;TECH;1;1707;1244;20;1675;1268;214;1T3 NBM, NBM 1T3, nanoinżynieria 1T3, biomechanika 1T3, mechatronika 1T3;6
-401;1P1;Pomieszczenie porządkowe 1P1;TECH;1;1104;961;10;1100;945;221;1P1 NBM, NBM 1P1, nanoinżynieria 1P1, biomechanika 1P1, mechatronika 1P1;6
-402;1S1;Pomieszczenie socjalne 1S1;TECH;1;1811;1375;35;1807;1330;212;1S1 NBM, NBM 1S1, nanoinżynieria 1S1, biomechanika 1S1, mechatronika 1S1;6
-403;;toaleta damska;RESTROOM;1;1708;1000;45;1720;948;222;toaleta damska, wc damskie, łazienka damska;6
-404;;toaleta męska;RESTROOM;1;1870;1000;30;1863;948;223;toaleta męska, wc męskie, łazienka męska;6
-405;;toaleta dla niepełnosprawnych;RESTROOM;1;1810;980;20;1817;948;223;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;6
-406;201;Sala 201;LECTURE;2;2048;630;130;2171;469;237;201 NBM, NBM 201, nanoinżynieria 201, biomechanika 201, mechatronika 201;6
-407;202;Sala 202;LECTURE;2;1470;630;130;1357;469;235;202 NBM, NBM 202, nanoinżynieria 202, biomechanika 202, mechatronika 202;6
-408;203;Sala 203;STAFF;2;1466;300;45;1464;358;235;203 NBM, NBM 203, nanoinżynieria 203, biomechanika 203, mechatronika 203;6
-409;204;Sala 204;STAFF;2;1372;300;45;1389;363;235;204 NBM, NBM 204, nanoinżynieria 204, biomechanika 204, mechatronika 204;6
-410;205;Sala 205;STAFF;2;1279;305;40;1268;368;235;205 NBM, NBM 205, nanoinżynieria 205, biomechanika 205, mechatronika 205;6
-411;206;Sala 206;STAFF;2;1174;305;50;1174;368;233;206 NBM, NBM 206, nanoinżynieria 206, biomechanika 206, mechatronika 206;6
-412;207;Sala 207;STAFF;2;1065;305;40;1065;368;233;207 NBM, NBM 207, nanoinżynieria 207, biomechanika 207, mechatronika 207;6
-413;208;Sala 208;STAFF;2;968;305;45;968;368;233;208 NBM, NBM 208, nanoinżynieria 208, biomechanika 208, mechatronika 208;6
-414;209;Sala 209;STAFF;2;862;305;40;858;368;233;209 NBM, NBM 209, nanoinżynieria 209, biomechanika 209, mechatronika 209;6
-415;210;Sala 210;STAFF;2;760;305;45;755;368;233;210 NBM, NBM 210, nanoinżynieria 210, biomechanika 210, mechatronika 210;6
-416;211;Sala 211;STAFF;2;631;429;35;709;407;233;211 NBM, NBM 211, nanoinżynieria 211, biomechanika 211, mechatronika 211;6
-417;212;Sala 212;LABORATORY;2;665;560;75;789;457;250;212 NBM, NBM 212, nanoinżynieria 212, biomechanika 212, mechatronika 212;6
-418;213;Sala 213;LABORATORY;2;522;692;25;534;753;250;213 NBM, NBM 213, nanoinżynieria 213, biomechanika 213, mechatronika 213;6
-419;214;Sala 214;LABORATORY;2;420;677;55;488;777;250;214 NBM, NBM 214, nanoinżynieria 214, biomechanika 214, mechatronika 214;6
-420;215;Sala 215;LABORATORY;2;472;884;75;563;797;250;215 NBM, NBM 215, nanoinżynieria 215, biomechanika 215, mechatronika 215;6
-421;216;Sala 216;LABORATORY;2;702;883;75;638;797;250;216 NBM, NBM 216, nanoinżynieria 216, biomechanika 216, mechatronika 216;6
-422;217;Sala 217;LABORATORY;2;935;887;75;847;797;249;217 NBM, NBM 217, nanoinżynieria 217, biomechanika 217, mechatronika 217;6
-423;218;Sala 218;LABORATORY;2;1149;908;75;1236;837;246;218 NBM, NBM 218, nanoinżynieria 218, biomechanika 218, mechatronika 218;6
-424;219;Sala 219;LABORATORY;2;1149;908;75;1236;837;246;219 NBM, NBM 219, nanoinżynieria 219, biomechanika 219, mechatronika 219;6
-425;220;Sala 220;LABORATORY;2;1375;955;40;1361;860;246;220 NBM, NBM 220, nanoinżynieria 220, biomechanika 220, mechatronika 220;6
-426;221;Sala 221;LABORATORY;2;1558;972;100;1463;860;246;221 NBM, NBM 221, nanoinżynieria 221, biomechanika 221, mechatronika 221;6
-427;222;Sala 222;LABORATORY;2;2042;970;100;2151;858;245;222 NBM, NBM 222, nanoinżynieria 222, biomechanika 222, mechatronika 222;6
-428;223;Sala 223;LECTURE;2;2236;963;40;2228;858;245;223 NBM, NBM 223, nanoinżynieria 223, biomechanika 223, mechatronika 223;6
-429;224;Sala 224;LABORATORY;2;2467;906;90;2612;796;242;224 NBM, NBM 224, nanoinżynieria 224, biomechanika 224, mechatronika 224;6
-430;225;Sala 225;LABORATORY;2;2972;881;75;2814;796;241;225 NBM, NBM 225, nanoinżynieria 225, biomechanika 225, mechatronika 225;6
-431;226;Sala 226;LABORATORY;2;3006;716;60;2855;703;241;226 NBM, NBM 226, nanoinżynieria 226, biomechanika 226, mechatronika 226;6
-432;227;Sala 227;LABORATORY;2;2562;537;35;2617;528;241;227 NBM, NBM 227, nanoinżynieria 227, biomechanika 227, mechatronika 227;6
-433;228;Sala 228;LABORATORY;2;2830;548;40;2830;465;240;228 NBM, NBM 228, nanoinżynieria 228, biomechanika 228, mechatronika 228;6
-434;229;Sala 229;LABORATORY;2;3056;550;80;2964;464;240;229 NBM, NBM 229, nanoinżynieria 229, biomechanika 229, mechatronika 229;6
-435;230;Sala 230;LABORATORY;2;3095;354;90;2980;415;240;230 NBM, NBM 230, nanoinżynieria 230, biomechanika 230, mechatronika 230;6
-436;231;Sala 231;TECH;2;2940;306;30;2950;367;240;231 NBM, NBM 231, nanoinżynieria 231, biomechanika 231, mechatronika 231;6
-437;232;Sala 232;STAFF;2;2619;306;45;2602;367;239;232 NBM, NBM 232, nanoinżynieria 232, biomechanika 232, mechatronika 232;6
-438;233;Sala 233;STAFF;2;2519;306;40;2535;367;239;233 NBM, NBM 233, nanoinżynieria 233, biomechanika 233, mechatronika 233;6
-439;234;Sala 234;STAFF;2;2420;306;40;2437;367;239;234 NBM, NBM 234, nanoinżynieria 234, biomechanika 234, mechatronika 234;6
-440;235;Sala 235;STAFF;2;2326;306;40;2341;367;238;235 NBM, NBM 235, nanoinżynieria 235, biomechanika 235, mechatronika 235;6
-441;236;Sala 236;STAFF;2;2227;306;40;2244;367;238;236 NBM, NBM 236, nanoinżynieria 236, biomechanika 236, mechatronika 236;6
-442;237;Sala 237;STAFF;2;2128;306;40;2146;364;237;237 NBM, NBM 237, nanoinżynieria 237, biomechanika 237, mechatronika 237;6
-443;238;Sala 238;STAFF;2;2009;297;40;2044;358;237;238 NBM, NBM 238, nanoinżynieria 238, biomechanika 238, mechatronika 238;6
-444;2T1;Pomieszczenie techniczne 2T1;TECH;2;962;669;70;875;700;250;2T1 NBM, NBM 2T1, nanoinżynieria 2T1, biomechanika 2T1, mechatronika 2T1;6
-445;2T2;Pomieszczenie techniczne 2T2;TECH;2;2373;690;40;2362;744;242;2T2 NBM, NBM 2T2, nanoinżynieria 2T2, biomechanika 2T2, mechatronika 2T2;6
-446;2T3;Pomieszczenie techniczne 2T3;TECH;2;1681;778;15;1644;803;246;2T3 NBM, NBM 2T3, nanoinżynieria 2T3, biomechanika 2T3, mechatronika 2T3;6
-447;2T4;Pomieszczenie techniczne 2T4;TECH;2;1539;299;15;1537;352;235;2T4 NBM, NBM 2T4, nanoinżynieria 2T4, biomechanika 2T4, mechatronika 2T4;6
-448;;toaleta damska;RESTROOM;2;1681;524;40;1695;470;237;toaleta damska, wc damskie, łazienka damska;6
-449;;toaleta męska;RESTROOM;2;1849;524;25;1839;470;237;toaleta męska, wc męskie, łazienka męska;6
-450;;toaleta dla niepełnosprawnych;RESTROOM;2;1786;504;20;1791;470;237;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;6
-451;301;Sala 301;LECTURE;3;2026;496;130;2168;318;262;301 NBM, NBM 301, nanoinżynieria 301, biomechanika 301, mechatronika 301;6
-452;302;Sala 302;LECTURE;3;1392;496;130;1262;318;260;302 NBM, NBM 302, nanoinżynieria 302, biomechanika 302, mechatronika 302;6
-453;303;Sala 303;STAFF;3;1439;130;45;1442;191;260;303 NBM, NBM 303, nanoinżynieria 303, biomechanika 303, mechatronika 303;6
-454;304;Sala 304;STAFF;3;1321;130;45;1303;199;260;304 NBM, NBM 304, nanoinżynieria 304, biomechanika 304, mechatronika 304;6
-455;305;Sala 305;STAFF;3;1196;130;45;1160;204;259;305 NBM, NBM 305, nanoinżynieria 305, biomechanika 305, mechatronika 305;6
-456;306;Sala 306;STAFF;3;1059;130;45;1045;204;258;306 NBM, NBM 306, nanoinżynieria 306, biomechanika 306, mechatronika 306;6
-457;307;Sala 307;STAFF;3;927;130;45;886;204;258;307 NBM, NBM 307, nanoinżynieria 307, biomechanika 307, mechatronika 307;6
-458;308;Sala 308;STAFF;3;780;130;45;738;204;258;308 NBM, NBM 308, nanoinżynieria 308, biomechanika 308, mechatronika 308;6
-459;309;Sala 309;STAFF;3;623;130;45;593;204;258;309 NBM, NBM 309, nanoinżynieria 309, biomechanika 309, mechatronika 309;6
-460;310;Sala 310;LECTURE;3;462;265;35;548;261;283;310 NBM, NBM 310, nanoinżynieria 310, biomechanika 310, mechatronika 310;6
-461;311;Sala 311;LABORATORY;3;498;416;85;644;447;277;311 NBM, NBM 311, nanoinżynieria 311, biomechanika 311, mechatronika 311;6
-462;312;Sala 312;LABORATORY;3;248;507;70;356;551;277;312 NBM, NBM 312, nanoinżynieria 312, biomechanika 312, mechatronika 312;6
-463;313;Sala 313;LABORATORY;3;252;639;30;355;635;277;313 NBM, NBM 313, nanoinżynieria 313, biomechanika 313, mechatronika 313;6
-464;314;Sala 314;LABORATORY;3;281;780;85;393;680;277;314 NBM, NBM 314, nanoinżynieria 314, biomechanika 314, mechatronika 314;6
-465;315;Sala 315;STAFF;3;485;778;55;475;680;277;315 NBM, NBM 315, nanoinżynieria 315, biomechanika 315, mechatronika 315;6
-466;316;Sala 316;LABORATORY;3;806;787;85;898;680;276;316 NBM, NBM 316, nanoinżynieria 316, biomechanika 316, mechatronika 316;6
-467;317;Sala 317;LABORATORY;3;1034;803;75;1073;680;276;317 NBM, NBM 317, nanoinżynieria 317, biomechanika 317, mechatronika 317;6
-468;318;Sala 318;STAFF;3;1195;861;50;1168;748;273;318 NBM, NBM 318, nanoinżynieria 318, biomechanika 318, mechatronika 318;6
-469;319;Sala 319;STAFF;3;1325;861;45;1286;748;273;319 NBM, NBM 319, nanoinżynieria 319, biomechanika 319, mechatronika 319;6
-470;320;Sala 320;LABORATORY;3;1512;861;85;1492;748;273;320 NBM, NBM 320, nanoinżynieria 320, biomechanika 320, mechatronika 320;6
-471;321;Sala 321;LABORATORY;3;1992;861;85;1987;748;271;321 NBM, NBM 321, nanoinżynieria 321, biomechanika 321, mechatronika 321;6
-472;322;Sala 322;STAFF;3;2212;861;60;2202;748;271;322 NBM, NBM 322, nanoinżynieria 322, biomechanika 322, mechatronika 322;6
-473;323;Sala 323;LABORATORY;3;2395;806;80;2327;680;268;323 NBM, NBM 323, nanoinżynieria 323, biomechanika 323, mechatronika 323;6
-474;324;Sala 324;STAFF;3;2550;800;50;2530;680;268;324 NBM, NBM 324, nanoinżynieria 324, biomechanika 324, mechatronika 324;6
-475;325;Sala 325;STAFF;3;2670;783;40;2684;680;268;325 NBM, NBM 325, nanoinżynieria 325, biomechanika 325, mechatronika 325;6
-476;326;Sala 326;LABORATORY;3;2835;775;90;2836;680;267;326 NBM, NBM 326, nanoinżynieria 326, biomechanika 326, mechatronika 326;6
-477;327;Sala 327;STAFF;3;2997;775;45;3009;680;267;327 NBM, NBM 327, nanoinżynieria 327, biomechanika 327, mechatronika 327;6
-478;328;Sala 328;STAFF;3;3104;775;40;3092;680;267;328 NBM, NBM 328, nanoinżynieria 328, biomechanika 328, mechatronika 328;6
-479;329;Sala 329;STAFF;3;3209;775;40;3180;680;267;329 NBM, NBM 329, nanoinżynieria 329, biomechanika 329, mechatronika 329;6
-480;330;Sala 330;STAFF;3;3180;566;45;3142;624;267;330 NBM, NBM 330, nanoinżynieria 330, biomechanika 330, mechatronika 330;6
-481;331;Sala 331;LABORATORY;3;2583;526;60;2658;581;266;331 NBM, NBM 331, nanoinżynieria 331, biomechanika 331, mechatronika 331;6
-482;332;Sala 332;LABORATORY;3;2820;404;85;2778;311;266;332 NBM, NBM 332, nanoinżynieria 332, biomechanika 332, mechatronika 332;6
-483;333;Sala 333;LABORATORY;3;3141;409;85;3047;311;266;333 NBM, NBM 333, nanoinżynieria 333, biomechanika 333, mechatronika 333;6
-484;334;Sala 334;STAFF;3;3190;187;95;3067;251;266;334 NBM, NBM 334, nanoinżynieria 334, biomechanika 334, mechatronika 334;6
-485;335;Sala 335;STAFF;3;2960;137;50;2910;205;266;335 NBM, NBM 335, nanoinżynieria 335, biomechanika 335, mechatronika 335;6
-486;336;Sala 336;STAFF;3;2803;137;40;2800;205;266;336 NBM, NBM 336, nanoinżynieria 336, biomechanika 336, mechatronika 336;6
-487;337;Sala 337;STAFF;3;2678;137;50;2628;205;265;337 NBM, NBM 337, nanoinżynieria 337, biomechanika 337, mechatronika 337;6
-488;338;Sala 338;STAFF;3;2532;137;50;2561;205;265;338 NBM, NBM 338, nanoinżynieria 338, biomechanika 338, mechatronika 338;6
-489;339;Sala 339;STAFF;3;2372;137;50;2409;205;264;339 NBM, NBM 339, nanoinżynieria 339, biomechanika 339, mechatronika 339;6
-490;340;Sala 340;STAFF;3;2216;137;50;2254;205;263;340 NBM, NBM 340, nanoinżynieria 340, biomechanika 340, mechatronika 340;6
-491;341;Sala 341;STAFF;3;2034;137;45;2098;200;262;341 NBM, NBM 341, nanoinżynieria 341, biomechanika 341, mechatronika 341;6
-492;3T1;Pomieszczenie techniczne 3T1;TECH;3;862;555;40;1039;622;276;3T1 NBM, NBM 3T1, nanoinżynieria 3T1, biomechanika 3T1, mechatronika 3T1;6
-493;3T3;Pomieszczenie techniczne 3T3;TECH;3;1620;659;15;1583;688;273;3T3 NBM, NBM 3T3, nanoinżynieria 3T3, biomechanika 3T3, mechatronika 3T3;6
-494;3T4;Pomieszczenie techniczne 3T4;TECH;3;1771;825;45;1779;765;271;3T4 NBM, NBM 3T4, nanoinżynieria 3T4, biomechanika 3T4, mechatronika 3T4;6
-495;3S6;Pomieszczenie socjalne 3S6;STAFF;3;3056;560;35;3063;624;267;3S6 NBM, NBM 3S6, nanoinżynieria 3S6, biomechanika 3S6, mechatronika 3S6;6
-496;;toaleta damska;RESTROOM;3;1630;380;40;1638;317;262;toaleta damska, wc damskie, łazienka damska;6
-497;;toaleta męska;RESTROOM;3;1810;365;30;1798;317;262;toaleta męska, wc męskie, łazienka męska;6
-498;;toaleta dla niepełnosprawnych;RESTROOM;3;1740;355;25;1746;317;262;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;6
-499;401;Sala 401;LECTURE;4;2060;505;130;2194;327;289;401 NBM, NBM 401, nanoinżynieria 401, biomechanika 401, mechatronika 401;6
-500;402;Sala 402;LECTURE;4;1420;505;130;1294;327;287;402 NBM, NBM 402, nanoinżynieria 402, biomechanika 402, mechatronika 402;6
-501;403;Sala 403;STAFF;4;1466;140;45;1460;200;287;403 NBM, NBM 403, nanoinżynieria 403, biomechanika 403, mechatronika 403;6
-502;404;Sala 404;STAFF;4;1351;144;45;1329;210;287;404 NBM, NBM 404, nanoinżynieria 404, biomechanika 404, mechatronika 404;6
-503;405;Sala 405;STAFF;4;1244;144;40;1219;214;287;405 NBM, NBM 405, nanoinżynieria 405, biomechanika 405, mechatronika 405;6
-504;406;Sala 406;STAFF;4;1138;144;40;1162;214;286;406 NBM, NBM 406, nanoinżynieria 406, biomechanika 406, mechatronika 406;6
-505;407;Sala 407;STAFF;4;1025;144;45;1049;214;285;407 NBM, NBM 407, nanoinżynieria 407, biomechanika 407, mechatronika 407;6
-506;408;Sala 408;STAFF;4;915;144;35;915;214;285;408 NBM, NBM 408, nanoinżynieria 408, biomechanika 408, mechatronika 408;6
-507;409;Sala 409;STAFF;4;797;144;45;768;214;285;409 NBM, NBM 409, nanoinżynieria 409, biomechanika 409, mechatronika 409;6
-508;410;Sala 410;STAFF;4;655;144;50;625;214;285;410 NBM, NBM 410, nanoinżynieria 410, biomechanika 410, mechatronika 410;6
-509;411;Sala 411;STAFF;4;511;196;55;581;256;304;411 NBM, NBM 411, nanoinżynieria 411, biomechanika 411, mechatronika 411;6
-510;412;Sala 412;LABORATORY;4;570;455;50;671;428;303;412 NBM, NBM 412, nanoinżynieria 412, biomechanika 412, mechatronika 412;6
-511;413;Sala 413;STAFF;4;285;626;55;388;657;303;413 NBM, NBM 413, nanoinżynieria 413, biomechanika 413, mechatronika 413;6
-512;414;Sala 414;LABORATORY;4;433;782;80;511;688;303;414 NBM, NBM 414, nanoinżynieria 414, biomechanika 414, mechatronika 414;6
-513;415;Sala 415;LABORATORY;4;636;782;60;635;688;303;415 NBM, NBM 415, nanoinżynieria 415, biomechanika 415, mechatronika 415;6
-514;416;Sala 416;LABORATORY;4;902;782;75;1005;688;301;416 NBM, NBM 416, nanoinżynieria 416, biomechanika 416, mechatronika 416;6
-515;417;Sala 417;LABORATORY;4;1117;782;35;1115;688;301;417 NBM, NBM 417, nanoinżynieria 417, biomechanika 417, mechatronika 417;6
-516;418;Sala 418;STAFF;4;1264;817;45;1305;757;299;418 NBM, NBM 418, nanoinżynieria 418, biomechanika 418, mechatronika 418;6
-517;419;Sala 419;STAFF;4;1430;817;45;1443;757;299;419 NBM, NBM 419, nanoinżynieria 419, biomechanika 419, mechatronika 419;6
-518;420;Sala 420;STAFF;4;1578;817;45;1523;757;299;420 NBM, NBM 420, nanoinżynieria 420, biomechanika 420, mechatronika 420;6
-519;421;Sala 421;STAFF;4;1965;817;45;1965;757;298;421 NBM, NBM 421, nanoinżynieria 421, biomechanika 421, mechatronika 421;6
-520;422;Sala 422;STAFF;4;2180;817;45;2221;757;298;422 NBM, NBM 422, nanoinżynieria 422, biomechanika 422, mechatronika 422;6
-521;423;Sala 423;STAFF;4;2423;790;75;2353;688;295;423 NBM, NBM 423, nanoinżynieria 423, biomechanika 423, mechatronika 423;6
-522;424;Sala 424;LABORATORY;4;2700;790;75;2800;688;294;424 NBM, NBM 424, nanoinżynieria 424, biomechanika 424, mechatronika 424;6
-523;425;Sala 425;STAFF;4;3047;790;30;3038;688;294;425 NBM, NBM 425, nanoinżynieria 425, biomechanika 425, mechatronika 425;6
-524;426;Sala 426;STAFF;4;3195;658;50;3095;646;294;426 NBM, NBM 426, nanoinżynieria 426, biomechanika 426, mechatronika 426;6
-525;427;Sala 427;STAFF;4;3191;533;10;3095;539;294;427 NBM, NBM 427, nanoinżynieria 427, biomechanika 427, mechatronika 427;6
-526;428;Sala 428;LABORATORY;4;2605;540;65;2619;633;295;428 NBM, NBM 428, nanoinżynieria 428, biomechanika 428, mechatronika 428;6
-527;429;Sala 429;TECH;4;2777;415;30;2734;428;293;429 NBM, NBM 429, nanoinżynieria 429, biomechanika 429, mechatronika 429;6
-528;430;Sala 430;TECH;4;2629;381;40;2685;401;293;430 NBM, NBM 430, nanoinżynieria 430, biomechanika 430, mechatronika 430;6
-529;431;Sala 431;LABORATORY;4;3061;417;85;2909;320;293;431 NBM, NBM 431, nanoinżynieria 431, biomechanika 431, mechatronika 431;6
-530;432;Sala 432;LABORATORY;4;3219;196;80;3088;267;293;432 NBM, NBM 432, nanoinżynieria 432, biomechanika 432, mechatronika 432;6
-531;433;Sala 433;STAFF;4;3033;146;50;3002;213;293;433 NBM, NBM 433, nanoinżynieria 433, biomechanika 433, mechatronika 433;6
-532;434;Sala 434;STAFF;4;2904;146;45;2925;213;293;434 NBM, NBM 434, nanoinżynieria 434, biomechanika 434, mechatronika 434;6
-533;435;Sala 435;STAFF;4;2791;146;45;2810;213;293;435 NBM, NBM 435, nanoinżynieria 435, biomechanika 435, mechatronika 435;6
-534;436;Sala 436;STAFF;4;2684;146;35;2696;213;292;436 NBM, NBM 436, nanoinżynieria 436, biomechanika 436, mechatronika 436;6
-535;437;Sala 437;STAFF;4;2578;146;40;2603;213;292;437 NBM, NBM 437, nanoinżynieria 437, biomechanika 437, mechatronika 437;6
-536;438;Sala 438;STAFF;4;2473;146;40;2495;213;292;438 NBM, NBM 438, nanoinżynieria 438, biomechanika 438, mechatronika 438;6
-537;439;Sala 439;STAFF;4;2362;146;40;2337;213;291;439 NBM, NBM 439, nanoinżynieria 439, biomechanika 439, mechatronika 439;6
-538;440;Sala 440;STAFF;4;2239;146;45;2209;213;289;440 NBM, NBM 440, nanoinżynieria 440, biomechanika 440, mechatronika 440;6
-539;441;Sala 441;STAFF;4;2114;142;30;2125;207;289;441 NBM, NBM 441, nanoinżynieria 441, biomechanika 441, mechatronika 441;6
-540;442;Sala 442;STAFF;4;1998;138;30;2004;201;289;442 NBM, NBM 442, nanoinżynieria 442, biomechanika 442, mechatronika 442;6
-541;4T1;Pomieszczenie techniczne 4T1;TECH;4;904;565;45;1080;630;301;4T1 NBM, NBM 4T1, nanoinżynieria 4T1, biomechanika 4T1, mechatronika 4T1;6
-542;4T3;Pomieszczenie techniczne 4T3;TECH;4;1665;654;15;1613;695;299;4T3 NBM, NBM 4T3, nanoinżynieria 4T3, biomechanika 4T3, mechatronika 4T3;6
-543;;toaleta damska;RESTROOM;4;1653;387;40;1666;327;289;toaleta damska, wc damskie, łazienka damska;6
-544;;toaleta męska;RESTROOM;4;1839;387;30;1828;327;289;toaleta męska, wc męskie, łazienka męska;6
-545;;toaleta dla niepełnosprawnych;RESTROOM;4;1770;365;25;1774;327;289;toaleta dla niepełnosprawnych, wc dla niepełnosprawnych, łazienka dla niepełnosprawnych;6
+id	number	name	function	floor	coordX	coordY	radius	doorsX	doorsY	navigationPointConnection	aliases	
+1	1	Sala 1	LECTURE	1	1711	2649	130	1501	2372	3	cw 1, 1 cw, centrum wyk�adowe sala 1, centrum wyk�adowe 1	1
+2	2	Sala 2	LECTURE	1	2117	2322	130	1895	2061	3	cw 2, 2 cw, centrum wyk�adowe sala 2, centrum wyk�adowe 2	1
+3	3	Sala 3	LECTURE	1	2515	2014	130	2284	1742	6	cw 3, 3 cw,centrum wyk�adowe sala 3, centrum wyk�adowe 3	1
+4	4	Sala 4	LECTURE	1	1352	1302	150	1837	1704	3	cw 4, 4 cw, centrum wyk�adowe sala 4, centrum wyk�adowe 4	1
+5	5	Sala 5	LECTURE	1	475	782	120	580	934	13	cw 5, 5 cw, centrum wyk�adowe sala 5, centrum wyk�adowe 5	1
+6	6	Sala 6	LECTURE	1	846	500	120	970	624	13	cw 6, 6 cw, centrum wyk�adowe sala 6, centrum wyk�adowe 6	1
+7	7	Sala 7	LECTURE	2	1112	1951	130	1011	1811	26	cw 7, 7 cw, centrum wyk�adowe sala 7, centrum wyk�adowe 7	1
+8	8	Sala 8	LECTURE	2	1398	1727	130	1285	1591	26	cw 8, 8 cw, centrum wyk�adowe sala 8, centrum wyk�adowe 8	1
+9	9	Sala 9	LECTURE	2	1678	1502	130	1567	1362	28	cw 9, 9 cw, centrum wyk�adowe sala 9, centrum wyk�adowe 9	1
+10	10	Sala 10	LECTURE	2	756	1341	140	578	1484	30	cw 10, 10 cw, centrum wyk�adowe sala 10, centrum wyk�adowe 10	1
+11	11	Sala 11	LECTURE	2	499	1046	140	341	1182	30	cw 11, 11 cw, centrum wyk�adowe sala 11, centrum wyk�adowe 11	1
+12	12	Sala 12	LECTURE	2	220	611	130	295	722	37	cw 12, 12 cw, centrum wyk�adowe sala 12, centrum wyk�adowe 12	1
+13	13	Sala 13	LECTURE	2	496	390	130	567	498	37	cw 13, 13 cw, centrum wyk�adowe sala 13, centrum wyk�adowe 13	1
+14	42	Laboratorium 42	LABORATORY	1	2048	3303	40	2083	3182	5	cw 44, 42 cw, centrum wyk�adowe sala 42, centrum wyk�adowe 42	1
+15	43	Laboratorium 43	LABORATORY	1	2205	3133	50	2048	2987	5	cw 43, 43 cw, centrum wyk�adowe sala 43, centrum wyk�adowe 43	1
+16	44	Laboratorium 44	LABORATORY	1	2353	3015	50	2237	2832	5	cw 44, 44 cw, centrum wyk�adowe sala 44, centrum wyk�adowe 44	1
+17	45	Laboratorium 45	LABORATORY	1	2483	2843	75	2381	2717	5	cw 45, 45 cw, centrum wyk�adowe sala 45, centrum wyk�adowe 45	1
+18	142	Laboratorium 142	LABORATORY	2	1336	2365	40	1339	2289	24	cw 142, 142 cw, centrum wyk�adowe sala 142, centrum wyk�adowe 142	1
+19	143	Laboratorium 143	LABORATORY	2	1425	2256	50	1320	2150	24	cw 143, 143 cw, centrum wyk�adowe sala 143, centrum wyk�adowe 143	1
+20	144	Laboratorium 144	LABORATORY	2	1535	2166	50	1453	2043	24	cw 144, 144 cw, centrum wyk�adowe sala 144, centrum wyk�adowe 144	1
+21	145	Laboratorium 145	LABORATORY	2	1642	2026	75	1533	1961	24	cw 145, 145 cw, centrum wyk�adowe sala 145, centrum wyk�adowe 145	1
+22		freshmarket	GASTRONOMIC	1	2771	1555	150	2528	1511	6	freshmarket, bufet, sto��wka	1
+23		rozdzielnia elektryczna	TECH	1	1979	3232	50	2028	3140	5	rozdzielnia elektryczna	1
+24		rozdzielnia elektryczna	TECH	1	1918	3166	40	2034	3154	5	rozdzielnia elektryczna	1
+25		serwerownia	TECH	1	1596	3322	50	1648	3261	2	serwerownia	1
+26		toaleta m�ska	RESTROOM	1	1169	2922	80	1269	1882	2	toaleta m�ska, wc m�skie, �azienka m�ska	1
+27		toaleta damska	RESTROOM	1	1377	3203	80	1391	3031	2	toaleta damska, wc damskie, �azienka damska	1
+28		toaleta damska	RESTROOM	1	1491	548	20	1420	585	16	toaleta damska, wc damskie, �azienka damska	1
+29		toaleta dla niepe�nosprawnych	RESTROOM	1	1546	608	20	1492	679	16	toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych	1
+30		automat	GASTRONOMIC	1	1575	2848	30	1575	2848	2	automat z jedzeniem, 	1
+31		toaleta m�ska	RESTROOM	2	676	2078	80	778	2077	25	toaleta m�skia, wc m�skie, �azienka m�ska	1
+32		toaleta damska	RESTROOM	2	849	2304	80	859	2128	25	toaleta damska, wc damskie, �azienka damska	1
+33		toaleta m�ska	RESTROOM	2	934	450	20	882	475	40	toaleta m�ska, wc m�skie, �azienka m�ska	1
+34		toaleta dla niepe�nosprawnych	RESTROOM	2	971	492	20	933	535	40	toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych	1
+35	2.6.2	laboratorium 2.6.2	STAFF	13	673	256	25	615	289	53	bt 2.6.2, 2.6.2 bt, biblioteka techniczna sala 2.6.2, biblioteka techniczna 2.6.2	4
+36	2.6.3	laboratorium 2.6.3	STAFF	13	91	248	30	95	293	55	bt 2.6.3, 2.6.3 bt, biblioteka techniczna sala 2.6.3, biblioteka techniczna 2.6.3	4
+37	2.6.4	laboratorium 2.6.4	STAFF	13	169	248	30	195	293	55	bt 2.6.4, 2.6.4 bt, biblioteka techniczna sala 2.6.4, biblioteka techniczna 2.6.4	4
+38	2.6.5	laboratorium 2.6.5	STAFF	13	243	248	30	219	293	54	bt 2.6.5, 2.6.5 bt, biblioteka techniczna sala 2.6.5, biblioteka techniczna 2.6.5	4
+39	2.6.6	laboratorium 2.6.6	STAFF	13	315	248	30	315	293	54	bt 2.6.6, 2.6.6 bt, biblioteka techniczna sala 2.6.6, biblioteka techniczna 2.6.6	4
+40	2.6.7	laboratorium 2.6.7	STAFF	13	391	248	30	391	293	54	bt 2.6.7, 2.6.7 bt, biblioteka techniczna sala 2.6.7, biblioteka techniczna 2.6.7	4
+41	2.6.8	laboratorium 2.6.8	STAFF	13	461	248	30	489	293	54	bt 2.6.8, 2.6.8 bt, biblioteka techniczna sala 2.6.8, biblioteka techniczna 2.6.8	4
+42	2.6.9	laboratorium 2.6.9	STAFF	13	544	248	30	514	293	54	bt 2.6.9, 2.6.9 bt, biblioteka techniczna sala 2.6.9, biblioteka techniczna 2.6.9	4
+43	2.6.10	laboratorium 2.6.10	LABORATORY	13	106	397	50	174	404	56	bt 2.6.10, 2.6.10 bt, biblioteka techniczna sala 2.6.10, biblioteka techniczna 2.6.10	4
+44	2.6.11	laboratorium 2.6.11	LABORATORY	13	113	484	25	175	474	56	bt 2.6.11, 2.6.11 bt, biblioteka techniczna sala 2.6.11, biblioteka techniczna 2.6.11	4
+45	2.6.12	laboratorium 2.6.12	LABORATORY	13	358	430	80	476	430	53	bt 2.6.12, 2.6.12 bt, biblioteka techniczna sala 2.6.12, biblioteka techniczna 2.6.12	4
+46	2.6.18	laboratorium 2.6.18	LABORATORY	13	524	1005	35	576	995	51	bt 2.6.18, 2.6.18 bt, biblioteka techniczna sala 2.6.18, biblioteka techniczna 2.6.18	4
+47	2.6.19	laboratorium 2.6.19	LABORATORY	13	673	767	40	675	711	52	bt 2.6.19, 2.6.19 bt, biblioteka techniczna sala 2.6.19, biblioteka techniczna 2.6.19	4
+48	2.6.20	laboratorium 2.6.20	LABORATORY	13	780	794	40	826	754	49	bt 2.6.20, 2.6.20 bt, biblioteka techniczna sala 2.6.20, biblioteka techniczna 2.6.20	4
+49	2.6.21	laboratorium 2.6.21	LABORATORY	13	780	970	40	847	970	49	bt 2.6.21, 2.6.21 bt, biblioteka techniczna sala 2.6.21, biblioteka techniczna 2.6.21	4
+50	2.6.22	laboratorium 2.6.22	LABORATORY	13	954	963	30	900	970	49	bt 2.6.22, 2.6.22 bt, biblioteka techniczna sala 2.6.22, biblioteka techniczna 2.6.22	4
+51	2.7.2	laboratorium 2.7.2	LABORATORY	13	964	1451	30	901	1472	47	bt 2.7.2, 2.7.2 bt, biblioteka techniczna sala 2.7.2, biblioteka techniczna 2.7.2	4
+52	2.7.3	laboratorium 2.7.3	LABORATORY	13	776	1367	30	846	1349	46	bt 2.7.3, 2.7.3 bt, biblioteka techniczna sala 2.7.3, biblioteka techniczna 2.7.3	4
+53	2.7.5	laboratorium 2.7.5	LABORATORY	13	670	1630	50	670	1561	46	bt 2.7.5, 2.7.5 bt, biblioteka techniczna sala 2.7.5, biblioteka techniczna 2.7.5	4
+54	2.7.6	laboratorium 2.7.6	LABORATORY	13	526	1629	60	536	1561	46	bt 2.7.6, 2.7.6 bt, biblioteka techniczna sala 2.7.6, biblioteka techniczna 2.7.6	4
+55	2.7.8	laboratorium 2.7.8	LABORATORY	13	415	1454	50	465	1511	46	bt 2.7.8, 2.7.8 bt, biblioteka techniczna sala 2.7.8, biblioteka techniczna 2.7.8	4
+56	2.7.13	laboratorium 2.7.13	LABORATORY	13	1025	1218	120	901	1190	47	bt 2.7.13, 2.7.13 bt, biblioteka techniczna sala 2.7.13, biblioteka techniczna 2.7.13	4
+57	2.7.14	laboratorium 2.7.14	LABORATORY	13	791	1222	35	847	1222	47	bt 2.7.14, 2.7.14 bt, biblioteka techniczna sala 2.7.14, biblioteka techniczna 2.7.14	4
+58	2.7.15	laboratorium 2.7.15	LABORATORY	13	682	1222	35	624	1222	50	bt 2.7.15, 2.7.15 bt, biblioteka techniczna sala 2.7.15, biblioteka techniczna 2.7.15	4
+59	2.7.16	laboratorium 2.7.16	LABORATORY	13	526	1222	35	575	1222	50	bt 2.7.16, 2.7.16 bt, biblioteka techniczna sala 2.7.16, biblioteka techniczna 2.7.16	4
+60		toaleta damska	RESTROOM	13	599	1482	30	682	1442	47	toaleta damska, wc damskie, �azienka damska	4
+61		toaleta m�ska	RESTROOM	13	599	1384	30	682	1394	47	toaleta m�ska, wc m�skie, �azienka m�ska	4
+62	1.6.16	laboratorium 1.6.16	LABORATORY	12	1793	661	50	1709	599	64	bt 1.6.16, 1.6.16 bt, biblioteka techniczna sala 1.6.16, biblioteka techniczna 1.6.16	4
+63	1.6.18	laboratorium 1.6.18	LABORATORY	12	1432	661	50	1513	598	64	bt 1.6.18, 1.6.18 bt, biblioteka techniczna sala 1.6.18, biblioteka techniczna 1.6.18	4
+64	1.6.19	laboratorium 1.6.19	LABORATORY	12	1142	452	45	1205	408	65	bt 1.6.19, 1.6.19 bt, biblioteka techniczna sala 1.6.19, biblioteka techniczna 1.6.19	4
+65	1.6.20	laboratorium 1.6.20	LABORATORY	12	1117	305	60	1205	318	78	bt 1.6.20, 1.6.20 bt, biblioteka techniczna sala 1.6.20, biblioteka techniczna 1.6.20	4
+66	1.6.21	laboratorium 1.6.21	LABORATORY	12	1346	305	60	1351	380	68	bt 1.6.21, 1.6.21 bt, biblioteka techniczna sala 1.6.21, biblioteka techniczna 1.6.21	4
+67	1.6.22	laboratorium 1.6.22	LABORATORY	12	1531	305	60	1550	380	68	bt 1.6.22, 1.6.22 bt, biblioteka techniczna sala 1.6.22, biblioteka techniczna 1.6.22	4
+68	1.6.23	laboratorium 1.6.23	LABORATORY	12	1722	305	60	1747	380	68	bt 1.6.23, 1.6.23 bt, biblioteka techniczna sala 1.6.23, biblioteka techniczna 1.6.23	4
+69	108	sala 108	LECTURE	12	900	1989	25	878	1895	79	bt 108, 108 bt, biblioteka techniczna sala 108, biblioteka techniczna 108	4
+70	122	sala 122	LECTURE	12	1652	1594	120	1587	1496	60	bt 122, 122 bt, biblioteka techniczna sala 122, biblioteka techniczna 122	4
+71	123	sala 123	LECTURE	12	1409	1842	120	1334	1778	60	bt 123, 123 bt, biblioteka techniczna sala 123, biblioteka techniczna 123	4
+72	125	sala 125	LECTURE	12	1134	1450	90	1027	1453	66	bt 125, 125 bt, biblioteka techniczna sala 125, biblioteka techniczna 125	4
+73	126	sala 126	LECTURE	12	1332	1423	70	1332	1541	60	bt 126, 126 bt, biblioteka techniczna sala 126, biblioteka techniczna 126	4
+74	127	sala 127	LECTURE	12	1179	1223	80	1027	1229	66	bt 127, 127 bt, biblioteka techniczna sala 127, biblioteka techniczna 127	4
+75	128	sala 128	LECTURE	12	1120	1011	80	1027	1019	66	bt 128, 128 bt, biblioteka techniczna sala 128, biblioteka techniczna 128	4
+76		toaleta damska	RESTROOM	12	1308	487	50	1254	471	65	toaleta damska, wc damskie, �azienka damska	4
+77		toaleta m�ska	RESTROOM	12	1471	487	50	1533	470	64	toaleta m�ska, wc m�skie, �azienka m�ska	4
+78		toaleta damska	RESTROOM	12	707	1789	50	864	1743	66	toaleta damska, wc damskie, �azienka damska	4
+79		toaleta m�ska	RESTROOM	12	695	1680	50	863	1678	66	toaleta m�ska, wc m�skie, �azienka m�ska	4
+80		toaleta dla niepe�nosprawnych	RESTROOM	12	808	1714	30	839	1714	66	toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych	4
+81	51	sala 051	LECTURE	11	1109	226	100	982	329	76	bt 051, 051 bt, biblioteka techniczna sala 051, biblioteka techniczna 051	4
+82	53	sala 053	LECTURE	11	1627	323	190	1825	481	70	bt 053, 053 bt, biblioteka techniczna sala 053, biblioteka techniczna 053	4
+83	21	sala 021	LECTURE	11	1425	1623	90	1351	1536	73	bt 021, 021 bt, biblioteka techniczna sala 021, biblioteka techniczna 021	4
+84	22	sala 022	LECTURE	11	1295	1794	50	1205	1734	73	bt 022, 022 bt, biblioteka techniczna sala 022, biblioteka techniczna 022	4
+85	23	sala 023	LECTURE	11	797	1857	70	775	1779	77	bt 023, 023 bt, biblioteka techniczna sala 023, biblioteka techniczna 023	4
+86	24	sala 024	LECTURE	11	617	1857	40	665	1779	77	bt 024, 024 bt, biblioteka techniczna sala 024, biblioteka techniczna 024	4
+87	25	sala 025	LECTURE	11	446	1857	70	446	1779	77	bt 025, 025 bt, biblioteka techniczna sala 025, biblioteka techniczna 025	4
+88	27	sala 027	LECTURE	11	1102	1375	80	1000	1379	75	bt 027, 027 bt, biblioteka techniczna sala 027, biblioteka techniczna 027	4
+89	28	sala 028	LECTURE	11	1279	1349	65	1277	1455	73	bt 028, 028 bt, biblioteka techniczna sala 028, biblioteka techniczna 028	4
+90	29	sala 029	LECTURE	11	1132	1165	75	1000	1169	75	bt 029, 029 bt, biblioteka techniczna sala 029, biblioteka techniczna 029	4
+91	210	sala 0210	LECTURE	11	1084	975	75	1000	975	75	bt 0210, 0210 bt, biblioteka techniczna sala 0210, biblioteka techniczna 0210	4
+92		toaleta damska	RESTROOM	11	1844	787	30	1868	828	70	toaleta damska, wc damskie, �azienka damska	4
+93		toaleta m�ska	RESTROOM	11	1898	944	30	1903	890	70	toaleta m�ska, wc m�skie, �azienka m�ska	4
+94		toaleta dla niepe�nosprawnych	RESTROOM	11	1826	858	20	1855	861	70	toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych	4
+95		toaleta damska	RESTROOM	11	718	1682	35	853	1643	75	toaleta damska, wc damskie, �azienka damska	4
+96		toaleta m�ska	RESTROOM	11	718	1565	35	853	1583	75	toaleta m�ska, wc m�skie, �azienka m�ska	4
+97		toaleta dla niepe�nosprawnych	RESTROOM	11	800	1615	20	826	1614	75	toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych	4
+98	001A	Sala 001A	LABORATORY	14	1213	2064	60	1131	1964	110	TCh 001A, 001A TCh, technologia chemiczna 001A, technologia chemiczna 001A	5
+99	002A	Sala 002A	LABORATORY	14	1391	2038	60	1459	1896	116	TCh 002A, 002A TCh, technologia chemiczna 002A, technologia chemiczna 002A	5
+100	003A	Sala 003A	LABORATORY	14	1601	2052	60	1621	1896	116	TCh 003A, 003A TCh, technologia chemiczna 003A, technologia chemiczna 003A	5
+101	004A	Sala 004A	LABORATORY	14	1755	2052	20	1755	1896	116	TCh 004A, 004A TCh, technologia chemiczna 004A, technologia chemiczna 004A	5
+102	005A	Sala 005A	LABORATORY	14	2017	2052	60	2077	1896	116	TCh 005A, 005A TCh, technologia chemiczna 005A, technologia chemiczna 005A	5
+103	006A	Sala 006A	LABORATORY	14	2165	2052	20	2165	1896	116	TCh 006A, 006A TCh, technologia chemiczna 006A, technologia chemiczna 006A	5
+104	007A	Sala 007A	LABORATORY	14	2273	2052	20	2273	1896	116	TCh 007A, 007A TCh, technologia chemiczna 007A, technologia chemiczna 007A	5
+105	008A	Sala 008A	LABORATORY	14	2371	2052	20	2371	1896	116	TCh 008A, 008A TCh, technologia chemiczna 008A, technologia chemiczna 008A	5
+106	009A	Sala 009A	LABORATORY	14	2459	2052	20	2459	1896	116	TCh 009A, 009A TCh, technologia chemiczna 009A, technologia chemiczna 009A	5
+107	010A	Sala 010A	LABORATORY	14	2585	2002	30	2536	1952	116	TCh 010A, 010A TCh, technologia chemiczna 010A, technologia chemiczna 010A	5
+108	011A	Sala 011A	STAFF	14	1489	1746	20	1489	1820	116	TCh 011A, 011A TCh, technologia chemiczna 011A, technologia chemiczna 011A	5
+109	012A	Sala 012A	STAFF	14	2353	1746	20	2353	1820	116	TCh 012A, 012A TCh, technologia chemiczna 012A, technologia chemiczna 012A	5
+110	013A	Sala 013A	STAFF	14	2273	1746	20	2273	1820	116	TCh 013A, 013A TCh, technologia chemiczna 013A, technologia chemiczna 013A	5
+111	014A	Sala 014A	STAFF	14	2167	1746	20	2167	1820	116	TCh 014A, 014A TCh, technologia chemiczna 014A, technologia chemiczna 014A	5
+112	015A	Sala 015A	STAFF	14	2067	1746	20	2067	1820	116	TCh 015A, 015A TCh, technologia chemiczna 015A, technologia chemiczna 015A	5
+113	016A	Sala 016A	STAFF	14	1953	1746	20	1953	1820	116	TCh 016A, 016A TCh, technologia chemiczna 016A, technologia chemiczna 016A	5
+114	017A	Sala 017A	STAFF	14	1853	1746	20	1853	1820	116	TCh 017A, 017A TCh, technologia chemiczna 017A, technologia chemiczna 017A	5
+115	018A	Sala 018A	STAFF	14	1687	1746	40	1751	1820	116	TCh 018A, 018A TCh, technologia chemiczna 018A, technologia chemiczna 018A	5
+116	001B	Sala 001B	LABORATORY	14	583	609	50	679	515	117	TCh 001B, 001B TCh, technologia chemiczna 001B, technologia chemiczna 001B	5
+117	002B	Sala 002B	LABORATORY	14	779	329	50	843	451	117	TCh 002B, 002B TCh, technologia chemiczna 002B, technologia chemiczna 002B	5
+118	003B	Sala 003B	LABORATORY	14	943	312	30	981	451	117	TCh 003B, 003B TCh, technologia chemiczna 003B, technologia chemiczna 003B	5
+119	004B	Sala 004B	LABORATORY	14	1317	315	50	1274	451	118	TCh 004B, 004B TCh, technologia chemiczna 004B, technologia chemiczna 004B	5
+120	005B	Sala 005B	LABORATORY	14	1505	315	60	1469	451	118	TCh 005B, 005B TCh, technologia chemiczna 005B, technologia chemiczna 005B	5
+121	006B	Sala 006B	STAFF	14	1653	315	20	1671	451	118	TCh 006B, 006B TCh, technologia chemiczna 006B, technologia chemiczna 006B	5
+122	007B	Sala 007B	STAFF	14	1803	315	20	1881	451	118	TCh 007B, 007B TCh, technologia chemiczna 007B, technologia chemiczna 007B	5
+123	008B	Sala 008B	STAFF	14	1963	315	20	2083	451	118	TCh 008B, 008B TCh, technologia chemiczna 008B, technologia chemiczna 008B	5
+124	009B	Sala 009B	STAFF	14	2065	315	20	2083	451	118	TCh 009B, 009B TCh, technologia chemiczna 009B, technologia chemiczna 009B	5
+125	010B	Sala 010B	STAFF	14	2169	315	20	2147	451	118	TCh 010B, 010B TCh, technologia chemiczna 010B, technologia chemiczna 010B	5
+126	011B	Sala 011B	STAFF	14	1311	315	40	2361	451	118	TCh 011B, 011B TCh, technologia chemiczna 011B, technologia chemiczna 011B	5
+127	012B	Sala 012B	STAFF	14	2371	597	20	2355	527	118	TCh 012B, 012B TCh, technologia chemiczna 012B, technologia chemiczna 012B	5
+128	013B	Sala 013B	STAFF	14	2229	597	40	2147	527	118	TCh 013B, 013B TCh, technologia chemiczna 013B, technologia chemiczna 013B	5
+129	014B	Sala 014B	STAFF	14	1987	597	50	1943	527	118	TCh 014B, 014B TCh, technologia chemiczna 014B, technologia chemiczna 014B	5
+130	015B	Sala 015B	STAFF	14	1861	597	20	1881	527	118	TCh 015B, 015B TCh, technologia chemiczna 015B, technologia chemiczna 015B	5
+131	016B	Sala 016B	STAFF	14	1755	597	20	1737	527	118	TCh 016B, 016B TCh, technologia chemiczna 016B, technologia chemiczna 016B	5
+132	017B	Sala 017B	STAFF	14	1655	597	20	1669	527	118	TCh 017B, 017B TCh, technologia chemiczna 017B, technologia chemiczna 017B	5
+133	018B	Sala 018B	STAFF	14	1541	597	20	1541	527	118	TCh 018B, 018B TCh, technologia chemiczna 018B, technologia chemiczna 018B	5
+134	019B	Sala 019B	LIBRARY	14	1395	597	40	1343	527	118	TCh 019B, 019B TCh, technologia chemiczna 019B, technologia chemiczna 019B	5
+135		toaleta damska	RESTROOM	14	1229	1919	20	1183	1846	109	toaleta damska, wc damskie, �azienka damska	5
+136		toaleta m�ska	RESTROOM	14	1235	1837	20	1163	1845	109	toaleta m�ska, wc m�skie, �azienka m�ska	5
+137		toaleta damska	RESTROOM	14	795	593	20	897	669	114	toaleta damska, wc damskie, �azienka damska	5
+138		toaleta m�ska	RESTROOM	14	1029	589	20	897	669	114	toaleta m�ska, wc m�skie, �azienka m�ska	5
+139		toaleta dla niepe�nosprawnych	RESTROOM	14	913	577	20	897	669	114	toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych	5
+140		Hala technologiczna	LECTURE	14	1759	1179	200	1423	1233	112	TCh hala techniczna, hala techniczna TCh, technologia chemiczna hala techniczna, hala techniczna technologia chemiczna	5
+141	101A	Sala 101A	LABORATORY	15	737	1806	40	737	1886	123	TCh 101A, 101A TCh, technologia chemiczna 101A, 101A technologia chemiczna	5
+142	102A	Sala 102A	LABORATORY	15	621	1806	40	621	1886	123	TCh 102A, 102A TCh, technologia chemiczna 102A, 102A technologia chemiczna	5
+143	103A	Sala 103A	LABORATORY	15	525	1806	40	540	1886	123	TCh 103A, 103A TCh, technologia chemiczna 103A, 103A technologia chemiczna	5
+144	104A	Sala 104A	LABORATORY	15	413	1806	40	397	1886	123	TCh 104A, 104A TCh, technologia chemiczna 104A, 104A technologia chemiczna	5
+145	105A	Sala 105A	LABORATORY	15	269	1806	50	337	1886	123	TCh 105A, 105A TCh, technologia chemiczna 105A, 105A technologia chemiczna	5
+146	106A	Sala 106A	LABORATORY	15	249	1938	30	305	1902	123	TCh 106A, 106A TCh, technologia chemiczna 106A, 106A technologia chemiczna	5
+147	107A	Sala 107A	LABORATORY	15	361	2146	100	377	1990	123	TCh 107A, 107A TCh, technologia chemiczna 107A, 107A technologia chemiczna	5
+148	108A	Sala 108A	LABORATORY	15	717	2150	70	801	2018	123	TCh 108A, 108A TCh, technologia chemiczna 108A, 108A technologia chemiczna	5
+149	109A	Sala 109A	LABORATORY	15	1052	2142	100	1065	2018	119	TCh 109A, 109A TCh, technologia chemiczna 109A, 109A technologia chemiczna	5
+150	110A	Sala 110A	LABORATORY	15	1325	2114	80	1405	1970	122	TCh 110A, 110A TCh, technologia chemiczna 110A, 110A technologia chemiczna	5
+151	111A	Sala 111A	LABORATORY	15	1781	2114	80	1845	1970	122	TCh 111A, 111A TCh, technologia chemiczna 111A, 111A technologia chemiczna	5
+152	112A	Sala 112A	LABORATORY	15	1941	2114	20	1845	1970	122	TCh 112A, 112A TCh, technologia chemiczna 112A, 112A technologia chemiczna	5
+153	113A	Sala 113A	LABORATORY	15	2109	2114	80	2065	1970	122	TCh 113A, 113A TCh, technologia chemiczna 113A, 113A technologia chemiczna	5
+154	114A	Sala 114A	LABORATORY	15	2317	2114	80	2281	1970	122	TCh 114A, 114A TCh, technologia chemiczna 114A, 114A technologia chemiczna	5
+155	115A	Sala 115A	LABORATORY	15	2473	2114	80	2493	1970	122	TCh 115A, 115A TCh, technologia chemiczna 115A, 115A technologia chemiczna	5
+156	116A	Sala 116A	LABORATORY	15	2593	2170	20	2541	2130	122	TCh 116A, 116A TCh, technologia chemiczna 116A, 116A technologia chemiczna	5
+157	117A	Sala 117A	LABORATORY	15	2625	2058	20	2569	2054	122	TCh 117A, 117A TCh, technologia chemiczna 117A, 117A technologia chemiczna	5
+158	118A	Sala 118A	LABORATORY	15	2501	1806	20	2479	1886	122	TCh 118A, 118A TCh, technologia chemiczna 118A, 118A technologia chemiczna	5
+159	119A	Sala 119A	LABORATORY	15	2373	1806	20	2361	1886	122	TCh 119A, 119A TCh, technologia chemiczna 119A, 119A technologia chemiczna	5
+160	120A	Sala 120A	LABORATORY	15	2269	1806	20	2285	1886	122	TCh 120A, 120A TCh, technologia chemiczna 120A, 120A technologia chemiczna	5
+161	121A	Sala 121A	LABORATORY	15	2157	1806	20	2145	1886	122	TCh 121A, 121A TCh, technologia chemiczna 121A, 121A technologia chemiczna	5
+162	122A	Sala 122A	LABORATORY	15	2045	1806	20	2061	1886	122	TCh 122A, 122A TCh, technologia chemiczna 122A, 122A technologia chemiczna	5
+163	123A	Sala 123A	LABORATORY	15	1933	1806	20	1929	1886	122	TCh 123A, 123A TCh, technologia chemiczna 123A, 123A technologia chemiczna	5
+164	124A	Sala 124A	LABORATORY	15	1837	1806	20	1845	1886	122	TCh 124A, 124A TCh, technologia chemiczna 124A, 124A technologia chemiczna	5
+165	125A	Sala 125A	LABORATORY	15	1741	1806	20	1737	1886	122	TCh 125A, 125A TCh, technologia chemiczna 125A, 125A technologia chemiczna	5
+166	T101	Sala T101	LABORATORY	15	1577	1806	40	1665	1886	122	TCh T101, T101 TCh, technologia chemiczna T101, T101 technologia chemiczna	5
+167	T102	Sala T102	LABORATORY	15	1573	2114	80	1405	1970	122	TCh T102, T102 TCh, technologia chemiczna T102, T102 technologia chemiczna	5
+168	101C	Sala 101C	LECTURE	15	897	1358	50	1069	1374	125	TCh 101C, 101C TCh, technologia chemiczna 101C, 101C technologia chemiczna	5
+169	102C	Sala 102C	LECTURE	15	877	1046	60	1089	1078	125	TCh 102C, 102C TCh, technologia chemiczna 102C, 102C technologia chemiczna	5
+170	103C	Sala 103C	LECTURE	15	1085	1542	40	1045	1610	119	TCh 103C, 103C TCh, technologia chemiczna 103C, 103C technologia chemiczna	5
+171	104C	Sala 104C	LECTURE	15	837	1582	40	937	1626	119	TCh 104C, 104C TCh, technologia chemiczna 104C, 104C technologia chemiczna	5
+172	105C	Sala 105C	LECTURE	15	925	818	40	877	766	126	TCh 105C, 105C TCh, technologia chemiczna 105C, 105C technologia chemiczna	5
+173	106C	Sala 106C	LECTURE	15	737	850	40	765	766	126	TCh 106C, 106C TCh, technologia chemiczna 106C, 106C technologia chemiczna	5
+174	101B	Sala 101B	LABORATORY	15	501	596	70	605	526	128	TCh 101B, 101B TCh, technologia chemiczna 101B, 101B technologia chemiczna	5
+175	102B	Sala 102B	LABORATORY	15	621	274	40	613	418	128	TCh 102B, 102B TCh, technologia chemiczna 102B, 102B technologia chemiczna	5
+176	103B	Sala 103B	LABORATORY	15	849	274	80	801	418	128	TCh 103B, 103B TCh, technologia chemiczna 103B, 103B technologia chemiczna	5
+177	104B	Sala 104B	LABORATORY	15	1109	274	80	1205	418	128	TCh 104B, 104B TCh, technologia chemiczna 104B, 104B technologia chemiczna	5
+178	105B	Sala 105B	LABORATORY	15	1321	274	80	1417	418	129	TCh 105B, 105B TCh, technologia chemiczna 105B, 105B technologia chemiczna	5
+179	106B	Sala 106B	LABORATORY	15	1569	274	80	1637	418	129	TCh 106B, 106B TCh, technologia chemiczna 106B, 106B technologia chemiczna	5
+180	107B	Sala 107B	LABORATORY	15	1725	274	20	1705	418	129	TCh 107B, 107B TCh, technologia chemiczna 107B, 107B technologia chemiczna	5
+181	108B	Sala 108B	LABORATORY	15	1833	274	20	1853	418	129	TCh 108B, 108B TCh, technologia chemiczna 108B, 108B technologia chemiczna	5
+182	109B	Sala 109B	LABORATORY	15	1989	274	60	1925	418	129	TCh 109B, 109B TCh, technologia chemiczna 109B, 109B technologia chemiczna	5
+183	110B	Sala 110B	LABORATORY	15	2209	274	60	2145	418	129	TCh 110B, 110B TCh, technologia chemiczna 110B, 110B technologia chemiczna	5
+184	111B	Sala 111B	LABORATORY	15	241	274	60	2361	418	129	TCh 111B, 111B TCh, technologia chemiczna 111B, 111B technologia chemiczna	5
+185	112B	Sala 112B	LABORATORY	15	2357	594	20	2357	526	129	TCh 112B, 112B TCh, technologia chemiczna 112B, 112B technologia chemiczna	5
+186	113B	Sala 113B	LABORATORY	15	2257	594	20	2293	526	129	TCh 113B, 113B TCh, technologia chemiczna 113B, 113B technologia chemiczna	5
+187	114B	Sala 114B	LABORATORY	15	2165	594	20	2145	526	129	TCh 114B, 114B TCh, technologia chemiczna 114B, 114B technologia chemiczna	5
+188	115B	Sala 115B	LABORATORY	15	2057	594	20	2069	526	129	TCh 115B, 115B TCh, technologia chemiczna 115B, 115B technologia chemiczna	5
+189	116B	Sala 116B	LABORATORY	15	1941	594	20	1925	526	129	TCh 116B, 116B TCh, technologia chemiczna 116B, 116B technologia chemiczna	5
+190	117B	Sala 117B	LABORATORY	15	1821	594	20	1845	526	129	TCh 117B, 117B TCh, technologia chemiczna 117B, 117B technologia chemiczna	5
+191	118B	Sala 118B	LABORATORY	15	1721	594	20	1705	526	129	TCh 118B, 118B TCh, technologia chemiczna 118B, 118B technologia chemiczna	5
+192	119B	Sala 119B	LABORATORY	15	1617	594	20	1629	526	129	TCh 119B, 119B TCh, technologia chemiczna 119B, 119B technologia chemiczna	5
+193	120B	Sala 120B	LABORATORY	15	1501	594	20	1481	526	129	TCh 120B, 120B TCh, technologia chemiczna 120B, 120B technologia chemiczna	5
+194	T103	Sala T103	LABORATORY	15	1321	594	60	1273	526	129	TCh T103, T103 TCh, technologia chemiczna T103, T103 technologia chemiczna	5
+195		toaleta damska	RESTROOM	15	1176	1986	20	1093	1904	121	toaleta damska, wc damskie, �azienka damska	5
+196		toaleta m�ska	RESTROOM	15	1171	1901	20	1093	1904	121	toaleta m�ska, wc m�skie, �azienka m�ska	5
+197		toaleta damska	RESTROOM	15	717	570	20	809	622	126	toaleta damska, wc damskie, �azienka damska	5
+198		toaleta m�ska	RESTROOM	15	817	570	20	809	622	126	toaleta m�ska, wc m�skie, �azienka m�ska	5
+199		toaleta dla niepe�nosprawnych	RESTROOM	15	933	590	20	809	622	126	toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych	5
+200	201A	Sala 201A	LABORATORY	16	753	1816	50	753	1888	137	TCh 201A, 201A TCh, technologia chemiczna 201A, 201A technologia chemiczna	5
+201	202A	Sala 202A	LABORATORY	16	641	1816	40	641	1888	137	TCh 202A, 202A TCh, technologia chemiczna 202A, 202A technologia chemiczna	5
+202	203A	Sala 203A	LABORATORY	16	541	1816	40	557	1888	137	TCh 203A, 203A TCh, technologia chemiczna 203A, 203A technologia chemiczna	5
+203	204A	Sala 204A	LABORATORY	16	433	1816	40	409	1888	137	TCh 204A, 204A TCh, technologia chemiczna 204A, 204A technologia chemiczna	5
+204	205A	Sala 205A	LABORATORY	16	281	1816	50	349	1888	137	TCh 205A, 205A TCh, technologia chemiczna 205A, 205A technologia chemiczna	5
+205	206A	Sala 206A	LABORATORY	16	253	1936	30	329	1912	137	TCh 206A, 206A TCh, technologia chemiczna 206A, 206A technologia chemiczna	5
+206	207A	Sala 207A	LABORATORY	16	277	2140	70	345	1904	137	TCh 207A, 207A TCh, technologia chemiczna 207A, 207A technologia chemiczna	5
+207	208A	Sala 208A	LABORATORY	16	485	2140	70	389	2000	137	TCh 208A, 208A TCh, technologia chemiczna 208A, 208A technologia chemiczna	5
+208	209A	Sala 209A	LABORATORY	16	737	2166	70	841	2016	137	TCh 209A, 209A TCh, technologia chemiczna 209A, 209A technologia chemiczna	5
+209	210A	Sala 210A	LABORATORY	16	965	2166	40	997	2016	130	TCh 210A, 210A TCh, technologia chemiczna 210A, 210A technologia chemiczna	5
+210	211A	Sala 211A	LABORATORY	16	1157	2166	70	1085	2016	130	TCh 211A, 211A TCh, technologia chemiczna 211A, 211A technologia chemiczna	5
+211	212A	Sala 212A	LABORATORY	16	1365	2120	60	1613	1970	134	TCh 212A, 212A TCh, technologia chemiczna 212A, 212A technologia chemiczna	5
+212	213A	Sala 213A	LABORATORY	16	1821	2120	70	1745	1970	134	TCh 213A, 213A TCh, technologia chemiczna 213A, 213A technologia chemiczna	5
+213	214A	Sala 214A	LABORATORY	16	2217	2120	80	2105	1970	134	TCh 214A, 214A TCh, technologia chemiczna 214A, 214A technologia chemiczna	5
+214	215A	Sala 215A	LABORATORY	16	2465	2120	60	2545	1970	134	TCh 215A, 215A TCh, technologia chemiczna 215A, 215A technologia chemiczna	5
+215	216A	Sala 216A	LABORATORY	16	2653	2152	40	2601	2096	138	TCh 216A, 216A TCh, technologia chemiczna 216A, 216A technologia chemiczna	5
+216	217A	Sala 217A	LABORATORY	16	2685	2044	20	2629	2056	138	TCh 217A, 217A TCh, technologia chemiczna 217A, 217A technologia chemiczna	5
+217	218A	Sala 218A	LABORATORY	16	2561	1800	30	2545	1880	134	TCh 218A, 218A TCh, technologia chemiczna 218A, 218A technologia chemiczna	5
+218	219A	Sala 219A	LABORATORY	16	1433	1800	30	2417	1880	134	TCh 219A, 219A TCh, technologia chemiczna 219A, 219A technologia chemiczna	5
+219	220A	Sala 220A	LABORATORY	16	2325	1800	30	2341	1880	134	TCh 220A, 220A TCh, technologia chemiczna 220A, 220A technologia chemiczna	5
+220	221A	Sala 221A	LABORATORY	16	2221	1800	30	2193	1880	134	TCh 221A, 221A TCh, technologia chemiczna 221A, 221A technologia chemiczna	5
+221	222A	Sala 222A	LABORATORY	16	2081	1800	30	2117	1880	134	TCh 222A, 222A TCh, technologia chemiczna 222A, 222A technologia chemiczna	5
+222	223A	Sala 223A	LABORATORY	16	1973	1800	30	1973	1880	134	TCh 223A, 223A TCh, technologia chemiczna 223A, 223A technologia chemiczna	5
+223	224A	Sala 224A	LABORATORY	16	1869	1800	30	1893	1880	134	TCh 224A, 224A TCh, technologia chemiczna 224A, 224A technologia chemiczna	5
+224	T201	Sala T201	LABORATORY	16	1613	2120	60	1613	1970	134	TCh T201, T201 TCh, technologia chemiczna T201, T201 technologia chemiczna	5
+225	T202	Sala T202	LABORATORY	16	1773	1800	20	1757	1880	134	TCh T202, T202 TCh, technologia chemiczna T202, T202 technologia chemiczna	5
+226	T203	Sala T203	LABORATORY	16	1613	1800	40	1697	1880	134	TCh T203, T203 TCh, technologia chemiczna T203, T203 technologia chemiczna	5
+227	201B	Sala 201B	LABORATORY	16	513	561	70	621	489	139	TCh 201B, 201B TCh, technologia chemiczna 201B, 201B technologia chemiczna	5
+228	202B	Sala 202B	LABORATORY	16	601	189	20	629	389	139	TCh 202B, 202B TCh, technologia chemiczna 202B, 202B technologia chemiczna	5
+229	205B	Sala 205B	LABORATORY	16	857	270	30	773	390	139	TCh 205B, 205B TCh, technologia chemiczna 205B, 205B technologia chemiczna	5
+230	206B	Sala 206B	LABORATORY	16	989	270	30	989	390	139	TCh 206B, 206B TCh, technologia chemiczna 206B, 206B technologia chemiczna	5
+231	207B	Sala 207B	LABORATORY	16	1145	270	70	1145	390	139	TCh 207B, 207B TCh, technologia chemiczna 207B, 207B technologia chemiczna	5
+232	208B	Sala 208B	LABORATORY	16	1361	270	70	1449	390	140	TCh 208B, 208B TCh, technologia chemiczna 208B, 208B technologia chemiczna	5
+233	209B	Sala 209B	LABORATORY	16	1609	270	70	1669	390	140	TCh 209B, 209B TCh, technologia chemiczna 209B, 209B technologia chemiczna	5
+234	210B	Sala 210B	LABORATORY	16	1825	270	70	1897	390	140	TCh 210B, 210B TCh, technologia chemiczna 210B, 210B technologia chemiczna	5
+235	211B	Sala 211B	LABORATORY	16	2033	270	70	2109	390	140	TCh 211B, 211B TCh, technologia chemiczna 211B, 211B technologia chemiczna	5
+236	212B	Sala 212B	LABORATORY	16	2329	270	100	2197	390	140	TCh 212B, 212B TCh, technologia chemiczna 212B, 212B technologia chemiczna	5
+237	213B	Sala 213B	LABORATORY	16	2421	560	40	2421	490	140	TCh 213B, 213B TCh, technologia chemiczna 213B, 213B technologia chemiczna	5
+238	214B	Sala 214B	LABORATORY	16	2317	560	20	2337	490	140	TCh 214B, 214B TCh, technologia chemiczna 214B, 214B technologia chemiczna	5
+239	215B	Sala 215B	LABORATORY	16	2200	560	20	2190	490	140	TCh 215B, 215B TCh, technologia chemiczna 215B, 215B technologia chemiczna	5
+240	216B	Sala 216B	LABORATORY	16	2105	560	20	2117	490	140	TCh 216B, 216B TCh, technologia chemiczna 216B, 216B technologia chemiczna	5
+241	217B	Sala 217B	LABORATORY	16	1989	560	20	1969	490	140	TCh 217B, 217B TCh, technologia chemiczna 217B, 217B technologia chemiczna	5
+242	218B	Sala 218B	LABORATORY	16	1877	560	20	1851	490	140	TCh 218B, 218B TCh, technologia chemiczna 218B, 218B technologia chemiczna	5
+243	219B	Sala 219B	LABORATORY	16	1773	560	20	1745	490	140	TCh 219B, 219B TCh, technologia chemiczna 219B, 219B technologia chemiczna	5
+244	220B	Sala 220B	LABORATORY	16	1657	560	20	1690	490	140	TCh 220B, 220B TCh, technologia chemiczna 220B, 220B technologia chemiczna	5
+245	T205	Sala T205	LABORATORY	16	1369	560	20	1313	490	140	TCh T205, T205 TCh, technologia chemiczna T205, T205 technologia chemiczna	5
+246	T206	Sala T206	LABORATORY	16	1537	560	20	1525	490	140	TCh T206, T206 TCh, technologia chemiczna T206, T206 technologia chemiczna	5
+247	201C	Sala 201C	LECTURE	16	937	1440	90	957	1608	132	TCh 201C, 201C TCh, technologia chemiczna 201C, 201C technologia chemiczna	5
+248	T204	Sala T204	LECTURE	16	901	1916	90	865	780	132	TCh T204, T204 TCh, technologia chemiczna T204, T204 technologia chemiczna	5
+249		�wietlica	LECTURE	16	1509	1224	90	1405	1242	132	�wietlica	5
+250		toaleta damska	RESTROOM	16	1189	1992	20	1121	1904	133	toaleta damska, wc damskie, �azienka damska	5
+251		toaleta m�ska	RESTROOM	16	1205	1900	20	1121	1904	133	toaleta m�ska, wc m�skie, �azienka m�ska	5
+252		toaleta damska	RESTROOM	16	725	560	20	829	636	135	toaleta damska, wc damskie, �azienka damska	5
+253		toaleta m�ska	RESTROOM	16	849	544	20	829	636	135	toaleta m�ska, wc m�skie, �azienka m�ska	5
+254		toaleta dla niepe�nosprawnych	RESTROOM	16	957	566	20	829	636	135	toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych	5
+255	301A	Sala 301A	LABORATORY	17	793	1800	40	793	1860	148	TCh 301A, 301A TCh, technologia chemiczna 301A, 301A technologia chemiczna	5
+256	302A	Sala 302A	LABORATORY	17	689	1800	30	689	1860	148	TCh 302A, 302A TCh, technologia chemiczna 302A, 302A technologia chemiczna	5
+257	303A	Sala 303A	LABORATORY	17	585	1800	30	605	1860	148	TCh 303A, 303A TCh, technologia chemiczna 303A, 303A technologia chemiczna	5
+258	304A	Sala 304A	LABORATORY	17	490	1800	30	465	1860	148	TCh 304A, 304A TCh, technologia chemiczna 304A, 304A technologia chemiczna	5
+259	305A	Sala 305A	LABORATORY	17	337	1800	50	400	1860	148	TCh 305A, 305A TCh, technologia chemiczna 305A, 305A technologia chemiczna	5
+260	306A	Sala 306A	LABORATORY	17	313	1924	30	389	1888	148	TCh 306A, 306A TCh, technologia chemiczna 306A, 306A technologia chemiczna	5
+261	307A	Sala 307A	LABORATORY	17	33	2104	60	409	1976	148	TCh 307A, 307A TCh, technologia chemiczna 307A, 307A technologia chemiczna	5
+262	308A	Sala 308A	LABORATORY	17	540	2104	60	457	1976	148	TCh 308A, 308A TCh, technologia chemiczna 308A, 308A technologia chemiczna	5
+263	309A	Sala 309A	LABORATORY	17	789	210	60	870	1990	148	TCh 309A, 309A TCh, technologia chemiczna 309A, 309A technologia chemiczna	5
+264	310A	Sala 310A	LABORATORY	17	890	2104	30	1020	1990	148	TCh 310A, 310A TCh, technologia chemiczna 310A, 310A technologia chemiczna	5
+265	311A	Sala 311A	LABORATORY	17	1165	2104	40	1100	1990	141	TCh 311A, 311A TCh, technologia chemiczna 311A, 311A technologia chemiczna	5
+266	312A	Sala 312A	LABORATORY	17	1445	1960	60	1365	2070	145	TCh 312A, 312A TCh, technologia chemiczna 312A, 312A technologia chemiczna	5
+267	313A	Sala 313A	LABORATORY	17	1790	1960	60	1725	2070	145	TCh 313A, 313A TCh, technologia chemiczna 313A, 313A technologia chemiczna	5
+268	314A	Sala 314A	LABORATORY	17	1990	1960	60	2070	2070	145	TCh 314A, 314A TCh, technologia chemiczna 314A, 314A technologia chemiczna	5
+269	315A	Sala 315A	LABORATORY	17	2200	1960	60	2270	2070	145	TCh 315A, 315A TCh, technologia chemiczna 315A, 315A technologia chemiczna	5
+270	316A	Sala 316A	LABORATORY	17	2350	1960	20	2270	2070	145	TCh 316A, 316A TCh, technologia chemiczna 316A, 316A technologia chemiczna	5
+271	317A	Sala 317A	LABORATORY	17	2450	1960	20	2450	2070	145	TCh 317A, 317A TCh, technologia chemiczna 317A, 317A technologia chemiczna	5
+272	318A	Sala 318A	LABORATORY	17	2569	2176	20	2520	2120	149	TCh 318A, 318A TCh, technologia chemiczna 318A, 318A technologia chemiczna	5
+273	319A	Sala 319A	LABORATORY	17	2593	2052	20	2541	2084	149	TCh 319A, 319A TCh, technologia chemiczna 319A, 319A technologia chemiczna	5
+274	320A	Sala 320A	LABORATORY	17	2490	1790	20	2480	1860	145	TCh 320A, 320A TCh, technologia chemiczna 320A, 320A technologia chemiczna	5
+275	321A	Sala 321A	LABORATORY	17	2370	1790	20	2350	1860	145	TCh 321A, 321A TCh, technologia chemiczna 321A, 321A technologia chemiczna	5
+276	322A	Sala 322A	LABORATORY	17	2270	1790	20	2280	1860	145	TCh 322A, 322A TCh, technologia chemiczna 322A, 322A technologia chemiczna	5
+277	323A	Sala 323A	LABORATORY	17	2160	1790	20	2150	1860	145	TCh 323A, 323A TCh, technologia chemiczna 323A, 323A technologia chemiczna	5
+278	324A	Sala 324A	LABORATORY	17	2040	1790	20	2040	1860	145	TCh 324A, 324A TCh, technologia chemiczna 324A, 324A technologia chemiczna	5
+279	325A	Sala 325A	LABORATORY	17	1930	1790	20	1930	1860	145	TCh 325A, 325A TCh, technologia chemiczna 325A, 325A technologia chemiczna	5
+280	326A	Sala 326A	LABORATORY	17	1850	1790	20	1850	1860	145	TCh 326A, 326A TCh, technologia chemiczna 326A, 326A technologia chemiczna	5
+281	327A	Sala 327A	LABORATORY	17	1760	1790	20	1730	1860	145	TCh 327A, 327A TCh, technologia chemiczna 327A, 327A technologia chemiczna	5
+282	T301	Sala T301	LABORATORY	17	1605	1790	40	1685	1860	145	TCh T301, T301 TCh, technologia chemiczna T301, T301 technologia chemiczna	5
+283	T302	Sala T302	LABORATORY	17	1590	1960	60	1590	2090	145	TCh T302, T302 TCh, technologia chemiczna T302, T302 technologia chemiczna	5
+284	301C	Sala 301C	LECTURE	17	925	1500	40	980	1520	141	TCh 301C, 301C TCh, technologia chemiczna 301C, 301C technologia chemiczna	5
+285	302C	Sala 302C	LECTURE	17	1113	1488	50	1080	1580	141	TCh 302C, 302C TCh, technologia chemiczna 302C, 302C technologia chemiczna	5
+286	303C	Sala 303C	LECTURE	17	945	1360	30	1117	1377	143	TCh 303C, 303C TCh, technologia chemiczna 303C, 303C technologia chemiczna	5
+287	304C	Sala 304C	LECTURE	17	865	1080	50	970	1065	143	TCh 304C, 304C TCh, technologia chemiczna 304C, 304C technologia chemiczna	5
+288	305C	Sala 305C	LECTURE	17	981	1892	50	917	816	146	TCh 305C, 305C TCh, technologia chemiczna 305C, 305C technologia chemiczna	5
+289	306C	Sala 306C	LECTURE	17	825	930	50	833	836	146	TCh 306C, 306C TCh, technologia chemiczna 306C, 306C technologia chemiczna	5
+290	301B	Sala 301B	LABORATORY	17	569	645	70	670	565	150	TCh 301B, 301B TCh, technologia chemiczna 301B, 301B technologia chemiczna	5
+291	302B	Sala 302B	LABORATORY	17	700	380	20	680	470	150	TCh 302B, 302B TCh, technologia chemiczna 302B, 302B technologia chemiczna	5
+292	303B	Sala 303B	LABORATORY	17	800	340	50	815	470	150	TCh 303B, 303B TCh, technologia chemiczna 303B, 303B technologia chemiczna	5
+293	304B	Sala 304B	LABORATORY	17	950	340	50	1030	470	150	TCh 304B, 304B TCh, technologia chemiczna 304B, 304B technologia chemiczna	5
+294	305B	Sala 305B	LABORATORY	17	1170	340	50	1170	470	150	TCh 305B, 305B TCh, technologia chemiczna 305B, 305B technologia chemiczna	5
+295	306B	Sala 306B	LABORATORY	17	1360	340	50	1360	470	151	TCh 306B, 306B TCh, technologia chemiczna 306B, 306B technologia chemiczna	5
+296	307B	Sala 307B	LABORATORY	17	1600	340	50	1640	470	151	TCh 307B, 307B TCh, technologia chemiczna 307B, 307B technologia chemiczna	5
+297	308B	Sala 308B	LABORATORY	17	1790	340	50	1860	470	151	TCh 308B, 308B TCh, technologia chemiczna 308B, 308B technologia chemiczna	5
+298	309B	Sala 309B	LABORATORY	17	1990	340	50	1940	470	151	TCh 309B, 309B TCh, technologia chemiczna 309B, 309B technologia chemiczna	5
+299	310B	Sala 310B	LABORATORY	17	2270	340	70	2350	470	151	TCh 310B, 310B TCh, technologia chemiczna 310B, 310B technologia chemiczna	5
+300	311B	Sala 311B	LABORATORY	17	1360	630	20	2360	565	151	TCh 311B, 311B TCh, technologia chemiczna 311B, 311B technologia chemiczna	5
+301	312B	Sala 312B	LABORATORY	17	2260	630	20	2280	565	151	TCh 312B, 312B TCh, technologia chemiczna 312B, 312B technologia chemiczna	5
+302	313B	Sala 313B	LABORATORY	17	2160	630	20	2140	565	151	TCh 313B, 313B TCh, technologia chemiczna 313B, 313B technologia chemiczna	5
+303	314B	Sala 314B	LABORATORY	17	2070	630	20	2050	565	151	TCh 314B, 314B TCh, technologia chemiczna 314B, 314B technologia chemiczna	5
+304	315B	Sala 315B	LABORATORY	17	1930	630	20	1950	565	151	TCh 315B, 315B TCh, technologia chemiczna 315B, 315B technologia chemiczna	5
+305	316B	Sala 316B	LABORATORY	17	1840	630	20	1840	565	151	TCh 316B, 316B TCh, technologia chemiczna 316B, 316B technologia chemiczna	5
+306	317B	Sala 317B	LABORATORY	17	1750	630	20	1720	565	151	TCh 317B, 317B TCh, technologia chemiczna 317B, 317B technologia chemiczna	5
+307	318B	Sala 318B	LABORATORY	17	1630	630	20	1650	565	151	TCh 318B, 318B TCh, technologia chemiczna 318B, 318B technologia chemiczna	5
+308	319B	Sala 319B	LABORATORY	17	1530	630	20	1510	565	151	TCh 319B, 319B TCh, technologia chemiczna 319B, 319B technologia chemiczna	5
+309	T304	Sala T304	LABORATORY	17	1360	630	40	1320	565	151	TCh T304, T304 TCh, technologia chemiczna T304, T304 technologia chemiczna	5
+310		toaleta damska	RESTROOM	17	1213	1876	20	1129	1884	144	toaleta damska, wc damskie, �azienka damska	5
+311		toaleta m�ska	RESTROOM	17	1197	1964	20	1129	1884	144	toaleta m�ska, wc m�skie, �azienka m�ska	5
+312		toaleta damska	RESTROOM	17	773	616	20	865	700	146	toaleta damska, wc damskie, �azienka damska	5
+313		toaleta m�ska	RESTROOM	17	881	616	20	865	700	146	toaleta m�ska, wc m�skie, �azienka m�ska	5
+314		toaleta dla niepe�nosprawnych	RESTROOM	17	989	616	20	865	700	146	toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych	5
+315	T303	Sala T303	LECTURE	17	877	1236	40	993	1744	143	TCh T303, T303 TCh, technologia chemiczna T303, T303 technologia chemiczna	5
+316	1	Sala 001	LABORATORY	18	1610	830	45	1628	878	198	1 NBM, NBM 1, nanoin�ynieria 1, biomechanika 1, mechatronika 1	6
+317	2	Sala 002	LABORATORY	18	1460	830	45	1508	878	198	2 NBM, NBM 2, nanoin�ynieria 2, biomechanika 2, mechatronika 2	6
+318	3	Sala 003	LABORATORY	18	1296	830	45	1338	878	198	3 NBM, NBM 3, nanoin�ynieria 3, biomechanika 3, mechatronika 3	6
+319	4	Sala 004	LABORATORY	18	1151	830	45	1077	852	185	4 NBM, NBM 4, nanoin�ynieria 4, biomechanika 4, mechatronika 4	6
+320	5	Sala 005	LABORATORY	18	1450	595	80	1138	470	180	5 NBM, NBM 5, nanoin�ynieria 5, biomechanika 5, mechatronika 5	6
+321	6	Sala 006	LABORATORY	18	931	475	45	1031	505	180	6 NBM, NBM 6, nanoin�ynieria 6, biomechanika 6, mechatronika 6	6
+322	7	Sala 007	LABORATORY	18	875	617	50	973	652	180	7 NBM, NBM 7, nanoin�ynieria 7, biomechanika 7, mechatronika 7	6
+323	8	Sala 008	LABORATORY	18	889	866	40	954	873	182	8 NBM, NBM 8, nanoin�ynieria 8, biomechanika 8, mechatronika 8	6
+324	9	Sala 009	LABORATORY	18	633	883	85	835	950	184	9 NBM, NBM 9, nanoin�ynieria 9, biomechanika 9, mechatronika 9	6
+325	10	Sala 010	LABORATORY	18	724	1165	75	835	1195	184	10 NBM, NBM 10, nanoin�ynieria 10, biomechanika 10, mechatronika 10	6
+326	11	Sala 011	LABORATORY	18	770	1370	110	900	1250	184	11 NBM, NBM 11, nanoin�ynieria 11, biomechanika 11, mechatronika 11	6
+327	12	Sala 012	STAFF	18	1490	1070	70	1375	1070	197	12 NBM, NBM 12, nanoin�ynieria 12, biomechanika 12, mechatronika 12	6
+328	13	Sala 013	LABORATORY	18	1520	1230	75	1375	1230	197	13 NBM, NBM 13, nanoin�ynieria 13, biomechanika 13, mechatronika 13	6
+329	14	Sala 014	LABORATORY	18	1210	1270	85	1315	1277	197	14 NBM, NBM 14, nanoin�ynieria 14, biomechanika 14, mechatronika 14	6
+330	15	Sala 015	LABORATORY	18	1478	1471	90	1586	1366	196	15 NBM, NBM 15, nanoin�ynieria 15, biomechanika 15, mechatronika 15	6
+331	16	Sala 016	LABORATORY	18	1683	1471	35	1728	1410	196	16 NBM, NBM 16, nanoin�ynieria 16, biomechanika 16, mechatronika 16	6
+332	17	Sala 017	LABORATORY	18	1853	1424	50	1794	1410	196	17 NBM, NBM 17, nanoin�ynieria 17, biomechanika 17, mechatronika 17	6
+333	18	Sala 018	STAFF	18	2018	1473	90	2043	1366	195	18 NBM, NBM 18, nanoin�ynieria 18, biomechanika 18, mechatronika 18	6
+334	19	Sala 019	LABORATORY	18	2578	1353	140	2530	1205	193	19 NBM, NBM 19, nanoin�ynieria 19, biomechanika 19, mechatronika 19	6
+335	20	Sala 020	LABORATORY	18	2134	1240	60	2141	1313	195	20 NBM, NBM 20, nanoin�ynieria 20, biomechanika 20, mechatronika 20	6
+336	21	Sala 021	STAFF	18	2164	1070	50	2227	1105	192	21 NBM, NBM 21, nanoin�ynieria 21, biomechanika 21, mechatronika 21	6
+337	22	Sala 022	LABORATORY	18	2050	826	40	2027	878	188	22 NBM, NBM 22, nanoin�ynieria 22, biomechanika 22, mechatronika 22	6
+338	23	Sala 023	LABORATORY	18	2066	733	35	2225	767	190	23 NBM, NBM 23, nanoin�ynieria 23, biomechanika 23, mechatronika 23	6
+339	24	Sala 024	LABORATORY	18	2029	605	35	2076	623	190	24 NBM, NBM 24, nanoin�ynieria 24, biomechanika 24, mechatronika 24	6
+340	26	Sala 026	LABORATORY	18	2335	833	35	2291	808	190	26 NBM, NBM 26, nanoin�ynieria 26, biomechanika 26, mechatronika 26	6
+341	28	Sala 028	LABORATORY	18	2533	810	50	2533	878	191	28 NBM, NBM 28, nanoin�ynieria 28, biomechanika 28, mechatronika 28	6
+342	29	Sala 029	STAFF	18	2735	832	55	2715	894	191	29 NBM, NBM 29, nanoin�ynieria 29, biomechanika 29, mechatronika 29	6
+343	30	Sala 030	STAFF	18	2852	832	55	2831	894	191	30 NBM, NBM 30, nanoin�ynieria 30, biomechanika 30, mechatronika 30	6
+344	31	Sala 031	STAFF	18	3027	834	55	2934	894	191	31 NBM, NBM 31, nanoin�ynieria 31, biomechanika 31, mechatronika 31	6
+345	33	Sala 033	TECH	18	2799	995	40	2724	950	191	33 NBM, NBM 33, nanoin�ynieria 33, biomechanika 33, mechatronika 33	6
+346	34	Sala 034	LABORATORY	18	2883	1093	50	2959	950	191	34 NBM, NBM 34, nanoin�ynieria 34, biomechanika 34, mechatronika 34	6
+347	35	Sala 035	LABORATORY	18	3055	1310	90	2856	1182	193	35 NBM, NBM 35, nanoin�ynieria 35, biomechanika 35, mechatronika 35	6
+348	0T5	Pomieszczenie techniczne 0T5	TECH	18	2580	1050	90	2620	1160	193	0T5 NBM, NBM 0T5, nanoin�ynieria 0T5, biomechanika 0T5, mechatronika 0T5	6
+349	0T4	Pomieszczenie techniczne 0T4	TECH	18	2017	1072	70	2053	992	188	0T4 NBM, NBM 0T4, nanoin�ynieria 0T4, biomechanika 0T4, mechatronika 0T4	6
+350	0T3	Pomieszczenie techniczne 0T3	TECH	18	1722	1287	20	1686	1314	196	0T3 NBM, NBM 0T3, nanoin�ynieria 0T3, biomechanika 0T3, mechatronika 0T3	6
+351	0T2	Pomieszczenie techniczne 0T2	TECH	18	1975	1235	55	1977	1314	195	0T2 NBM, NBM 0T2, nanoin�ynieria 0T2, biomechanika 0T2, mechatronika 0T2	6
+352	0T1	Pomieszczenie techniczne 0T1	TECH	18	1035	1134	30	948	1175	184	0T1 NBM, NBM 0T1, nanoin�ynieria 0T1, biomechanika 0T1, mechatronika 0T1	6
+353		toaleta damska	RESTROOM	18	1725	1047	45	1730	992	188	toaleta damska, wc damskie, �azienka damska	6
+354		toaleta m�ska	RESTROOM	18	1883	1047	25	1874	992	188	toaleta m�ska, wc m�skie, �azienka m�ska	6
+355		toaleta dla niepe�nosprawnych	RESTROOM	18	1823	1022	20	1828	992	188	toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych	6
+356	101	Sala 101	LECTURE	19	2060	1100	130	1946	947	208	101 NBM, NBM 101, nanoin�ynieria 101, biomechanika 101, mechatronika 101	6
+357	102	Sala 102	LECTURE	19	1515	1100	130	1618	947	222	102 NBM, NBM 102, nanoin�ynieria 102, biomechanika 102, mechatronika 102	6
+358	1P2	Pomieszczenie porz�dkowe 1P2	TECH	19	2083	622	45	2041	703	206	1P2 NBM, NBM 1P2, nanoin�ynieria 1P2, biomechanika 1P2, mechatronika 1P2	6
+359	1T4	Pomieszczenie techniczne 1T4	TECH	19	2003	587	35	1972	676	206	1T4 NBM, NBM 1T4, nanoin�ynieria 1T4, biomechanika 1T4, mechatronika 1T4	6
+360	1T5	Pomieszczenie techniczne 1T5	TECH	19	1907	556	55	1885	640	206	1T5 NBM, NBM 1T5, nanoin�ynieria 1T5, biomechanika 1T5, mechatronika 1T5	6
+361	1T6	Pomieszczenie techniczne 1T6	TECH	19	1803	514	55	1774	597	206	1T6 NBM, NBM 1T6, nanoin�ynieria 1T6, biomechanika 1T6, mechatronika 1T6	6
+362	103	Sala 103	LECTURE	19	1668	460	90	1690	563	206	103 NBM, NBM 103, nanoin�ynieria 103, biomechanika 103, mechatronika 103	6
+363	104	Sala 104	LECTURE	19	1506	391	90	1528	498	206	104 NBM, NBM 104, nanoin�ynieria 104, biomechanika 104, mechatronika 104	6
+364	105	Sala 105	LECTURE	19	1350	330	60	1354	429	205	105 NBM, NBM 105, nanoin�ynieria 105, biomechanika 105, mechatronika 105	6
+365	106	Sala 106	LECTURE	19	1190	263	90	1218	374	205	106 NBM, NBM 106, nanoin�ynieria 106, biomechanika 106, mechatronika 106	6
+366	107	Sala 107	LECTURE	19	1008	223	75	1074	342	205	107 NBM, NBM 107, nanoin�ynieria 107, biomechanika 107, mechatronika 107	6
+367	108	Sala 108	LECTURE	19	941	404	70	1024	463	231	108 NBM, NBM 108, nanoin�ynieria 108, biomechanika 108, mechatronika 108	6
+368	109	Sala 109	LECTURE	19	883	549	65	959	629	231	109 NBM, NBM 109, nanoin�ynieria 109, biomechanika 109, mechatronika 109	6
+369	110	Sala 110	LECTURE	19	831	681	45	928	709	231	110 NBM, NBM 110, nanoin�ynieria 110, biomechanika 110, mechatronika 110	6
+370	111	Sala 111	LECTURE	19	1409	623	90	1453	536	206	111 NBM, NBM 111, nanoin�ynieria 111, biomechanika 111, mechatronika 111	6
+371	112	Sala 112	LECTURE	19	1200	580	75	1150	500	231	112 NBM, NBM 112, nanoin�ynieria 112, biomechanika 112, mechatronika 112	6
+372	113	Sala 113	LECTURE	19	1122	681	45	1030	677	231	113 NBM, NBM 113, nanoin�ynieria 113, biomechanika 113, mechatronika 113	6
+373	1S2	Sklep	GASTRONOMIC	19	1634	676	35	1678	686	206	1S2 NBM, NBM 1S2, nanoin�ynieria 1S2, biomechanika 1S2, mechatronika 1S2	6
+374		szatnia	TECH	19	2279	671	50	2312	732	210	szatnia NBM, NBM szatnia	6
+375	114	Sala 114	LABORATORY	19	734	1030	70	857	1070	219	114 NBM, NBM 114, nanoin�ynieria 114, biomechanika 114, mechatronika 114	6
+376	115	Sala 115	LABORATORY	19	666	1165	50	750	1220	218	115 NBM, NBM 115, nanoin�ynieria 115, biomechanika 115, mechatronika 115	6
+377	116	Sala 116	STAFF	19	560	1245	30	602	1242	218	116 NBM, NBM 116, nanoin�ynieria 116, biomechanika 116, mechatronika 116	6
+378	117	Sala 117	STAFF	19	535	1353	50	600	1310	218	117 NBM, NBM 117, nanoin�ynieria 117, biomechanika 117, mechatronika 117	6
+379	118	Sala 118	STAFF	19	657	1374	35	677	1263	218	118 NBM, NBM 118, nanoin�ynieria 118, biomechanika 118, mechatronika 118	6
+380	119	Sala 119	STAFF	19	755	1350	45	733	1263	218	119 NBM, NBM 119, nanoin�ynieria 119, biomechanika 119, mechatronika 119	6
+381	120	Sala 120	STAFF	19	857	1350	45	880	1263	218	120 NBM, NBM 120, nanoin�ynieria 120, biomechanika 120, mechatronika 120	6
+382	121	Sala 121	STAFF	19	965	1351	45	987	1263	217	121 NBM, NBM 121, nanoin�ynieria 121, biomechanika 121, mechatronika 121	6
+383	122	Sala 122	STAFF	19	1066	1359	40	1084	1263	217	122 NBM, NBM 122, nanoin�ynieria 122, biomechanika 122, mechatronika 122	6
+384	123	Sala 123	LABORATORY	19	1200	1372	75	1200	1263	217	123 NBM, NBM 123, nanoin�ynieria 123, biomechanika 123, mechatronika 123	6
+385	124	Sala 124	LABORATORY	19	1391	1416	80	1325	1320	214	124 NBM, NBM 124, nanoin�ynieria 124, biomechanika 124, mechatronika 124	6
+386	125	Sala 125	LABORATORY	19	1611	1416	80	1588	1320	214	125 NBM, NBM 125, nanoin�ynieria 125, biomechanika 125, mechatronika 125	6
+387	126	Sala 126	LABORATORY	19	1994	1416	80	2017	1320	212	126 NBM, NBM 126, nanoin�ynieria 126, biomechanika 126, mechatronika 126	6
+388	127	Sala 127	LABORATORY	19	2190	1416	80	2180	1320	212	127 NBM, NBM 127, nanoin�ynieria 127, biomechanika 127, mechatronika 127	6
+389	128	Sala 128	LABORATORY	19	2378	1416	80	2389	1320	212	128 NBM, NBM 128, nanoin�ynieria 128, biomechanika 128, mechatronika 128	6
+390	129	Sala 129	STAFF	19	2516	1416	45	2516	1320	212	129 NBM, NBM 129, nanoin�ynieria 129, biomechanika 129, mechatronika 129	6
+391	130	Sala 130	STAFF	19	2613	1416	35	2598	1320	212	130 NBM, NBM 130, nanoin�ynieria 130, biomechanika 130, mechatronika 130	6
+392	131	Sala 131	STAFF	19	2709	1416	40	2696	1320	212	131 NBM, NBM 131, nanoin�ynieria 131, biomechanika 131, mechatronika 131	6
+393	132	Sala 132	LABORATORY	19	2857	1342	75	2738	1297	211	132 NBM, NBM 132, nanoin�ynieria 132, biomechanika 132, mechatronika 132	6
+394	133	Sala 133	LABORATORY	19	2879	1181	75	2738	1197	211	133 NBM, NBM 133, nanoin�ynieria 133, biomechanika 133, mechatronika 133	6
+395	134	Sala 134	LABORATORY	19	2892	1024	50	2738	1036	211	134 NBM, NBM 134, nanoin�ynieria 134, biomechanika 134, mechatronika 134	6
+396	135	Sala 135	LABORATORY	19	2579	1024	70	2657	1010	211	135 NBM, NBM 135, nanoin�ynieria 135, biomechanika 135, mechatronika 135	6
+397	136	Sala 136	LABORATORY	19	2556	1194	70	2657	1198	211	136 NBM, NBM 136, nanoin�ynieria 136, biomechanika 136, mechatronika 136	6
+398	1T1	Pomieszczenie techniczne 1T1	TECH	19	1026	1139	70	940	1178	219	1T1 NBM, NBM 1T1, nanoin�ynieria 1T1, biomechanika 1T1, mechatronika 1T1	6
+399	1T2	Pomieszczenie techniczne 1T2	TECH	19	2374	1189	65	2274	1207	212	1T2 NBM, NBM 1T2, nanoin�ynieria 1T2, biomechanika 1T2, mechatronika 1T2	6
+400	1T3	Pomieszczenie techniczne 1T3	TECH	19	1707	1244	20	1675	1268	214	1T3 NBM, NBM 1T3, nanoin�ynieria 1T3, biomechanika 1T3, mechatronika 1T3	6
+401	1P1	Pomieszczenie porz�dkowe 1P1	TECH	19	1104	961	10	1100	945	221	1P1 NBM, NBM 1P1, nanoin�ynieria 1P1, biomechanika 1P1, mechatronika 1P1	6
+402	1S1	Pomieszczenie socjalne 1S1	TECH	19	1811	1375	35	1807	1330	212	1S1 NBM, NBM 1S1, nanoin�ynieria 1S1, biomechanika 1S1, mechatronika 1S1	6
+403		toaleta damska	RESTROOM	19	1708	1000	45	1720	948	222	toaleta damska, wc damskie, �azienka damska	6
+404		toaleta m�ska	RESTROOM	19	1870	1000	30	1863	948	223	toaleta m�ska, wc m�skie, �azienka m�ska	6
+405		toaleta dla niepe�nosprawnych	RESTROOM	19	1810	980	20	1817	948	223	toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych	6
+406	201	Sala 201	LECTURE	19	2048	630	130	2171	469	237	201 NBM, NBM 201, nanoin�ynieria 201, biomechanika 201, mechatronika 201	6
+407	202	Sala 202	LECTURE	20	1470	630	130	1357	469	235	202 NBM, NBM 202, nanoin�ynieria 202, biomechanika 202, mechatronika 202	6
+408	203	Sala 203	STAFF	20	1466	300	45	1464	358	235	203 NBM, NBM 203, nanoin�ynieria 203, biomechanika 203, mechatronika 203	6
+409	204	Sala 204	STAFF	20	1372	300	45	1389	363	235	204 NBM, NBM 204, nanoin�ynieria 204, biomechanika 204, mechatronika 204	6
+410	205	Sala 205	STAFF	20	1279	305	40	1268	368	235	205 NBM, NBM 205, nanoin�ynieria 205, biomechanika 205, mechatronika 205	6
+411	206	Sala 206	STAFF	20	1174	305	50	1174	368	233	206 NBM, NBM 206, nanoin�ynieria 206, biomechanika 206, mechatronika 206	6
+412	207	Sala 207	STAFF	20	1065	305	40	1065	368	233	207 NBM, NBM 207, nanoin�ynieria 207, biomechanika 207, mechatronika 207	6
+413	208	Sala 208	STAFF	20	968	305	45	968	368	233	208 NBM, NBM 208, nanoin�ynieria 208, biomechanika 208, mechatronika 208	6
+414	209	Sala 209	STAFF	20	862	305	40	858	368	233	209 NBM, NBM 209, nanoin�ynieria 209, biomechanika 209, mechatronika 209	6
+415	210	Sala 210	STAFF	20	760	305	45	755	368	233	210 NBM, NBM 210, nanoin�ynieria 210, biomechanika 210, mechatronika 210	6
+416	211	Sala 211	STAFF	20	631	429	35	709	407	233	211 NBM, NBM 211, nanoin�ynieria 211, biomechanika 211, mechatronika 211	6
+417	212	Sala 212	LABORATORY	20	665	560	75	789	457	250	212 NBM, NBM 212, nanoin�ynieria 212, biomechanika 212, mechatronika 212	6
+418	213	Sala 213	LABORATORY	20	522	692	25	534	753	250	213 NBM, NBM 213, nanoin�ynieria 213, biomechanika 213, mechatronika 213	6
+419	214	Sala 214	LABORATORY	20	420	677	55	488	777	250	214 NBM, NBM 214, nanoin�ynieria 214, biomechanika 214, mechatronika 214	6
+420	215	Sala 215	LABORATORY	20	472	884	75	563	797	250	215 NBM, NBM 215, nanoin�ynieria 215, biomechanika 215, mechatronika 215	6
+421	216	Sala 216	LABORATORY	20	702	883	75	638	797	250	216 NBM, NBM 216, nanoin�ynieria 216, biomechanika 216, mechatronika 216	6
+422	217	Sala 217	LABORATORY	20	935	887	75	847	797	249	217 NBM, NBM 217, nanoin�ynieria 217, biomechanika 217, mechatronika 217	6
+423	218	Sala 218	LABORATORY	20	1149	908	75	1236	837	246	218 NBM, NBM 218, nanoin�ynieria 218, biomechanika 218, mechatronika 218	6
+424	219	Sala 219	LABORATORY	20	1149	908	75	1236	837	246	219 NBM, NBM 219, nanoin�ynieria 219, biomechanika 219, mechatronika 219	6
+425	220	Sala 220	LABORATORY	20	1375	955	40	1361	860	246	220 NBM, NBM 220, nanoin�ynieria 220, biomechanika 220, mechatronika 220	6
+426	221	Sala 221	LABORATORY	20	1558	972	100	1463	860	246	221 NBM, NBM 221, nanoin�ynieria 221, biomechanika 221, mechatronika 221	6
+427	222	Sala 222	LABORATORY	20	2042	970	100	2151	858	245	222 NBM, NBM 222, nanoin�ynieria 222, biomechanika 222, mechatronika 222	6
+428	223	Sala 223	LECTURE	20	2236	963	40	2228	858	245	223 NBM, NBM 223, nanoin�ynieria 223, biomechanika 223, mechatronika 223	6
+429	224	Sala 224	LABORATORY	20	2467	906	90	2612	796	242	224 NBM, NBM 224, nanoin�ynieria 224, biomechanika 224, mechatronika 224	6
+430	225	Sala 225	LABORATORY	20	2972	881	75	2814	796	241	225 NBM, NBM 225, nanoin�ynieria 225, biomechanika 225, mechatronika 225	6
+431	226	Sala 226	LABORATORY	20	3006	716	60	2855	703	241	226 NBM, NBM 226, nanoin�ynieria 226, biomechanika 226, mechatronika 226	6
+432	227	Sala 227	LABORATORY	20	2562	537	35	2617	528	241	227 NBM, NBM 227, nanoin�ynieria 227, biomechanika 227, mechatronika 227	6
+433	228	Sala 228	LABORATORY	20	2830	548	40	2830	465	240	228 NBM, NBM 228, nanoin�ynieria 228, biomechanika 228, mechatronika 228	6
+434	229	Sala 229	LABORATORY	20	3056	550	80	2964	464	240	229 NBM, NBM 229, nanoin�ynieria 229, biomechanika 229, mechatronika 229	6
+435	230	Sala 230	LABORATORY	20	3095	354	90	2980	415	240	230 NBM, NBM 230, nanoin�ynieria 230, biomechanika 230, mechatronika 230	6
+436	231	Sala 231	TECH	20	2940	306	30	2950	367	240	231 NBM, NBM 231, nanoin�ynieria 231, biomechanika 231, mechatronika 231	6
+437	232	Sala 232	STAFF	20	2619	306	45	2602	367	239	232 NBM, NBM 232, nanoin�ynieria 232, biomechanika 232, mechatronika 232	6
+438	233	Sala 233	STAFF	20	2519	306	40	2535	367	239	233 NBM, NBM 233, nanoin�ynieria 233, biomechanika 233, mechatronika 233	6
+439	234	Sala 234	STAFF	20	2420	306	40	2437	367	239	234 NBM, NBM 234, nanoin�ynieria 234, biomechanika 234, mechatronika 234	6
+440	235	Sala 235	STAFF	20	2326	306	40	2341	367	238	235 NBM, NBM 235, nanoin�ynieria 235, biomechanika 235, mechatronika 235	6
+441	236	Sala 236	STAFF	20	2227	306	40	2244	367	238	236 NBM, NBM 236, nanoin�ynieria 236, biomechanika 236, mechatronika 236	6
+442	237	Sala 237	STAFF	20	2128	306	40	2146	364	237	237 NBM, NBM 237, nanoin�ynieria 237, biomechanika 237, mechatronika 237	6
+443	238	Sala 238	STAFF	20	2009	297	40	2044	358	237	238 NBM, NBM 238, nanoin�ynieria 238, biomechanika 238, mechatronika 238	6
+444	2T1	Pomieszczenie techniczne 2T1	TECH	20	962	669	70	875	700	250	2T1 NBM, NBM 2T1, nanoin�ynieria 2T1, biomechanika 2T1, mechatronika 2T1	6
+445	2T2	Pomieszczenie techniczne 2T2	TECH	20	2373	690	40	2362	744	242	2T2 NBM, NBM 2T2, nanoin�ynieria 2T2, biomechanika 2T2, mechatronika 2T2	6
+446	2T3	Pomieszczenie techniczne 2T3	TECH	20	1681	778	15	1644	803	246	2T3 NBM, NBM 2T3, nanoin�ynieria 2T3, biomechanika 2T3, mechatronika 2T3	6
+447	2T4	Pomieszczenie techniczne 2T4	TECH	20	1539	299	15	1537	352	235	2T4 NBM, NBM 2T4, nanoin�ynieria 2T4, biomechanika 2T4, mechatronika 2T4	6
+448		toaleta damska	RESTROOM	20	1681	524	40	1695	470	237	toaleta damska, wc damskie, �azienka damska	6
+449		toaleta m�ska	RESTROOM	20	1849	524	25	1839	470	237	toaleta m�ska, wc m�skie, �azienka m�ska	6
+450		toaleta dla niepe�nosprawnych	RESTROOM	20	1786	504	20	1791	470	237	toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych	6
+451	301	Sala 301	LECTURE	21	2026	496	130	2168	318	262	301 NBM, NBM 301, nanoin�ynieria 301, biomechanika 301, mechatronika 301	6
+452	302	Sala 302	LECTURE	21	1392	496	130	1262	318	260	302 NBM, NBM 302, nanoin�ynieria 302, biomechanika 302, mechatronika 302	6
+453	303	Sala 303	STAFF	21	1439	130	45	1442	191	260	303 NBM, NBM 303, nanoin�ynieria 303, biomechanika 303, mechatronika 303	6
+454	304	Sala 304	STAFF	21	1321	130	45	1303	199	260	304 NBM, NBM 304, nanoin�ynieria 304, biomechanika 304, mechatronika 304	6
+455	305	Sala 305	STAFF	21	1196	130	45	1160	204	259	305 NBM, NBM 305, nanoin�ynieria 305, biomechanika 305, mechatronika 305	6
+456	306	Sala 306	STAFF	21	1059	130	45	1045	204	258	306 NBM, NBM 306, nanoin�ynieria 306, biomechanika 306, mechatronika 306	6
+457	307	Sala 307	STAFF	21	927	130	45	886	204	258	307 NBM, NBM 307, nanoin�ynieria 307, biomechanika 307, mechatronika 307	6
+458	308	Sala 308	STAFF	21	780	130	45	738	204	258	308 NBM, NBM 308, nanoin�ynieria 308, biomechanika 308, mechatronika 308	6
+459	309	Sala 309	STAFF	21	623	130	45	593	204	258	309 NBM, NBM 309, nanoin�ynieria 309, biomechanika 309, mechatronika 309	6
+460	310	Sala 310	LECTURE	21	462	265	35	548	261	283	310 NBM, NBM 310, nanoin�ynieria 310, biomechanika 310, mechatronika 310	6
+461	311	Sala 311	LABORATORY	21	498	416	85	644	447	277	311 NBM, NBM 311, nanoin�ynieria 311, biomechanika 311, mechatronika 311	6
+462	312	Sala 312	LABORATORY	21	248	507	70	356	551	277	312 NBM, NBM 312, nanoin�ynieria 312, biomechanika 312, mechatronika 312	6
+463	313	Sala 313	LABORATORY	21	252	639	30	355	635	277	313 NBM, NBM 313, nanoin�ynieria 313, biomechanika 313, mechatronika 313	6
+464	314	Sala 314	LABORATORY	21	281	780	85	393	680	277	314 NBM, NBM 314, nanoin�ynieria 314, biomechanika 314, mechatronika 314	6
+465	315	Sala 315	STAFF	21	485	778	55	475	680	277	315 NBM, NBM 315, nanoin�ynieria 315, biomechanika 315, mechatronika 315	6
+466	316	Sala 316	LABORATORY	21	806	787	85	898	680	276	316 NBM, NBM 316, nanoin�ynieria 316, biomechanika 316, mechatronika 316	6
+467	317	Sala 317	LABORATORY	21	1034	803	75	1073	680	276	317 NBM, NBM 317, nanoin�ynieria 317, biomechanika 317, mechatronika 317	6
+468	318	Sala 318	STAFF	21	1195	861	50	1168	748	273	318 NBM, NBM 318, nanoin�ynieria 318, biomechanika 318, mechatronika 318	6
+469	319	Sala 319	STAFF	21	1325	861	45	1286	748	273	319 NBM, NBM 319, nanoin�ynieria 319, biomechanika 319, mechatronika 319	6
+470	320	Sala 320	LABORATORY	21	1512	861	85	1492	748	273	320 NBM, NBM 320, nanoin�ynieria 320, biomechanika 320, mechatronika 320	6
+471	321	Sala 321	LABORATORY	21	1992	861	85	1987	748	271	321 NBM, NBM 321, nanoin�ynieria 321, biomechanika 321, mechatronika 321	6
+472	322	Sala 322	STAFF	21	2212	861	60	2202	748	271	322 NBM, NBM 322, nanoin�ynieria 322, biomechanika 322, mechatronika 322	6
+473	323	Sala 323	LABORATORY	21	2395	806	80	2327	680	268	323 NBM, NBM 323, nanoin�ynieria 323, biomechanika 323, mechatronika 323	6
+474	324	Sala 324	STAFF	21	2550	800	50	2530	680	268	324 NBM, NBM 324, nanoin�ynieria 324, biomechanika 324, mechatronika 324	6
+475	325	Sala 325	STAFF	21	2670	783	40	2684	680	268	325 NBM, NBM 325, nanoin�ynieria 325, biomechanika 325, mechatronika 325	6
+476	326	Sala 326	LABORATORY	21	2835	775	90	2836	680	267	326 NBM, NBM 326, nanoin�ynieria 326, biomechanika 326, mechatronika 326	6
+477	327	Sala 327	STAFF	21	2997	775	45	3009	680	267	327 NBM, NBM 327, nanoin�ynieria 327, biomechanika 327, mechatronika 327	6
+478	328	Sala 328	STAFF	21	3104	775	40	3092	680	267	328 NBM, NBM 328, nanoin�ynieria 328, biomechanika 328, mechatronika 328	6
+479	329	Sala 329	STAFF	21	3209	775	40	3180	680	267	329 NBM, NBM 329, nanoin�ynieria 329, biomechanika 329, mechatronika 329	6
+480	330	Sala 330	STAFF	21	3180	566	45	3142	624	267	330 NBM, NBM 330, nanoin�ynieria 330, biomechanika 330, mechatronika 330	6
+481	331	Sala 331	LABORATORY	21	2583	526	60	2658	581	266	331 NBM, NBM 331, nanoin�ynieria 331, biomechanika 331, mechatronika 331	6
+482	332	Sala 332	LABORATORY	21	2820	404	85	2778	311	266	332 NBM, NBM 332, nanoin�ynieria 332, biomechanika 332, mechatronika 332	6
+483	333	Sala 333	LABORATORY	21	3141	409	85	3047	311	266	333 NBM, NBM 333, nanoin�ynieria 333, biomechanika 333, mechatronika 333	6
+484	334	Sala 334	STAFF	21	3190	187	95	3067	251	266	334 NBM, NBM 334, nanoin�ynieria 334, biomechanika 334, mechatronika 334	6
+485	335	Sala 335	STAFF	21	2960	137	50	2910	205	266	335 NBM, NBM 335, nanoin�ynieria 335, biomechanika 335, mechatronika 335	6
+486	336	Sala 336	STAFF	21	2803	137	40	2800	205	266	336 NBM, NBM 336, nanoin�ynieria 336, biomechanika 336, mechatronika 336	6
+487	337	Sala 337	STAFF	21	2678	137	50	2628	205	265	337 NBM, NBM 337, nanoin�ynieria 337, biomechanika 337, mechatronika 337	6
+488	338	Sala 338	STAFF	21	2532	137	50	2561	205	265	338 NBM, NBM 338, nanoin�ynieria 338, biomechanika 338, mechatronika 338	6
+489	339	Sala 339	STAFF	21	2372	137	50	2409	205	264	339 NBM, NBM 339, nanoin�ynieria 339, biomechanika 339, mechatronika 339	6
+490	340	Sala 340	STAFF	21	2216	137	50	2254	205	263	340 NBM, NBM 340, nanoin�ynieria 340, biomechanika 340, mechatronika 340	6
+491	341	Sala 341	STAFF	21	2034	137	45	2098	200	262	341 NBM, NBM 341, nanoin�ynieria 341, biomechanika 341, mechatronika 341	6
+492	3T1	Pomieszczenie techniczne 3T1	TECH	21	862	555	40	1039	622	276	3T1 NBM, NBM 3T1, nanoin�ynieria 3T1, biomechanika 3T1, mechatronika 3T1	6
+493	3T3	Pomieszczenie techniczne 3T3	TECH	21	1620	659	15	1583	688	273	3T3 NBM, NBM 3T3, nanoin�ynieria 3T3, biomechanika 3T3, mechatronika 3T3	6
+494	3T4	Pomieszczenie techniczne 3T4	TECH	21	1771	825	45	1779	765	271	3T4 NBM, NBM 3T4, nanoin�ynieria 3T4, biomechanika 3T4, mechatronika 3T4	6
+495	3S6	Pomieszczenie socjalne 3S6	STAFF	21	3056	560	35	3063	624	267	3S6 NBM, NBM 3S6, nanoin�ynieria 3S6, biomechanika 3S6, mechatronika 3S6	6
+496		toaleta damska	RESTROOM	21	1630	380	40	1638	317	262	toaleta damska, wc damskie, �azienka damska	6
+497		toaleta m�ska	RESTROOM	21	1810	365	30	1798	317	262	toaleta m�ska, wc m�skie, �azienka m�ska	6
+498		toaleta dla niepe�nosprawnych	RESTROOM	21	1740	355	25	1746	317	262	toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych	6
+499	401	Sala 401	LECTURE	22	2060	505	130	2194	327	289	401 NBM, NBM 401, nanoin�ynieria 401, biomechanika 401, mechatronika 401	6
+500	402	Sala 402	LECTURE	22	1420	505	130	1294	327	287	402 NBM, NBM 402, nanoin�ynieria 402, biomechanika 402, mechatronika 402	6
+501	403	Sala 403	STAFF	22	1466	140	45	1460	200	287	403 NBM, NBM 403, nanoin�ynieria 403, biomechanika 403, mechatronika 403	6
+502	404	Sala 404	STAFF	22	1351	144	45	1329	210	287	404 NBM, NBM 404, nanoin�ynieria 404, biomechanika 404, mechatronika 404	6
+503	405	Sala 405	STAFF	22	1244	144	40	1219	214	287	405 NBM, NBM 405, nanoin�ynieria 405, biomechanika 405, mechatronika 405	6
+504	406	Sala 406	STAFF	22	1138	144	40	1162	214	286	406 NBM, NBM 406, nanoin�ynieria 406, biomechanika 406, mechatronika 406	6
+505	407	Sala 407	STAFF	22	1025	144	45	1049	214	285	407 NBM, NBM 407, nanoin�ynieria 407, biomechanika 407, mechatronika 407	6
+506	408	Sala 408	STAFF	22	915	144	35	915	214	285	408 NBM, NBM 408, nanoin�ynieria 408, biomechanika 408, mechatronika 408	6
+507	409	Sala 409	STAFF	22	797	144	45	768	214	285	409 NBM, NBM 409, nanoin�ynieria 409, biomechanika 409, mechatronika 409	6
+508	410	Sala 410	STAFF	22	655	144	50	625	214	285	410 NBM, NBM 410, nanoin�ynieria 410, biomechanika 410, mechatronika 410	6
+509	411	Sala 411	STAFF	22	511	196	55	581	256	304	411 NBM, NBM 411, nanoin�ynieria 411, biomechanika 411, mechatronika 411	6
+510	412	Sala 412	LABORATORY	22	570	455	50	671	428	303	412 NBM, NBM 412, nanoin�ynieria 412, biomechanika 412, mechatronika 412	6
+511	413	Sala 413	STAFF	22	285	626	55	388	657	303	413 NBM, NBM 413, nanoin�ynieria 413, biomechanika 413, mechatronika 413	6
+512	414	Sala 414	LABORATORY	22	433	782	80	511	688	303	414 NBM, NBM 414, nanoin�ynieria 414, biomechanika 414, mechatronika 414	6
+513	415	Sala 415	LABORATORY	22	636	782	60	635	688	303	415 NBM, NBM 415, nanoin�ynieria 415, biomechanika 415, mechatronika 415	6
+514	416	Sala 416	LABORATORY	22	902	782	75	1005	688	301	416 NBM, NBM 416, nanoin�ynieria 416, biomechanika 416, mechatronika 416	6
+515	417	Sala 417	LABORATORY	22	1117	782	35	1115	688	301	417 NBM, NBM 417, nanoin�ynieria 417, biomechanika 417, mechatronika 417	6
+516	418	Sala 418	STAFF	22	1264	817	45	1305	757	299	418 NBM, NBM 418, nanoin�ynieria 418, biomechanika 418, mechatronika 418	6
+517	419	Sala 419	STAFF	22	1430	817	45	1443	757	299	419 NBM, NBM 419, nanoin�ynieria 419, biomechanika 419, mechatronika 419	6
+518	420	Sala 420	STAFF	22	1578	817	45	1523	757	299	420 NBM, NBM 420, nanoin�ynieria 420, biomechanika 420, mechatronika 420	6
+519	421	Sala 421	STAFF	22	1965	817	45	1965	757	298	421 NBM, NBM 421, nanoin�ynieria 421, biomechanika 421, mechatronika 421	6
+520	422	Sala 422	STAFF	22	2180	817	45	2221	757	298	422 NBM, NBM 422, nanoin�ynieria 422, biomechanika 422, mechatronika 422	6
+521	423	Sala 423	STAFF	22	2423	790	75	2353	688	295	423 NBM, NBM 423, nanoin�ynieria 423, biomechanika 423, mechatronika 423	6
+522	424	Sala 424	LABORATORY	22	2700	790	75	2800	688	294	424 NBM, NBM 424, nanoin�ynieria 424, biomechanika 424, mechatronika 424	6
+523	425	Sala 425	STAFF	22	3047	790	30	3038	688	294	425 NBM, NBM 425, nanoin�ynieria 425, biomechanika 425, mechatronika 425	6
+524	426	Sala 426	STAFF	22	3195	658	50	3095	646	294	426 NBM, NBM 426, nanoin�ynieria 426, biomechanika 426, mechatronika 426	6
+525	427	Sala 427	STAFF	22	3191	533	10	3095	539	294	427 NBM, NBM 427, nanoin�ynieria 427, biomechanika 427, mechatronika 427	6
+526	428	Sala 428	LABORATORY	22	2605	540	65	2619	633	295	428 NBM, NBM 428, nanoin�ynieria 428, biomechanika 428, mechatronika 428	6
+527	429	Sala 429	TECH	22	2777	415	30	2734	428	293	429 NBM, NBM 429, nanoin�ynieria 429, biomechanika 429, mechatronika 429	6
+528	430	Sala 430	TECH	22	2629	381	40	2685	401	293	430 NBM, NBM 430, nanoin�ynieria 430, biomechanika 430, mechatronika 430	6
+529	431	Sala 431	LABORATORY	22	3061	417	85	2909	320	293	431 NBM, NBM 431, nanoin�ynieria 431, biomechanika 431, mechatronika 431	6
+530	432	Sala 432	LABORATORY	22	3219	196	80	3088	267	293	432 NBM, NBM 432, nanoin�ynieria 432, biomechanika 432, mechatronika 432	6
+531	433	Sala 433	STAFF	22	3033	146	50	3002	213	293	433 NBM, NBM 433, nanoin�ynieria 433, biomechanika 433, mechatronika 433	6
+532	434	Sala 434	STAFF	22	2904	146	45	2925	213	293	434 NBM, NBM 434, nanoin�ynieria 434, biomechanika 434, mechatronika 434	6
+533	435	Sala 435	STAFF	22	2791	146	45	2810	213	293	435 NBM, NBM 435, nanoin�ynieria 435, biomechanika 435, mechatronika 435	6
+534	436	Sala 436	STAFF	22	2684	146	35	2696	213	292	436 NBM, NBM 436, nanoin�ynieria 436, biomechanika 436, mechatronika 436	6
+535	437	Sala 437	STAFF	22	2578	146	40	2603	213	292	437 NBM, NBM 437, nanoin�ynieria 437, biomechanika 437, mechatronika 437	6
+536	438	Sala 438	STAFF	22	2473	146	40	2495	213	292	438 NBM, NBM 438, nanoin�ynieria 438, biomechanika 438, mechatronika 438	6
+537	439	Sala 439	STAFF	22	2362	146	40	2337	213	291	439 NBM, NBM 439, nanoin�ynieria 439, biomechanika 439, mechatronika 439	6
+538	440	Sala 440	STAFF	22	2239	146	45	2209	213	289	440 NBM, NBM 440, nanoin�ynieria 440, biomechanika 440, mechatronika 440	6
+539	441	Sala 441	STAFF	22	2114	142	30	2125	207	289	441 NBM, NBM 441, nanoin�ynieria 441, biomechanika 441, mechatronika 441	6
+540	442	Sala 442	STAFF	22	1998	138	30	2004	201	289	442 NBM, NBM 442, nanoin�ynieria 442, biomechanika 442, mechatronika 442	6
+541	4T1	Pomieszczenie techniczne 4T1	TECH	22	904	565	45	1080	630	301	4T1 NBM, NBM 4T1, nanoin�ynieria 4T1, biomechanika 4T1, mechatronika 4T1	6
+542	4T3	Pomieszczenie techniczne 4T3	TECH	22	1665	654	15	1613	695	299	4T3 NBM, NBM 4T3, nanoin�ynieria 4T3, biomechanika 4T3, mechatronika 4T3	6
+543		toaleta damska	RESTROOM	22	1653	387	40	1666	327	289	toaleta damska, wc damskie, �azienka damska	6
+544		toaleta m�ska	RESTROOM	22	1839	387	30	1828	327	289	toaleta m�ska, wc m�skie, �azienka m�ska	6
+545		toaleta dla niepe�nosprawnych	RESTROOM	22	1770	365	25	1774	327	289	toaleta dla niepe�nosprawnych, wc dla niepe�nosprawnych, �azienka dla niepe�nosprawnych	6

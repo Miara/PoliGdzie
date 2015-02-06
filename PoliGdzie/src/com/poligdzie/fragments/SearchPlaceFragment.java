@@ -69,15 +69,18 @@ public class SearchPlaceFragment extends PoliGdzieBaseFragment implements OnClic
 		super();
 	}
 	
-	private void initFragments() throws Exception
+	private void initFragments()
 	{
-		routeFragment = (SearchRouteFragment) this.getActivity()
-				.getFragmentManager().findFragmentById(
-						R.id.search_route_frag);
-		searchDescriptionFragment = (SearchDetailsFragment)  this.getActivity()
-				.getFragmentManager().findFragmentById(
-						R.id.search_description_frag);
-		if(routeFragment == null || searchDescriptionFragment == null) throw new Exception();
+		if(routeFragment == null || searchDescriptionFragment == null)
+		{
+			routeFragment = (SearchRouteFragment) this.getActivity()
+					.getFragmentManager().findFragmentById(
+							R.id.search_route_frag);
+			searchDescriptionFragment = (SearchDetailsFragment)  this.getActivity()
+					.getFragmentManager().findFragmentById(
+							R.id.search_description_frag);
+			//if(routeFragment == null || searchDescriptionFragment == null) throw new Exception();
+		}
 	}
 
 	@Override
@@ -85,10 +88,7 @@ public class SearchPlaceFragment extends PoliGdzieBaseFragment implements OnClic
 	{
 		try
 		{
-			if(routeFragment == null || searchDescriptionFragment == null)
-			{
 				initFragments();
-			}
 			
 			if(v == deleteTextButton)
 			{
@@ -107,6 +107,7 @@ public class SearchPlaceFragment extends PoliGdzieBaseFragment implements OnClic
 	
 	public void resetInput()
 	{
+		initFragments();
 		this.searchPosition.setText("");
 		searchDescriptionFragment.getView().setVisibility(View.GONE);
 		if (searchPosition.hasFocus())

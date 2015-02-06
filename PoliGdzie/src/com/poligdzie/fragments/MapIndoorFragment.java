@@ -15,10 +15,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import com.example.poligdzie.R;
+import com.poligdzie.activities.MapActivity;
 import com.poligdzie.base.PoliGdzieMapFragment;
 import com.poligdzie.persistence.Floor;
 import com.poligdzie.persistence.NavigationPoint;
 import com.poligdzie.persistence.NavigationPointTypes;
+import com.poligdzie.persistence.Room;
 import com.poligdzie.route.Line;
 import com.poligdzie.tasks.BitmapWorkerTask;
 import com.poligdzie.widgets.BuildingImageView;
@@ -73,52 +75,56 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 		buildingImage = (BuildingImageView) inflater
 				.findViewById(R.id.imageview_floor_scheme);
 		buildingImage.setBitmap(bitmap);
-		if(routeMode != INDOOR_PROCESS_TYPE_VIEW) 
+		
+		MapActivity activity = (MapActivity)getActivity();
+		buildingImage.setDetailFragmentFromContext(activity);
+		
+		try
 		{
-			try
+			Floor floor = dbHelper.getFloorDao().queryForId(floorId);
+			buildingImage.setOriginalWidth(floor.getWidth());
+			buildingImage.setOriginalHeight(floor.getHeight());
+			List<Room> rooms  = dbHelper.getRoomDao().queryBuilder().where().eq("floor_id", floorId).query();
+			buildingImage.setRooms(rooms);
+			if(routeMode == INDOOR_PROCESS_TYPE_SEARCH)
 			{
-				Floor floor = dbHelper.getFloorDao().queryForId(floorId);
-				
-				buildingImage.setOriginalWidth(floor.getWidth());
-				buildingImage.setOriginalHeight(floor.getHeight());
-				if(routeMode == INDOOR_PROCESS_TYPE_SEARCH)
-				{
-					buildingImage.setSearchCustomPoint(this.searchX,this.searchY,this.radius);
-				}
-				else if(routeMode == INDOOR_PROCESS_TYPE_ROUTE)
-				{
-					
-						
-					if (routeLines.size() > 0)
-					{
-						buildingImage.setLines(routeLines);
-						if(startPointType != null && goalPointType != null)
-						{
-							if(startPointType == NavigationPointTypes.ENTRY)
-								bmp = BitmapFactory.decodeResource(getResources(), R.drawable.entry_icon);
-							else if(startPointType == NavigationPointTypes.SPECIAL)
-								bmp = BitmapFactory.decodeResource(getResources(), R.drawable.stairs_icon);
-							else
-								bmp = BitmapFactory.decodeResource(getResources(), R.drawable.from_icon);
-							int radius = ROUTE_SCALE_RADIUS * floor.getPixelsPerMeter();
-							if(bmp != null) buildingImage.setStartCustomPoint(bmp,radius);
-							
-							if(goalPointType == NavigationPointTypes.ENTRY)
-								bmp = BitmapFactory.decodeResource(getResources(), R.drawable.entry_icon);
-							else if(goalPointType == NavigationPointTypes.SPECIAL)
-								bmp = BitmapFactory.decodeResource(getResources(), R.drawable.stairs_icon);
-							else
-								bmp = BitmapFactory.decodeResource(getResources(), R.drawable.to_icon);
-							if(bmp != null)	buildingImage.setGoalCustomPoint(bmp);
-						}
-					}
-					
-				}
-			} catch (SQLException e)
-			{
-				Log.e("MAP INDOOR FRAG","Error creating view");
-				e.printStackTrace();
+				buildingImage.setSearchCustomPoint(this.searchX,this.searchY,this.radius);
+				buildingImage.setRooms(rooms);
 			}
+			else if(routeMode == INDOOR_PROCESS_TYPE_ROUTE)
+			{
+				
+					
+				if (routeLines.size() > 0)
+				{
+					buildingImage.setLines(routeLines);
+					if(startPointType != null && goalPointType != null)
+					{
+						if(startPointType == NavigationPointTypes.ENTRY)
+							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.entry_icon);
+						else if(startPointType == NavigationPointTypes.SPECIAL)
+							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.stairs_icon);
+						else
+							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.from_icon);
+						int radius = ROUTE_SCALE_RADIUS * floor.getPixelsPerMeter();
+						if(bmp != null) buildingImage.setStartCustomPoint(bmp,radius);
+						
+						if(goalPointType == NavigationPointTypes.ENTRY)
+							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.entry_icon);
+						else if(goalPointType == NavigationPointTypes.SPECIAL)
+							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.stairs_icon);
+						else
+							bmp = BitmapFactory.decodeResource(getResources(), R.drawable.to_icon);
+						if(bmp != null)	buildingImage.setGoalCustomPoint(bmp);
+					}
+				}
+				
+			}
+		} 
+		catch (SQLException e)
+		{
+			Log.e("MAP INDOOR FRAG","Error creating view");
+			e.printStackTrace();
 		}
 	}
 

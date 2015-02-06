@@ -1,5 +1,6 @@
 package com.poligdzie.widgets;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,12 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.widget.ImageView;
 
+import com.poligdzie.activities.MapActivity;
+import com.poligdzie.fragments.SearchDetailsFragment;
+import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
+import com.poligdzie.persistence.Building;
+import com.poligdzie.persistence.Room;
 import com.poligdzie.route.Line;
 
 public class BuildingImageView extends ImageView implements Constants
@@ -38,15 +44,18 @@ public class BuildingImageView extends ImageView implements Constants
 	private float					mScaleFactor		= 1.f;
 	private float					minScaleFactor;
 
-	private float					mPosX;
-	private float					mPosY;
+	private float					mPosX = -1;
+	private float					mPosY = -1;
 
 	private float					mLastTouchX, mLastTouchY;
+	private SearchDetailsFragment	searchDetailFragment;
+	private DatabaseHelper			dbHelper;
 
 
 	private boolean					panEnabled			= true;
 	private boolean					zoomEnabled			= true;
 	List<Line>						lines				= new ArrayList<Line>();
+	List<RoomField>					rooms 				= new ArrayList<RoomField>();
 
 	private List<Line>				routeLines;
 	
@@ -60,6 +69,7 @@ public class BuildingImageView extends ImageView implements Constants
 	private int	bitmapWidth;
 	
 	private boolean 				firstView=false;
+	private boolean 				initialized = false;
 
 	private int	radius;
 
@@ -89,6 +99,7 @@ public class BuildingImageView extends ImageView implements Constants
 		mScaleDetector = new ScaleGestureDetector(getContext(),
 				new ScaleListener());
 		lines = new ArrayList<Line>();
+		dbHelper = new DatabaseHelper(getContext(), DATABASE_NAME, null, DATABASE_VERSION);
 
 	}
 
@@ -112,10 +123,7 @@ public class BuildingImageView extends ImageView implements Constants
 		canvas.save();
 		int minX, maxX, minY, maxY;
 		maxX = (int) (((viewWidth / mScaleFactor) - bitmap.getWidth()) / 2);
-		echo("maxX:"+maxX);
-		echo("divide;:"+(viewWidth / mScaleFactor));
-		echo("bitmap:"+bitmap.getWidth());
-		echo("maxX:"+maxX);
+		
 		minX = 0;
 
 		maxY = (int) (((viewHeight / mScaleFactor) - bitmap.getHeight()) / 2);
@@ -174,6 +182,7 @@ public class BuildingImageView extends ImageView implements Constants
 			}
 		}
 		
+		
 
 		canvas.restore(); // clear translation/scaling
 	}
@@ -196,11 +205,6 @@ public class BuildingImageView extends ImageView implements Constants
 			{
 				mLastTouchX = ev.getX();
 				mLastTouchY = ev.getY();
-				float d = 1727 * viewWidth / bitmap.getWidth();
-				Log.i("Poligdzie", "x:" + mLastTouchX + "-y:" + mLastTouchY
-						+ "-W:" + viewWidth + "-H:" + viewHeight);
-				Log.i("Poligdzie", "y:" + d + "-bitmap:" + bitmap.getWidth()
-						+ "-view:" + viewWidth);
 
 				mActivePointerId = ev.getPointerId(0);
 
@@ -245,10 +249,9 @@ public class BuildingImageView extends ImageView implements Constants
 			case MotionEvent.ACTION_UP:
 			{
 				mActivePointerId = INVALID_CODE;
-
+				long duration = System.currentTimeMillis() - startTime;
 				if (clickCount == 2)
 				{
-					long duration = System.currentTimeMillis() - startTime;
 					if (duration <= DOUBLE_CLICK_DURATION)
 					{
 						mScaleFactor *= VIEW_ZOOM_IN;
@@ -257,6 +260,42 @@ public class BuildingImageView extends ImageView implements Constants
 					}
 					clickCount = 0;
 					duration = 0;
+				}
+				else if( clickCount == 1)
+				{
+					if(duration <= SINGLE_CLICK_DURATION)
+					{
+						
+						float touchX = mLastTouchX/mScaleFactor - mPosX*2;
+						float touchY = mLastTouchY/mScaleFactor - mPosY*2;
+						echo("X:"+touchX);
+						echo("Y:"+touchY);
+						echo("mPosX:"+mPosX);
+						echo("mPosY:"+mPosY);
+						echo("scale:"+mScaleFactor);
+						for(RoomField rf: rooms)
+						{
+							//echo(rf.minX+"|"+rf.maxX+"|"+rf.minY+"|"+rf.maxY);
+							if( (touchX > rf.minX && touchX < rf.maxX) &&
+									(touchY > rf.minY && touchY < rf.maxY))
+							{
+								try
+								{
+									echo("room:"+rf.roomId);
+									Room room = dbHelper.getRoomDao().queryForId(rf.roomId);
+									echo("floor:"+room.getFloor().getId());
+									int buildId = dbHelper.getFloorDao().queryForId(room.getFloor().getId())
+											.getBuilding().getId();
+									Building build = dbHelper.getBuildingDao().queryForId(buildId);
+									searchDetailFragment.setTextViews(room.getName(),build.getName() , room);
+								}
+								catch (SQLException e)
+								{
+									e.printStackTrace();
+								}
+							}
+						}
+					}
 				}
 				break;
 			}
@@ -307,7 +346,6 @@ public class BuildingImageView extends ImageView implements Constants
 		}
 	}
 
-	// TODO: niech zmiana ekranu nie rysuje wszystkiego do nowa // zachowa translacje i skalowanie
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh)
 	{
@@ -315,16 +353,20 @@ public class BuildingImageView extends ImageView implements Constants
 		viewHeight = h;
 		viewWidth = w;
 
-		if ((bitmap.getHeight() > 0) && (bitmap.getWidth() > 0))
+		if ((bitmap.getHeight() > 0) && (bitmap.getWidth() > 0) )
 		{
 			float minXScaleFactor = (float) viewWidth
 					/ (float) bitmap.getWidth();
 			float minYScaleFactor = (float) viewHeight
 					/ (float) bitmap.getHeight();
 			minScaleFactor = Math.max(minXScaleFactor, minYScaleFactor);
-
-			mScaleFactor = minScaleFactor;
-			mPosX = mPosY = 0;
+			
+			if(!initialized)
+			{
+				mScaleFactor = minScaleFactor;
+				mPosX = mPosY = 0;
+				initialized = true;
+			}
 
 		}
 	}
@@ -372,12 +414,27 @@ public class BuildingImageView extends ImageView implements Constants
 			this.bmp = b;
 		}
 	}
+	
+	private class RoomField
+	{
+		public float minX;
+		public float maxX;
+		public float minY;
+		public float maxY;
+		public int roomId;
+		
+		public RoomField(float x1, float x2, float y1, float y2,int id)
+		{
+			this.minX = x1;
+			this.maxX = x2;
+			this.minY = y1;
+			this.maxY = y2;
+			this.roomId = id;
+		}
+	}
 
 	public void setSearchCustomPoint(int x, int y,int radius)
 	{
-		echo("XXXX"+x);
-		echo("XXXX"+y);
-		echo("Radius"+radius);
 		this.startPoint = new CustomBitmapPoint(x, y, null);
 		this.firstView = true;
 		this.routeMode = false;
@@ -455,6 +512,18 @@ public class BuildingImageView extends ImageView implements Constants
 			this.routeLines = routeLines;
 		}
 	}
+	
+	public void setRooms(List<Room> roomList)
+	{
+		for(Room room : roomList)
+		{
+			float x1 = (room.getCoordX() - room.getRadius())* bitmapWidth / originalWidth;
+			float x2 = (room.getCoordX() + room.getRadius())* bitmapWidth / originalWidth;
+			float y1 = (room.getCoordY() - room.getRadius())* bitmapHeight / originalHeight;
+			float y2 = (room.getCoordY() + room.getRadius())* bitmapHeight / originalHeight;
+			rooms.add(new RoomField(x1,x2,y1,y2,room.getId()));
+		}
+	}
 
 	public void setImageBitmap(Bitmap bmp)
 	{
@@ -491,12 +560,19 @@ public class BuildingImageView extends ImageView implements Constants
 	public BitmapDrawable getDrawable()
 	{
 		return getImageDrawable();
-	}
-	
+	}	
 
 	private void echo(String s)
 	{
 		Log.i("Poligdzie",s);
 	}
+
+	public void setDetailFragmentFromContext(MapActivity activity)
+	{
+		searchDetailFragment = activity.getSearchDetailsFragment();
+		
+	}
+
+
 	
 }

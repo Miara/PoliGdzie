@@ -171,6 +171,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 			tag = mapProvider.getNextKey();
 
 			switchFragment(R.id.map_container, frag, tag);
+			searchDetailsFragment.getView().setVisibility(View.GONE);
 		}
 		if (v == previous)
 		{
@@ -178,6 +179,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 			tag = mapProvider.getPreviousKey();
 
 			switchFragment(R.id.map_container, frag, tag);
+			searchDetailsFragment.getView().setVisibility(View.GONE);
 		}
 
 		setNavigationArrowsVisibility();

@@ -147,6 +147,7 @@ public class SearchDetailsFragment extends PoliGdzieBaseFragment implements OnCl
 					}
 					i++;
 				}
+				this.getView().setVisibility(View.GONE);
 
 				((OnClickListener) this.getActivity()).onClick(this.getActivity()
 						.findViewById(R.layout.map_activity));

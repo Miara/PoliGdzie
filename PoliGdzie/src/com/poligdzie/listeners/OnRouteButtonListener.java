@@ -171,7 +171,6 @@ public class OnRouteButtonListener extends PoliGdzieBaseClass implements
 								.getGoogleMapFragment().getViewTag());
 				
 				
-				// TODO zabezpieczyc, zebye nie bylo indeksu poza granicami
 				NavigationPoint startIndoorPoint = dbHelper.getNavigationPointDao().
 						queryForId(entrances.get(1).getNavigationPoint().getId());
 				if (goalObject instanceof Room)
