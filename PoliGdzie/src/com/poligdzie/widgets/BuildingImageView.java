@@ -15,15 +15,21 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
+import com.example.poligdzie.R;
 import com.poligdzie.activities.MapActivity;
+import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.fragments.SearchDetailsFragment;
 import com.poligdzie.helpers.DatabaseHelper;
+import com.poligdzie.helpers.FragmentMapHelper;
 import com.poligdzie.interfaces.Constants;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.route.Line;
+import com.poligdzie.singletons.MapFragmentProvider;
 
 public class BuildingImageView extends ImageView implements Constants
 {
@@ -273,6 +279,7 @@ public class BuildingImageView extends ImageView implements Constants
 						echo("mPosX:"+mPosX);
 						echo("mPosY:"+mPosY);
 						echo("scale:"+mScaleFactor);
+						
 						for(RoomField rf: rooms)
 						{
 							//echo(rf.minX+"|"+rf.maxX+"|"+rf.minY+"|"+rf.maxY);
@@ -292,6 +299,45 @@ public class BuildingImageView extends ImageView implements Constants
 								catch (SQLException e)
 								{
 									e.printStackTrace();
+								}
+							}
+						}
+						echo("startX:"+startPoint.x);
+						echo("startY:"+startPoint.y);
+						
+						if(routeMode && startPoint.bmp != null && goalPoint.bmp != null)
+						{
+							float startX = startPoint.x * bitmapWidth /originalWidth;
+							float startY = startPoint.y * bitmapHeight /originalHeight;
+							float goalX = goalPoint.x * bitmapWidth /originalWidth;
+							float goalY = goalPoint.y * bitmapHeight /originalHeight;
+							MapFragmentProvider provider = MapFragmentProvider.getInstance();
+							MapActivity activity = (MapActivity) searchDetailFragment.getActivity();
+							if(touchX > startX && touchX < (startX +startPoint.bmp.getWidth())
+									&& touchY > startY && touchY < (startY +startPoint.bmp.getHeight()))
+							{
+								if(provider.getPreviousKey() != null)
+								{
+									((PoliGdzieBaseActivity) activity)
+									.switchFragment(R.id.map_container, provider.getPreviousFragment(),
+											provider.getPreviousKey());
+
+									((OnClickListener) searchDetailFragment.getActivity()).onClick(
+											activity.findViewById(R.layout.map_activity));
+								}
+							}
+							else if(touchX > goalX && touchX < (goalX +goalPoint.bmp.getWidth())
+									&& touchY > goalY && touchY < (goalY +goalPoint.bmp.getHeight()))
+							{
+								echo("NEXT");
+								if(provider.getNextKey() != null)
+								{
+									((PoliGdzieBaseActivity) activity)
+									.switchFragment(R.id.map_container, provider.getNextFragment(),
+											provider.getNextKey());
+
+									((OnClickListener) searchDetailFragment.getActivity()).onClick(
+											activity.findViewById(R.layout.map_activity));
 								}
 							}
 						}
