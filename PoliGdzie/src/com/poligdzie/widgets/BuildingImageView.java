@@ -302,8 +302,8 @@ public class BuildingImageView extends ImageView implements Constants
 								}
 							}
 						}
-						echo("startX:"+startPoint.x);
-						echo("startY:"+startPoint.y);
+						/////echo("startX:"+startPoint.x);
+						//echo("startY:"+startPoint.y);
 						
 						if(routeMode && startPoint.bmp != null && goalPoint.bmp != null)
 						{
@@ -561,6 +561,7 @@ public class BuildingImageView extends ImageView implements Constants
 	
 	public void setRooms(List<Room> roomList)
 	{
+		if(originalWidth == 0 || originalHeight == 0) return;
 		for(Room room : roomList)
 		{
 			float x1 = (room.getCoordX() - room.getRadius())* bitmapWidth / originalWidth;

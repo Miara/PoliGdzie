@@ -1,5 +1,7 @@
 package com.poligdzie.interfaces;
 
+import com.google.android.gms.maps.model.LatLng;
+
 public interface Constants
 {
 //TODO zastapic klasa z publicznym statycznymi polami
@@ -24,7 +26,7 @@ public interface Constants
 
 	public int		INVALID_CODE				= -1;
 	public long		DOUBLE_CLICK_DURATION		= 600;
-	public long 	SINGLE_CLICK_DURATION		= 110;
+	public long 	SINGLE_CLICK_DURATION		= 150;
 	public double	VIEW_ZOOM_IN				= 1.35;
 	public String	TAG							= "Poligdzie";
 
@@ -72,6 +74,14 @@ public interface Constants
 	public int INDOOR_PROCESS_TYPE_SEARCH = 0;
 	public int INDOOR_PROCESS_TYPE_ROUTE = 1;
 	public int INDOOR_PROCESS_TYPE_VIEW = 2;
+	
+	public String GPS_LOCATION_STRING = "Lokalizacja GPS";
+	public String GPS_ICON 			  = "gps_icon";
+	
+	public double GPS_MIN_LONGITUDE			= 16.944640;
+	public double GPS_MAX_LONGITUDE			= 16.954489;
+	public double GPS_MIN_LATITUDE			= 52.399446;
+	public double GPS_MAX_LATITUDE			= 52.405128;
 	
 
 

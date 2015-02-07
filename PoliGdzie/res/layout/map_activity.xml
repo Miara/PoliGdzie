@@ -10,6 +10,11 @@
             android:name="com.poligdzie.fragments.SearchRouteFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+		 <fragment
+            android:id="@+id/building_info_frag"
+            android:name="com.poligdzie.fragments.BuildingInfoFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
          <TextView
 	        android:id="@+id/current_map"
 	        android:layout_width="match_parent"

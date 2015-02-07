@@ -168,8 +168,8 @@ public class CsvReader implements Constants
 			// coordX,coordY,floor,type
 			String[] value = line.split(";");
 
-			int coordX = toInt(value[1]);
-			int coordY = toInt(value[2]);
+			double coordX = toDouble(value[1]);
+			double coordY = toDouble(value[2]);
 			Building building = getBuilding(Integer.parseInt(value[3]));
 			NavigationPoint point = getNavigationPoint(Integer
 					.parseInt(value[4]));

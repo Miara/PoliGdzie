@@ -4,11 +4,16 @@ package com.poligdzie.activities;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.location.LocationProvider;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,12 +26,14 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.base.PoliGdzieMapFragment;
+import com.poligdzie.fragments.BuildingInfoFragment;
 import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
 import com.poligdzie.fragments.RouteDetailsFragment;
 import com.poligdzie.fragments.SearchDetailsFragment;
 import com.poligdzie.fragments.SearchPlaceFragment;
 import com.poligdzie.fragments.SearchRouteFragment;
+import com.poligdzie.helpers.GPSHelper;
 import com.poligdzie.singletons.DataProvider;
 import com.poligdzie.singletons.MapFragmentProvider;
 import com.poligdzie.tasks.DbVersionDownload;
@@ -50,6 +57,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 	private SearchRouteFragment	searchRouteFragment;
 	private SearchDetailsFragment	searchDetailsFragment;
 	private RouteDetailsFragment	routeDetailsFragment;
+	private BuildingInfoFragment	buildingInfoFragment;
 	// TODO: przy pierwszym odpaleniu apki po instalacji nie ma danych przy wyszukiwaniu, przy kolejnych sas
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -132,6 +140,10 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		routeDetailsFragment = (RouteDetailsFragment) getFragmentManager().
 		findFragmentById(R.id.route_details_frag);
 		routeDetailsFragment.getView().setVisibility(View.GONE);
+		
+		buildingInfoFragment = (BuildingInfoFragment) getFragmentManager().
+				findFragmentById(R.id.building_info_frag);
+				buildingInfoFragment.getView().setVisibility(View.GONE);
 	}
 //TODO: refaktoryzacja w chuj!
 	
@@ -203,7 +215,9 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		else
 			previous.setVisibility(View.VISIBLE);
 
-		currentText.setText(mapProvider.getCurrentFragment().getName());
+		String actualViewName = mapProvider.getCurrentFragment().getName();
+		currentText.setText(actualViewName);
+		Toast.makeText(this, actualViewName, Toast.LENGTH_SHORT).show();
 	}
 
 	private boolean isNetworkAvailable() {
@@ -224,6 +238,11 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 	        if(searchRouteFragment.isVisible())
 	        {
 	        	searchRouteFragment.getView().setVisibility(View.GONE);
+	        	return true;
+	        }
+	        else if(buildingInfoFragment.isVisible())
+	        {
+	        	buildingInfoFragment.getView().setVisibility(View.GONE);
 	        	return true;
 	        }
 	        else
@@ -276,6 +295,38 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		{
 			return routeDetailsFragment;
 		}
+
+		public BuildingInfoFragment getBuildingInfoFragment()
+		{
+			return buildingInfoFragment;
+		}
+
+		public void setBuildingInfoFragment(BuildingInfoFragment buildingInfoFragment)
+		{
+			this.buildingInfoFragment = buildingInfoFragment;
+		}
+		
+		@Override
+		public boolean onCreateOptionsMenu(Menu menu)
+		{
+			super.onCreateOptionsMenu(menu);
+			MenuInflater customMenu = getMenuInflater();
+			customMenu.inflate(R.menu.main, menu);
+			return true;
+		}
+		
+		@Override
+		public boolean onOptionsItemSelected(MenuItem element)
+		{
+			if(element.getItemId() == R.id.menu_pomoc)
+			{
+				Intent intent = new Intent(this, HelpActivity.class);
+				this.startActivity(intent);
+			}
+			return true;
+		}
+		
+		
 		
 		
 }

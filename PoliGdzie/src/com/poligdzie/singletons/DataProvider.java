@@ -111,11 +111,17 @@ public class DataProvider extends PoliGdzieBaseClass
 
 	public int getRemoteDbVersion()
 	{
+		if(dbVersion == null) 
+			return 0;
+		
 		return dbVersion.getValue();
 	}
 
 	public void setRemoteDbVersion(int remoteDbVersion)
 	{
+		if(dbVersion == null)
+			return;
+		
 		this.dbVersion.setValue(remoteDbVersion);
 	}
 }

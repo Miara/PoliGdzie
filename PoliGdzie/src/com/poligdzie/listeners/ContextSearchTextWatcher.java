@@ -6,16 +6,20 @@ import java.util.List;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.AutoCompleteTextView;
 
 import com.example.poligdzie.R;
+import com.google.android.gms.maps.model.LatLng;
 import com.poligdzie.adapters.AutocompleteCustomAdapter;
 import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.persistence.Building;
+import com.poligdzie.persistence.GPSLocation;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 import com.poligdzie.singletons.DataProvider;
+import com.poligdzie.singletons.MapDrawingProvider;
 
 public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
 																TextWatcher
@@ -98,6 +102,8 @@ public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
 				break;
 			}
 		}
+		
+		
 
 		for (Building b : buildings)
 		{
@@ -112,6 +118,18 @@ public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
 		for (Room b : rooms)
 		{
 			aList.add(b);
+		}
+		
+		if(GPS_LOCATION_STRING.equals(s.toString()))
+		{
+			MapDrawingProvider drawProvider = MapDrawingProvider.getInstance();
+			GPSLocation gps = drawProvider.getGPS();
+			Log.i("poligdzie","test");
+			if(gps != null)
+			{
+				Log.i("poligdzie","test");
+				aList.add(gps);
+			}
 		}
 
 		input.setAdapter(adapter);

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView 
+        android:id="@+id/building_info_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_margin = "30dp"
+        
+        >
+        <LinearLayout 
+	        android:id="@+id/building_info_main_layout"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:background="#FFFFFF"
+	        android:orientation="vertical">
+	        
+	        <TextView 
+	            android:id="@+id/building_info_building_name"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:textStyle="bold"
+	            android:gravity="center_horizontal|center_vertical"
+	            android:textSize="17sp"
+	            android:text="gogog"/>
+	        <TextView 
+	            android:id="@+id/building_info_first_gradient"
+	            android:layout_width="match_parent"
+	            android:layout_height="1dp"
+	            android:background="@drawable/gradient_white_gray_horizontal"/>
+	        <LinearLayout 
+	            android:id="@+id/building_info_photo_container"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical">
+	            
+	        </LinearLayout>
+	        
+	        <TextView 
+	            android:id="@+id/building_info_first_gradient"
+	            android:layout_width="match_parent"
+	            android:layout_height="1dp"
+	            android:background="@drawable/gradient_white_gray_horizontal"  />
+	        <TextView 
+	            android:id="@+id/building_info_building_description"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="lalalalalalala"/>
+    	</LinearLayout>   
+    </ScrollView>
+    <ImageButton 
+	            android:id="@+id/building_info_close_button"
+	            android:layout_width="30dp"
+	            android:layout_height="30dp"
+	            android:layout_alignParentTop="true"
+	            android:layout_alignRight="@+id/building_info_scroll_view"
+	            android:background="@drawable/ex"/>
+</RelativeLayout>
