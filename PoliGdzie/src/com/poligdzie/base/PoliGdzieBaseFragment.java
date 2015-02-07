@@ -41,8 +41,8 @@ public abstract class PoliGdzieBaseFragment extends Fragment implements
 
 	private void setUp()
 	{
-		dbHelper = new DatabaseHelper(this.getActivity(), DATABASE_NAME, null,
-				DATABASE_VERSION);
+		dbHelper = new DatabaseHelper(this.getActivity(), DatabaseHelper.DATABASE_NAME, null,
+				DatabaseHelper.DATABASE_VERSION);
 		drawingProvider = MapDrawingProvider.getInstance();
 		mapProvider = MapFragmentProvider.getInstance();
 	}

@@ -253,4 +253,10 @@ public class MapDrawingProvider extends PoliGdzieBaseClass
 	{
 		this.drawRoute = drawRoute;
 	}
+
+	public void refresh()
+	{
+		this.drawRoute(this.getMap());
+		
+	}
 }

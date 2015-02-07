@@ -127,8 +127,8 @@ public class ContextSearchTextWatcher extends PoliGdzieBaseClass implements
 
 	public ContextSearchTextWatcher(AutoCompleteTextView input, Context context)
 	{
-		dbHelper = new DatabaseHelper(input.getContext(), DATABASE_NAME, null,
-				DATABASE_VERSION);
+		dbHelper = new DatabaseHelper(input.getContext(), DatabaseHelper.DATABASE_NAME, null,
+				DatabaseHelper.DATABASE_VERSION);
 		this.input = input;
 		this.context = context;
 

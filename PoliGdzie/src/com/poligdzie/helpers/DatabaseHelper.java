@@ -1,9 +1,6 @@
 package com.poligdzie.helpers;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
 
 import android.content.Context;
@@ -11,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.util.Log;
 
-import com.example.poligdzie.R;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
@@ -22,9 +18,11 @@ import com.poligdzie.persistence.BuildingEntry;
 import com.poligdzie.persistence.Floor;
 import com.poligdzie.persistence.NavigationConnection;
 import com.poligdzie.persistence.NavigationPoint;
+import com.poligdzie.persistence.RemoteDbVersion;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.SpecialConnection;
 import com.poligdzie.persistence.Unit;
+import com.poligdzie.tasks.DatabaseDownloadTask;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements
 															Constants
@@ -37,6 +35,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements
 		this.context = context;
 	}
 
+	public static String						DATABASE_NAME			= "Poligdzie.db";
+
+	public static int							DATABASE_VERSION		= 2;
+
 	private Context								context;
 	private Dao<Building, Integer>				buildingDao				= null;
 	private Dao<Unit, Integer>					unitDao					= null;
@@ -46,91 +48,34 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements
 	private Dao<BuildingEntry, Integer>			BuildingEntryDao		= null;
 	private Dao<NavigationConnection, Integer>	navigationConnectionDao	= null;
 	private Dao<SpecialConnection, Integer>		specialConnectionDao	= null;
+	private Dao<RemoteDbVersion, Integer>		remoteDbVersionDao		= null;
 
 	@Override
 	public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource)
 	{
-		try
+		Log.i("POLIGDZIE", "helper on  create");
+
+		File dbFile = new File(db.getPath());
+		if (!dbFile.exists())
 		{
-			Log.i("DATABASE", "TABLES");
-
-			/*TableUtils.createTable(connectionSource, Room.class);
-			TableUtils.createTable(connectionSource, Unit.class);
-			TableUtils.createTable(connectionSource, Building.class);
-			TableUtils.createTable(connectionSource, Floor.class);
-			TableUtils.createTable(connectionSource, NavigationPoint.class);
-			TableUtils.createTable(connectionSource, BuildingEntry.class);
-			TableUtils
-					.createTable(connectionSource, NavigationConnection.class);
-			TableUtils.createTable(connectionSource, SpecialConnection.class);
-
-			CsvReader csvReader = new CsvReader(this, context);
-			csvReader.parseCsvToDatabase("Building.csv", CSV_BUILDING);
-			csvReader.parseCsvToDatabase("Floor.csv", CSV_FLOOR);
-			csvReader.parseCsvToDatabase("NavigationPoint.csv",
-					CSV_NAVIGATION_POINT);
-			csvReader.parseCsvToDatabase("BuildingEntry.csv",
-					CSV_BUILDING_ENTRY);
-			csvReader.parseCsvToDatabase("NavigationConnection.csv",
-					CSV_NAVIGATION_CONNECTION);
-			csvReader.parseCsvToDatabase("SpecialConnection.csv",
-					CSV_SPECIAL_CONNECTION);
-			csvReader.parseCsvToDatabase("Room.csv", CSV_ROOM);
-			csvReader.parseCsvToDatabase("Unit.csv", CSV_UNIT);*/
-			
-			File currentDb = new File(db.getPath());
-			InputStream newDb = context.getResources().openRawResource(R.raw.poligdzie);
-			if(currentDb.exists()) {
-				currentDb.delete();
-			}
-			
-			
-			
-			currentDb.createNewFile();
-			
-            FileOutputStream dst = new FileOutputStream(currentDb);
-            byte bytes[] = new byte[1024];
-            int len = 0;
-            while((len = newDb.read(bytes)) > 0) {
-            	dst.write(bytes);
-            }
-            dst.close();
-            newDb.close();
-            
-            
-
-		} catch (IOException e)
-		{
-			e.printStackTrace();
+			DatabaseDownloadTask downloadTask = new DatabaseDownloadTask(
+					db.getPath());
+			downloadTask.execute("http://192.168.0.100:8181/download/");
 		}
-
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, ConnectionSource connectionSource,
 			int oldVersion, int newVersion)
 	{
-		Log.i("DATABASE", "upgrade in");
-		try
-		{
-			Log.i("DATABASE", "upgrade1");
-			TableUtils.dropTable(connectionSource, Room.class, false);
-			TableUtils.dropTable(connectionSource, Unit.class, false);
-			TableUtils.dropTable(connectionSource, Building.class, false);
-			TableUtils.dropTable(connectionSource, Floor.class, false);
-			TableUtils
-					.dropTable(connectionSource, NavigationPoint.class, false);
-			TableUtils.dropTable(connectionSource, BuildingEntry.class, false);
-			TableUtils.dropTable(connectionSource, NavigationConnection.class,
-					false);
-			TableUtils.dropTable(connectionSource, SpecialConnection.class,
-					false);
-			Log.i("DATABASE", "upgrade2");
-			this.onCreate(db, connectionSource);
-		} catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+		Log.i("POLIGDZIE", "upgrade in");
+
+		
+		
+		DatabaseDownloadTask downloadTask = new DatabaseDownloadTask(
+				db.getPath());
+		downloadTask.execute("http://192.168.0.100:8181/download/");
+		
 
 	}
 
@@ -210,6 +155,16 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements
 		return specialConnectionDao;
 	}
 
+	public Dao<RemoteDbVersion, Integer> getRemoteDbVersionDao()
+			throws SQLException
+	{
+		if (remoteDbVersionDao == null)
+		{
+			remoteDbVersionDao = getDao(RemoteDbVersion.class);
+		}
+		return remoteDbVersionDao;
+	}
+
 	@Override
 	public void close()
 	{
@@ -222,6 +177,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements
 		BuildingEntryDao = null;
 		navigationConnectionDao = null;
 		specialConnectionDao = null;
+		remoteDbVersionDao = null;
 	}
 
 }

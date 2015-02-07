@@ -105,7 +105,7 @@ public class BuildingImageView extends ImageView implements Constants
 		mScaleDetector = new ScaleGestureDetector(getContext(),
 				new ScaleListener());
 		lines = new ArrayList<Line>();
-		dbHelper = new DatabaseHelper(getContext(), DATABASE_NAME, null, DATABASE_VERSION);
+		dbHelper = new DatabaseHelper(getContext(), DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.DATABASE_VERSION);
 
 	}
 

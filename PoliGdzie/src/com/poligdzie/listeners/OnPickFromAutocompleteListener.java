@@ -81,8 +81,8 @@ public class OnPickFromAutocompleteListener extends PoliGdzieBaseClass implement
 
 				AnimationClosureChecker checker = new AnimationClosureChecker(
 						callback, map, m, outdoorMap, new DatabaseHelper(
-								fragment.getActivity(), DATABASE_NAME, null,
-								DATABASE_VERSION));
+								fragment.getActivity(), DatabaseHelper.DATABASE_NAME, null,
+								DatabaseHelper.DATABASE_VERSION));
 				checker.execute();
 				break;
 			}
@@ -219,7 +219,7 @@ public class OnPickFromAutocompleteListener extends PoliGdzieBaseClass implement
 		this.fragment = fragment;
 		this.mapFragmentProvider = MapFragmentProvider.getInstance();
 		this.dbHelper = new DatabaseHelper(fragment.getActivity(),
-				DATABASE_NAME, null, DATABASE_VERSION);
+				DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.DATABASE_VERSION);
 	}
 
 	@Override

@@ -5,9 +5,7 @@ public interface Constants
 //TODO zastapic klasa z publicznym statycznymi polami
 	
 	// baza danych
-	public String	DATABASE_NAME			= "Poligdzie.db";
-
-	public int		DATABASE_VERSION		= 87;
+	
 
 
 	// Ustawienia aplikacji w PreferenceManager

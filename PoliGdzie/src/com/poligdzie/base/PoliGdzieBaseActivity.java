@@ -85,16 +85,15 @@ public abstract class PoliGdzieBaseActivity extends FragmentActivity implements
 
 	public PoliGdzieBaseActivity()
 	{
-		this.dbHelper = new DatabaseHelper(this, DATABASE_NAME, null,
-				DATABASE_VERSION);
+		
 	}
 
 	@Override
 	protected void onCreate(Bundle arg0)
 	{
 		super.onCreate(arg0);
-		this.dbHelper = new DatabaseHelper(this, DATABASE_NAME, null,
-				DATABASE_VERSION);
+		this.dbHelper = new DatabaseHelper(this, DatabaseHelper.DATABASE_NAME, null,
+				DatabaseHelper.DATABASE_VERSION);
 	}
 
 	@Override

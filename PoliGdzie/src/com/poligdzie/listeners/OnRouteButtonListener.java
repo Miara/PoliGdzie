@@ -516,7 +516,7 @@ public class OnRouteButtonListener extends PoliGdzieBaseClass implements
 		this.fragment = fragment;
 		this.map = map;
 		this.dbHelper = new DatabaseHelper(fragment.getActivity(),
-				DATABASE_NAME, null, DATABASE_VERSION);
+				DatabaseHelper.DATABASE_NAME, null, DatabaseHelper.DATABASE_VERSION);
 	}
 
 }

@@ -10,6 +10,7 @@ import android.util.Log;
 import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.persistence.Building;
+import com.poligdzie.persistence.RemoteDbVersion;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 
@@ -20,7 +21,8 @@ public class DataProvider extends PoliGdzieBaseClass
 	private List<Building>		buildings;
 	private List<Room>			rooms;
 	private List<Unit>			units;
-
+    private RemoteDbVersion dbVersion;
+    
 	protected DataProvider()
 	{
 		// konstruktor zas³aniaj¹cy domyœlny publiczny konstruktor
@@ -44,6 +46,8 @@ public class DataProvider extends PoliGdzieBaseClass
 
 		try
 		{
+			dbVersion = dbHelper.getRemoteDbVersionDao().queryForAll().get(0);
+			
 			long start = 0;
 			float time = 0;
 			while (this.getBuildings().size() == 0)
@@ -103,5 +107,15 @@ public class DataProvider extends PoliGdzieBaseClass
 	public void setUnits(List<Unit> units)
 	{
 		this.units = units;
+	}
+
+	public int getRemoteDbVersion()
+	{
+		return dbVersion.getValue();
+	}
+
+	public void setRemoteDbVersion(int remoteDbVersion)
+	{
+		this.dbVersion.setValue(remoteDbVersion);
 	}
 }
