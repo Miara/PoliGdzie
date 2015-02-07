@@ -22,6 +22,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.poligdzie.base.PoliGdzieBaseActivity;
 import com.poligdzie.base.PoliGdzieMapFragment;
+import com.poligdzie.fragments.BuildingInfoFragment;
 import com.poligdzie.fragments.MapIndoorFragment;
 import com.poligdzie.fragments.MapOutdoorFragment;
 import com.poligdzie.fragments.RouteDetailsFragment;
@@ -51,6 +52,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 	private SearchRouteFragment	searchRouteFragment;
 	private SearchDetailsFragment	searchDetailsFragment;
 	private RouteDetailsFragment	routeDetailsFragment;
+	private BuildingInfoFragment	buildingInfoFragment;
 	// TODO: przy pierwszym odpaleniu apki po instalacji nie ma danych przy wyszukiwaniu, przy kolejnych sas
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -130,6 +132,10 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		routeDetailsFragment = (RouteDetailsFragment) getFragmentManager().
 		findFragmentById(R.id.route_details_frag);
 		routeDetailsFragment.getView().setVisibility(View.GONE);
+		
+		buildingInfoFragment = (BuildingInfoFragment) getFragmentManager().
+				findFragmentById(R.id.building_info_frag);
+				buildingInfoFragment.getView().setVisibility(View.GONE);
 	}
 //TODO: refaktoryzacja w chuj!
 	
@@ -276,6 +282,18 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		{
 			return routeDetailsFragment;
 		}
+
+		public BuildingInfoFragment getBuildingInfoFragment()
+		{
+			return buildingInfoFragment;
+		}
+
+		public void setBuildingInfoFragment(BuildingInfoFragment buildingInfoFragment)
+		{
+			this.buildingInfoFragment = buildingInfoFragment;
+		}
+		
+		
 		
 		
 }

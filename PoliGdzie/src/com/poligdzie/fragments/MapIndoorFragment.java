@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import com.example.poligdzie.R;
 import com.poligdzie.activities.MapActivity;
 import com.poligdzie.base.PoliGdzieMapFragment;
+import com.poligdzie.interfaces.LoadingBitmap;
 import com.poligdzie.persistence.Floor;
 import com.poligdzie.persistence.NavigationPoint;
 import com.poligdzie.persistence.NavigationPointTypes;
@@ -26,7 +27,7 @@ import com.poligdzie.tasks.BitmapWorkerTask;
 import com.poligdzie.widgets.BuildingImageView;
 
 public class MapIndoorFragment extends PoliGdzieMapFragment implements
-															OnClickListener
+															OnClickListener,LoadingBitmap
 {
 	private BuildingImageView	buildingImage;
 	private int					floorId;
@@ -60,8 +61,9 @@ public class MapIndoorFragment extends PoliGdzieMapFragment implements
 	{
 
 	}
-
-	public void setFloorImage(Bitmap bitmap)
+	
+	@Override
+	public void bitmapLoaded(Bitmap bitmap)
 	{
 		ViewGroup container = (ViewGroup) getView().findViewById(
 				R.id.indoor_map_container);

@@ -28,7 +28,7 @@ public interface Constants
 
 	public int		INVALID_CODE				= -1;
 	public long		DOUBLE_CLICK_DURATION		= 600;
-	public long 	SINGLE_CLICK_DURATION		= 110;
+	public long 	SINGLE_CLICK_DURATION		= 150;
 	public double	VIEW_ZOOM_IN				= 1.35;
 	public String	TAG							= "Poligdzie";
 

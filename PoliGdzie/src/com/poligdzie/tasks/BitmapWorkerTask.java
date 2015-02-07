@@ -2,6 +2,7 @@ package com.poligdzie.tasks;
 
 import java.lang.ref.WeakReference;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -10,6 +11,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.poligdzie.fragments.MapIndoorFragment;
+import com.poligdzie.interfaces.LoadingBitmap;
 import com.poligdzie.widgets.BuildingImageView;
 
 public class BitmapWorkerTask extends AsyncTask<Integer, Void, Bitmap>
@@ -17,9 +19,9 @@ public class BitmapWorkerTask extends AsyncTask<Integer, Void, Bitmap>
 	private final WeakReference<BuildingImageView>	buildingViewReference;
 	private int										data	= 0;
 	private Resources								resources;
-	private MapIndoorFragment						fragment;
+	private Fragment						fragment;
 
-	public BitmapWorkerTask(MapIndoorFragment frag, Context context,
+	public BitmapWorkerTask(Fragment frag, Context context,
 			Resources res)
 	{
 		// Use a WeakReference to ensure the ImageView can be garbage collected
@@ -66,7 +68,7 @@ public class BitmapWorkerTask extends AsyncTask<Integer, Void, Bitmap>
 	{
 		if (bitmap != null)
 		{
-			fragment.setFloorImage(bitmap);
+			((LoadingBitmap)fragment).bitmapLoaded(bitmap);
 		}
 	}
 }

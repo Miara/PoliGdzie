@@ -31,8 +31,9 @@ public class SearchDetailsFragment extends PoliGdzieBaseFragment implements OnCl
 	private ImageButton					infoButton;
 	private ImageButton					insideButton;
 	private SearchRouteFragment			routeFragment;
-	private SearchPlaceFragment	searchPlaceFragment;
-	private Object	object;
+	private SearchPlaceFragment			searchPlaceFragment;
+	private BuildingInfoFragment		buildingInfoFragment;
+	private Object						object;
 	
 
 	@Override
@@ -101,6 +102,12 @@ public class SearchDetailsFragment extends PoliGdzieBaseFragment implements OnCl
 					.getFragmentManager().findFragmentById(R.id.search_place_frag);
 		}
 		
+		if(buildingInfoFragment == null)
+		{
+			buildingInfoFragment = (BuildingInfoFragment) this.getActivity()
+					.getFragmentManager().findFragmentById(R.id.building_info_frag);
+		}
+		
 		drawingProvider = MapDrawingProvider.getInstance();
 		
 		if( v == fromButton)
@@ -124,6 +131,7 @@ public class SearchDetailsFragment extends PoliGdzieBaseFragment implements OnCl
 		else if( v == infoButton)
 		{
 			
+			buildingInfoFragment.setViews((Building)object);
 		}
 		else if( v == insideButton)
 		{
