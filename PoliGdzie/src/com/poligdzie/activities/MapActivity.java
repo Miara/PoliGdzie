@@ -4,6 +4,7 @@ package com.poligdzie.activities;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.location.LocationProvider;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.poligdzie.fragments.RouteDetailsFragment;
 import com.poligdzie.fragments.SearchDetailsFragment;
 import com.poligdzie.fragments.SearchPlaceFragment;
 import com.poligdzie.fragments.SearchRouteFragment;
+import com.poligdzie.helpers.GPSHelper;
 import com.poligdzie.singletons.DataProvider;
 import com.poligdzie.singletons.MapFragmentProvider;
 

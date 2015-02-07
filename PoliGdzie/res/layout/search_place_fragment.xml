@@ -33,6 +33,7 @@
                     android:layout_height="36dp"
                     android:layout_width="match_parent"
                     android:layout_alignParentLeft="true"
+                    android:singleLine="true"
                     android:layout_toLeftOf = "@+id/button_search_switch_fragment"
                     android:hint="Czego szukasz?" >
                     <requestFocus />

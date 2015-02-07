@@ -3,11 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="154dp"
     android:orientation="vertical"
+    android:background="@null"
     android:visibility="gone" >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:alpha="1.0"
         android:background="#FFFFFF" >
         <ImageView
             android:id="@+id/search_route_from_to"
@@ -40,7 +42,7 @@
                         android:singleLine="true" >
                         <requestFocus />
                     </com.poligdzie.widgets.SearchAutoCompleteTextView> 
-                    
+
 	        		<ImageButton
 			            android:id="@+id/search_route_start_ex_button"
 			            android:layout_width="24dp"
@@ -73,6 +75,7 @@
                         android:singleLine="true"  >
                         <requestFocus />
                     </com.poligdzie.widgets.SearchAutoCompleteTextView>
+                    
                     <ImageButton
 			            android:id="@+id/search_route_goal_ex_button"
 			            android:layout_width="24dp"
@@ -101,4 +104,26 @@
         android:layout_height="50dp"
         android:background="#FFFFFF"
         android:text="Wyznacz trasę"/>
+    
+    <RelativeLayout 
+        android:id="@+id/search_route_relative_gps"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:background="#FFFFFF">
+        <ImageView 
+            android:id="@+id/search_route_gps_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="13dp"
+            android:background="@drawable/gps_icon"
+            android:layout_alignParentLeft="true"/>
+    	<Button
+        android:id="@+id/search_route_gps_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:text="lokalizacja GPS"/>
+    </RelativeLayout>
+    
 </LinearLayout>

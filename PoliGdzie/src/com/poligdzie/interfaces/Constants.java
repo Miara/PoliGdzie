@@ -75,6 +75,8 @@ public interface Constants
 	public int INDOOR_PROCESS_TYPE_ROUTE = 1;
 	public int INDOOR_PROCESS_TYPE_VIEW = 2;
 	
+	public String GPS_LOCATION_STRING = "Lokalizacja GPS";
+	
 
 
 }
