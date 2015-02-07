@@ -201,7 +201,9 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		else
 			previous.setVisibility(View.VISIBLE);
 
-		currentText.setText(mapProvider.getCurrentFragment().getName());
+		String actualViewName = mapProvider.getCurrentFragment().getName();
+		currentText.setText(actualViewName);
+		Toast.makeText(this, actualViewName, Toast.LENGTH_SHORT).show();
 	}
 
 	private boolean isNetworkAvailable() {

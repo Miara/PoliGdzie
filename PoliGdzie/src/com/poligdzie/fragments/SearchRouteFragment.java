@@ -23,6 +23,7 @@ import com.poligdzie.interfaces.Nameable;
 import com.poligdzie.interfaces.WithCoordinates;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
 import com.poligdzie.listeners.OnRouteButtonListener;
+import com.poligdzie.persistence.GPSLocation;
 import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
@@ -193,21 +194,31 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
 			{
                 double latitude = gpsHelper.getLatitude();
                 double longitude = gpsHelper.getLongitude();
-                LatLng location = new LatLng(latitude, longitude);
+                
+                if(latitude < GPS_MIN_LATITUDE || latitude > GPS_MAX_LATITUDE 
+                		|| longitude < GPS_MIN_LONGITUDE || longitude > GPS_MAX_LONGITUDE)
+                {
+                	Toast.makeText(getActivity(), "Nie mo¿na pobraæ pozycji, poniewa¿ znajdujesz siê poza kampusem Piotrowo"
+                			,Toast.LENGTH_LONG).show();
+                	return;
+                }
+                GPSLocation location = new GPSLocation(GPS_LOCATION_STRING,longitude,latitude);
+                //GPSLocation location = new GPSLocation(GPS_LOCATION_STRING,52.401816, 16.948690);
                 if(goalPosition.isFocused())
                 {
-                	drawingProvider.setGoal(location);
-    				this.setGoalPosition(GPS_LOCATION_STRING);
+                	drawingProvider.setGPS(location);
+    				this.setGoalPosition(location.getName());
                 }
                 else
                 {
-                	drawingProvider.setStart(location);
-    				this.setStartPosition(GPS_LOCATION_STRING);
+                	drawingProvider.setGPS(location);
+    				this.setStartPosition(location.getName());
                 }
 			}
 			else
             {
             	gpsHelper.showSettingsAlert();
+            	drawingProvider.setGPS(null);
             }
 		}
 

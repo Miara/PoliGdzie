@@ -13,16 +13,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.poligdzie.R;
+import com.google.android.gms.maps.model.LatLng;
 import com.poligdzie.helpers.DatabaseHelper;
+import com.poligdzie.interfaces.Constants;
 import com.poligdzie.interfaces.Imageable;
 import com.poligdzie.interfaces.Nameable;
 import com.poligdzie.interfaces.WithDrawableId;
 import com.poligdzie.persistence.Building;
+import com.poligdzie.persistence.GPSLocation;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 
 public class AutocompleteCustomAdapter extends ArrayAdapter implements
-															WithDrawableId
+															WithDrawableId,Constants
 {
 
 	private Context			context;
@@ -98,6 +101,16 @@ public class AutocompleteCustomAdapter extends ArrayAdapter implements
 			desc.setText("Pomieszczenie");
 			imgRes = getDrawableId(building.getImageResource(), context);
 			icon.setImageResource(imgRes);
+		}
+		
+		if(object instanceof GPSLocation)
+		{
+			desc.setText(((Nameable)object).getName());
+			imgRes = getDrawableId(GPS_ICON, context);
+			if(imgRes > 0)
+			{
+				icon.setImageResource(imgRes);
+			}
 		}
 
 		return view;

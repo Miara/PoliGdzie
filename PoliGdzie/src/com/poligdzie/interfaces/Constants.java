@@ -1,5 +1,7 @@
 package com.poligdzie.interfaces;
 
+import com.google.android.gms.maps.model.LatLng;
+
 public interface Constants
 {
 //TODO zastapic klasa z publicznym statycznymi polami
@@ -76,6 +78,12 @@ public interface Constants
 	public int INDOOR_PROCESS_TYPE_VIEW = 2;
 	
 	public String GPS_LOCATION_STRING = "Lokalizacja GPS";
+	public String GPS_ICON 			  = "gps_icon";
+	
+	public double GPS_MIN_LONGITUDE			= 16.944640;
+	public double GPS_MAX_LONGITUDE			= 16.954489;
+	public double GPS_MIN_LATITUDE			= 52.399446;
+	public double GPS_MAX_LATITUDE			= 52.405128;
 	
 
 

@@ -123,7 +123,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@null"
-        android:text="lokalizacja GPS"/>
+        android:text="Lokalizacja GPS"/>
     </RelativeLayout>
     
 </LinearLayout>

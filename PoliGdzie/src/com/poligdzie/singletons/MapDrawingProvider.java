@@ -20,6 +20,7 @@ import com.poligdzie.base.PoliGdzieBaseClass;
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.BuildingEntry;
+import com.poligdzie.persistence.GPSLocation;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.Unit;
 import com.poligdzie.tasks.DownloadDirectionsTask;
@@ -37,6 +38,7 @@ public class MapDrawingProvider extends PoliGdzieBaseClass
 	private GoogleMap					map;
 	private List<Marker>				markers;
 	private FusedLocationProviderApi	api;
+	private GPSLocation	gpsLocation;
 
 	static final LatLng					LOCATION_PIOTROWO	= new LatLng(
 																	52.4022703,
@@ -129,6 +131,11 @@ public class MapDrawingProvider extends PoliGdzieBaseClass
 			result.put("X", ((BuildingEntry) object).getCoordX());
 			result.put("Y", ((BuildingEntry) object).getCoordY());
 		}
+		if (object instanceof GPSLocation)
+		{
+			result.put("X", ((GPSLocation) object).getCoordX());
+			result.put("Y", ((GPSLocation) object).getCoordY());
+		}
 
 		return result;
 	}
@@ -167,7 +174,7 @@ public class MapDrawingProvider extends PoliGdzieBaseClass
 		String output = "json";
 		String url = "https://maps.googleapis.com/maps/api/directions/"
 				+ output + "?" + params;// + "&KEY=AIzaSyDaH9Hu9g289RG5v9Md2inQtYSkgruI17U";
-
+		
 		
 		
 		Log.i("POLIGDZIE", url);
@@ -252,5 +259,16 @@ public class MapDrawingProvider extends PoliGdzieBaseClass
 	public void setDrawRoute(boolean drawRoute)
 	{
 		this.drawRoute = drawRoute;
+	}
+
+	public void setGPS(GPSLocation location)
+	{
+		this.gpsLocation = location;
+		
+	}
+	public GPSLocation getGPS()
+	{
+		return gpsLocation;
+		
 	}
 }

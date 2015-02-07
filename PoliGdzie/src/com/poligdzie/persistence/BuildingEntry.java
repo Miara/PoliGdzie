@@ -78,11 +78,11 @@ public class BuildingEntry extends PoliGdzieBaseClass implements WithCoordinates
 		// nie wyrzucac !
 	}
 
-	public BuildingEntry(int coordX, int coordY, Building building,
+	public BuildingEntry(Double double1, Double double2, Building building,
 			NavigationPoint navigationPoint)
 	{
-		this.coordX = coordX;
-		this.coordY = coordY;
+		this.coordX = double1;
+		this.coordY = double2;
 		this.building = building;
 		this.navigationPoint = navigationPoint;
 	}
