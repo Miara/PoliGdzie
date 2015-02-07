@@ -40,7 +40,6 @@
                         android:layout_toLeftOf="@+id/search_route_start_ex_button"
                         android:hint="Skąd ?"
                         android:singleLine="true" >
-                        <requestFocus />
                     </com.poligdzie.widgets.SearchAutoCompleteTextView> 
 
 	        		<ImageButton

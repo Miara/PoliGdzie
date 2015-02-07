@@ -36,7 +36,6 @@
                     android:singleLine="true"
                     android:layout_toLeftOf = "@+id/button_search_switch_fragment"
                     android:hint="Czego szukasz?" >
-                    <requestFocus />
                 </com.poligdzie.widgets.SearchAutoCompleteTextView>
 
 				<ImageButton
