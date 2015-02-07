@@ -42,6 +42,32 @@ public class Building extends PoliGdzieBaseClass implements Nameable,
 
 	@DatabaseField
 	private String						markerImageResource;
+	
+	@DatabaseField (columnName = "imageofbuilding")
+	private String						imageOfBuilding;
+	
+	@DatabaseField (columnName = "descriptionofbuilding")
+	private String						descriptionOfBuilding;
+
+	public String getImageOfBuilding()
+	{
+		return imageOfBuilding;
+	}
+
+	public void setImageOfBuilding(String imageOfBuilding)
+	{
+		this.imageOfBuilding = imageOfBuilding;
+	}
+
+	public String getDescriptionOfBuilding()
+	{
+		return descriptionOfBuilding;
+	}
+
+	public void setDescriptionOfBuilding(String descriptionOfBuilding)
+	{
+		this.descriptionOfBuilding = descriptionOfBuilding;
+	}
 
 	@ForeignCollectionField(columnName = "rooms")
 	private ForeignCollection<Room>		rooms;
