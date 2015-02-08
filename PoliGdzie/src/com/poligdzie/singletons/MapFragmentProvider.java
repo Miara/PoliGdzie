@@ -143,6 +143,18 @@ public class MapFragmentProvider extends PoliGdzieBaseClass
 	{
 		return googleMapFragment;
 	}
+	
+	public boolean isGoogleMapInCurrentView()
+	{
+		if(getCurrentFragment() == googleMapFragment)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	public void addGoogleMapFragment()
 	{

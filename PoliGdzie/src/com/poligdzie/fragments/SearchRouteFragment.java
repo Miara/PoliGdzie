@@ -202,8 +202,8 @@ public class SearchRouteFragment extends PoliGdzieBaseFragment implements
                 			,Toast.LENGTH_LONG).show();
                 	return;
                 }
-                GPSLocation location = new GPSLocation(GPS_LOCATION_STRING,longitude,latitude);
-                //GPSLocation location = new GPSLocation(GPS_LOCATION_STRING,52.401816, 16.948690);
+                GPSLocation location = new GPSLocation(GPS_LOCATION_STRING,latitude,longitude);
+                
                 if(goalPosition.isFocused())
                 {
                 	drawingProvider.setGPS(location);

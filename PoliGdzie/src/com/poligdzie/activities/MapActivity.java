@@ -231,6 +231,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 	    if (keyCode == KeyEvent.KEYCODE_BACK) {
+	    	MapFragmentProvider fragProvider = MapFragmentProvider.getInstance();
 	        if(searchRouteFragment.isVisible())
 	        {
 	        	searchRouteFragment.getView().setVisibility(View.GONE);
@@ -239,6 +240,26 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 	        else if(buildingInfoFragment.isVisible())
 	        {
 	        	buildingInfoFragment.getView().setVisibility(View.GONE);
+	        	return true;
+	        }
+	        else if(routeDetailsFragment.isVisible())
+	        {
+	        	routeDetailsFragment.getView().setVisibility(View.GONE);
+	        	return true;
+	        }
+	        else if(searchDetailsFragment.isVisible())
+	        {
+	        	searchDetailsFragment.getView().setVisibility(View.GONE);
+	        	return true;
+	        }
+	        else if(!fragProvider.isGoogleMapInCurrentView())
+	        {
+	        	fragProvider.clearFragments();
+	        	fragProvider.addGoogleMapFragment();
+	        	this.switchFragment(R.id.map_container, 
+	        			fragProvider.getGoogleMapFragment(), 
+	        			fragProvider.getGoogleMapFragment().getViewTag());
+	        	this.onClick(findViewById(R.layout.map_activity));
 	        	return true;
 	        }
 	        else
