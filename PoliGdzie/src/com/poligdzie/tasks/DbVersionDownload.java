@@ -55,7 +55,10 @@ public class DbVersionDownload extends AsyncTask<String, Void, DbVersion> implem
 	protected void onPostExecute(DbVersion version)
 	{
 		DataProvider provider = DataProvider.getInstance();
-		Log.d("POLIGDZIE", "Pobrano wartosc wersji: " + version.getValue()); 
+		Log.d("POLIGDZIE", "Pobrano wartosc wersji: " + version.getValue());
+		if(version.getValue() == 0)
+			return;
+		
 		if(version.getValue() > provider.getRemoteDbVersion()) {
 			Log.d("POLIGDZIE", "Zmiana wersji bazy na " + version.getValue() + " z " + provider.getRemoteDbVersion());
 			provider.setRemoteDbVersion(version.getValue());

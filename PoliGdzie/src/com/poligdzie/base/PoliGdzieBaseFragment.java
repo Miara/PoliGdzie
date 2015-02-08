@@ -34,7 +34,6 @@ public abstract class PoliGdzieBaseFragment extends Fragment implements
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
 	{
-		Log.d("POLIGDZIE", this.getActivity().toString());
 		setUp();
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
