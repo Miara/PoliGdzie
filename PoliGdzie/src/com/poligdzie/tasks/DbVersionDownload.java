@@ -1,10 +1,15 @@
 package com.poligdzie.tasks;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -34,10 +39,22 @@ public class DbVersionDownload extends AsyncTask<String, Void, DbVersion> implem
 		DbVersion version = new DbVersion();
 		try 
 		{
-			URL urlObject = new URL("url");
-			HttpURLConnection urlConnection = (HttpURLConnection) urlObject.openConnection();
-			if(urlConnection.getResponseCode() == 200)
+			
+			
+			HttpGet httpGet = new HttpGet(url[0]);
+			HttpParams httpParameters = new BasicHttpParams();
+			 
+			int timeoutConnection = 500;
+			HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+			
+
+			DefaultHttpClient httpClient = new DefaultHttpClient(httpParameters);
+			HttpResponse response = httpClient.execute(httpGet);
+			
+			if(response.getStatusLine().getStatusCode() == 200)
 				version = mapper.readValue(new URL(url[0]), DbVersion.class);
+			else
+				Log.e("POLIGDZIE", "Usluga niedostepna");
 
 		} catch (JsonParseException e)
 		{
