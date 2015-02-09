@@ -1,6 +1,7 @@
 package com.poligdzie.tasks;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -12,7 +13,6 @@ import org.codehaus.jackson.map.ObjectMapper;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
@@ -34,7 +34,10 @@ public class DbVersionDownload extends AsyncTask<String, Void, DbVersion> implem
 		DbVersion version = new DbVersion();
 		try 
 		{
-			version = mapper.readValue(new URL(url[0]), DbVersion.class);
+			URL urlObject = new URL("url");
+			HttpURLConnection urlConnection = (HttpURLConnection) urlObject.openConnection();
+			if(urlConnection.getResponseCode() == 200)
+				version = mapper.readValue(new URL(url[0]), DbVersion.class);
 
 		} catch (JsonParseException e)
 		{
