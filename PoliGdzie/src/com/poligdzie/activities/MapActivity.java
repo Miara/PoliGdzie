@@ -98,8 +98,8 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		DataProvider dataProvider = DataProvider.getInstance();
 		dataProvider.initialize(this, dbHelper);
 
-		DbVersionDownload dbVerTask = new DbVersionDownload(this);
-		dbVerTask.execute("http://192.168.0.100:8181/version/");
+		//DbVersionDownload dbVerTask = new DbVersionDownload(this);
+		//dbVerTask.execute("http://192.168.0.100:8181/version/");
 		
 		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna",
 				OUTDOOR_MAP_TAG);
