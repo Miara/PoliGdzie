@@ -27,7 +27,7 @@ public abstract class PoliGdzieBaseFragment extends Fragment implements
 
 	public PoliGdzieBaseFragment()
 	{
-		setUp();
+		//setUp();
 	}
 
 	@Override

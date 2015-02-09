@@ -38,6 +38,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements
 	{
 		super(context, databaseName, factory, databaseVersion);
 		this.context = context;
+		
+		
 	}
 
 	public static String						DATABASE_NAME			= "Poligdzie.db";
@@ -68,7 +70,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements
 		{
 			try
 			{
-				File dbFile = new File(db.getPath());
+				File dbFile = context.getDatabasePath(DATABASE_NAME);
 				if (dbFile.exists())
 					dbFile.delete();
 
