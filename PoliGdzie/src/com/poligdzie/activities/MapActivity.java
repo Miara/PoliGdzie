@@ -145,7 +145,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 				findFragmentById(R.id.building_info_frag);
 				buildingInfoFragment.getView().setVisibility(View.GONE);
 	}
-//TODO: refaktoryzacja w chuj!
+//TODO: refaktoryzacja
 	
 	@Override
 	protected void onResume()

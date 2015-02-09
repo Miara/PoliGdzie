@@ -26,6 +26,7 @@ import com.poligdzie.persistence.RemoteDbVersion;
 import com.poligdzie.persistence.Room;
 import com.poligdzie.persistence.SpecialConnection;
 import com.poligdzie.persistence.Unit;
+import com.poligdzie.singletons.DataProvider;
 import com.poligdzie.tasks.DatabaseDownloadTask;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements
@@ -87,6 +88,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper implements
 				dst.close();
 				newDb.close();
 
+				DataProvider provider = DataProvider.getInstance();
+				provider.initialize(context, this);
 			} catch (IOException e)
 			{
 				e.printStackTrace();

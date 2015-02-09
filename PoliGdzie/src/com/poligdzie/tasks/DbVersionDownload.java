@@ -12,6 +12,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.poligdzie.helpers.DatabaseHelper;
 import com.poligdzie.interfaces.Constants;
@@ -46,7 +47,7 @@ public class DbVersionDownload extends AsyncTask<String, Void, DbVersion> implem
 			e.printStackTrace();
 		} catch (IOException e)
 		{
-			e.printStackTrace();
+			Log.e("POLIGDZIE", "Usluga niedostepna");
 		}
 		return version;
 	}
