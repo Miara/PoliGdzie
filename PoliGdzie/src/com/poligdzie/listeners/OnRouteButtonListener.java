@@ -335,9 +335,36 @@ public class OnRouteButtonListener extends PoliGdzieBaseClass implements
 							.getActivity().getFragmentManager()
 							.findFragmentById(R.id.route_details_frag);
 					searchDetailsFrag.getView().setVisibility(View.GONE);
-					routeDetailsFrag.setTextViews(
-							((Nameable) startObject).getName(),
-							((Nameable) goalObject).getName());
+					
+					String startObjectName = new String();
+					startObjectName = ((Nameable) startObject).getName();
+					
+					String goalObjectName = new String();
+					goalObjectName = ((Nameable) goalObject).getName();
+					
+					
+					try
+					{
+						if(startObject instanceof Room) 
+						{
+						Building building = dbHelper.getBuildingDao().
+								queryForId(((Room)startObject).getBuilding().getId());
+						startObjectName += " (" + building.getName() + ")";
+						}
+						
+						if(goalObject instanceof Room) 
+						{
+						Building building = dbHelper.getBuildingDao().
+								queryForId(((Room)goalObject).getBuilding().getId());
+						goalObjectName += " (" + building.getName() + ")";
+						}
+					} catch (SQLException e)
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					routeDetailsFrag.setTextViews(startObjectName, goalObjectName);
 
 				}
 			}

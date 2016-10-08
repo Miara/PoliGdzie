@@ -1,5 +1,7 @@
 package com.poligdzie.fragments;
 
+import java.sql.SQLException;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ import com.poligdzie.interfaces.Nameable;
 import com.poligdzie.listeners.ContextSearchTextWatcher;
 import com.poligdzie.persistence.Building;
 import com.poligdzie.persistence.Floor;
+import com.poligdzie.persistence.Room;
 import com.poligdzie.singletons.MapDrawingProvider;
 import com.poligdzie.widgets.SearchAutoCompleteTextView;
 
@@ -77,8 +80,14 @@ public class SearchDetailsFragment extends PoliGdzieBaseFragment implements OnCl
 		this.object = obj;
 		if(object instanceof Building)
 		{
+			if(((Building)object).getRooms().size() > 0)
+				insideButton.setVisibility(View.VISIBLE);
+			else
+				insideButton.setVisibility(View.GONE);
+			
 			infoButton.setVisibility(View.VISIBLE);
-			insideButton.setVisibility(View.VISIBLE);
+			//insideButton.setVisibility(View.VISIBLE);
+			
 		}
 		else
 		{
@@ -116,7 +125,27 @@ public class SearchDetailsFragment extends PoliGdzieBaseFragment implements OnCl
 			if(this.object != null)
 			{
 				drawingProvider.setStart(this.object);
-				routeFragment.setStartPosition(((Nameable) this.object).getName());
+				String name = new String();
+				name += ((Nameable) this.object).getName();
+				
+//				try
+//				{
+//					if(object instanceof Room) 
+//					{
+//					Building building = dbHelper.getBuildingDao().
+//							queryForId(((Room)this.object).getBuilding().getId());
+//					name += " (" + building.getName() + ")";
+//					}
+//				} catch (SQLException e)
+//				{
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+				
+				
+					
+				
+				routeFragment.setStartPosition(name);
 			}
 		}
 		else if( v == toButton)
@@ -125,7 +154,25 @@ public class SearchDetailsFragment extends PoliGdzieBaseFragment implements OnCl
 			if(this.object != null)
 			{
 				drawingProvider.setGoal(this.object);
-				routeFragment.setGoalPosition(((Nameable) this.object).getName());
+				
+				String name = new String();
+				name += ((Nameable) this.object).getName();
+				
+//				try
+//				{
+//					if(object instanceof Room) 
+//					{
+//					Building building = dbHelper.getBuildingDao().
+//							queryForId(((Room)this.object).getBuilding().getId());
+//					name += " (" + building.getName() + ")";
+//					}
+//				} catch (SQLException e)
+//				{
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+				
+				routeFragment.setGoalPosition(name);
 			}
 		}
 		else if( v == infoButton)

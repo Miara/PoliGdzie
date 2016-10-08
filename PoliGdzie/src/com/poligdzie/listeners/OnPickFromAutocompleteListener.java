@@ -255,7 +255,7 @@ public class OnPickFromAutocompleteListener extends PoliGdzieBaseClass implement
 						Building building = dbHelper.getBuildingDao().
 									queryForId(((Room)object).getBuilding().getId());
 						
-						details = building.getName() ;
+						details = building.getName();
 					} else if (object instanceof Unit)
 					{
 						Unit unit = (Unit) object;
