@@ -27,7 +27,7 @@ public interface Constants
 	public int		INVALID_CODE				= -1;
 	public long		DOUBLE_CLICK_DURATION		= 600;
 	public long 	SINGLE_CLICK_DURATION		= 150;
-	public double	VIEW_ZOOM_IN				= 1.35;
+	public double	VIEW_ZOOM_IN				= 0.65;
 	public String	TAG							= "Poligdzie";
 
 	// tymczasowe sta³e marginesu do okienka po kliknieciu na marker
@@ -69,7 +69,7 @@ public interface Constants
 	public int POINT_TYPE_START = 2;
 	public int POINT_TYPE_GOAL = 3;
 	
-	public int ROUTE_SCALE_RADIUS = 10;
+	public int ROUTE_SCALE_RADIUS = 40;
 	
 	public int INDOOR_PROCESS_TYPE_SEARCH = 0;
 	public int INDOOR_PROCESS_TYPE_ROUTE = 1;
