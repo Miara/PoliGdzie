@@ -339,12 +339,31 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		@Override
 		public boolean onOptionsItemSelected(MenuItem element)
 		{
-			if(element.getItemId() == R.id.menu_pomoc)
+			switch(element.getItemId())
+			{
+			case R.id.menu_pomoc:
 			{
 				Intent intent = new Intent(this, HelpActivity.class);
 				this.startActivity(intent);
+				break;
 			}
+			case R.id.menu_wersja:
+			{
+				Intent intent = new Intent(this, VersionActivity.class);
+				this.startActivity(intent);
+				break;
+			}
+			case R.id.menu_o_programie:
+			{
+				Intent intent = new Intent(this, AboutActivity.class);
+				this.startActivity(intent);
+				break;
+			}
+			
+			}
+			
 			return true;
+			
 		}
 		
 		

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+     <RelativeLayout 
+        android:id="@+id/version_activity_relative"
+        android:layout_width="250dp"
+        android:layout_height="match_parent"
+        android:layout_margin = "30dp"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:layout_gravity="center">
+	       <LinearLayout 
+		        android:id="@+id/version_activity_main_layout"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical">
+		        
+		        <TextView 
+		            android:id="@+id/version_activity_name"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:textStyle="bold"
+		            android:gravity="center_horizontal|center_vertical"
+		            android:textSize="17sp"
+		            android:text="goggogogog"/>
+		        <TextView 
+		            android:id="@+id/version_activity_gradient"
+		            android:layout_width="match_parent"
+		            android:layout_height="1dp"
+		            android:background="@drawable/gradient_white_gray_horizontal"/>
+	
+		        <TextView 
+		            android:id="@+id/version_activity_description"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="lalalaladgfsfdgdsfglalala"/>
+	    	</LinearLayout>   
+
+	    <TextView 
+		            android:id="@+id/version_activity_gradient2"
+		            android:layout_width="match_parent"
+		            android:layout_height="2dp"
+		            android:layout_above="@+id/about_activity_button"
+		            android:background="@drawable/gradient_white_gray_horizontal"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>
