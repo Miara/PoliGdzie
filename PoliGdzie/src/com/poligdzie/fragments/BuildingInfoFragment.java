@@ -74,22 +74,22 @@ OnClickListener,LoadingBitmap
 		Log.i("poligdzie","bitmapWidth:"+bitmap.getWidth());
 		Log.i("poligdzie","scrollViewWidth:"+parentWidth);
 		
-		if(bitmap.getWidth() > parentWidth)
-		{
-			LayoutParams params=image.getLayoutParams();
-			params.width=parentWidth;
-			params.height = (int)(parentWidth*ratio);
-			image.setLayoutParams(params);
-			
-			Log.i("poligdzie","paramsWidth:"+params.width);
-			Log.i("poligdzie","paramsHeight:"+params.height);
-		}
-		else
-		{
-			LayoutParams params=scrollView.getLayoutParams();
-			params.width=bitmap.getWidth();
-			scrollView.setLayoutParams(params);
-		}
+//		if(bitmap.getWidth() > parentWidth)
+//		{
+//			LayoutParams params=image.getLayoutParams();
+//			params.width=parentWidth;
+//			params.height = (int)(parentWidth*ratio);
+//			image.setLayoutParams(params);
+//			
+//			Log.i("poligdzie","paramsWidth:"+params.width);
+//			Log.i("poligdzie","paramsHeight:"+params.height);
+//		}
+//		else
+//		{
+//			LayoutParams params=scrollView.getLayoutParams();
+//			params.width=bitmap.getWidth();
+//			scrollView.setLayoutParams(params);
+//		}
 		
 		
 		image.setImageBitmap(bitmap);
