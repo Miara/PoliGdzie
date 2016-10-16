@@ -2,6 +2,8 @@ package com.poligdzie.fragments;
 
 import java.sql.SQLException;
 
+import android.app.FragmentManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,8 +36,9 @@ public class MapOutdoorFragment extends PoliGdzieMapFragment implements
 		View rootView = inflater.inflate(R.layout.map_outdoor_fragment,
 				container, false);
 
-		map = ((MapFragment) getActivity().getFragmentManager()
-				.findFragmentById(R.id.map_outdoor_googleMap)).getMap();
+		map = getMapFragment().getMap();
+		
+		
 
 		searchPlaceFragment = (SearchPlaceFragment) getActivity()
 				.getFragmentManager().findFragmentById(R.id.search_place_frag);
@@ -69,6 +72,23 @@ public class MapOutdoorFragment extends PoliGdzieMapFragment implements
 	public MapOutdoorFragment(String drawableId, String name, String viewTag)
 	{
 		super(drawableId, name, viewTag);
+	}
+	
+	private MapFragment getMapFragment() {
+	    FragmentManager fm = null;
+
+	    Log.d(TAG, "sdk: " + Build.VERSION.SDK_INT);
+	    Log.d(TAG, "release: " + Build.VERSION.RELEASE);
+
+	    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+	        Log.d(TAG, "using getFragmentManager");
+	        fm = getFragmentManager();
+	    } else {
+	        Log.d(TAG, "using getChildFragmentManager");
+	        fm = getChildFragmentManager();
+	    }
+
+	    return (MapFragment) fm.findFragmentById(R.id.map_outdoor_googleMap);
 	}
 
 }
