@@ -87,7 +87,14 @@
 			        android:background="#000000"
 			        android:text="Tu będzie list view"
 			        android:textColor="#FFFFFF" /> -->
-			        
+			 <Button
+			        android:id="@+id/menu_button"
+			        android:layout_width="60dp"
+			        android:layout_height="60dp"
+			        android:layout_alignParentLeft="true"
+			        android:layout_alignParentBottom="true"
+			        android:background="@drawable/menu"
+			        android:textColor="#FFFFFF" /> 			        
 			</RelativeLayout>
 			<fragment
 		            android:id="@+id/search_description_frag"
@@ -95,5 +102,6 @@
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
 		            android:layout_alignParentBottom="true" />  
-	    </RelativeLayout> 
+	    </RelativeLayout>
+	   
 </LinearLayout>

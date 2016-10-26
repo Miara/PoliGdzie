@@ -49,6 +49,7 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 	private TextView			currentText;
 	private Button				previous;
 	private Button				next;
+	private Button 				menuButton;
 
 	private MapOutdoorFragment	outdoorMap;
 	private MapIndoorFragment	indoorMap;
@@ -107,7 +108,9 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 
 		switchFragment(R.id.map_container, outdoorMap, outdoorMap.getViewTag());
 
-
+		menuButton = (Button) findViewById(R.id.menu_button);
+		menuButton.setOnClickListener(this);
+		
 		previous = (Button) findViewById(R.id.previous_map);
 		previous.setOnClickListener(this);
 		previous.setVisibility(View.GONE);
@@ -196,6 +199,10 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 
 			switchFragment(R.id.map_container, frag, tag);
 			searchDetailsFragment.getView().setVisibility(View.GONE);
+		}
+		if(v == menuButton)
+		{
+			openOptionsMenu();
 		}
 
 		setNavigationArrowsVisibility();
