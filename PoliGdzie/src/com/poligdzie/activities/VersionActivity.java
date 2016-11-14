@@ -37,6 +37,5 @@ public class VersionActivity extends Activity
 	}
 	
 	private String description = "Wersja: \nSynchronizacja z baz¹ zdaln¹: NIE\n"
-			+ "Wersja 1.0.3\n"
-			+ "Hash repozytorium";
+			+ "Wersja 1.0.6\n";
 }

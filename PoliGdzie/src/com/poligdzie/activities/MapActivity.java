@@ -1,6 +1,5 @@
 package com.poligdzie.activities;
 
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -42,24 +41,26 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 														OnClickListener
 {
 
-	public PolylineOptions		options;
+	public PolylineOptions			options;
 
-	MapFragmentProvider			mapProvider;
+	MapFragmentProvider				mapProvider;
 
-	private TextView			currentText;
-	private Button				previous;
-	private Button				next;
-	private Button 				menuButton;
+	private TextView				currentText;
+	private Button					previous;
+	private Button					next;
+	private Button					menuButton;
 
-	private MapOutdoorFragment	outdoorMap;
-	private MapIndoorFragment	indoorMap;
-	
-	private SearchPlaceFragment	searchPlaceFragment;
-	private SearchRouteFragment	searchRouteFragment;
+	private MapOutdoorFragment		outdoorMap;
+	private MapIndoorFragment		indoorMap;
+
+	private SearchPlaceFragment		searchPlaceFragment;
+	private SearchRouteFragment		searchRouteFragment;
 	private SearchDetailsFragment	searchDetailsFragment;
 	private RouteDetailsFragment	routeDetailsFragment;
 	private BuildingInfoFragment	buildingInfoFragment;
-	// TODO: przy pierwszym odpaleniu apki po instalacji nie ma danych przy wyszukiwaniu, przy kolejnych sas
+
+	// TODO: przy pierwszym odpaleniu apki po instalacji nie ma danych przy
+	// wyszukiwaniu, przy kolejnych sas
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -67,31 +68,33 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		this.onResume();
 		setContentView(R.layout.map_activity);
 
-
-		if(!isNetworkAvailable()) {
+		if (!isNetworkAvailable())
+		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setTitle("Brak po³¹czenia z internetem");
 			builder.setMessage("Twoje urz¹dzenie nie jest pod³¹czone do internetu. Wyœwietlanie oraz wyszukiwanie trasy na zewn¹trz nie bêdzie dzia³aæ. Modu³y pomieszczeñ pracuj¹ normalnie.");
-			builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-			
-			{
-				
+			builder.setNeutralButton("OK",
+					new DialogInterface.OnClickListener()
+					{
 
-			};
+						{
 
-				@Override
-				public void onClick(DialogInterface dialog, int which)
-				{
-					dialog.cancel();
-					
-				}
-			});
+						};
+
+						@Override
+						public void onClick(DialogInterface dialog, int which)
+						{
+							dialog.cancel();
+
+						}
+					});
 			builder.show();
-	/*		Toast t = Toast.makeText(this, "Brak polaczenie z internetosem!", Toast.LENGTH_LONG);
-			t.show();*/
+			/*
+			 * Toast t = Toast.makeText(this, "Brak polaczenie z internetosem!",
+			 * Toast.LENGTH_LONG); t.show();
+			 */
 		}
-		
-				
+
 		Log.i("poli", "map1");
 
 		mapProvider = MapFragmentProvider.getInstance();
@@ -99,18 +102,17 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		DataProvider dataProvider = DataProvider.getInstance();
 		dataProvider.initialize(this, dbHelper);
 
-		//DbVersionDownload dbVerTask = new DbVersionDownload(this);
-		//dbVerTask.execute("http://192.168.0.100:8181/version/");
-		
+		// DbVersionDownload dbVerTask = new DbVersionDownload(this);
+		// dbVerTask.execute("http://192.168.0.100:8181/version/");
+
 		outdoorMap = new MapOutdoorFragment(NO_BITMAP, "Mapa zewnêtrzna",
 				OUTDOOR_MAP_TAG);
-
 
 		switchFragment(R.id.map_container, outdoorMap, outdoorMap.getViewTag());
 
 		menuButton = (Button) findViewById(R.id.menu_button);
 		menuButton.setOnClickListener(this);
-		
+
 		previous = (Button) findViewById(R.id.previous_map);
 		previous.setOnClickListener(this);
 		previous.setVisibility(View.GONE);
@@ -126,52 +128,54 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		currentText = (TextView) findViewById(R.id.current_map);
 
 		currentText.setText(mapProvider.getCurrentFragment().getName());
-		
-		searchPlaceFragment =  (SearchPlaceFragment) getFragmentManager().
-				findFragmentById(R.id.search_place_frag);
+
+		searchPlaceFragment = (SearchPlaceFragment) getFragmentManager()
+				.findFragmentById(R.id.search_place_frag);
 		searchPlaceFragment.getView().setVisibility(View.VISIBLE);
-		
-		searchRouteFragment = (SearchRouteFragment) getFragmentManager().
-				findFragmentById(R.id.search_route_frag);
+
+		searchRouteFragment = (SearchRouteFragment) getFragmentManager()
+				.findFragmentById(R.id.search_route_frag);
 		searchRouteFragment.getView().setVisibility(View.GONE);
-	
-		
-		searchDetailsFragment = (SearchDetailsFragment) getFragmentManager().
-		findFragmentById(R.id.search_description_frag);
+
+		searchDetailsFragment = (SearchDetailsFragment) getFragmentManager()
+				.findFragmentById(R.id.search_description_frag);
 		searchDetailsFragment.getView().setVisibility(View.GONE);
-		
-		routeDetailsFragment = (RouteDetailsFragment) getFragmentManager().
-		findFragmentById(R.id.route_details_frag);
+
+		routeDetailsFragment = (RouteDetailsFragment) getFragmentManager()
+				.findFragmentById(R.id.route_details_frag);
 		routeDetailsFragment.getView().setVisibility(View.GONE);
-		
-		buildingInfoFragment = (BuildingInfoFragment) getFragmentManager().
-				findFragmentById(R.id.building_info_frag);
-				buildingInfoFragment.getView().setVisibility(View.GONE);
+
+		buildingInfoFragment = (BuildingInfoFragment) getFragmentManager()
+				.findFragmentById(R.id.building_info_frag);
+		buildingInfoFragment.getView().setVisibility(View.GONE);
 	}
-//TODO: refaktoryzacja
-	
+
+	// TODO: refaktoryzacja
+
 	@Override
 	protected void onResume()
 	{
 		super.onResume();
-		if(!checkPlayServices()) {
+		if (!checkPlayServices())
+		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setTitle("Brak google play services");
 			builder.setMessage("Aby u¿ywaæ aplikacji nale¿y mieæ zainstalowane google play services oraz byæ zalogowanym poprzez konto google");
-			builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-			
-			{
-				
+			builder.setNeutralButton("OK",
+					new DialogInterface.OnClickListener()
+					{
 
-			};
+						{
 
-				@Override
-				public void onClick(DialogInterface dialog, int which)
-				{
-				 MapActivity.this.finish();
-					
-				}
-			});
+						};
+
+						@Override
+						public void onClick(DialogInterface dialog, int which)
+						{
+							MapActivity.this.finish();
+
+						}
+					});
 			builder.show();
 
 		}
@@ -200,12 +204,15 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 			switchFragment(R.id.map_container, frag, tag);
 			searchDetailsFragment.getView().setVisibility(View.GONE);
 		}
-		if(v == menuButton)
+		if (v == menuButton)
 		{
 			openOptionsMenu();
 		}
 
-		setNavigationArrowsVisibility();
+		if (v != menuButton)
+		{
+			setNavigationArrowsVisibility();
+		}
 
 	}
 
@@ -227,153 +234,153 @@ public class MapActivity extends PoliGdzieBaseActivity implements
 		Toast.makeText(this, actualViewName, Toast.LENGTH_SHORT).show();
 	}
 
-	private boolean isNetworkAvailable() {
-	    ConnectivityManager connectivityManager 
-	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+	private boolean isNetworkAvailable()
+	{
+		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetworkInfo = connectivityManager
+				.getActiveNetworkInfo();
+		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
-	
+
 	public MapActivity()
 	{
 		super();
 	}
-	
+
 	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-	    if (keyCode == KeyEvent.KEYCODE_BACK) {
-	    	MapFragmentProvider fragProvider = MapFragmentProvider.getInstance();
-	        if(searchRouteFragment.isVisible())
-	        {
-	        	searchRouteFragment.getView().setVisibility(View.GONE);
-	        	return true;
-	        }
-	        else if(buildingInfoFragment.isVisible())
-	        {
-	        	buildingInfoFragment.getView().setVisibility(View.GONE);
-	        	return true;
-	        }
-	        else if(routeDetailsFragment.isVisible())
-	        {
-	        	routeDetailsFragment.getView().setVisibility(View.GONE);
-	        	return true;
-	        }
-	        else if(searchDetailsFragment.isVisible())
-	        {
-	        	searchDetailsFragment.getView().setVisibility(View.GONE);
-	        	return true;
-	        }
-	        else if(!fragProvider.isGoogleMapInCurrentView())
-	        {
-	        	fragProvider.clearFragments();
-	        	fragProvider.addGoogleMapFragment();
-	        	this.switchFragment(R.id.map_container, 
-	        			fragProvider.getGoogleMapFragment(), 
-	        			fragProvider.getGoogleMapFragment().getViewTag());
-	        	this.onClick(findViewById(R.layout.map_activity));
-	        	return true;
-	        }
-	        else
-	        {
-	        	this.finish();
-	        }
-	        
-	    }
-	    return super.onKeyDown(keyCode, event);   
+	public boolean onKeyDown(int keyCode, KeyEvent event)
+	{
+		if (keyCode == KeyEvent.KEYCODE_BACK)
+		{
+			MapFragmentProvider fragProvider = MapFragmentProvider
+					.getInstance();
+			if (searchRouteFragment.isVisible())
+			{
+				searchRouteFragment.getView().setVisibility(View.GONE);
+				return true;
+			} else if (buildingInfoFragment.isVisible())
+			{
+				buildingInfoFragment.getView().setVisibility(View.GONE);
+				return true;
+			} else if (routeDetailsFragment.isVisible())
+			{
+				routeDetailsFragment.getView().setVisibility(View.GONE);
+				return true;
+			} else if (searchDetailsFragment.isVisible())
+			{
+				searchDetailsFragment.getView().setVisibility(View.GONE);
+				return true;
+			} else if (!fragProvider.isGoogleMapInCurrentView())
+			{
+				fragProvider.clearFragments();
+				fragProvider.addGoogleMapFragment();
+				this.switchFragment(R.id.map_container, fragProvider
+						.getGoogleMapFragment(), fragProvider
+						.getGoogleMapFragment().getViewTag());
+				this.onClick(findViewById(R.layout.map_activity));
+				return true;
+			} else
+			{
+				this.finish();
+			}
+
+		}
+		return super.onKeyDown(keyCode, event);
 	}
-	
-	
-	//TODO: refaktor
-	private boolean checkPlayServices() {
-		  int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-		  if (status != ConnectionResult.SUCCESS) {
-		    if (GooglePlayServicesUtil.isUserRecoverableError(status)) {
-		      showErrorDialog(status);
-		    } else {
-		      Toast.makeText(this, "This device is not supported.", 
-		          Toast.LENGTH_LONG).show();
-		      finish();
-		    }
-		    return false;
-		  }
-		  return true;
-		} 
 
-		void showErrorDialog(int code) {
-		  GooglePlayServicesUtil.getErrorDialog(code, this, 
-		      1001).show();
-		}
-
-		public SearchPlaceFragment getSearchPlaceFragment()
+	// TODO: refaktor
+	private boolean checkPlayServices()
+	{
+		int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+		if (status != ConnectionResult.SUCCESS)
 		{
-			return searchPlaceFragment;
-		}
-
-		public SearchRouteFragment getSearchRouteFragment()
-		{
-			return searchRouteFragment;
-		}
-
-		public SearchDetailsFragment getSearchDetailsFragment()
-		{
-			return searchDetailsFragment;
-		}
-
-		public RouteDetailsFragment getRouteDetailsFragment()
-		{
-			return routeDetailsFragment;
-		}
-
-		public BuildingInfoFragment getBuildingInfoFragment()
-		{
-			return buildingInfoFragment;
-		}
-
-		public void setBuildingInfoFragment(BuildingInfoFragment buildingInfoFragment)
-		{
-			this.buildingInfoFragment = buildingInfoFragment;
-		}
-		
-		@Override
-		public boolean onCreateOptionsMenu(Menu menu)
-		{
-			super.onCreateOptionsMenu(menu);
-			MenuInflater customMenu = getMenuInflater();
-			customMenu.inflate(R.menu.main, menu);
-			return true;
-		}
-		
-		@Override
-		public boolean onOptionsItemSelected(MenuItem element)
-		{
-			switch(element.getItemId())
+			if (GooglePlayServicesUtil.isUserRecoverableError(status))
 			{
-			case R.id.menu_pomoc:
+				showErrorDialog(status);
+			} else
 			{
-				Intent intent = new Intent(this, HelpActivity.class);
-				this.startActivity(intent);
-				break;
+				Toast.makeText(this, "This device is not supported.",
+						Toast.LENGTH_LONG).show();
+				finish();
 			}
-			case R.id.menu_wersja:
-			{
-				Intent intent = new Intent(this, VersionActivity.class);
-				this.startActivity(intent);
-				break;
-			}
-			case R.id.menu_o_programie:
-			{
-				Intent intent = new Intent(this, AboutActivity.class);
-				this.startActivity(intent);
-				break;
-			}
-			
-			}
-			
-			return true;
-			
+			return false;
 		}
-		
-		
-		
-		
+		return true;
+	}
+
+	void showErrorDialog(int code)
+	{
+		GooglePlayServicesUtil.getErrorDialog(code, this, 1001).show();
+	}
+
+	public SearchPlaceFragment getSearchPlaceFragment()
+	{
+		return searchPlaceFragment;
+	}
+
+	public SearchRouteFragment getSearchRouteFragment()
+	{
+		return searchRouteFragment;
+	}
+
+	public SearchDetailsFragment getSearchDetailsFragment()
+	{
+		return searchDetailsFragment;
+	}
+
+	public RouteDetailsFragment getRouteDetailsFragment()
+	{
+		return routeDetailsFragment;
+	}
+
+	public BuildingInfoFragment getBuildingInfoFragment()
+	{
+		return buildingInfoFragment;
+	}
+
+	public void setBuildingInfoFragment(
+			BuildingInfoFragment buildingInfoFragment)
+	{
+		this.buildingInfoFragment = buildingInfoFragment;
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		super.onCreateOptionsMenu(menu);
+		MenuInflater customMenu = getMenuInflater();
+		customMenu.inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem element)
+	{
+		switch (element.getItemId())
+		{
+		case R.id.menu_pomoc:
+		{
+			Intent intent = new Intent(this, HelpActivity.class);
+			this.startActivity(intent);
+			break;
+		}
+		case R.id.menu_wersja:
+		{
+			Intent intent = new Intent(this, VersionActivity.class);
+			this.startActivity(intent);
+			break;
+		}
+		case R.id.menu_o_programie:
+		{
+			Intent intent = new Intent(this, AboutActivity.class);
+			this.startActivity(intent);
+			break;
+		}
+
+		}
+
+		return true;
+
+	}
+
 }
